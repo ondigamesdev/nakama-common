@@ -585,6 +585,12 @@ message Leaderboard {
   google.protobuf.Timestamp create_time = 7;
   // Whether the leaderboard was created authoritatively or not.
   bool authoritative = 8;
+  // Scope type: 0=global (default), 1=realm, 2=cohort, 3=event.
+  uint32 scope_type = 9;
+  // The realm ID if this leaderboard is realm-scoped.
+  string realm_id = 10;
+  // The cohort ID if this leaderboard is cohort-scoped.
+  string cohort_id = 11;
 }
 
 // A list of leaderboards
@@ -621,6 +627,10 @@ message LeaderboardRecord {
   int64 rank = 11;
   // The maximum number of score updates allowed by the owner.
   uint32 max_num_score = 12;
+  // The realm from which this record was submitted. Enables filtering records within a leaderboard by realm.
+  string realm_id = 13;
+  // The character that submitted this record. Enables per-character analytics when a user has multiple characters.
+  string character_id = 14;
 }
 
 // A set of leaderboard records, may be part of a leaderboard records page or a batch of individual records.
@@ -1455,4 +1465,136 @@ message PartyList {
   repeated Party parties = 1;
   // A cursor to send when retrieving the next page, if any.
   string cursor = 2;
+}
+
+// The status of a realm.
+enum RealmStatus {
+  // The realm is active and available for play.
+  REALM_STATUS_ACTIVE = 0;
+  // The realm is under maintenance.
+  REALM_STATUS_MAINTENANCE = 1;
+  // The realm is retired and no longer available.
+  REALM_STATUS_RETIRED = 2;
+  // The realm is coming soon.
+  REALM_STATUS_COMING_SOON = 3;
+}
+
+// The status of a character.
+enum CharacterStatus {
+  // The character is active and playable.
+  CHARACTER_STATUS_ACTIVE = 0;
+  // The character is banned.
+  CHARACTER_STATUS_BANNED = 1;
+  // The character is deleted.
+  CHARACTER_STATUS_DELETED = 2;
+}
+
+// A game realm/world/shard.
+message Realm {
+  // The unique identifier of the realm.
+  string id = 1;
+  // The human-readable name of the realm.
+  string name = 2;
+  // The URL-friendly slug of the realm.
+  string slug = 3;
+  // A description of the realm.
+  string description = 4;
+  // Additional realm configuration as a JSON object.
+  string config = 5;
+  // The status of the realm.
+  RealmStatus status = 6;
+  // The maximum number of players allowed in the realm.
+  int32 max_players = 7;
+  // The current number of players in the realm.
+  int32 current_players = 8;
+  // The region of the realm (e.g., "us-east", "eu-west").
+  string region = 9;
+  // The version of the realm.
+  string version = 10;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the realm was created.
+  google.protobuf.Timestamp create_time = 11;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the realm was last updated.
+  google.protobuf.Timestamp update_time = 12;
+}
+
+// A player character in a realm.
+message Character {
+  // The unique identifier of the character.
+  string id = 1;
+  // The user ID who owns this character.
+  string user_id = 2;
+  // The realm ID where this character exists.
+  string realm_id = 3;
+  // The name of the character.
+  string name = 4;
+  // The class/type of the character.
+  string class = 5;
+  // Additional character metadata as a JSON object.
+  string metadata = 6;
+  // The status of the character.
+  CharacterStatus status = 7;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the character was created.
+  google.protobuf.Timestamp create_time = 8;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the character was last updated.
+  google.protobuf.Timestamp update_time = 9;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the character last logged in.
+  google.protobuf.Timestamp last_login_at = 10;
+  // The realm object, if embedded.
+  Realm realm = 11;
+}
+
+// Request to list realms.
+message ListRealmsRequest {
+  // Optional filter by realm status.
+  google.protobuf.Int32Value status = 1;
+}
+
+// A list of realms.
+message RealmList {
+  // The list of realms.
+  repeated Realm realms = 1;
+}
+
+// Request to get a realm by ID or slug.
+message GetRealmRequest {
+  // The ID or slug of the realm.
+  string id = 1;
+}
+
+// Request to list characters for the current user.
+message ListCharactersRequest {
+}
+
+// A list of characters.
+message CharacterList {
+  // The list of characters.
+  repeated Character characters = 1;
+}
+
+// Request to create a new character.
+message CreateCharacterRequest {
+  // The realm ID or slug where the character will be created.
+  string realm_id = 1;
+  // The name of the character.
+  string name = 2;
+  // The class/type of the character (optional).
+  string class = 3;
+  // Additional character metadata as a JSON object (optional).
+  string metadata = 4;
+}
+
+// Request to select an active character.
+message SelectCharacterRequest {
+  // The ID of the character to select.
+  string character_id = 1;
+}
+
+// Response from selecting a character.
+message SelectCharacterResponse {
+  // The new session token with realm context.
+  string token = 1;
+  // The new refresh token with realm context.
+  string refresh_token = 2;
+  // The selected character.
+  Character character = 3;
 }

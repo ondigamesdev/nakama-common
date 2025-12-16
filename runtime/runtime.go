@@ -160,6 +160,20 @@ const (
 
 	// Trace identifier serves to distinguish requests for debugging purposes.
 	RUNTIME_CTX_TRACE_ID = "trace_id"
+
+	// Multi-realm context keys stored in session vars (accessible via RUNTIME_CTX_VARS).
+	// These are set when a user selects a character via SelectCharacter API.
+	//
+	// Example usage in hooks:
+	//   vars := ctx.Value(runtime.RUNTIME_CTX_VARS).(map[string]string)
+	//   realmID := vars[runtime.RUNTIME_CTX_VAR_REALM_ID]
+	//   characterID := vars[runtime.RUNTIME_CTX_VAR_CHARACTER_ID]
+	//
+	// The active realm ID from the user's selected character.
+	RUNTIME_CTX_VAR_REALM_ID = "realm_id"
+
+	// The active character ID from the user's selected character.
+	RUNTIME_CTX_VAR_CHARACTER_ID = "character_id"
 )
 
 var (
