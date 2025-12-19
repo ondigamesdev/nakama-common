@@ -704,6 +704,10 @@ message ListFriendsRequest {
   string cursor = 3;
   // Optional realm ID to filter friends with characters in this realm.
   string realm_id = 4;
+  // Include all friends when listing in a realm context. Default false.
+  // When true and realm_id is set, returns realm-filtered friends with character data
+  // plus all other friends without character data.
+  google.protobuf.BoolValue include_global = 5;
 }
 
 message ListFriendsOfFriendsRequest {
