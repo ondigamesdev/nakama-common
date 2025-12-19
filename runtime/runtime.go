@@ -218,6 +218,8 @@ var (
 	ErrPartyRemove                   = errors.New("party could not remove")
 	ErrPartyRemoveSelf               = errors.New("party cannot remove self")
 	ErrPartyLabelTooLong             = errors.New("party label too long")
+	ErrPartyRealmMismatch            = errors.New("party realm mismatch")
+	ErrPartyCohortMismatch           = errors.New("party cohort mismatch")
 
 	ErrGracePeriodExpired = errors.New("grace period expired")
 
@@ -232,6 +234,8 @@ var (
 	ErrGroupUserInvalidCursor = errors.New("group user cursor invalid")
 	ErrUserGroupInvalidCursor = errors.New("user group cursor invalid")
 	ErrGroupCreatorInvalid    = errors.New("group creator user ID not valid")
+	ErrGroupRealmMismatch     = errors.New("group realm mismatch")
+	ErrGroupRealmRequired     = errors.New("group realm required")
 
 	ErrWalletLedgerInvalidCursor = errors.New("wallet ledger cursor invalid")
 
@@ -1048,26 +1052,30 @@ type WalletLedgerItem interface {
 }
 
 type StorageRead struct {
-	Collection string
-	Key        string
-	UserID     string
+	Collection  string
+	Key         string
+	UserID      string
+	CharacterID string // Empty for user-scoped storage
 }
 
 type StorageWrite struct {
 	Collection      string
 	Key             string
 	UserID          string
+	CharacterID     string // Empty for user-scoped storage
 	Value           string
 	Version         string
 	PermissionRead  int
 	PermissionWrite int
+	UserScoped      bool // Force user-scoped even with active character
 }
 
 type StorageDelete struct {
-	Collection string
-	Key        string
-	UserID     string
-	Version    string
+	Collection  string
+	Key         string
+	UserID      string
+	CharacterID string // Empty for user-scoped storage
+	Version     string
 }
 
 type ChannelType int

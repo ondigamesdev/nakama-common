@@ -342,6 +342,9 @@ message CreateGroupRequest {
   bool open = 5;
   // Maximum number of group members.
   int32 max_count = 6;
+  // Scope type: 0=global (uses caller's realm context if available), 1=realm (requires realm context).
+  // When not specified, defaults based on caller's realm context.
+  uint32 scope_type = 7;
 }
 
 // Delete one or more friends for the current user.
@@ -384,6 +387,8 @@ message DeleteStorageObjectId {
   string key = 2;
   // The version hash of the object.
   string version = 3;
+  // The character owner of the object. Empty for user-scoped storage.
+  string character_id = 4;
 }
 
 // Batch delete storage objects.
@@ -426,6 +431,8 @@ message Friend {
   google.protobuf.Timestamp update_time = 3;
   // Metadata.
   string metadata = 4;
+  // The friend's character in the filtered realm (only set when realm_id filter is used).
+  Character character = 5;
 }
 
 // A collection of zero or more friends of the user.
@@ -493,6 +500,12 @@ message Group {
   google.protobuf.Timestamp create_time = 11;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the group was last updated.
   google.protobuf.Timestamp update_time = 12;
+  // Scope type: 0=global (default), 1=realm, 2=cohort.
+  uint32 scope_type = 13;
+  // The realm ID if this group is realm-scoped.
+  string realm_id = 14;
+  // The cohort ID if this group is cohort-scoped.
+  string cohort_id = 15;
 }
 
 // One or more groups returned from a listing operation.
@@ -689,6 +702,8 @@ message ListFriendsRequest {
   google.protobuf.Int32Value state = 2;
   // An optional next page cursor.
   string cursor = 3;
+  // Optional realm ID to filter friends with characters in this realm.
+  string realm_id = 4;
 }
 
 message ListFriendsOfFriendsRequest {
@@ -712,6 +727,10 @@ message ListGroupsRequest {
   google.protobuf.Int32Value members = 5;
   // Optional Open/Closed filter.
   google.protobuf.BoolValue open = 6;
+  // Scope type filter: 0=global only, 1=realm only, unset=both.
+  google.protobuf.UInt32Value scope_type = 7;
+  // Include global groups when listing realm groups. Default true.
+  google.protobuf.BoolValue include_global = 8;
 }
 
 // List all users that are part of a group.
@@ -840,6 +859,10 @@ message ListTournamentsRequest {
   google.protobuf.Int32Value limit = 6;
   // A next page cursor for listings (optional).
   string cursor = 8;
+  // Scope type filter: 0=global only, 1=realm only, unset=both.
+  google.protobuf.UInt32Value scope_type = 9;
+  // Include global tournaments when listing realm tournaments. Default true.
+  google.protobuf.BoolValue include_global = 10;
 }
 
 // List the groups a user is part of, and their relationship to each.
@@ -939,6 +962,8 @@ message ReadStorageObjectId {
   string key = 2;
   // The user owner of the object.
   string user_id = 3;
+  // The character owner of the object. Empty for user-scoped storage.
+  string character_id = 4;
 }
 
 // Batch get storage objects.
@@ -987,6 +1012,10 @@ message StorageObject {
   google.protobuf.Timestamp create_time = 8;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
   google.protobuf.Timestamp update_time = 9;
+  // The character owner of the object. Empty for user-scoped storage.
+  string character_id = 10;
+  // The realm associated with the object. Empty for user-scoped storage.
+  string realm_id = 11;
 }
 
 // A storage acknowledgement.
@@ -1003,6 +1032,10 @@ message StorageObjectAck {
   google.protobuf.Timestamp create_time = 5;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
   google.protobuf.Timestamp update_time = 6;
+  // The character owner of the object. Empty for user-scoped storage.
+  string character_id = 7;
+  // The realm associated with the object. Empty for user-scoped storage.
+  string realm_id = 8;
 }
 
 // Batch of acknowledgements for the storage object write.
@@ -1069,6 +1102,12 @@ message Tournament {
   bool authoritative = 20;
   // Whether the user must join the tournament before being able to submit scores.
   bool join_required = 21;
+  // Scope type: 0=global (default), 1=realm, 2=cohort, 3=event.
+  uint32 scope_type = 22;
+  // The realm ID if this tournament is realm-scoped.
+  string realm_id = 23;
+  // The cohort ID if this tournament is cohort-scoped.
+  string cohort_id = 24;
 }
 
 // A list of tournaments.
@@ -1391,6 +1430,8 @@ message WriteStorageObject {
   google.protobuf.Int32Value permission_read = 5;
   // The write access permissions for the object.
   google.protobuf.Int32Value permission_write = 6;
+  // Force user-scoped storage even when a character is selected. Default false (character-scoped when character selected).
+  bool user_scoped = 7;
 }
 
 // Write objects to the storage engine.
