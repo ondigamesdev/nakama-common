@@ -799,6 +799,10 @@ message ListNotificationsRequest {
   google.protobuf.Int32Value limit = 1;
   // A cursor to page through notifications. May be cached by clients to get from point in time forwards.
   string cacheable_cursor = 2; // value from NotificationList.cacheable_cursor.
+  // Optional realm ID to filter notifications by scope.
+  string realm_id = 3;
+  // Include global notifications when filtering by realm. Default true.
+  bool include_global = 4;
 }
 
 // List publicly readable storage objects in a given collection.
@@ -811,6 +815,12 @@ message ListStorageObjectsRequest {
   google.protobuf.Int32Value limit = 3;
   // The cursor to page through results from.
   string cursor = 4; // value from StorageObjectList.cursor.
+  // Optional character ID to filter by. If set, only returns objects owned by this character.
+  // When realm features are enabled and a character is selected, this defaults to the active character.
+  string character_id = 5;
+  // Include user-scoped objects (shared across characters) in addition to character-scoped.
+  // Only applicable when character_id is set. Default false.
+  bool include_user_scoped = 6;
 }
 
 // List user subscriptions.
@@ -932,6 +942,12 @@ message Notification {
   google.protobuf.Timestamp create_time = 6;
   // True if this notification was persisted to the database.
   bool persistent = 7;
+  // Scope type: 0=global (default), 1=realm, 2=cohort.
+  uint32 scope_type = 8;
+  // The realm ID if this notification is realm-scoped.
+  string realm_id = 9;
+  // The cohort ID if this notification is cohort-scoped.
+  string cohort_id = 10;
 }
 
 // A collection of zero or more notifications.

@@ -4976,8 +4976,12 @@ type ListNotificationsRequest struct {
 	Limit *wrapperspb.Int32Value `protobuf:"bytes,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	// A cursor to page through notifications. May be cached by clients to get from point in time forwards.
 	CacheableCursor string `protobuf:"bytes,2,opt,name=cacheable_cursor,json=cacheableCursor,proto3" json:"cacheable_cursor,omitempty"` // value from NotificationList.cacheable_cursor.
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Optional realm ID to filter notifications by scope.
+	RealmId string `protobuf:"bytes,3,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
+	// Include global notifications when filtering by realm. Default true.
+	IncludeGlobal bool `protobuf:"varint,4,opt,name=include_global,json=includeGlobal,proto3" json:"include_global,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListNotificationsRequest) Reset() {
@@ -5024,6 +5028,20 @@ func (x *ListNotificationsRequest) GetCacheableCursor() string {
 	return ""
 }
 
+func (x *ListNotificationsRequest) GetRealmId() string {
+	if x != nil {
+		return x.RealmId
+	}
+	return ""
+}
+
+func (x *ListNotificationsRequest) GetIncludeGlobal() bool {
+	if x != nil {
+		return x.IncludeGlobal
+	}
+	return false
+}
+
 // List publicly readable storage objects in a given collection.
 type ListStorageObjectsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -5034,9 +5052,15 @@ type ListStorageObjectsRequest struct {
 	// The number of storage objects to list. Between 1 and 100.
 	Limit *wrapperspb.Int32Value `protobuf:"bytes,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	// The cursor to page through results from.
-	Cursor        string `protobuf:"bytes,4,opt,name=cursor,proto3" json:"cursor,omitempty"` // value from StorageObjectList.cursor.
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Cursor string `protobuf:"bytes,4,opt,name=cursor,proto3" json:"cursor,omitempty"` // value from StorageObjectList.cursor.
+	// Optional character ID to filter by. If set, only returns objects owned by this character.
+	// When realm features are enabled and a character is selected, this defaults to the active character.
+	CharacterId string `protobuf:"bytes,5,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// Include user-scoped objects (shared across characters) in addition to character-scoped.
+	// Only applicable when character_id is set. Default false.
+	IncludeUserScoped bool `protobuf:"varint,6,opt,name=include_user_scoped,json=includeUserScoped,proto3" json:"include_user_scoped,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ListStorageObjectsRequest) Reset() {
@@ -5095,6 +5119,20 @@ func (x *ListStorageObjectsRequest) GetCursor() string {
 		return x.Cursor
 	}
 	return ""
+}
+
+func (x *ListStorageObjectsRequest) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ListStorageObjectsRequest) GetIncludeUserScoped() bool {
+	if x != nil {
+		return x.IncludeUserScoped
+	}
+	return false
 }
 
 // List user subscriptions.
@@ -5765,7 +5803,13 @@ type Notification struct {
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the notification was created.
 	CreateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// True if this notification was persisted to the database.
-	Persistent    bool `protobuf:"varint,7,opt,name=persistent,proto3" json:"persistent,omitempty"`
+	Persistent bool `protobuf:"varint,7,opt,name=persistent,proto3" json:"persistent,omitempty"`
+	// Scope type: 0=global (default), 1=realm, 2=cohort.
+	ScopeType uint32 `protobuf:"varint,8,opt,name=scope_type,json=scopeType,proto3" json:"scope_type,omitempty"`
+	// The realm ID if this notification is realm-scoped.
+	RealmId string `protobuf:"bytes,9,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
+	// The cohort ID if this notification is cohort-scoped.
+	CohortId      string `protobuf:"bytes,10,opt,name=cohort_id,json=cohortId,proto3" json:"cohort_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5847,6 +5891,27 @@ func (x *Notification) GetPersistent() bool {
 		return x.Persistent
 	}
 	return false
+}
+
+func (x *Notification) GetScopeType() uint32 {
+	if x != nil {
+		return x.ScopeType
+	}
+	return 0
+}
+
+func (x *Notification) GetRealmId() string {
+	if x != nil {
+		return x.RealmId
+	}
+	return ""
+}
+
+func (x *Notification) GetCohortId() string {
+	if x != nil {
+		return x.CohortId
+	}
+	return ""
 }
 
 // A collection of zero or more notifications.
@@ -10232,17 +10297,21 @@ const file_api_proto_rawDesc = "" +
 	"\x05label\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\x05label\x126\n" +
 	"\bmin_size\x18\x04 \x01(\v2\x1b.google.protobuf.Int32ValueR\aminSize\x126\n" +
 	"\bmax_size\x18\x05 \x01(\v2\x1b.google.protobuf.Int32ValueR\amaxSize\x122\n" +
-	"\x05query\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueR\x05query\"x\n" +
+	"\x05query\x18\x06 \x01(\v2\x1c.google.protobuf.StringValueR\x05query\"\xba\x01\n" +
 	"\x18ListNotificationsRequest\x121\n" +
 	"\x05limit\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x12)\n" +
-	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\"\x9f\x01\n" +
+	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\x12\x19\n" +
+	"\brealm_id\x18\x03 \x01(\tR\arealmId\x12%\n" +
+	"\x0einclude_global\x18\x04 \x01(\bR\rincludeGlobal\"\xf2\x01\n" +
 	"\x19ListStorageObjectsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x02 \x01(\tR\n" +
 	"collection\x121\n" +
 	"\x05limit\x18\x03 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x12\x16\n" +
-	"\x06cursor\x18\x04 \x01(\tR\x06cursor\"e\n" +
+	"\x06cursor\x18\x04 \x01(\tR\x06cursor\x12!\n" +
+	"\fcharacter_id\x18\x05 \x01(\tR\vcharacterId\x12.\n" +
+	"\x13include_user_scoped\x18\x06 \x01(\bR\x11includeUserScoped\"e\n" +
 	"\x18ListSubscriptionsRequest\x121\n" +
 	"\x05limit\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x12\x16\n" +
 	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xea\x01\n" +
@@ -10291,7 +10360,7 @@ const file_api_proto_rawDesc = "" +
 	"\x0fMatchmakerStats\x12!\n" +
 	"\fticket_count\x18\x01 \x01(\x05R\vticketCount\x12U\n" +
 	"\x19oldest_ticket_create_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x16oldestTicketCreateTime\x12G\n" +
-	"\vcompletions\x18\x03 \x03(\v2%.nakama.api.MatchmakerCompletionStatsR\vcompletions\"\xe0\x01\n" +
+	"\vcompletions\x18\x03 \x03(\v2%.nakama.api.MatchmakerCompletionStatsR\vcompletions\"\xb7\x02\n" +
 	"\fNotification\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\asubject\x18\x02 \x01(\tR\asubject\x12\x18\n" +
@@ -10302,7 +10371,12 @@ const file_api_proto_rawDesc = "" +
 	"createTime\x12\x1e\n" +
 	"\n" +
 	"persistent\x18\a \x01(\bR\n" +
-	"persistent\"}\n" +
+	"persistent\x12\x1d\n" +
+	"\n" +
+	"scope_type\x18\b \x01(\rR\tscopeType\x12\x19\n" +
+	"\brealm_id\x18\t \x01(\tR\arealmId\x12\x1b\n" +
+	"\tcohort_id\x18\n" +
+	" \x01(\tR\bcohortId\"}\n" +
 	"\x10NotificationList\x12>\n" +
 	"\rnotifications\x18\x01 \x03(\v2\x18.nakama.api.NotificationR\rnotifications\x12)\n" +
 	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\"P\n" +
