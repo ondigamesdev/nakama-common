@@ -314,6 +314,12 @@ message ChannelMessage {
   string user_id_one = 12;
   // The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
   string user_id_two = 13;
+  // The scope type for this message: 0 = global, 1 = realm, 2 = cohort.
+  uint32 scope_type = 14;
+  // The realm ID if this message is realm-scoped.
+  string realm_id = 15;
+  // The cohort ID if this message is cohort-scoped.
+  string cohort_id = 16;
 }
 
 // A list of channel messages, usually a result of a list operation.
@@ -692,6 +698,10 @@ message ListChannelMessagesRequest {
   google.protobuf.BoolValue forward = 3;
   // A pagination cursor, if any.
   string cursor = 4;
+  // Optional realm ID to filter messages by scope.
+  string realm_id = 5;
+  // Include global messages when filtering by realm. Default false.
+  bool include_global = 6;
 }
 
 // List friends for a user.
