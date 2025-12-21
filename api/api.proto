@@ -1342,6 +1342,12 @@ message ValidatedPurchase {
   StoreEnvironment environment = 10;
   // Whether the purchase had already been validated by Nakama before.
   bool seen_before = 11;
+  // The scope type of this purchase: 0=account, 1=realm, 2=character.
+  uint32 scope_type = 12;
+  // The realm ID if this purchase is realm-scoped or character-scoped.
+  string realm_id = 13;
+  // The character ID if this purchase is character-scoped.
+  string character_id = 14;
 }
 
 // Validate IAP response.
@@ -1668,4 +1674,100 @@ message SelectCharacterResponse {
   string refresh_token = 2;
   // The selected character.
   Character character = 3;
+}
+
+// A character's wallet containing realm-specific currencies.
+message CharacterWallet {
+  // The character ID.
+  string character_id = 1;
+  // The user ID who owns this character.
+  string user_id = 2;
+  // The realm ID where this character exists.
+  string realm_id = 3;
+  // The wallet data as JSON object.
+  string wallet = 4;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the wallet was created.
+  google.protobuf.Timestamp create_time = 5;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the wallet was last updated.
+  google.protobuf.Timestamp update_time = 6;
+}
+
+// Request to get a character's wallet.
+message GetCharacterWalletRequest {
+  // Optional character ID. If not provided, uses active character from session.
+  string character_id = 1;
+}
+
+// Request to update a character's wallet.
+message UpdateCharacterWalletRequest {
+  // Optional character ID. If not provided, uses active character from session.
+  string character_id = 1;
+  // The changeset to apply to the wallet. Positive values add, negative values subtract.
+  map<string, int64> changeset = 2;
+  // Optional metadata for the ledger entry.
+  map<string, string> metadata = 3;
+}
+
+// Response from updating a character's wallet.
+message UpdateCharacterWalletResponse {
+  // The updated wallet.
+  CharacterWallet wallet = 1;
+  // The previous wallet values before the update.
+  map<string, int64> previous = 2;
+  // The updated wallet values after the update.
+  map<string, int64> updated = 3;
+}
+
+// A ledger entry for a character wallet transaction.
+message CharacterWalletLedger {
+  // The ledger entry ID.
+  string id = 1;
+  // The character ID.
+  string character_id = 2;
+  // The user ID who owns this character.
+  string user_id = 3;
+  // The realm ID.
+  string realm_id = 4;
+  // The changeset applied to the wallet.
+  map<string, int64> changeset = 5;
+  // The metadata associated with this change.
+  map<string, string> metadata = 6;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the entry was created.
+  google.protobuf.Timestamp create_time = 7;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the entry was last updated.
+  google.protobuf.Timestamp update_time = 8;
+}
+
+// Request to list character wallet ledger entries.
+message ListCharacterWalletLedgerRequest {
+  // Optional character ID. If not provided, uses active character from session.
+  string character_id = 1;
+  // Max number of results per page. Between 1 and 100.
+  google.protobuf.Int32Value limit = 2;
+  // Cursor to retrieve a page of records from.
+  string cursor = 3;
+}
+
+// A list of character wallet ledger entries.
+message CharacterWalletLedgerList {
+  // The list of ledger entries.
+  repeated CharacterWalletLedger items = 1;
+  // Cursor for the next page of results, if any.
+  string cursor = 2;
+  // Cursor for the previous page of results, if any.
+  string prev_cursor = 3;
+}
+
+// Request to list purchases with optional scope filters.
+message ListPurchasesRequest {
+  // Max number of results per page. Between 1 and 100.
+  google.protobuf.Int32Value limit = 1;
+  // Cursor to retrieve a page of records from.
+  string cursor = 2;
+  // Optional realm ID filter. Only returns purchases for this realm.
+  string realm_id = 3;
+  // Optional character ID filter. Only returns purchases for this character.
+  string character_id = 4;
+  // Include account-scoped purchases (scope_type=0) when filtering by realm/character. Default true.
+  google.protobuf.BoolValue include_account_scoped = 5;
 }
