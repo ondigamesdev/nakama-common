@@ -1096,6 +1096,21 @@ type ChannelIdBuildOptions struct {
 	RealmID string
 }
 
+// ChannelMessageSendOptions provides options for sending channel messages with explicit scope control.
+type ChannelMessageSendOptions struct {
+	// ScopeType determines the message visibility scope.
+	// 0 = Global (visible to all, default)
+	// 1 = Realm (visible only within a realm)
+	// 2 = Cohort (visible to cohort participants across realms)
+	ScopeType uint32
+	// RealmID is required when ScopeType=1 (realm-scoped).
+	// If empty and ScopeType=1, the caller's realm context will be used.
+	RealmID string
+	// CohortID is required when ScopeType=2 (cohort-scoped).
+	// Used for cross-realm events visible to cohort participants.
+	CohortID string
+}
+
 type NakamaModule interface {
 	AuthenticateApple(ctx context.Context, token, username string, create bool) (string, string, bool, error)
 	AuthenticateCustom(ctx context.Context, id, username string, create bool) (string, string, bool, error)
@@ -1268,6 +1283,9 @@ type NakamaModule interface {
 	// explicitly scope a channel to a specific realm.
 	ChannelIdBuildWithOptions(ctx context.Context, sender string, target string, chanType ChannelType, opts *ChannelIdBuildOptions) (string, error)
 	ChannelMessageSend(ctx context.Context, channelID string, content map[string]interface{}, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)
+	// ChannelMessageSendWithOptions sends a channel message with explicit scope control.
+	// Use this when you need to override automatic realm detection or send cohort-scoped messages.
+	ChannelMessageSendWithOptions(ctx context.Context, channelID string, content map[string]interface{}, senderId, senderUsername string, persist bool, opts *ChannelMessageSendOptions) (*rtapi.ChannelMessageAck, error)
 	ChannelMessageUpdate(ctx context.Context, channelID, messageID string, content map[string]interface{}, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)
 	ChannelMessageRemove(ctx context.Context, channelId, messageId string, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)
 	ChannelMessagesList(ctx context.Context, channelId string, limit int, forward bool, cursor string) (messages []*api.ChannelMessage, nextCursor string, prevCursor string, err error)
