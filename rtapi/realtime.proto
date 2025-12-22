@@ -695,4 +695,8 @@ message UserPresence {
   bool persistence = 4;
   // A user-set status message for this stream, if applicable.
   google.protobuf.StringValue status = 5;
+  // The realm ID the user is currently in, if any (for status presence).
+  string realm_id = 6;
+  // The character ID the user is playing as, if any.
+  string character_id = 7;
 }

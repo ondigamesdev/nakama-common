@@ -1086,6 +1086,16 @@ const (
 	Group
 )
 
+// ChannelIdBuildOptions provides options for building channel IDs with realm control.
+type ChannelIdBuildOptions struct {
+	// CrossRealm if true, the channel bypasses realm isolation and is accessible
+	// to users from any realm. Only server/runtime code can create cross-realm channels.
+	CrossRealm bool
+	// RealmID if set, explicitly scopes the channel to the specified realm.
+	// If empty and CrossRealm is false, the channel uses the caller's realm context.
+	RealmID string
+}
+
 type NakamaModule interface {
 	AuthenticateApple(ctx context.Context, token, username string, create bool) (string, string, bool, error)
 	AuthenticateCustom(ctx context.Context, id, username string, create bool) (string, string, bool, error)
@@ -1208,6 +1218,10 @@ type NakamaModule interface {
 	SubscriptionGetByProductId(ctx context.Context, userID, productID string) (*api.ValidatedSubscription, error)
 
 	TournamentCreate(ctx context.Context, id string, authoritative bool, sortOrder, operator, resetSchedule string, metadata map[string]interface{}, title, description string, category, startTime, endTime, duration, maxSize, maxNumScore int, joinRequired, enableRanks bool) error
+	// TournamentCreateScoped creates a new tournament with realm/cohort scope.
+	// scopeType: 0=global, 1=realm, 2=cohort, 3=event
+	// For realm scope (1), realmId is required. For cohort scope (2), cohortId is required.
+	TournamentCreateScoped(ctx context.Context, id string, authoritative bool, sortOrder, operator, resetSchedule string, metadata map[string]interface{}, title, description string, category, startTime, endTime, duration, maxSize, maxNumScore int, joinRequired, enableRanks bool, scopeType int, realmId, cohortId string) error
 	TournamentDelete(ctx context.Context, id string) error
 	TournamentAddAttempt(ctx context.Context, id, ownerID string, count int) error
 	TournamentJoin(ctx context.Context, id, ownerID, username string) error
@@ -1249,6 +1263,10 @@ type NakamaModule interface {
 	MetricsTimerRecord(name string, tags map[string]string, value time.Duration)
 
 	ChannelIdBuild(ctx context.Context, sender string, target string, chanType ChannelType) (string, error)
+	// ChannelIdBuildWithOptions builds a channel ID with explicit realm control.
+	// Use this to create cross-realm channels that bypass realm isolation, or to
+	// explicitly scope a channel to a specific realm.
+	ChannelIdBuildWithOptions(ctx context.Context, sender string, target string, chanType ChannelType, opts *ChannelIdBuildOptions) (string, error)
 	ChannelMessageSend(ctx context.Context, channelID string, content map[string]interface{}, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)
 	ChannelMessageUpdate(ctx context.Context, channelID, messageID string, content map[string]interface{}, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)
 	ChannelMessageRemove(ctx context.Context, channelId, messageId string, senderId, senderUsername string, persist bool) (*rtapi.ChannelMessageAck, error)

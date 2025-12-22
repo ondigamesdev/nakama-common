@@ -439,6 +439,10 @@ message Friend {
   string metadata = 4;
   // The friend's character in the filtered realm (only set when realm_id filter is used).
   Character character = 5;
+  // The realm ID the friend is currently online in (populated when friend is online).
+  string current_realm_id = 6;
+  // The character ID the friend is currently playing as (populated when friend is online).
+  string current_character_id = 7;
 }
 
 // A collection of zero or more friends of the user.

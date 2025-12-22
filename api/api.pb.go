@@ -2927,9 +2927,13 @@ type Friend struct {
 	// Metadata.
 	Metadata string `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// The friend's character in the filtered realm (only set when realm_id filter is used).
-	Character     *Character `protobuf:"bytes,5,opt,name=character,proto3" json:"character,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Character *Character `protobuf:"bytes,5,opt,name=character,proto3" json:"character,omitempty"`
+	// The realm ID the friend is currently online in (populated when friend is online).
+	CurrentRealmId string `protobuf:"bytes,6,opt,name=current_realm_id,json=currentRealmId,proto3" json:"current_realm_id,omitempty"`
+	// The character ID the friend is currently playing as (populated when friend is online).
+	CurrentCharacterId string `protobuf:"bytes,7,opt,name=current_character_id,json=currentCharacterId,proto3" json:"current_character_id,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *Friend) Reset() {
@@ -2995,6 +2999,20 @@ func (x *Friend) GetCharacter() *Character {
 		return x.Character
 	}
 	return nil
+}
+
+func (x *Friend) GetCurrentRealmId() string {
+	if x != nil {
+		return x.CurrentRealmId
+	}
+	return ""
+}
+
+func (x *Friend) GetCurrentCharacterId() string {
+	if x != nil {
+		return x.CurrentCharacterId
+	}
+	return ""
 }
 
 // A collection of zero or more friends of the user.
@@ -10768,14 +10786,16 @@ const file_api_proto_rawDesc = "" +
 	"\bexternal\x18\x04 \x01(\bR\bexternal\x1a=\n" +
 	"\x0fPropertiesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb7\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x93\x03\n" +
 	"\x06Friend\x12$\n" +
 	"\x04user\x18\x01 \x01(\v2\x10.nakama.api.UserR\x04user\x121\n" +
 	"\x05state\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\x12;\n" +
 	"\vupdate_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x12\x1a\n" +
 	"\bmetadata\x18\x04 \x01(\tR\bmetadata\x123\n" +
-	"\tcharacter\x18\x05 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\"F\n" +
+	"\tcharacter\x18\x05 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\x12(\n" +
+	"\x10current_realm_id\x18\x06 \x01(\tR\x0ecurrentRealmId\x120\n" +
+	"\x14current_character_id\x18\a \x01(\tR\x12currentCharacterId\"F\n" +
 	"\x05State\x12\n" +
 	"\n" +
 	"\x06FRIEND\x10\x00\x12\x0f\n" +
