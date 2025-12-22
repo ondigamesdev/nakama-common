@@ -843,6 +843,12 @@ message ListSubscriptionsRequest {
   google.protobuf.Int32Value limit = 1;
   // Cursor to retrieve a page of records from
   string cursor = 2;
+  // Optional realm ID filter. Only returns subscriptions for this realm.
+  string realm_id = 3;
+  // Optional character ID filter. Only returns subscriptions for this character.
+  string character_id = 4;
+  // Include account-scoped subscriptions when filtering by realm/character. Default true.
+  google.protobuf.BoolValue include_account_scoped = 5;
 }
 
 // List tournament records from a given tournament around the owner.
@@ -1346,9 +1352,9 @@ message ValidatedPurchase {
   StoreEnvironment environment = 10;
   // Whether the purchase had already been validated by Nakama before.
   bool seen_before = 11;
-  // The scope type of this purchase: 0=account, 1=realm, 2=character.
+  // The scope type of this purchase: 0=account (cross-realm), 1=character.
   uint32 scope_type = 12;
-  // The realm ID if this purchase is realm-scoped or character-scoped.
+  // The realm ID (set for character-scoped purchases via character's realm).
   string realm_id = 13;
   // The character ID if this purchase is character-scoped.
   string character_id = 14;
@@ -1414,6 +1420,12 @@ message ValidatedSubscription {
   string provider_notification = 12;
   // Whether the subscription is currently active or not.
   bool active = 13;
+  // Scope type for this subscription: 0=account (cross-realm), 1=character.
+  uint32 scope_type = 14;
+  // Realm ID (set for character-scoped subscriptions via character's realm).
+  string realm_id = 15;
+  // Character ID if character-scoped.
+  string character_id = 16;
 }
 
 // A list of validated purchases stored by Nakama.

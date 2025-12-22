@@ -1051,6 +1051,30 @@ type WalletLedgerItem interface {
 	GetMetadata() map[string]interface{}
 }
 
+// Character wallet types for multi-realm support
+type CharacterWalletUpdate struct {
+	CharacterID string
+	Changeset   map[string]int64
+	Metadata    map[string]interface{}
+}
+
+type CharacterWalletUpdateResult struct {
+	CharacterID string
+	Updated     map[string]int64
+	Previous    map[string]int64
+}
+
+type CharacterWalletLedgerItem interface {
+	GetID() string
+	GetCharacterID() string
+	GetUserID() string
+	GetRealmID() string
+	GetCreateTime() int64
+	GetUpdateTime() int64
+	GetChangeset() map[string]int64
+	GetMetadata() map[string]interface{}
+}
+
 type StorageRead struct {
 	Collection  string
 	Key         string
@@ -1194,6 +1218,13 @@ type NakamaModule interface {
 	WalletsUpdate(ctx context.Context, updates []*WalletUpdate, updateLedger bool) ([]*WalletUpdateResult, error)
 	WalletLedgerUpdate(ctx context.Context, itemID string, metadata map[string]interface{}) (WalletLedgerItem, error)
 	WalletLedgerList(ctx context.Context, userID string, limit int, cursor string) ([]WalletLedgerItem, string, error)
+
+	// Character wallet methods for multi-realm support
+	CharacterWalletGet(ctx context.Context, characterID string) (map[string]int64, error)
+	CharacterWalletUpdate(ctx context.Context, characterID string, changeset map[string]int64, metadata map[string]interface{}, updateLedger bool) (updated map[string]int64, previous map[string]int64, err error)
+	CharacterWalletsUpdate(ctx context.Context, updates []*CharacterWalletUpdate, updateLedger bool) ([]*CharacterWalletUpdateResult, error)
+	CharacterWalletLedgerUpdate(ctx context.Context, itemID string, metadata map[string]interface{}) (CharacterWalletLedgerItem, error)
+	CharacterWalletLedgerList(ctx context.Context, characterID string, limit int, cursor string) ([]CharacterWalletLedgerItem, string, error)
 
 	StorageList(ctx context.Context, callerID, userID, collection string, limit int, cursor string) ([]*api.StorageObject, string, error)
 	StorageRead(ctx context.Context, reads []*StorageRead) ([]*api.StorageObject, error)
