@@ -1596,6 +1596,10 @@ enum CharacterTransferStatus {
   CHARACTER_TRANSFER_STATUS_FAILED = 3;
   // The transfer was cancelled.
   CHARACTER_TRANSFER_STATUS_CANCELLED = 4;
+  // The transfer is pending data migration (after-hook execution).
+  CHARACTER_TRANSFER_STATUS_MIGRATION_PENDING = 5;
+  // The transfer completed but data migration (after-hook) failed.
+  CHARACTER_TRANSFER_STATUS_MIGRATION_FAILED = 6;
 }
 
 // Who initiated the character transfer.

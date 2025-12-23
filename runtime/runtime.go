@@ -97,6 +97,7 @@ import (
 	"github.com/heroiclabs/nakama-common/api"
 	"github.com/heroiclabs/nakama-common/rtapi"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 const (
@@ -238,6 +239,8 @@ var (
 	ErrGroupRealmRequired     = errors.New("group realm required")
 
 	ErrWalletLedgerInvalidCursor = errors.New("wallet ledger cursor invalid")
+
+	ErrCharacterTransferCursorInvalid = errors.New("character transfer cursor invalid")
 
 	ErrCannotEncodeParams    = errors.New("error creating match: cannot encode params")
 	ErrCannotDecodeParams    = errors.New("error creating match: cannot decode params")
@@ -888,6 +891,25 @@ type Initializer interface {
 
 	// RegisterAfterListParties can be used to perform additiona logic after retrieving parties.
 	RegisterAfterListParties(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.PartyList, in *api.ListPartiesRequest) error) error
+
+	// RegisterBeforeTransferCharacter can be used to perform additional logic before transferring a character.
+	RegisterBeforeTransferCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.TransferCharacterRequest) (*api.TransferCharacterRequest, error)) error
+
+	// RegisterAfterTransferCharacter can be used to perform data migration after a character transfer.
+	// IMPORTANT: Errors returned from this hook will mark the transfer as MIGRATION_FAILED and return an error to the client.
+	RegisterAfterTransferCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.TransferCharacterResponse, in *api.TransferCharacterRequest) error) error
+
+	// RegisterBeforeGetCharacterTransfer can be used to perform additional logic before fetching a transfer.
+	RegisterBeforeGetCharacterTransfer(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *wrapperspb.StringValue) (*wrapperspb.StringValue, error)) error
+
+	// RegisterAfterGetCharacterTransfer can be used to perform additional logic after fetching a transfer.
+	RegisterAfterGetCharacterTransfer(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.CharacterTransfer, in *wrapperspb.StringValue) error) error
+
+	// RegisterBeforeListCharacterTransfers can be used to perform additional logic before listing transfers.
+	RegisterBeforeListCharacterTransfers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListCharacterTransfersRequest) (*api.ListCharacterTransfersRequest, error)) error
+
+	// RegisterAfterListCharacterTransfers can be used to perform additional logic after listing transfers.
+	RegisterAfterListCharacterTransfers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.CharacterTransferList, in *api.ListCharacterTransfersRequest) error) error
 
 	// RegisterEvent can be used to define a function handler that triggers when custom events are received or generated.
 	RegisterEvent(fn func(ctx context.Context, logger Logger, evt *api.Event)) error
