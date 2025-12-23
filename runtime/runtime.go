@@ -1226,6 +1226,14 @@ type NakamaModule interface {
 	CharacterWalletLedgerUpdate(ctx context.Context, itemID string, metadata map[string]interface{}) (CharacterWalletLedgerItem, error)
 	CharacterWalletLedgerList(ctx context.Context, characterID string, limit int, cursor string) ([]CharacterWalletLedgerItem, string, error)
 
+	// Character transfer migration helpers - called from transfer hooks
+	// These are optional convenience functions that handle common data migration patterns.
+	// Users can implement custom migration logic directly in their hooks if needed.
+	CharacterTransferMigrateWallet(ctx context.Context, characterID, targetRealmID string) error
+	CharacterTransferMigrateStorage(ctx context.Context, characterID, targetRealmID string) error
+	CharacterTransferMigratePurchases(ctx context.Context, characterID, targetRealmID string) error
+	CharacterTransferMigrateSubscriptions(ctx context.Context, characterID, targetRealmID string) error
+
 	StorageList(ctx context.Context, callerID, userID, collection string, limit int, cursor string) ([]*api.StorageObject, string, error)
 	StorageRead(ctx context.Context, reads []*StorageRead) ([]*api.StorageObject, error)
 	StorageWrite(ctx context.Context, writes []*StorageWrite) ([]*api.StorageObjectAck, error)

@@ -1580,6 +1580,30 @@ enum CharacterStatus {
   CHARACTER_STATUS_BANNED = 1;
   // The character is deleted.
   CHARACTER_STATUS_DELETED = 2;
+  // The character is locked (e.g., during transfer).
+  CHARACTER_STATUS_LOCKED = 3;
+}
+
+// The status of a character transfer.
+enum CharacterTransferStatus {
+  // The transfer is pending approval or processing.
+  CHARACTER_TRANSFER_STATUS_PENDING = 0;
+  // The transfer is currently being processed.
+  CHARACTER_TRANSFER_STATUS_IN_PROGRESS = 1;
+  // The transfer completed successfully.
+  CHARACTER_TRANSFER_STATUS_COMPLETED = 2;
+  // The transfer failed.
+  CHARACTER_TRANSFER_STATUS_FAILED = 3;
+  // The transfer was cancelled.
+  CHARACTER_TRANSFER_STATUS_CANCELLED = 4;
+}
+
+// Who initiated the character transfer.
+enum CharacterTransferInitiator {
+  // The user requested the transfer.
+  CHARACTER_TRANSFER_INITIATOR_USER = 0;
+  // An admin initiated the transfer.
+  CHARACTER_TRANSFER_INITIATOR_ADMIN = 1;
 }
 
 // A game realm/world/shard.
@@ -1786,4 +1810,70 @@ message ListPurchasesRequest {
   string character_id = 4;
   // Include account-scoped purchases (scope_type=0) when filtering by realm/character. Default true.
   google.protobuf.BoolValue include_account_scoped = 5;
+}
+
+// A record of a character transfer between realms.
+message CharacterTransfer {
+  // The unique identifier of the transfer.
+  string id = 1;
+  // The character ID being transferred.
+  string character_id = 2;
+  // The user ID who owns the character.
+  string user_id = 3;
+  // The source realm ID.
+  string source_realm_id = 4;
+  // The target realm ID.
+  string target_realm_id = 5;
+  // The status of the transfer.
+  CharacterTransferStatus status = 6;
+  // Who initiated the transfer.
+  CharacterTransferInitiator initiated_by = 7;
+  // Optional reason for the transfer.
+  string reason = 8;
+  // Error message if the transfer failed.
+  string error_message = 9;
+  // User-defined metadata as a JSON object. Passed to hooks for custom logic.
+  string metadata = 10;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the transfer was created.
+  google.protobuf.Timestamp create_time = 11;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the transfer started processing.
+  google.protobuf.Timestamp started_at = 12;
+  // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the transfer completed.
+  google.protobuf.Timestamp completed_at = 13;
+}
+
+// Request to transfer a character to another realm.
+message TransferCharacterRequest {
+  // The ID of the character to transfer.
+  string character_id = 1;
+  // The ID or slug of the target realm.
+  string target_realm_id = 2;
+  // Optional user-defined metadata as a JSON object. Passed to hooks for custom logic.
+  string metadata = 3;
+}
+
+// Response from transferring a character.
+message TransferCharacterResponse {
+  // The transfer record.
+  CharacterTransfer transfer = 1;
+  // The updated character with new realm.
+  Character character = 2;
+}
+
+// Request to list character transfers.
+message ListCharacterTransfersRequest {
+  // Optional filter by character ID.
+  string character_id = 1;
+  // Max number of results per page. Between 1 and 100.
+  google.protobuf.Int32Value limit = 2;
+  // Cursor to retrieve a page of records from.
+  string cursor = 3;
+}
+
+// A list of character transfers.
+message CharacterTransferList {
+  // The list of transfers.
+  repeated CharacterTransfer transfers = 1;
+  // Cursor for the next page of results, if any.
+  string cursor = 2;
 }
