@@ -1648,8 +1648,8 @@ message Character {
   string realm_id = 3;
   // The name of the character.
   string name = 4;
-  // The class/type of the character.
-  string class = 5;
+  // Tags/labels for the character (max 10, max 50 chars each).
+  repeated string tags = 5;
   // Additional character metadata as a JSON object.
   string metadata = 6;
   // The status of the character.
@@ -1698,8 +1698,8 @@ message CreateCharacterRequest {
   string realm_id = 1;
   // The name of the character.
   string name = 2;
-  // The class/type of the character (optional).
-  string class = 3;
+  // Tags/labels for the character (optional, max 10, max 50 chars each).
+  repeated string tags = 3;
   // Additional character metadata as a JSON object (optional).
   string metadata = 4;
 }

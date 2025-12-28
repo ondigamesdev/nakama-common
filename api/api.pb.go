@@ -339,6 +339,10 @@ const (
 	CharacterTransferStatus_CHARACTER_TRANSFER_STATUS_FAILED CharacterTransferStatus = 3
 	// The transfer was cancelled.
 	CharacterTransferStatus_CHARACTER_TRANSFER_STATUS_CANCELLED CharacterTransferStatus = 4
+	// The transfer is pending data migration (after-hook execution).
+	CharacterTransferStatus_CHARACTER_TRANSFER_STATUS_MIGRATION_PENDING CharacterTransferStatus = 5
+	// The transfer completed but data migration (after-hook) failed.
+	CharacterTransferStatus_CHARACTER_TRANSFER_STATUS_MIGRATION_FAILED CharacterTransferStatus = 6
 )
 
 // Enum value maps for CharacterTransferStatus.
@@ -349,13 +353,17 @@ var (
 		2: "CHARACTER_TRANSFER_STATUS_COMPLETED",
 		3: "CHARACTER_TRANSFER_STATUS_FAILED",
 		4: "CHARACTER_TRANSFER_STATUS_CANCELLED",
+		5: "CHARACTER_TRANSFER_STATUS_MIGRATION_PENDING",
+		6: "CHARACTER_TRANSFER_STATUS_MIGRATION_FAILED",
 	}
 	CharacterTransferStatus_value = map[string]int32{
-		"CHARACTER_TRANSFER_STATUS_PENDING":     0,
-		"CHARACTER_TRANSFER_STATUS_IN_PROGRESS": 1,
-		"CHARACTER_TRANSFER_STATUS_COMPLETED":   2,
-		"CHARACTER_TRANSFER_STATUS_FAILED":      3,
-		"CHARACTER_TRANSFER_STATUS_CANCELLED":   4,
+		"CHARACTER_TRANSFER_STATUS_PENDING":           0,
+		"CHARACTER_TRANSFER_STATUS_IN_PROGRESS":       1,
+		"CHARACTER_TRANSFER_STATUS_COMPLETED":         2,
+		"CHARACTER_TRANSFER_STATUS_FAILED":            3,
+		"CHARACTER_TRANSFER_STATUS_CANCELLED":         4,
+		"CHARACTER_TRANSFER_STATUS_MIGRATION_PENDING": 5,
+		"CHARACTER_TRANSFER_STATUS_MIGRATION_FAILED":  6,
 	}
 )
 
@@ -9317,8 +9325,8 @@ type Character struct {
 	RealmId string `protobuf:"bytes,3,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	// The name of the character.
 	Name string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	// The class/type of the character.
-	Class string `protobuf:"bytes,5,opt,name=class,proto3" json:"class,omitempty"`
+	// Tags/labels for the character (max 10, max 50 chars each).
+	Tags []string `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
 	// Additional character metadata as a JSON object.
 	Metadata string `protobuf:"bytes,6,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// The status of the character.
@@ -9393,11 +9401,11 @@ func (x *Character) GetName() string {
 	return ""
 }
 
-func (x *Character) GetClass() string {
+func (x *Character) GetTags() []string {
 	if x != nil {
-		return x.Class
+		return x.Tags
 	}
-	return ""
+	return nil
 }
 
 func (x *Character) GetMetadata() string {
@@ -9670,8 +9678,8 @@ type CreateCharacterRequest struct {
 	RealmId string `protobuf:"bytes,1,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	// The name of the character.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The class/type of the character (optional).
-	Class string `protobuf:"bytes,3,opt,name=class,proto3" json:"class,omitempty"`
+	// Tags/labels for the character (optional, max 10, max 50 chars each).
+	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
 	// Additional character metadata as a JSON object (optional).
 	Metadata      string `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -9722,11 +9730,11 @@ func (x *CreateCharacterRequest) GetName() string {
 	return ""
 }
 
-func (x *CreateCharacterRequest) GetClass() string {
+func (x *CreateCharacterRequest) GetTags() []string {
 	if x != nil {
-		return x.Class
+		return x.Tags
 	}
-	return ""
+	return nil
 }
 
 func (x *CreateCharacterRequest) GetMetadata() string {
@@ -11927,13 +11935,13 @@ const file_api_proto_rawDesc = "" +
 	"\vcreate_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
 	"\vupdate_time\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updateTime\"\xad\x03\n" +
+	"updateTime\"\xab\x03\n" +
 	"\tCharacter\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x19\n" +
 	"\brealm_id\x18\x03 \x01(\tR\arealmId\x12\x12\n" +
-	"\x04name\x18\x04 \x01(\tR\x04name\x12\x14\n" +
-	"\x05class\x18\x05 \x01(\tR\x05class\x12\x1a\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12\x12\n" +
+	"\x04tags\x18\x05 \x03(\tR\x04tags\x12\x1a\n" +
 	"\bmetadata\x18\x06 \x01(\tR\bmetadata\x123\n" +
 	"\x06status\x18\a \x01(\x0e2\x1b.nakama.api.CharacterStatusR\x06status\x12;\n" +
 	"\vcreate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -11953,11 +11961,11 @@ const file_api_proto_rawDesc = "" +
 	"\rCharacterList\x125\n" +
 	"\n" +
 	"characters\x18\x01 \x03(\v2\x15.nakama.api.CharacterR\n" +
-	"characters\"y\n" +
+	"characters\"w\n" +
 	"\x16CreateCharacterRequest\x12\x19\n" +
 	"\brealm_id\x18\x01 \x01(\tR\arealmId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05class\x18\x03 \x01(\tR\x05class\x12\x1a\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04tags\x18\x03 \x03(\tR\x04tags\x12\x1a\n" +
 	"\bmetadata\x18\x04 \x01(\tR\bmetadata\";\n" +
 	"\x16SelectCharacterRequest\x12!\n" +
 	"\fcharacter_id\x18\x01 \x01(\tR\vcharacterId\"\x89\x01\n" +
@@ -12084,13 +12092,15 @@ const file_api_proto_rawDesc = "" +
 	"\x17CHARACTER_STATUS_ACTIVE\x10\x00\x12\x1b\n" +
 	"\x17CHARACTER_STATUS_BANNED\x10\x01\x12\x1c\n" +
 	"\x18CHARACTER_STATUS_DELETED\x10\x02\x12\x1b\n" +
-	"\x17CHARACTER_STATUS_LOCKED\x10\x03*\xe3\x01\n" +
+	"\x17CHARACTER_STATUS_LOCKED\x10\x03*\xc4\x02\n" +
 	"\x17CharacterTransferStatus\x12%\n" +
 	"!CHARACTER_TRANSFER_STATUS_PENDING\x10\x00\x12)\n" +
 	"%CHARACTER_TRANSFER_STATUS_IN_PROGRESS\x10\x01\x12'\n" +
 	"#CHARACTER_TRANSFER_STATUS_COMPLETED\x10\x02\x12$\n" +
 	" CHARACTER_TRANSFER_STATUS_FAILED\x10\x03\x12'\n" +
-	"#CHARACTER_TRANSFER_STATUS_CANCELLED\x10\x04*k\n" +
+	"#CHARACTER_TRANSFER_STATUS_CANCELLED\x10\x04\x12/\n" +
+	"+CHARACTER_TRANSFER_STATUS_MIGRATION_PENDING\x10\x05\x12.\n" +
+	"*CHARACTER_TRANSFER_STATUS_MIGRATION_FAILED\x10\x06*k\n" +
 	"\x1aCharacterTransferInitiator\x12%\n" +
 	"!CHARACTER_TRANSFER_INITIATOR_USER\x10\x00\x12&\n" +
 	"\"CHARACTER_TRANSFER_INITIATOR_ADMIN\x10\x01Bc\n" +
