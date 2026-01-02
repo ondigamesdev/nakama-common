@@ -1356,6 +1356,27 @@ type NakamaModule interface {
 	StatusFollow(sessionID string, userIDs []string) error
 	StatusUnfollow(sessionID string, userIDs []string) error
 
+	// Realm Classification - Tags
+	// RealmGetTags retrieves classification tags for a realm.
+	RealmGetTags(ctx context.Context, realmID string) ([]string, error)
+	// RealmSetTags sets classification tags for a realm (admin operation).
+	RealmSetTags(ctx context.Context, realmID string, tags []string) error
+	// RealmHasTag checks if a realm has a tag matching the pattern (supports trailing wildcard).
+	RealmHasTag(ctx context.Context, realmID string, pattern string) (bool, error)
+	// RealmMatchTags checks if a realm matches tag patterns.
+	// If matchAll is true, all patterns must match. If false, any pattern matching is sufficient.
+	RealmMatchTags(ctx context.Context, realmID string, patterns []string, matchAll bool) (bool, error)
+
+	// Realm Classification - Policies
+	// RealmGetPolicies retrieves all policies for a realm.
+	RealmGetPolicies(ctx context.Context, realmID string) (*api.RealmPolicies, error)
+	// RealmSetPolicies sets policies for a realm (admin operation).
+	// If replace is true, all policies are replaced. Otherwise, policies are merged.
+	RealmSetPolicies(ctx context.Context, realmID string, policies *api.RealmPolicies, replace bool) error
+	// RealmGetPolicy retrieves a specific policy value by dot-notation path.
+	// Example: RealmGetPolicy(ctx, realmID, "transfer.cooldown_hours")
+	RealmGetPolicy(ctx context.Context, realmID string, path string) (interface{}, error)
+
 	GetSatori() Satori
 	GetFleetManager() FleetManager
 }

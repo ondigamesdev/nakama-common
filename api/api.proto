@@ -1610,6 +1610,81 @@ enum CharacterTransferInitiator {
   CHARACTER_TRANSFER_INITIATOR_ADMIN = 1;
 }
 
+// ============= REALM POLICY MESSAGES =============
+
+// Transfer policies for realm-to-realm character movement.
+// Game-specific details (fees, level requirements) should go in the custom field.
+message TransferPolicy {
+  // Whether transfers into this realm are allowed.
+  bool enabled_in = 1;
+  // Whether transfers out of this realm are allowed.
+  bool enabled_out = 2;
+  // Cooldown period in hours between transfers (0 = no cooldown).
+  int32 cooldown_hours = 3;
+  // Tags that block transfers FROM realms with these tags.
+  repeated string blocked_source_tags = 4;
+  // Tags that block transfers TO realms with these tags.
+  repeated string blocked_target_tags = 5;
+  // Source realm must have ALL these tags for transfer.
+  repeated string require_source_tags = 6;
+  // Target realm must have ALL these tags for transfer.
+  repeated string require_target_tags = 7;
+}
+
+// Queue policies for realm capacity management.
+message QueuePolicy {
+  // Whether queueing is enabled when realm is at capacity.
+  bool enabled = 1;
+  // Maximum ratio of current_players to max_players before queue activates (e.g., 1.0 = 100%).
+  double max_capacity_ratio = 2;
+  // Whether VIP priority is enabled for queue.
+  bool priority_enabled = 3;
+}
+
+// Naming policies for character names in this realm.
+message NamingPolicy {
+  // Policy type: "standard", "strict", "relaxed", or custom game-defined.
+  string policy = 1;
+  // Minimum character name length.
+  int32 min_length = 2;
+  // Maximum character name length.
+  int32 max_length = 3;
+  // Regex pattern for allowed characters.
+  string allowed_pattern = 4;
+  // Reserved names that cannot be used.
+  repeated string reserved_names = 5;
+  // Whether profanity filter is enabled.
+  bool profanity_filter_enabled = 6;
+}
+
+// Access policies for realm entry requirements.
+message AccessPolicy {
+  // Whether staff access is required.
+  bool require_staff = 1;
+  // Minimum VIP tier required (0 = no requirement).
+  int32 require_vip_tier = 2;
+  // Whether beta flag is required.
+  bool require_beta_flag = 3;
+  // User must have ALL these tags to access.
+  repeated string allowed_user_tags = 4;
+  // Users with ANY of these tags are blocked.
+  repeated string blocked_user_tags = 5;
+}
+
+// Combined realm policies with structured core policies and extensible custom policies.
+message RealmPolicies {
+  // Transfer restrictions and requirements.
+  TransferPolicy transfer = 1;
+  // Queue management settings.
+  QueuePolicy queue = 2;
+  // Character naming rules.
+  NamingPolicy naming = 3;
+  // Realm access requirements.
+  AccessPolicy access = 4;
+  // Custom game-specific policies as a JSON string (for extensibility).
+  string custom = 5;
+}
+
 // A game realm/world/shard.
 message Realm {
   // The unique identifier of the realm.
@@ -1636,6 +1711,10 @@ message Realm {
   google.protobuf.Timestamp create_time = 11;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the realm was last updated.
   google.protobuf.Timestamp update_time = 12;
+  // Classification tags for the realm (e.g., "pvp", "seasonal", "region:us-east"). Max 10 tags, 50 chars each.
+  repeated string tags = 13;
+  // Structured policy configuration for realm behavior.
+  RealmPolicies policies = 14;
 }
 
 // A player character in a realm.
