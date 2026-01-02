@@ -1960,3 +1960,27 @@ message CharacterTransferList {
   // Cursor for the next page of results, if any.
   string cursor = 2;
 }
+
+// Request to check if a character is eligible to transfer to a target realm.
+message TransferEligibilityRequest {
+  // The ID of the character to check.
+  string character_id = 1;
+  // The ID or slug of the target realm.
+  string target_realm_id = 2;
+}
+
+// Response with transfer eligibility details.
+message TransferEligibilityResponse {
+  // Whether the character is eligible to transfer.
+  bool eligible = 1;
+  // Human-readable reasons why the transfer is blocked (if not eligible).
+  repeated string blockers = 2;
+  // When the cooldown expires (if cooldown is active). Null if no cooldown.
+  google.protobuf.Timestamp cooldown_expires = 3;
+  // Hours remaining in cooldown (0 if no cooldown active).
+  int32 cooldown_hours_remaining = 4;
+  // The source realm (character's current realm).
+  Realm source_realm = 5;
+  // The target realm.
+  Realm target_realm = 6;
+}
