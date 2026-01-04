@@ -404,6 +404,18 @@ type Initializer interface {
 	// RegisterSubscriptionNotificationGoogle
 	RegisterSubscriptionNotificationGoogle(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, notificationType NotificationType, subscription *api.ValidatedSubscription, providerPayload *SubscriptionV2GoogleResponse) error) error
 
+	// RegisterMaintenanceStart is called when a maintenance window becomes active.
+	// Use this to perform custom actions like saving player state before maintenance.
+	RegisterMaintenanceStart(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, window *api.MaintenanceWindow) error) error
+
+	// RegisterMaintenanceEnd is called when a maintenance window ends.
+	// Use this to perform custom actions like resetting caches after maintenance.
+	RegisterMaintenanceEnd(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, window *api.MaintenanceWindow) error) error
+
+	// RegisterMaintenanceAccessCheck is called to determine if a user is allowed to connect during maintenance.
+	// Return true to allow access, false to block. If not registered, default staff bypass logic is used.
+	RegisterMaintenanceAccessCheck(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, userID string, window *api.MaintenanceWindow) (bool, error)) error
+
 	// RegisterBeforeGetAccount is used to register a function invoked when the server receives the relevant request.
 	RegisterBeforeGetAccount(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule) error) error
 
@@ -938,6 +950,27 @@ type Initializer interface {
 
 	// RegisterConsoleHttp attaches a new HTTP handler to a specified path on the main console API server endpoint.
 	RegisterConsoleHttp(pathPattern string, handler func(http.ResponseWriter, *http.Request), methods ...string) error
+
+	// Security & Anti-Abuse Hooks
+
+	// RegisterTransferRiskCalculator registers a custom function to calculate transfer risk scores.
+	// This allows games to add application-specific risk factors (e.g., gold amount, trading patterns).
+	// The function receives transfer details and should return a risk score (0.0-1.0) and risk factors.
+	// If not registered, the default risk calculation (account age, transfer frequency) is used.
+	RegisterTransferRiskCalculator(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, userID, characterID, sourceRealmID, targetRealmID string) (float64, []map[string]interface{}, error)) error
+
+	// RegisterSecurityFlagHandler is called when a new security flag is created.
+	// Use this to trigger alerts, create tickets, or perform additional analysis.
+	RegisterSecurityFlagHandler(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, flag *api.SecurityFlag) error) error
+
+	// RegisterBanWavePreExecute is called before a ban wave is executed.
+	// Use this to snapshot player data, send warnings, or perform pre-ban analysis.
+	// Return an error to abort the ban wave execution.
+	RegisterBanWavePreExecute(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, wave *api.BanWave, pendingBans []*api.PendingBan) error) error
+
+	// RegisterBanWavePostExecute is called after a ban wave has completed execution.
+	// Use this for audit logging, notifications, or cleanup tasks.
+	RegisterBanWavePostExecute(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, wave *api.BanWave, successfulBans int, failedBans int, failedBanIDs []string) error) error
 }
 
 type PresenceReason uint8
@@ -1381,6 +1414,56 @@ type NakamaModule interface {
 	// RealmGetPolicy retrieves a specific policy value by dot-notation path.
 	// Example: RealmGetPolicy(ctx, realmID, "transfer.cooldown_hours")
 	RealmGetPolicy(ctx context.Context, realmID string, path string) (interface{}, error)
+
+	// Security & Anti-Abuse
+
+	// SecurityCreateFlag creates a new security flag for tracking suspicious activity.
+	// Severity: 1=low, 2=medium, 3=high, 4=critical
+	SecurityCreateFlag(ctx context.Context, userID string, characterID, realmID *string, flagType string, severity int, details, detectionMethod string) (*api.SecurityFlag, error)
+	// SecurityListFlags returns a paginated list of security flags with optional filters.
+	// status: 0=active, 1=reviewed, 2=dismissed, 3=actioned
+	SecurityListFlags(ctx context.Context, userID, characterID, realmID, flagType *string, status, minSeverity *int, limit int, cursor string) ([]*api.SecurityFlag, string, int32, error)
+	// SecurityReviewFlag reviews a security flag and updates its status.
+	// status: 1=reviewed, 2=dismissed, 3=actioned
+	SecurityReviewFlag(ctx context.Context, flagID string, status int, actionTaken string) (*api.SecurityFlag, error)
+
+	// SecurityCreatePendingBan creates a pending ban entry for later execution.
+	// banType: 0=character, 1=realm, 2=account
+	SecurityCreatePendingBan(ctx context.Context, userID string, characterID, realmID *string, banType int, reason, detectionMethod, evidence string, batchID *string, scheduledFor *time.Time) (*api.PendingBan, error)
+	// SecurityCancelPendingBan cancels a pending ban before execution.
+	SecurityCancelPendingBan(ctx context.Context, banID, cancelReason string) error
+	// SecurityListPendingBans returns a paginated list of pending bans.
+	SecurityListPendingBans(ctx context.Context, userID, realmID *string, banType *int, batchID *string, pendingOnly bool, limit int, cursor string) ([]*api.PendingBan, string, int32, error)
+
+	// SecurityCreateBanWave creates a new ban wave for batch execution.
+	SecurityCreateBanWave(ctx context.Context, name, description string, realmID *string, pendingBanIDs []string, scheduledFor *time.Time) (*api.BanWave, error)
+	// SecurityExecuteBanWave executes all pending bans in a ban wave.
+	// Returns: wave, successfulBans, failedBans, failedBanIDs, error
+	SecurityExecuteBanWave(ctx context.Context, waveID string) (*api.BanWave, int, int, []string, error)
+	// SecurityCancelBanWave cancels a pending ban wave.
+	SecurityCancelBanWave(ctx context.Context, waveID, cancelReason string) error
+	// SecurityListBanWaves returns a paginated list of ban waves.
+	SecurityListBanWaves(ctx context.Context, status *int, realmID *string, limit int, cursor string) ([]*api.BanWave, string, int32, error)
+
+	// SecurityAssessTransferRisk calculates and records the risk score for a character transfer.
+	// Uses the registered TransferRiskCalculator hook if available, otherwise uses defaults.
+	// Returns the assessment; if risk exceeds threshold, creates a security flag.
+	SecurityAssessTransferRisk(ctx context.Context, transferID string) (*api.TransferRiskAssessment, error)
+	// SecurityGetFlaggedTransfers returns transfers that have been flagged for review.
+	SecurityGetFlaggedTransfers(ctx context.Context, unreviewedOnly bool, minRiskScore *float64, limit int, cursor string) ([]*api.TransferRiskAssessment, string, int32, error)
+	// SecurityReviewTransferRisk marks a transfer risk assessment as reviewed.
+	SecurityReviewTransferRisk(ctx context.Context, transferID, reviewNotes string) (*api.TransferRiskAssessment, error)
+
+	// RealmBanUser bans a user from a specific realm.
+	// If expiresAt is nil, the ban is permanent.
+	RealmBanUser(ctx context.Context, userID, realmID, reason string, expiresAt *time.Time) (*api.RealmBan, error)
+	// RealmUnbanUser removes a realm ban for a user.
+	RealmUnbanUser(ctx context.Context, userID, realmID string) error
+	// RealmIsUserBanned checks if a user is currently banned from a realm.
+	// Handles both permanent and temporary (expired) bans.
+	RealmIsUserBanned(ctx context.Context, userID, realmID string) (bool, error)
+	// RealmListBans returns a paginated list of realm bans.
+	RealmListBans(ctx context.Context, userID, realmID *string, activeOnly bool, limit int, cursor string) ([]*api.RealmBan, string, int32, error)
 
 	GetSatori() Satori
 	GetFleetManager() FleetManager
