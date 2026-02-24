@@ -252,7 +252,90 @@ var (
 	ErrDeferredBroadcastFull = errors.New("too many deferred message broadcasts per tick")
 
 	ErrSatoriConfigurationInvalid = errors.New("satori configuration is invalid")
+
+	// Redis plugin API errors
+	ErrRedisNotConfigured = errors.New("redis not configured")
+	ErrRedisUnavailable   = errors.New("redis temporarily unavailable")
+	ErrRedisKeyNotFound   = errors.New("redis key not found")
 )
+
+// ZMember represents a scored member for sorted set operations.
+type ZMember struct {
+	Score  float64
+	Member string
+}
+
+// Pipeline command result types (read after Exec).
+type StringCmd interface {
+	Val() string
+	Err() error
+}
+type StatusCmd interface {
+	Err() error
+}
+type IntCmd interface {
+	Val() int64
+	Err() error
+}
+type StringStringMapCmd interface {
+	Val() map[string]string
+	Err() error
+}
+
+// PipelineOperations allows batching multiple Redis commands into a single round-trip.
+// Commands are queued and sent together when Exec is called.
+type PipelineOperations interface {
+	Get(ctx context.Context, key string) StringCmd
+	Set(ctx context.Context, key string, value string, expiration time.Duration) StatusCmd
+	Del(ctx context.Context, keys ...string) IntCmd
+	Incr(ctx context.Context, key string) IntCmd
+	HGet(ctx context.Context, key string, field string) StringCmd
+	HSet(ctx context.Context, key string, field string, value string) StatusCmd
+	HGetAll(ctx context.Context, key string) StringStringMapCmd
+	Exec(ctx context.Context) error
+}
+
+// RedisOperations provides Redis access for Go runtime plugins.
+// Methods return ErrRedisNotConfigured when Redis is not enabled,
+// ErrRedisUnavailable when Redis is temporarily unavailable (circuit breaker open),
+// and ErrRedisKeyNotFound for key misses on Get/HGet operations.
+type RedisOperations interface {
+	// String operations
+	Get(ctx context.Context, key string) (string, error)
+	Set(ctx context.Context, key string, value string, expiration time.Duration) error
+	Del(ctx context.Context, keys ...string) (int64, error)
+	Exists(ctx context.Context, keys ...string) (int64, error)
+	Expire(ctx context.Context, key string, expiration time.Duration) (bool, error)
+	Incr(ctx context.Context, key string) (int64, error)
+	IncrBy(ctx context.Context, key string, value int64) (int64, error)
+
+	// Hash operations
+	HGet(ctx context.Context, key string, field string) (string, error)
+	HSet(ctx context.Context, key string, field string, value string) error
+	HGetAll(ctx context.Context, key string) (map[string]string, error)
+	HDel(ctx context.Context, key string, fields ...string) (int64, error)
+
+	// List operations
+	LPush(ctx context.Context, key string, values ...string) (int64, error)
+	LPop(ctx context.Context, key string) (string, error)
+	LRange(ctx context.Context, key string, start, stop int64) ([]string, error)
+
+	// Set operations
+	SAdd(ctx context.Context, key string, members ...string) (int64, error)
+	SMembers(ctx context.Context, key string) ([]string, error)
+	SRem(ctx context.Context, key string, members ...string) (int64, error)
+
+	// Sorted Set operations
+	ZAdd(ctx context.Context, key string, members ...ZMember) (int64, error)
+	ZRange(ctx context.Context, key string, start, stop int64) ([]string, error)
+	ZScore(ctx context.Context, key string, member string) (float64, error)
+
+	// Scripting
+	Eval(ctx context.Context, script string, keys []string, args ...string) (interface{}, error)
+
+	// Pipeline
+	Pipeline() PipelineOperations
+}
 
 const (
 	// Storage permission for public read, any user can read the object.
@@ -971,6 +1054,12 @@ type Initializer interface {
 	// RegisterBanWavePostExecute is called after a ban wave has completed execution.
 	// Use this for audit logging, notifications, or cleanup tasks.
 	RegisterBanWavePostExecute(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, wave *api.BanWave, successfulBans int, failedBans int, failedBanIDs []string) error) error
+
+	// RegisterRpcRateLimit configures custom rate limits for a specific RPC.
+	// The rate is tokens per second and burst is the maximum burst size.
+	// Plugin-registered limits override server-wide YAML config defaults.
+	// Returns error if rate or burst is <= 0.
+	RegisterRpcRateLimit(rpcID string, rate int, burst int) error
 }
 
 type PresenceReason uint8
@@ -1465,8 +1554,33 @@ type NakamaModule interface {
 	// RealmListBans returns a paginated list of realm bans.
 	RealmListBans(ctx context.Context, userID, realmID *string, activeOnly bool, limit int, cursor string) ([]*api.RealmBan, string, int32, error)
 
+	// ============= CONNECTED REALMS (SOFT MERGES) =============
+
+	// RealmConnectionGet returns a connection by ID or slug.
+	RealmConnectionGet(ctx context.Context, idOrSlug string) (*api.RealmConnection, error)
+	// RealmConnectionList returns all connections, optionally filtered by status.
+	// Status: 0=active, 1=pending, 2=dissolving. Pass nil for no filter.
+	RealmConnectionList(ctx context.Context, status *int, limit int, cursor string) ([]*api.RealmConnection, string, int32, error)
+	// RealmGetConnectedRealms returns all realm IDs connected to the given realm.
+	// Includes the realm itself in the result. Returns just the realm ID if not connected.
+	RealmGetConnectedRealms(ctx context.Context, realmID string) ([]string, error)
+	// RealmGetConnection returns the connection a realm belongs to, if any.
+	// Returns nil if the realm is not in any connection.
+	RealmGetConnection(ctx context.Context, realmID string) (*api.RealmConnection, error)
+	// RealmIsConnectedTo checks if two realms are in the same connection.
+	RealmIsConnectedTo(ctx context.Context, realmID1, realmID2 string) (bool, error)
+	// RealmGetConnectionSharingConfig returns the sharing configuration for a realm's connection.
+	// Returns nil if the realm is not in an active connection.
+	RealmGetConnectionSharingConfig(ctx context.Context, realmID string) (*api.ConnectionSharingConfig, error)
+
 	GetSatori() Satori
 	GetFleetManager() FleetManager
+
+	// RedisClient returns a RedisOperations interface for Redis access.
+	// Returns a stub that returns ErrRedisNotConfigured when Redis is not enabled.
+	RedisClient() RedisOperations
+	// RedisEnabled returns true if Redis is configured and available.
+	RedisEnabled() bool
 }
 
 /*
