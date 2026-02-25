@@ -1613,7 +1613,7 @@ enum CharacterTransferInitiator {
 // ============= REALM POLICY MESSAGES =============
 
 // Transfer policies for realm-to-realm character movement.
-// Game-specific details (fees, level requirements) should go in the custom field.
+// Application-specific details should go in the custom field.
 message TransferPolicy {
   // Whether transfers into this realm are allowed.
   bool enabled_in = 1;
@@ -1643,7 +1643,7 @@ message QueuePolicy {
 
 // Naming policies for character names in this realm.
 message NamingPolicy {
-  // Policy type: "standard", "strict", "relaxed", or custom game-defined.
+  // Policy type: "standard", "strict", "relaxed", or custom application-defined.
   string policy = 1;
   // Minimum character name length.
   int32 min_length = 2;
@@ -1653,18 +1653,10 @@ message NamingPolicy {
   string allowed_pattern = 4;
   // Reserved names that cannot be used.
   repeated string reserved_names = 5;
-  // Whether profanity filter is enabled.
-  bool profanity_filter_enabled = 6;
 }
 
 // Access policies for realm entry requirements.
 message AccessPolicy {
-  // Whether staff access is required.
-  bool require_staff = 1;
-  // Minimum VIP tier required (0 = no requirement).
-  int32 require_vip_tier = 2;
-  // Whether beta flag is required.
-  bool require_beta_flag = 3;
   // User must have ALL these tags to access.
   repeated string allowed_user_tags = 4;
   // Users with ANY of these tags are blocked.
@@ -1681,11 +1673,11 @@ message RealmPolicies {
   NamingPolicy naming = 3;
   // Realm access requirements.
   AccessPolicy access = 4;
-  // Custom game-specific policies as a JSON string (for extensibility).
+  // Custom application-specific policies as a JSON string (for extensibility).
   string custom = 5;
 }
 
-// A game realm/world/shard.
+// A realm (game world or environment instance).
 message Realm {
   // The unique identifier of the realm.
   string id = 1;
@@ -1711,7 +1703,7 @@ message Realm {
   google.protobuf.Timestamp create_time = 11;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the realm was last updated.
   google.protobuf.Timestamp update_time = 12;
-  // Classification tags for the realm (e.g., "pvp", "seasonal", "region:us-east"). Max 10 tags, 50 chars each.
+  // Classification tags for the realm (e.g., "seasonal", "region:us-east", "type:pvp"). Max 10 tags, 50 chars each.
   repeated string tags = 13;
   // Structured policy configuration for realm behavior.
   RealmPolicies policies = 14;
@@ -2087,202 +2079,6 @@ message GetMaintenanceStatusResponse {
   repeated MaintenanceWindow upcoming = 3;
   // Whether the current user is allowed to access during maintenance.
   bool user_allowed = 4;
-}
-
-// ============= SECURITY & ANTI-ABUSE SYSTEM =============
-
-// Severity level of a security flag.
-enum SecurityFlagSeverity {
-  // Low severity - informational, may not require action.
-  SECURITY_FLAG_SEVERITY_LOW = 0;
-  // Medium severity - warrants review.
-  SECURITY_FLAG_SEVERITY_MEDIUM = 1;
-  // High severity - requires prompt attention.
-  SECURITY_FLAG_SEVERITY_HIGH = 2;
-  // Critical severity - requires immediate action.
-  SECURITY_FLAG_SEVERITY_CRITICAL = 3;
-}
-
-// Status of a security flag.
-enum SecurityFlagStatus {
-  // Flag is active and pending review.
-  SECURITY_FLAG_STATUS_ACTIVE = 0;
-  // Flag has been reviewed by staff.
-  SECURITY_FLAG_STATUS_REVIEWED = 1;
-  // Flag was dismissed as false positive or not actionable.
-  SECURITY_FLAG_STATUS_DISMISSED = 2;
-  // Flag was reviewed and action was taken.
-  SECURITY_FLAG_STATUS_ACTIONED = 3;
-}
-
-// A security flag indicating suspicious activity on a user or character.
-message SecurityFlag {
-  // The unique identifier of the security flag.
-  string id = 1;
-  // The user ID associated with this flag.
-  string user_id = 2;
-  // The character ID if the flag is character-specific (optional).
-  string character_id = 3;
-  // The realm ID if the flag is realm-specific (optional).
-  string realm_id = 4;
-  // The type of suspicious activity (e.g., "unusual_transfer", "gold_farming", "account_sharing").
-  string flag_type = 5;
-  // The severity level of the flag.
-  SecurityFlagSeverity severity = 6;
-  // The current status of the flag.
-  SecurityFlagStatus status = 7;
-  // Additional details about the flagged activity as a JSON object.
-  string details = 8;
-  // How the activity was detected (e.g., "automated", "manual_report", "pattern_analysis").
-  string detection_method = 9;
-  // When the flag was created.
-  google.protobuf.Timestamp create_time = 10;
-  // When the flag was reviewed (if reviewed).
-  google.protobuf.Timestamp reviewed_at = 11;
-  // The user ID of the reviewer (if reviewed).
-  string reviewed_by = 12;
-  // Action taken on this flag (if any).
-  string action_taken = 13;
-}
-
-// Status of a ban wave.
-enum BanWaveStatus {
-  // Ban wave is pending and not yet executed.
-  BAN_WAVE_STATUS_PENDING = 0;
-  // Ban wave is currently being executed.
-  BAN_WAVE_STATUS_EXECUTING = 1;
-  // Ban wave has completed execution.
-  BAN_WAVE_STATUS_COMPLETED = 2;
-  // Ban wave was cancelled before execution.
-  BAN_WAVE_STATUS_CANCELLED = 3;
-}
-
-// Type of ban in a pending ban entry.
-enum BanType {
-  // Ban a specific character.
-  BAN_TYPE_CHARACTER = 0;
-  // Ban a user from a specific realm.
-  BAN_TYPE_REALM = 1;
-  // Ban the entire user account.
-  BAN_TYPE_ACCOUNT = 2;
-}
-
-// A pending ban entry queued for execution.
-message PendingBan {
-  // The unique identifier of the pending ban.
-  string id = 1;
-  // The user ID to be banned.
-  string user_id = 2;
-  // The character ID to be banned (for character bans).
-  string character_id = 3;
-  // The realm ID for realm-specific bans.
-  string realm_id = 4;
-  // The type of ban.
-  BanType ban_type = 5;
-  // The reason for the ban.
-  string reason = 6;
-  // How the ban was detected/flagged.
-  string detection_method = 7;
-  // Evidence supporting the ban as a JSON object.
-  string evidence = 8;
-  // When the ban was flagged/created.
-  google.protobuf.Timestamp flagged_at = 9;
-  // The ban wave this pending ban belongs to (if any).
-  string batch_id = 10;
-  // When the ban is scheduled to be executed.
-  google.protobuf.Timestamp scheduled_for = 11;
-  // When the ban was executed (if executed).
-  google.protobuf.Timestamp executed_at = 12;
-  // Who executed the ban (if executed).
-  string executed_by = 13;
-  // When the pending ban was cancelled (if cancelled).
-  google.protobuf.Timestamp cancelled_at = 14;
-  // Who cancelled the pending ban (if cancelled).
-  string cancelled_by = 15;
-  // Why the pending ban was cancelled (if cancelled).
-  string cancel_reason = 16;
-  // Error message if ban execution failed.
-  string error_message = 17;
-}
-
-// A ban wave for batch ban execution.
-message BanWave {
-  // The unique identifier of the ban wave.
-  string id = 1;
-  // Human-readable name for the ban wave.
-  string name = 2;
-  // Description of the ban wave.
-  string description = 3;
-  // Current status of the ban wave.
-  BanWaveStatus status = 4;
-  // The realm ID if this wave targets a specific realm.
-  string realm_id = 5;
-  // When the ban wave was created.
-  google.protobuf.Timestamp create_time = 6;
-  // Who created the ban wave.
-  string created_by = 7;
-  // When the ban wave is scheduled to execute.
-  google.protobuf.Timestamp scheduled_for = 8;
-  // When the ban wave execution started.
-  google.protobuf.Timestamp started_at = 9;
-  // When the ban wave execution completed.
-  google.protobuf.Timestamp completed_at = 10;
-  // Who executed the ban wave.
-  string executed_by = 11;
-  // Total number of bans in the wave.
-  int32 total_bans = 12;
-  // Number of successfully executed bans.
-  int32 successful_bans = 13;
-  // Number of failed bans.
-  int32 failed_bans = 14;
-  // Reason if the wave was cancelled.
-  string cancel_reason = 15;
-  // Who cancelled the wave (if cancelled).
-  string cancelled_by = 16;
-  // When the wave was cancelled (if cancelled).
-  google.protobuf.Timestamp cancelled_at = 17;
-  // Additional metadata as a JSON object.
-  string metadata = 18;
-}
-
-// A single risk factor contributing to a transfer risk score.
-message RiskFactor {
-  // The factor identifier (e.g., "new_account", "frequent_transfers").
-  string factor = 1;
-  // The weight of this factor in the overall score (0.0-1.0).
-  double weight = 2;
-  // The actual value measured for this factor.
-  double value = 3;
-  // The threshold that triggers this factor.
-  double threshold = 4;
-  // Human-readable description of the risk factor.
-  string description = 5;
-}
-
-// A risk assessment for a character transfer.
-message TransferRiskAssessment {
-  // The transfer ID this assessment is for.
-  string transfer_id = 1;
-  // The overall risk score (0.0-1.0, higher = riskier).
-  double risk_score = 2;
-  // Individual risk factors contributing to the score.
-  repeated RiskFactor risk_factors = 3;
-  // Whether the transfer was flagged for manual review.
-  bool flagged_for_review = 4;
-  // Whether the flag was triggered automatically.
-  bool auto_flagged = 5;
-  // Whether the transfer has been reviewed.
-  bool reviewed = 6;
-  // When the transfer was reviewed (if reviewed).
-  google.protobuf.Timestamp reviewed_at = 7;
-  // Who reviewed the transfer (if reviewed).
-  string reviewed_by = 8;
-  // Notes from the reviewer.
-  string review_notes = 9;
-  // When the assessment was created.
-  google.protobuf.Timestamp create_time = 10;
-  // When the assessment was last updated.
-  google.protobuf.Timestamp update_time = 11;
 }
 
 // A realm-specific ban for a user.

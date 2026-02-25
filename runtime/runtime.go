@@ -257,6 +257,12 @@ var (
 	ErrRedisNotConfigured = errors.New("redis not configured")
 	ErrRedisUnavailable   = errors.New("redis temporarily unavailable")
 	ErrRedisKeyNotFound   = errors.New("redis key not found")
+
+	// Audit emitter errors
+	ErrAuditEmitterNotConfigured = errors.New("audit emitter not configured")
+
+	// NATS plugin API errors
+	ErrNATSNotConfigured = errors.New("nats not configured")
 )
 
 // ZMember represents a scored member for sorted set operations.
@@ -335,6 +341,38 @@ type RedisOperations interface {
 
 	// Pipeline
 	Pipeline() PipelineOperations
+}
+
+// NATSOperations provides NATS messaging access for Go runtime plugins.
+// Methods return ErrNATSNotConfigured when NATS is not enabled.
+type NATSOperations interface {
+	// Publish sends a message to a NATS subject (fire and forget).
+	Publish(subject string, data []byte) error
+	// Subscribe returns a subscription that must be Unsubscribe()'d when done.
+	Subscribe(subject string, handler func(subject string, data []byte)) (NATSSubscription, error)
+	// QueueSubscribe creates a queue group subscription for load balancing.
+	QueueSubscribe(subject string, queue string, handler func(subject string, data []byte)) (NATSSubscription, error)
+	// Request sends a request and waits for a reply with timeout.
+	Request(subject string, data []byte, timeout time.Duration) ([]byte, error)
+	// JetStreamPublish publishes to a JetStream subject with ack from server.
+	JetStreamPublish(ctx context.Context, subject string, data []byte) error
+	// JetStream returns the full JetStream operations interface for advanced usage.
+	JetStream() (JetStreamOperations, error)
+}
+
+// JetStreamOperations provides advanced JetStream access for plugins.
+type JetStreamOperations interface {
+	// CreateOrUpdateStream creates or updates a JetStream stream configuration.
+	CreateOrUpdateStream(ctx context.Context, name string, subjects []string) error
+	// Publish publishes a message to a JetStream subject with ack.
+	Publish(ctx context.Context, subject string, data []byte) error
+	// CreateOrUpdateConsumer creates or updates a durable consumer on a stream.
+	CreateOrUpdateConsumer(ctx context.Context, stream string, consumerName string, filterSubject string) error
+}
+
+// NATSSubscription represents an active NATS subscription that can be unsubscribed.
+type NATSSubscription interface {
+	Unsubscribe() error
 }
 
 const (
@@ -1042,19 +1080,6 @@ type Initializer interface {
 	// If not registered, the default risk calculation (account age, transfer frequency) is used.
 	RegisterTransferRiskCalculator(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, userID, characterID, sourceRealmID, targetRealmID string) (float64, []map[string]interface{}, error)) error
 
-	// RegisterSecurityFlagHandler is called when a new security flag is created.
-	// Use this to trigger alerts, create tickets, or perform additional analysis.
-	RegisterSecurityFlagHandler(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, flag *api.SecurityFlag) error) error
-
-	// RegisterBanWavePreExecute is called before a ban wave is executed.
-	// Use this to snapshot player data, send warnings, or perform pre-ban analysis.
-	// Return an error to abort the ban wave execution.
-	RegisterBanWavePreExecute(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, wave *api.BanWave, pendingBans []*api.PendingBan) error) error
-
-	// RegisterBanWavePostExecute is called after a ban wave has completed execution.
-	// Use this for audit logging, notifications, or cleanup tasks.
-	RegisterBanWavePostExecute(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, wave *api.BanWave, successfulBans int, failedBans int, failedBanIDs []string) error) error
-
 	// RegisterRpcRateLimit configures custom rate limits for a specific RPC.
 	// The rate is tokens per second and burst is the maximum burst size.
 	// Plugin-registered limits override server-wide YAML config defaults.
@@ -1504,45 +1529,6 @@ type NakamaModule interface {
 	// Example: RealmGetPolicy(ctx, realmID, "transfer.cooldown_hours")
 	RealmGetPolicy(ctx context.Context, realmID string, path string) (interface{}, error)
 
-	// Security & Anti-Abuse
-
-	// SecurityCreateFlag creates a new security flag for tracking suspicious activity.
-	// Severity: 1=low, 2=medium, 3=high, 4=critical
-	SecurityCreateFlag(ctx context.Context, userID string, characterID, realmID *string, flagType string, severity int, details, detectionMethod string) (*api.SecurityFlag, error)
-	// SecurityListFlags returns a paginated list of security flags with optional filters.
-	// status: 0=active, 1=reviewed, 2=dismissed, 3=actioned
-	SecurityListFlags(ctx context.Context, userID, characterID, realmID, flagType *string, status, minSeverity *int, limit int, cursor string) ([]*api.SecurityFlag, string, int32, error)
-	// SecurityReviewFlag reviews a security flag and updates its status.
-	// status: 1=reviewed, 2=dismissed, 3=actioned
-	SecurityReviewFlag(ctx context.Context, flagID string, status int, actionTaken string) (*api.SecurityFlag, error)
-
-	// SecurityCreatePendingBan creates a pending ban entry for later execution.
-	// banType: 0=character, 1=realm, 2=account
-	SecurityCreatePendingBan(ctx context.Context, userID string, characterID, realmID *string, banType int, reason, detectionMethod, evidence string, batchID *string, scheduledFor *time.Time) (*api.PendingBan, error)
-	// SecurityCancelPendingBan cancels a pending ban before execution.
-	SecurityCancelPendingBan(ctx context.Context, banID, cancelReason string) error
-	// SecurityListPendingBans returns a paginated list of pending bans.
-	SecurityListPendingBans(ctx context.Context, userID, realmID *string, banType *int, batchID *string, pendingOnly bool, limit int, cursor string) ([]*api.PendingBan, string, int32, error)
-
-	// SecurityCreateBanWave creates a new ban wave for batch execution.
-	SecurityCreateBanWave(ctx context.Context, name, description string, realmID *string, pendingBanIDs []string, scheduledFor *time.Time) (*api.BanWave, error)
-	// SecurityExecuteBanWave executes all pending bans in a ban wave.
-	// Returns: wave, successfulBans, failedBans, failedBanIDs, error
-	SecurityExecuteBanWave(ctx context.Context, waveID string) (*api.BanWave, int, int, []string, error)
-	// SecurityCancelBanWave cancels a pending ban wave.
-	SecurityCancelBanWave(ctx context.Context, waveID, cancelReason string) error
-	// SecurityListBanWaves returns a paginated list of ban waves.
-	SecurityListBanWaves(ctx context.Context, status *int, realmID *string, limit int, cursor string) ([]*api.BanWave, string, int32, error)
-
-	// SecurityAssessTransferRisk calculates and records the risk score for a character transfer.
-	// Uses the registered TransferRiskCalculator hook if available, otherwise uses defaults.
-	// Returns the assessment; if risk exceeds threshold, creates a security flag.
-	SecurityAssessTransferRisk(ctx context.Context, transferID string) (*api.TransferRiskAssessment, error)
-	// SecurityGetFlaggedTransfers returns transfers that have been flagged for review.
-	SecurityGetFlaggedTransfers(ctx context.Context, unreviewedOnly bool, minRiskScore *float64, limit int, cursor string) ([]*api.TransferRiskAssessment, string, int32, error)
-	// SecurityReviewTransferRisk marks a transfer risk assessment as reviewed.
-	SecurityReviewTransferRisk(ctx context.Context, transferID, reviewNotes string) (*api.TransferRiskAssessment, error)
-
 	// RealmBanUser bans a user from a specific realm.
 	// If expiresAt is nil, the ban is permanent.
 	RealmBanUser(ctx context.Context, userID, realmID, reason string, expiresAt *time.Time) (*api.RealmBan, error)
@@ -1554,24 +1540,11 @@ type NakamaModule interface {
 	// RealmListBans returns a paginated list of realm bans.
 	RealmListBans(ctx context.Context, userID, realmID *string, activeOnly bool, limit int, cursor string) ([]*api.RealmBan, string, int32, error)
 
-	// ============= CONNECTED REALMS (SOFT MERGES) =============
-
-	// RealmConnectionGet returns a connection by ID or slug.
-	RealmConnectionGet(ctx context.Context, idOrSlug string) (*api.RealmConnection, error)
-	// RealmConnectionList returns all connections, optionally filtered by status.
-	// Status: 0=active, 1=pending, 2=dissolving. Pass nil for no filter.
-	RealmConnectionList(ctx context.Context, status *int, limit int, cursor string) ([]*api.RealmConnection, string, int32, error)
-	// RealmGetConnectedRealms returns all realm IDs connected to the given realm.
-	// Includes the realm itself in the result. Returns just the realm ID if not connected.
-	RealmGetConnectedRealms(ctx context.Context, realmID string) ([]string, error)
-	// RealmGetConnection returns the connection a realm belongs to, if any.
-	// Returns nil if the realm is not in any connection.
-	RealmGetConnection(ctx context.Context, realmID string) (*api.RealmConnection, error)
-	// RealmIsConnectedTo checks if two realms are in the same connection.
-	RealmIsConnectedTo(ctx context.Context, realmID1, realmID2 string) (bool, error)
-	// RealmGetConnectionSharingConfig returns the sharing configuration for a realm's connection.
-	// Returns nil if the realm is not in an active connection.
-	RealmGetConnectionSharingConfig(ctx context.Context, realmID string) (*api.ConnectionSharingConfig, error)
+	// AuditEmit emits an audit event to the configured audit emitter.
+	// Category should be one of: "security", "admin", "gameplay".
+	// The userID is automatically extracted from the context (RUNTIME_CTX_USER_ID).
+	// Returns ErrAuditEmitterNotConfigured when no emitter is set.
+	AuditEmit(ctx context.Context, category string, eventType string, properties map[string]string) error
 
 	GetSatori() Satori
 	GetFleetManager() FleetManager
@@ -1581,6 +1554,12 @@ type NakamaModule interface {
 	RedisClient() RedisOperations
 	// RedisEnabled returns true if Redis is configured and available.
 	RedisEnabled() bool
+
+	// NATSClient returns a NATSOperations interface for NATS messaging access.
+	// Returns a stub that returns ErrNATSNotConfigured when NATS is not enabled.
+	NATSClient() NATSOperations
+	// NATSEnabled returns true if NATS is configured and available.
+	NATSEnabled() bool
 }
 
 /*
