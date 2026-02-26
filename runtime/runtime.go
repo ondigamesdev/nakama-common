@@ -162,20 +162,41 @@ const (
 	// Trace identifier serves to distinguish requests for debugging purposes.
 	RUNTIME_CTX_TRACE_ID = "trace_id"
 
-	// Multi-realm context keys stored in session vars (accessible via RUNTIME_CTX_VARS).
-	// These are set when a user selects a character via SelectCharacter API.
-	//
-	// Example usage in hooks:
-	//   vars := ctx.Value(runtime.RUNTIME_CTX_VARS).(map[string]string)
-	//   realmID := vars[runtime.RUNTIME_CTX_VAR_REALM_ID]
-	//   characterID := vars[runtime.RUNTIME_CTX_VAR_CHARACTER_ID]
-	//
-	// The active realm ID from the user's selected character.
-	RUNTIME_CTX_VAR_REALM_ID = "realm_id"
-
-	// The active character ID from the user's selected character.
-	RUNTIME_CTX_VAR_CHARACTER_ID = "character_id"
 )
+
+// RealmContext holds the active realm and character context from a session token.
+// Use GetRealmContext or RequireRealmContext to extract from a handler's context.
+type RealmContext struct {
+	// RealmID is the active realm ID as a string UUID.
+	RealmID string
+	// CharacterID is the active character ID as a string UUID.
+	CharacterID string
+}
+
+// GetRealmContext extracts realm context from the request context.
+// Returns nil if no realm context is present (user has not selected a character).
+func GetRealmContext(ctx context.Context) *RealmContext {
+	vars, ok := ctx.Value(RUNTIME_CTX_VARS).(map[string]string)
+	if !ok || vars == nil {
+		return nil
+	}
+	realmID := vars["realm_id"]
+	characterID := vars["character_id"]
+	if realmID == "" || characterID == "" {
+		return nil
+	}
+	return &RealmContext{RealmID: realmID, CharacterID: characterID}
+}
+
+// RequireRealmContext returns realm context or an error if not present.
+// Use this for APIs that require an active character session.
+func RequireRealmContext(ctx context.Context) (*RealmContext, error) {
+	rc := GetRealmContext(ctx)
+	if rc == nil {
+		return nil, errors.New("no active character selected")
+	}
+	return rc, nil
+}
 
 var (
 	ErrStorageRejectedVersion    = errors.New("Storage write rejected - version check failed.")
@@ -1087,6 +1108,16 @@ type Initializer interface {
 	RegisterRpcRateLimit(rpcID string, rate int, burst int) error
 }
 
+// SecurityInitializer is an optional interface for registering security hooks.
+// Discover via type assertion on the Initializer:
+//
+//	if secInit, ok := initializer.(SecurityInitializer); ok {
+//	    secInit.RegisterSecurityFlagHandler(myHandler)
+//	}
+type SecurityInitializer interface {
+	RegisterSecurityFlagHandler(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, flag *SecurityFlag) error) error
+}
+
 type PresenceReason uint8
 
 const (
@@ -1302,6 +1333,69 @@ type ChannelMessageSendOptions struct {
 	// CohortID is required when ScopeType=2 (cohort-scoped).
 	// Used for cross-realm events visible to cohort participants.
 	CohortID string
+}
+
+// SecurityFlag represents a player security flag record.
+type SecurityFlag struct {
+	ID         string
+	UserID     string
+	RealmID    string
+	Reason     string
+	Severity   int
+	Status     int
+	Metadata   map[string]interface{}
+	CreateTime int64
+	UpdateTime int64
+	ReviewerID string
+	ReviewNote string
+}
+
+// PendingBan represents a ban that is scheduled but not yet executed.
+type PendingBan struct {
+	ID         string
+	UserID     string
+	RealmID    string
+	Reason     string
+	BanType    int
+	Duration   int64
+	Status     int
+	CreateTime int64
+	UpdateTime int64
+}
+
+// BanWave represents a coordinated group of bans to be executed together.
+type BanWave struct {
+	ID          string
+	Name        string
+	Status      int
+	ScheduledAt int64
+	ExecutedAt  int64
+	BanCount    int32
+	CreateTime  int64
+	UpdateTime  int64
+}
+
+// RiskFactor represents a single factor contributing to transfer risk.
+type RiskFactor struct {
+	Name   string
+	Score  float64
+	Detail string
+}
+
+// TransferRiskAssessment represents the risk assessment for a character transfer.
+type TransferRiskAssessment struct {
+	TransferID    string
+	UserID        string
+	CharacterID   string
+	SourceRealmID string
+	TargetRealmID string
+	RiskScore     float64
+	RiskFactors   []*RiskFactor
+	Status        int
+	ReviewerID    string
+	ReviewNote    string
+	CreateTime    int64
+	UpdateTime    int64
 }
 
 type NakamaModule interface {
@@ -1560,6 +1654,28 @@ type NakamaModule interface {
 	NATSClient() NATSOperations
 	// NATSEnabled returns true if NATS is configured and available.
 	NATSEnabled() bool
+}
+
+// SecurityModule is an optional interface that PamOps-aware NakamaModule
+// implementations can satisfy. Discover via type assertion:
+//
+//	if sec, ok := nk.(SecurityModule); ok {
+//	    flags, err := sec.SecurityListFlags(ctx, "", "", 0, 10, "")
+//	}
+type SecurityModule interface {
+	SecurityCreateFlag(ctx context.Context, userID, realmID string, reason string, severity int, metadata map[string]interface{}) (*SecurityFlag, error)
+	SecurityListFlags(ctx context.Context, userID, realmID string, status int, limit int, cursor string) ([]*SecurityFlag, string, error)
+	SecurityReviewFlag(ctx context.Context, flagID string, action int, reviewerNote string) error
+	SecurityCreatePendingBan(ctx context.Context, userID, realmID string, reason string, banType int, duration int64) (*PendingBan, error)
+	SecurityCancelPendingBan(ctx context.Context, banID string) error
+	SecurityListPendingBans(ctx context.Context, userID, realmID string, limit int, cursor string) ([]*PendingBan, string, error)
+	SecurityCreateBanWave(ctx context.Context, name string, scheduledAt int64) (*BanWave, error)
+	SecurityExecuteBanWave(ctx context.Context, banWaveID string) error
+	SecurityCancelBanWave(ctx context.Context, banWaveID string) error
+	SecurityListBanWaves(ctx context.Context, status int, limit int, cursor string) ([]*BanWave, string, error)
+	SecurityAssessTransferRisk(ctx context.Context, userID, characterID, sourceRealmID, targetRealmID string) (*TransferRiskAssessment, error)
+	SecurityGetFlaggedTransfers(ctx context.Context, riskThreshold float64, limit int, cursor string) ([]*TransferRiskAssessment, string, error)
+	SecurityReviewTransferRisk(ctx context.Context, transferID string, action int, reviewerNote string) error
 }
 
 /*

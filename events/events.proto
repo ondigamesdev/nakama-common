@@ -1,0 +1,76 @@
+// Copyright 2024 The Nakama Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package nakama.events;
+
+option go_package = "github.com/heroiclabs/nakama-common/events";
+
+// EventEnvelope is the top-level wrapper for all events flowing from Nakama to PamOps via Redis Streams.
+message EventEnvelope {
+  // UUID v4 unique event identifier.
+  string id = 1;
+  // Unix milliseconds when the event was created.
+  int64 timestamp_ms = 2;
+  // Nakama node name that originated the event (from config.GetName()).
+  string source_node = 3;
+  // Dot-separated event type (e.g., "realm.player_joined", "audit.security.ban").
+  string event_type = 4;
+  // Schema version for forward compatibility. Starts at 1.
+  int32 version = 5;
+
+  oneof payload {
+    RealmEvent realm_event = 10;
+    AuditEvent audit_event = 11;
+  }
+}
+
+// RealmEvent carries realm lifecycle and player movement events.
+message RealmEvent {
+  // UUID of the realm this event pertains to.
+  string realm_id = 1;
+  // Action type: "created", "deleted", "status_changed", "player_joined", "player_left", "metadata_changed".
+  string action = 2;
+  // User ID of the actor who triggered the event. Empty for system-initiated events.
+  string actor_user_id = 3;
+  // Additional context as key-value pairs.
+  map<string, string> metadata = 4;
+}
+
+// AuditEvent carries security, admin, and gameplay audit trail entries.
+message AuditEvent {
+  // Event category: "security", "admin", "gameplay".
+  string category = 1;
+  // Specific action (e.g., "ban", "unban", "role_change", "config_update").
+  string action = 2;
+  // User ID of the affected user.
+  string user_id = 3;
+  // User ID of the actor who performed the action.
+  string actor_id = 4;
+  // Realm context if applicable (empty for global actions).
+  string realm_id = 5;
+  // JSON-encoded details for the audit entry.
+  string details = 6;
+}
+
+// CacheInvalidationPayload carries cross-system cache invalidation signals.
+message CacheInvalidationPayload {
+  // Specific cache keys to invalidate.
+  repeated string cache_keys = 1;
+  // Key prefixes to invalidate (all keys matching prefix).
+  repeated string cache_prefixes = 2;
+  // Human-readable reason for the invalidation.
+  string reason = 3;
+}
