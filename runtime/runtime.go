@@ -1046,6 +1046,26 @@ type Initializer interface {
 	// RegisterAfterListParties can be used to perform additiona logic after retrieving parties.
 	RegisterAfterListParties(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.PartyList, in *api.ListPartiesRequest) error) error
 
+	// RegisterBeforeCreateCharacter can be used to perform additional logic before creating a character.
+	RegisterBeforeCreateCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.CreateCharacterRequest) (*api.CreateCharacterRequest, error)) error
+
+	// RegisterAfterCreateCharacter can be used to perform additional logic after a character is created.
+	// The context will contain realm context (realm_id, character_id) for the newly created character.
+	RegisterAfterCreateCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Character, in *api.CreateCharacterRequest) error) error
+
+	// RegisterBeforeSelectCharacter can be used to perform additional logic before selecting a character.
+	RegisterBeforeSelectCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.SelectCharacterRequest) (*api.SelectCharacterRequest, error)) error
+
+	// RegisterAfterSelectCharacter can be used to perform additional logic after selecting a character.
+	// The context will contain realm context (realm_id, character_id) for the selected character.
+	RegisterAfterSelectCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.SelectCharacterResponse, in *api.SelectCharacterRequest) error) error
+
+	// RegisterBeforeListCharacters can be used to perform additional logic before listing characters.
+	RegisterBeforeListCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule) error) error
+
+	// RegisterAfterListCharacters can be used to perform additional logic after listing characters.
+	RegisterAfterListCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.CharacterList) error) error
+
 	// RegisterBeforeTransferCharacter can be used to perform additional logic before transferring a character.
 	RegisterBeforeTransferCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.TransferCharacterRequest) (*api.TransferCharacterRequest, error)) error
 
