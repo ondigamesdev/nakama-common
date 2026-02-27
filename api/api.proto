@@ -2063,23 +2063,6 @@ message RealmGroup {
   google.protobuf.Timestamp update_time = 8;
 }
 
-// Request to get maintenance status for a realm.
-message GetMaintenanceStatusRequest {
-  // The realm ID to check. If empty, checks for global maintenance only.
-  string realm_id = 1;
-}
-
-// Response with maintenance status for a realm.
-message GetMaintenanceStatusResponse {
-  // Whether the realm is currently under maintenance.
-  bool under_maintenance = 1;
-  // The active maintenance window, if any.
-  MaintenanceWindow active_window = 2;
-  // Upcoming scheduled maintenance windows.
-  repeated MaintenanceWindow upcoming = 3;
-  // Whether the current user is allowed to access during maintenance.
-  bool user_allowed = 4;
-}
 
 // A realm-specific ban for a user.
 message RealmBan {
