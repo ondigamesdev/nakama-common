@@ -1560,16 +1560,20 @@ message PartyList {
   string cursor = 2;
 }
 
-// The status of a realm.
+// The status of a realm, ordered by lifecycle progression.
 enum RealmStatus {
   // The realm is active and available for play.
   REALM_STATUS_ACTIVE = 0;
-  // The realm is under maintenance.
-  REALM_STATUS_MAINTENANCE = 1;
-  // The realm is retired and no longer available.
-  REALM_STATUS_RETIRED = 2;
-  // The realm is coming soon.
-  REALM_STATUS_COMING_SOON = 3;
+  // The realm is announced but not yet open for play.
+  REALM_STATUS_COMING_SOON = 1;
+  // The realm is temporarily unavailable for maintenance.
+  REALM_STATUS_MAINTENANCE = 2;
+  // The realm is locked: existing players can play, but no new players or transfers in.
+  REALM_STATUS_LOCKED = 3;
+  // The realm is winding down: transfers out allowed, no new activity.
+  REALM_STATUS_RETIRING = 4;
+  // The realm is permanently closed and can be deleted.
+  REALM_STATUS_RETIRED = 5;
 }
 
 // The status of a character.
@@ -1657,6 +1661,10 @@ message NamingPolicy {
 
 // Access policies for realm entry requirements.
 message AccessPolicy {
+  // Whether the realm accepts new players (character creation). Defaults to true if not set.
+  google.protobuf.BoolValue allow_new_players = 1;
+  // Whether the realm requires an invite to join.
+  bool requires_invite = 2;
   // User must have ALL these tags to access.
   repeated string allowed_user_tags = 4;
   // Users with ANY of these tags are blocked.
@@ -1664,6 +1672,7 @@ message AccessPolicy {
 }
 
 // Combined realm policies with structured core policies and extensible custom policies.
+// Used both as the effective (merged) policy on a realm and as override/default policy for inheritance.
 message RealmPolicies {
   // Transfer restrictions and requirements.
   TransferPolicy transfer = 1;
@@ -1675,6 +1684,10 @@ message RealmPolicies {
   AccessPolicy access = 4;
   // Custom application-specific policies as a JSON string (for extensibility).
   string custom = 5;
+  // Feature flags enabled for this realm (e.g., "pvp", "guilds", "auction_house").
+  repeated string allowed_features = 6;
+  // Maximum currency a player can hold in this realm (0 = no cap).
+  int64 currency_cap = 7;
 }
 
 // A realm (game world or environment instance).
@@ -1683,17 +1696,17 @@ message Realm {
   string id = 1;
   // The human-readable name of the realm.
   string name = 2;
-  // The URL-friendly slug of the realm.
+  // The URL-friendly slug of the realm. Auto-generated from name if not provided.
   string slug = 3;
   // A description of the realm.
   string description = 4;
   // Additional realm configuration as a JSON object.
   string config = 5;
-  // The status of the realm.
+  // The status of the realm (lifecycle: ACTIVE → COMING_SOON → MAINTENANCE → LOCKED → RETIRING → RETIRED).
   RealmStatus status = 6;
   // The maximum number of players allowed in the realm.
   int32 max_players = 7;
-  // The current number of players in the realm.
+  // The current number of players in the realm (managed by Nakama, not settable via admin API).
   int32 current_players = 8;
   // The region of the realm (e.g., "us-east", "eu-west").
   string region = 9;
@@ -1705,8 +1718,12 @@ message Realm {
   google.protobuf.Timestamp update_time = 12;
   // Classification tags for the realm (e.g., "seasonal", "region:us-east", "type:pvp"). Max 10 tags, 50 chars each.
   repeated string tags = 13;
-  // Structured policy configuration for realm behavior.
+  // Effective policy configuration: the merged result of group default policy + realm policy overrides.
   RealmPolicies policies = 14;
+  // Arbitrary metadata as a JSON object (managed by admin/PamOps).
+  string metadata = 15;
+  // The realm group this realm belongs to (empty if ungrouped). Direct FK relationship.
+  string realm_group_id = 16;
 }
 
 // A player character in a realm.
@@ -2043,7 +2060,7 @@ message MaintenanceWindow {
   string metadata = 19;
 }
 
-// A group of realms for coordinated operations (e.g., regional maintenance).
+// A group of realms for coordinated operations (e.g., regional maintenance, policy inheritance).
 message RealmGroup {
   // The unique identifier of the realm group.
   string id = 1;
@@ -2055,12 +2072,16 @@ message RealmGroup {
   string description = 4;
   // Type of group (e.g., "region", "version", "custom").
   string group_type = 5;
-  // IDs of realms in this group.
+  // IDs of realms in this group (populated on read).
   repeated string realm_ids = 6;
   // When the group was created.
   google.protobuf.Timestamp create_time = 7;
   // When the group was last updated.
   google.protobuf.Timestamp update_time = 8;
+  // Default policy inherited by all realms in this group. Realm-specific policy overrides take precedence.
+  RealmPolicies default_policy = 9;
+  // Additional metadata as a JSON object.
+  string metadata = 10;
 }
 
 
