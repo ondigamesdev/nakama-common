@@ -9742,7 +9742,10 @@ type Realm struct {
 	// Arbitrary metadata as a JSON object (managed by admin/PamOps).
 	Metadata string `protobuf:"bytes,15,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// The realm group this realm belongs to (empty if ungrouped). Direct FK relationship.
-	RealmGroupId  string `protobuf:"bytes,16,opt,name=realm_group_id,json=realmGroupId,proto3" json:"realm_group_id,omitempty"`
+	RealmGroupId string `protobuf:"bytes,16,opt,name=realm_group_id,json=realmGroupId,proto3" json:"realm_group_id,omitempty"`
+	// The authenticated user's character in this realm, if any.
+	// Only populated by player-facing APIs, not console/admin.
+	MyCharacter   *Character `protobuf:"bytes,17,opt,name=my_character,json=myCharacter,proto3" json:"my_character,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -9887,6 +9890,13 @@ func (x *Realm) GetRealmGroupId() string {
 		return x.RealmGroupId
 	}
 	return ""
+}
+
+func (x *Realm) GetMyCharacter() *Character {
+	if x != nil {
+		return x.MyCharacter
+	}
+	return nil
 }
 
 // A player character in a realm.
@@ -11759,7 +11769,7 @@ func (x *MaintenanceWindow) GetMetadata() string {
 	return ""
 }
 
-// A group of realms for coordinated operations (e.g., regional maintenance).
+// A group of realms for coordinated operations (e.g., regional maintenance, policy inheritance).
 type RealmGroup struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The unique identifier of the realm group.
@@ -13136,7 +13146,7 @@ const file_api_api_proto_rawDesc = "" +
 	"\x06access\x18\x04 \x01(\v2\x18.nakama.api.AccessPolicyR\x06access\x12\x16\n" +
 	"\x06custom\x18\x05 \x01(\tR\x06custom\x12)\n" +
 	"\x10allowed_features\x18\x06 \x03(\tR\x0fallowedFeatures\x12!\n" +
-	"\fcurrency_cap\x18\a \x01(\x03R\vcurrencyCap\"\xad\x04\n" +
+	"\fcurrency_cap\x18\a \x01(\x03R\vcurrencyCap\"\xe7\x04\n" +
 	"\x05Realm\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -13157,7 +13167,8 @@ const file_api_api_proto_rawDesc = "" +
 	"\x04tags\x18\r \x03(\tR\x04tags\x125\n" +
 	"\bpolicies\x18\x0e \x01(\v2\x19.nakama.api.RealmPoliciesR\bpolicies\x12\x1a\n" +
 	"\bmetadata\x18\x0f \x01(\tR\bmetadata\x12$\n" +
-	"\x0erealm_group_id\x18\x10 \x01(\tR\frealmGroupId\"\xab\x03\n" +
+	"\x0erealm_group_id\x18\x10 \x01(\tR\frealmGroupId\x128\n" +
+	"\fmy_character\x18\x11 \x01(\v2\x15.nakama.api.CharacterR\vmyCharacter\"\xab\x03\n" +
 	"\tCharacter\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x19\n" +
@@ -13804,67 +13815,68 @@ var file_api_api_proto_depIdxs = []int32{
 	184, // 188: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
 	184, // 189: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
 	132, // 190: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
-	4,   // 191: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
-	184, // 192: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
-	184, // 193: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
-	184, // 194: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
-	133, // 195: nakama.api.Character.realm:type_name -> nakama.api.Realm
-	186, // 196: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
-	133, // 197: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
-	134, // 198: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
-	134, // 199: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
-	184, // 200: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
-	184, // 201: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
-	178, // 202: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	179, // 203: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	143, // 204: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
-	180, // 205: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	181, // 206: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	182, // 207: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
-	183, // 208: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
-	184, // 209: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
-	184, // 210: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
-	186, // 211: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
-	147, // 212: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
-	186, // 213: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
-	185, // 214: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	5,   // 215: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
-	6,   // 216: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
-	184, // 217: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
-	184, // 218: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
-	184, // 219: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
-	151, // 220: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
-	134, // 221: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
-	186, // 222: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
-	151, // 223: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
-	184, // 224: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
-	133, // 225: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
-	133, // 226: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
-	7,   // 227: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
-	184, // 228: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
-	184, // 229: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
-	184, // 230: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
-	184, // 231: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
-	8,   // 232: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
-	184, // 233: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
-	184, // 234: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
-	184, // 235: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
-	132, // 236: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
-	184, // 237: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
-	184, // 238: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
-	184, // 239: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
-	106, // 240: nakama.api.FriendsOfFriendsList.FriendOfFriend.user:type_name -> nakama.api.User
-	106, // 241: nakama.api.GroupUserList.GroupUser.user:type_name -> nakama.api.User
-	186, // 242: nakama.api.GroupUserList.GroupUser.state:type_name -> google.protobuf.Int32Value
-	54,  // 243: nakama.api.UserGroupList.UserGroup.group:type_name -> nakama.api.Group
-	186, // 244: nakama.api.UserGroupList.UserGroup.state:type_name -> google.protobuf.Int32Value
-	2,   // 245: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
-	2,   // 246: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
-	247, // [247:247] is the sub-list for method output_type
-	247, // [247:247] is the sub-list for method input_type
-	247, // [247:247] is the sub-list for extension type_name
-	247, // [247:247] is the sub-list for extension extendee
-	0,   // [0:247] is the sub-list for field type_name
+	134, // 191: nakama.api.Realm.my_character:type_name -> nakama.api.Character
+	4,   // 192: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
+	184, // 193: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
+	184, // 194: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
+	184, // 195: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
+	133, // 196: nakama.api.Character.realm:type_name -> nakama.api.Realm
+	186, // 197: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
+	133, // 198: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
+	134, // 199: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
+	134, // 200: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
+	184, // 201: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
+	184, // 202: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
+	178, // 203: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	179, // 204: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	143, // 205: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
+	180, // 206: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	181, // 207: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	182, // 208: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
+	183, // 209: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
+	184, // 210: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
+	184, // 211: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
+	186, // 212: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
+	147, // 213: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
+	186, // 214: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
+	185, // 215: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	5,   // 216: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
+	6,   // 217: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
+	184, // 218: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
+	184, // 219: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
+	184, // 220: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
+	151, // 221: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
+	134, // 222: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
+	186, // 223: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
+	151, // 224: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
+	184, // 225: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
+	133, // 226: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
+	133, // 227: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
+	7,   // 228: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
+	184, // 229: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
+	184, // 230: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
+	184, // 231: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
+	184, // 232: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
+	8,   // 233: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
+	184, // 234: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
+	184, // 235: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
+	184, // 236: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
+	132, // 237: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
+	184, // 238: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
+	184, // 239: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
+	184, // 240: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
+	106, // 241: nakama.api.FriendsOfFriendsList.FriendOfFriend.user:type_name -> nakama.api.User
+	106, // 242: nakama.api.GroupUserList.GroupUser.user:type_name -> nakama.api.User
+	186, // 243: nakama.api.GroupUserList.GroupUser.state:type_name -> google.protobuf.Int32Value
+	54,  // 244: nakama.api.UserGroupList.UserGroup.group:type_name -> nakama.api.Group
+	186, // 245: nakama.api.UserGroupList.UserGroup.state:type_name -> google.protobuf.Int32Value
+	2,   // 246: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
+	2,   // 247: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
+	248, // [248:248] is the sub-list for method output_type
+	248, // [248:248] is the sub-list for method input_type
+	248, // [248:248] is the sub-list for extension type_name
+	248, // [248:248] is the sub-list for extension extendee
+	0,   // [0:248] is the sub-list for field type_name
 }
 
 func init() { file_api_api_proto_init() }

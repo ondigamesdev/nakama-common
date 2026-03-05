@@ -1724,6 +1724,9 @@ message Realm {
   string metadata = 15;
   // The realm group this realm belongs to (empty if ungrouped). Direct FK relationship.
   string realm_group_id = 16;
+  // The authenticated user's character in this realm, if any.
+  // Only populated by player-facing APIs, not console/admin.
+  Character my_character = 17;
 }
 
 // A player character in a realm.
