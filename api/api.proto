@@ -270,6 +270,32 @@ message AuthenticateSteamRequest {
   google.protobuf.BoolValue sync = 4;
 }
 
+// Request an OTP code be sent to an email address for authentication or verification.
+message RequestEmailCodeRequest {
+  // The email address to send the OTP code to.
+  string email = 1;
+}
+
+// Authenticate against the server with an email OTP code.
+message AuthenticateEmailOTPRequest {
+  // The email address used to request the code.
+  string email = 1;
+  // The OTP code received via email.
+  string code = 2;
+  // Set the username on the account at register. Must be unique.
+  string username = 3;
+  // Extra information that will be bundled in the session token.
+  map<string, string> vars = 4;
+}
+
+// Verify email ownership with a code sent to the email address.
+message VerifyEmailCodeRequest {
+  // The email address to verify.
+  string email = 1;
+  // The verification code received via email.
+  string code = 2;
+}
+
 // Ban users from a group.
 message BanGroupUsersRequest {
   // The group to ban users from.
