@@ -162,6 +162,8 @@ const (
 	// Trace identifier serves to distinguish requests for debugging purposes.
 	RUNTIME_CTX_TRACE_ID = "trace_id"
 
+	// Whether the user's email has been verified.
+	RUNTIME_CTX_EMAIL_VERIFIED = "email_verified"
 )
 
 // RealmContext holds the active realm and character context from a session token.
