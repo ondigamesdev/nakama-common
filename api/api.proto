@@ -858,9 +858,6 @@ message ListStorageObjectsRequest {
   // Optional character ID to filter by. If set, only returns objects owned by this character.
   // When realm features are enabled and a character is selected, this defaults to the active character.
   string character_id = 5;
-  // Include user-scoped objects (shared across characters) in addition to character-scoped.
-  // Only applicable when character_id is set. Default false.
-  bool include_user_scoped = 6;
 }
 
 // List user subscriptions.
