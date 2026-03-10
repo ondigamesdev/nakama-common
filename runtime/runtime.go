@@ -200,6 +200,58 @@ func RequireRealmContext(ctx context.Context) (*RealmContext, error) {
 	return rc, nil
 }
 
+type AchievementRow struct {
+	AchievementID        string
+	CharacterID          string
+	Category             string
+	Count                int64
+	MaxCount             int64
+	ClaimCount           int
+	Claimed              bool
+	RewardAvailable      bool
+	IsRepeatable         bool
+	ClaimTime            *time.Time
+	ExpireTime           *time.Time
+	AdditionalProperties map[string]string
+	CreateTime           time.Time
+	UpdateTime           time.Time
+	SubAchievements      []*SubAchievementRow
+}
+
+type SubAchievementRow struct {
+	AchievementID        string
+	CharacterID          string
+	SubAchievementID     string
+	Category             string
+	Count                int64
+	MaxCount             int64
+	Claimed              bool
+	RewardAvailable      bool
+	ClaimTime            *time.Time
+	AdditionalProperties map[string]string
+	CreateTime           time.Time
+	UpdateTime           time.Time
+}
+
+type AchievementUpdate struct {
+	AchievementID          string
+	CountDelta             int64
+	MaxCount               int64
+	Category               string
+	IsRepeatable           bool
+	ExpireTime             *time.Time
+	AdditionalProperties   map[string]string
+	SubAchievementUpdates  []*SubAchievementUpdate
+}
+
+type SubAchievementUpdate struct {
+	SubAchievementID     string
+	CountDelta           int64
+	MaxCount             int64
+	Category             string
+	AdditionalProperties map[string]string
+}
+
 var (
 	ErrStorageRejectedVersion    = errors.New("Storage write rejected - version check failed.")
 	ErrStorageRejectedPermission = errors.New("Storage write rejected - permission denied.")
@@ -1664,6 +1716,7 @@ type NakamaModule interface {
 
 	GetSatori() Satori
 	GetFleetManager() FleetManager
+	GetAchievementStorage() AchievementStorage
 
 	// RedisClient returns a RedisOperations interface for Redis access.
 	// Returns a stub that returns ErrRedisNotConfigured when Redis is not enabled.
@@ -1805,6 +1858,18 @@ type FleetManagerInitializer interface {
 	Init(nk NakamaModule, callbackHandler FmCallbackHandler) error
 	Update(ctx context.Context, id string, playerCount int, metadata map[string]any) error
 	Delete(ctx context.Context, id string) error
+}
+
+// AchievementStorage provides SQL-backed achievement persistence.
+type AchievementStorage interface {
+	// Get returns achievement rows for the given IDs. If achievementIDs is nil/empty, returns all for the user+character.
+	Get(ctx context.Context, userID, characterID string, achievementIDs []string) ([]*AchievementRow, error)
+	// Upsert creates or updates achievement progress rows. Returns the updated rows.
+	Upsert(ctx context.Context, userID, characterID string, updates []*AchievementUpdate) ([]*AchievementRow, error)
+	// Claim marks achievements as claimed. Returns the claimed rows.
+	Claim(ctx context.Context, userID, characterID string, achievementIDs []string) ([]*AchievementRow, error)
+	// GetByCategory returns all achievements matching the given category.
+	GetByCategory(ctx context.Context, userID, characterID string, category string) ([]*AchievementRow, error)
 }
 
 /*
