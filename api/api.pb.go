@@ -9930,7 +9930,9 @@ type Character struct {
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the character last logged in.
 	LastLoginAt *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=last_login_at,json=lastLoginAt,proto3" json:"last_login_at,omitempty"`
 	// The realm object, if embedded.
-	Realm         *Realm `protobuf:"bytes,11,opt,name=realm,proto3" json:"realm,omitempty"`
+	Realm *Realm `protobuf:"bytes,11,opt,name=realm,proto3" json:"realm,omitempty"`
+	// Indicates whether the character is currently online.
+	Online        bool `protobuf:"varint,12,opt,name=online,proto3" json:"online,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -10040,6 +10042,13 @@ func (x *Character) GetRealm() *Realm {
 		return x.Realm
 	}
 	return nil
+}
+
+func (x *Character) GetOnline() bool {
+	if x != nil {
+		return x.Online
+	}
+	return false
 }
 
 // Request to list realms.

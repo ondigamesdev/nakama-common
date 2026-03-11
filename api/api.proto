@@ -1748,6 +1748,8 @@ message Character {
   google.protobuf.Timestamp last_login_at = 10;
   // The realm object, if embedded.
   Realm realm = 11;
+  // Indicates whether the character is currently online.
+  bool online = 12;
 }
 
 // Request to list realms.
