@@ -213,6 +213,7 @@ type AchievementRow struct {
 	IsRepeatable         bool
 	ClaimTime            *time.Time
 	ExpireTime           *time.Time
+	ResetTime            *time.Time
 	AdditionalProperties map[string]string
 	CreateTime           time.Time
 	UpdateTime           time.Time
@@ -229,6 +230,7 @@ type SubAchievementRow struct {
 	Claimed              bool
 	RewardAvailable      bool
 	ClaimTime            *time.Time
+	ResetTime            *time.Time
 	AdditionalProperties map[string]string
 	CreateTime           time.Time
 	UpdateTime           time.Time
@@ -241,6 +243,8 @@ type AchievementUpdate struct {
 	Category               string
 	IsRepeatable           bool
 	ExpireTime             *time.Time
+	ResetTime              *time.Time
+	AutoClaim              bool
 	AdditionalProperties   map[string]string
 	SubAchievementUpdates  []*SubAchievementUpdate
 }
@@ -250,6 +254,8 @@ type SubAchievementUpdate struct {
 	CountDelta           int64
 	MaxCount             int64
 	Category             string
+	ResetTime            *time.Time
+	AutoClaim            bool
 	AdditionalProperties map[string]string
 }
 
@@ -1877,6 +1883,9 @@ type AchievementStorage interface {
 	Claim(ctx context.Context, userID, characterID string, achievementIDs []string) ([]*AchievementRow, error)
 	// GetByCategory returns all achievements matching the given category.
 	GetByCategory(ctx context.Context, userID, characterID string, category string) ([]*AchievementRow, error)
+	// RunInTransaction executes fn within a database transaction with retry handling.
+	// The txStorage parameter is a transaction-scoped AchievementStorage instance.
+	RunInTransaction(ctx context.Context, fn func(txStorage AchievementStorage) error) error
 }
 
 /*
