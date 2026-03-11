@@ -96,6 +96,7 @@ import (
 
 	"github.com/heroiclabs/nakama-common/api"
 	"github.com/heroiclabs/nakama-common/rtapi"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
@@ -697,6 +698,24 @@ type Initializer interface {
 
 	// RegisterAfterAuthenticateSteam can be used to perform after successful authentication checks.
 	RegisterAfterAuthenticateSteam(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.AuthenticateSteamRequest) error) error
+
+	// RegisterBeforeRequestEmailCode can be used to intercept email OTP code requests.
+	RegisterBeforeRequestEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.RequestEmailCodeRequest) (*api.RequestEmailCodeRequest, error)) error
+
+	// RegisterAfterRequestEmailCode can be used to perform logic after an email OTP code is requested.
+	RegisterAfterRequestEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *emptypb.Empty, in *api.RequestEmailCodeRequest) error) error
+
+	// RegisterBeforeAuthenticateEmailOTP can be used to perform pre-authentication checks for email OTP login.
+	RegisterBeforeAuthenticateEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AuthenticateEmailOTPRequest) (*api.AuthenticateEmailOTPRequest, error)) error
+
+	// RegisterAfterAuthenticateEmailOTP can be used to perform logic after successful email OTP authentication.
+	RegisterAfterAuthenticateEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.AuthenticateEmailOTPRequest) error) error
+
+	// RegisterBeforeVerifyEmailCode can be used to intercept email verification code submissions.
+	RegisterBeforeVerifyEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.VerifyEmailCodeRequest) (*api.VerifyEmailCodeRequest, error)) error
+
+	// RegisterAfterVerifyEmailCode can be used to perform logic after successful email verification.
+	RegisterAfterVerifyEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.VerifyEmailCodeRequest) error) error
 
 	// RegisterBeforeListChannelMessages can be used to perform additional logic before listing messages on a channel.
 	RegisterBeforeListChannelMessages(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListChannelMessagesRequest) (*api.ListChannelMessagesRequest, error)) error
