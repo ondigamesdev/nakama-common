@@ -565,13 +565,13 @@ func (MaintenanceStatus) EnumDescriptor() ([]byte, []int) {
 type Friend_State int32
 
 const (
-	// The user is a friend of the current user.
+	// The character is a friend of the current character.
 	Friend_FRIEND Friend_State = 0
-	// The current user has sent an invite to the user.
+	// The current character has sent an invite to the character.
 	Friend_INVITE_SENT Friend_State = 1
-	// The current user has received an invite from this user.
+	// The current character has received an invite from this character.
 	Friend_INVITE_RECEIVED Friend_State = 2
-	// The current user has blocked this user.
+	// The current character has blocked this character.
 	Friend_BLOCKED Friend_State = 3
 )
 
@@ -619,28 +619,28 @@ func (Friend_State) EnumDescriptor() ([]byte, []int) {
 }
 
 // The group role status.
-type GroupUserList_GroupUser_State int32
+type GroupCharacterList_GroupCharacter_State int32
 
 const (
-	// The user is a superadmin with full control of the group.
-	GroupUserList_GroupUser_SUPERADMIN GroupUserList_GroupUser_State = 0
-	// The user is an admin with additional privileges.
-	GroupUserList_GroupUser_ADMIN GroupUserList_GroupUser_State = 1
-	// The user is a regular member.
-	GroupUserList_GroupUser_MEMBER GroupUserList_GroupUser_State = 2
-	// The user has requested to join the group
-	GroupUserList_GroupUser_JOIN_REQUEST GroupUserList_GroupUser_State = 3
+	// The character is a superadmin with full control of the group.
+	GroupCharacterList_GroupCharacter_SUPERADMIN GroupCharacterList_GroupCharacter_State = 0
+	// The character is an admin with additional privileges.
+	GroupCharacterList_GroupCharacter_ADMIN GroupCharacterList_GroupCharacter_State = 1
+	// The character is a regular member.
+	GroupCharacterList_GroupCharacter_MEMBER GroupCharacterList_GroupCharacter_State = 2
+	// The character has requested to join the group
+	GroupCharacterList_GroupCharacter_JOIN_REQUEST GroupCharacterList_GroupCharacter_State = 3
 )
 
-// Enum value maps for GroupUserList_GroupUser_State.
+// Enum value maps for GroupCharacterList_GroupCharacter_State.
 var (
-	GroupUserList_GroupUser_State_name = map[int32]string{
+	GroupCharacterList_GroupCharacter_State_name = map[int32]string{
 		0: "SUPERADMIN",
 		1: "ADMIN",
 		2: "MEMBER",
 		3: "JOIN_REQUEST",
 	}
-	GroupUserList_GroupUser_State_value = map[string]int32{
+	GroupCharacterList_GroupCharacter_State_value = map[string]int32{
 		"SUPERADMIN":   0,
 		"ADMIN":        1,
 		"MEMBER":       2,
@@ -648,56 +648,56 @@ var (
 	}
 )
 
-func (x GroupUserList_GroupUser_State) Enum() *GroupUserList_GroupUser_State {
-	p := new(GroupUserList_GroupUser_State)
+func (x GroupCharacterList_GroupCharacter_State) Enum() *GroupCharacterList_GroupCharacter_State {
+	p := new(GroupCharacterList_GroupCharacter_State)
 	*p = x
 	return p
 }
 
-func (x GroupUserList_GroupUser_State) String() string {
+func (x GroupCharacterList_GroupCharacter_State) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (GroupUserList_GroupUser_State) Descriptor() protoreflect.EnumDescriptor {
+func (GroupCharacterList_GroupCharacter_State) Descriptor() protoreflect.EnumDescriptor {
 	return file_api_proto_enumTypes[10].Descriptor()
 }
 
-func (GroupUserList_GroupUser_State) Type() protoreflect.EnumType {
+func (GroupCharacterList_GroupCharacter_State) Type() protoreflect.EnumType {
 	return &file_api_proto_enumTypes[10]
 }
 
-func (x GroupUserList_GroupUser_State) Number() protoreflect.EnumNumber {
+func (x GroupCharacterList_GroupCharacter_State) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use GroupUserList_GroupUser_State.Descriptor instead.
-func (GroupUserList_GroupUser_State) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use GroupCharacterList_GroupCharacter_State.Descriptor instead.
+func (GroupCharacterList_GroupCharacter_State) EnumDescriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{47, 0, 0}
 }
 
 // The group role status.
-type UserGroupList_UserGroup_State int32
+type CharacterGroupList_CharacterGroup_State int32
 
 const (
-	// The user is a superadmin with full control of the group.
-	UserGroupList_UserGroup_SUPERADMIN UserGroupList_UserGroup_State = 0
-	// The user is an admin with additional privileges.
-	UserGroupList_UserGroup_ADMIN UserGroupList_UserGroup_State = 1
-	// The user is a regular member.
-	UserGroupList_UserGroup_MEMBER UserGroupList_UserGroup_State = 2
-	// The user has requested to join the group
-	UserGroupList_UserGroup_JOIN_REQUEST UserGroupList_UserGroup_State = 3
+	// The character is a superadmin with full control of the group.
+	CharacterGroupList_CharacterGroup_SUPERADMIN CharacterGroupList_CharacterGroup_State = 0
+	// The character is an admin with additional privileges.
+	CharacterGroupList_CharacterGroup_ADMIN CharacterGroupList_CharacterGroup_State = 1
+	// The character is a regular member.
+	CharacterGroupList_CharacterGroup_MEMBER CharacterGroupList_CharacterGroup_State = 2
+	// The character has requested to join the group
+	CharacterGroupList_CharacterGroup_JOIN_REQUEST CharacterGroupList_CharacterGroup_State = 3
 )
 
-// Enum value maps for UserGroupList_UserGroup_State.
+// Enum value maps for CharacterGroupList_CharacterGroup_State.
 var (
-	UserGroupList_UserGroup_State_name = map[int32]string{
+	CharacterGroupList_CharacterGroup_State_name = map[int32]string{
 		0: "SUPERADMIN",
 		1: "ADMIN",
 		2: "MEMBER",
 		3: "JOIN_REQUEST",
 	}
-	UserGroupList_UserGroup_State_value = map[string]int32{
+	CharacterGroupList_CharacterGroup_State_value = map[string]int32{
 		"SUPERADMIN":   0,
 		"ADMIN":        1,
 		"MEMBER":       2,
@@ -705,31 +705,31 @@ var (
 	}
 )
 
-func (x UserGroupList_UserGroup_State) Enum() *UserGroupList_UserGroup_State {
-	p := new(UserGroupList_UserGroup_State)
+func (x CharacterGroupList_CharacterGroup_State) Enum() *CharacterGroupList_CharacterGroup_State {
+	p := new(CharacterGroupList_CharacterGroup_State)
 	*p = x
 	return p
 }
 
-func (x UserGroupList_UserGroup_State) String() string {
+func (x CharacterGroupList_CharacterGroup_State) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (UserGroupList_UserGroup_State) Descriptor() protoreflect.EnumDescriptor {
+func (CharacterGroupList_CharacterGroup_State) Descriptor() protoreflect.EnumDescriptor {
 	return file_api_proto_enumTypes[11].Descriptor()
 }
 
-func (UserGroupList_UserGroup_State) Type() protoreflect.EnumType {
+func (CharacterGroupList_CharacterGroup_State) Type() protoreflect.EnumType {
 	return &file_api_proto_enumTypes[11]
 }
 
-func (x UserGroupList_UserGroup_State) Number() protoreflect.EnumNumber {
+func (x CharacterGroupList_CharacterGroup_State) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use UserGroupList_UserGroup_State.Descriptor instead.
-func (UserGroupList_UserGroup_State) EnumDescriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{98, 0, 0}
+// Deprecated: Use CharacterGroupList_CharacterGroup_State.Descriptor instead.
+func (CharacterGroupList_CharacterGroup_State) EnumDescriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{96, 0, 0}
 }
 
 // A user with additional account details. Always the current user.
@@ -1436,13 +1436,13 @@ func (x *AccountSteam) GetVars() map[string]string {
 	return nil
 }
 
-// Add one or more friends to the current user.
+// Add one or more friends to the current character.
 type AddFriendsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The account id of a user.
 	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	// The account username of a user.
-	Usernames []string `protobuf:"bytes,2,rep,name=usernames,proto3" json:"usernames,omitempty"`
+	// The character name.
+	Names []string `protobuf:"bytes,2,rep,name=names,proto3" json:"names,omitempty"`
 	// Optional metadata to add to friends.
 	Metadata      string `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1486,9 +1486,9 @@ func (x *AddFriendsRequest) GetIds() []string {
 	return nil
 }
 
-func (x *AddFriendsRequest) GetUsernames() []string {
+func (x *AddFriendsRequest) GetNames() []string {
 	if x != nil {
-		return x.Usernames
+		return x.Names
 	}
 	return nil
 }
@@ -1500,31 +1500,31 @@ func (x *AddFriendsRequest) GetMetadata() string {
 	return ""
 }
 
-// Add users to a group.
-type AddGroupUsersRequest struct {
+// Add characters to a group.
+type AddGroupCharactersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The group to add users to.
+	// The group to add characters to.
 	GroupId string `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
-	// The users to add.
-	UserIds       []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	// The characters to add.
+	CharacterIds  []string `protobuf:"bytes,2,rep,name=character_ids,json=characterIds,proto3" json:"character_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddGroupUsersRequest) Reset() {
-	*x = AddGroupUsersRequest{}
+func (x *AddGroupCharactersRequest) Reset() {
+	*x = AddGroupCharactersRequest{}
 	mi := &file_api_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddGroupUsersRequest) String() string {
+func (x *AddGroupCharactersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddGroupUsersRequest) ProtoMessage() {}
+func (*AddGroupCharactersRequest) ProtoMessage() {}
 
-func (x *AddGroupUsersRequest) ProtoReflect() protoreflect.Message {
+func (x *AddGroupCharactersRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1536,21 +1536,21 @@ func (x *AddGroupUsersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddGroupUsersRequest.ProtoReflect.Descriptor instead.
-func (*AddGroupUsersRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddGroupCharactersRequest.ProtoReflect.Descriptor instead.
+func (*AddGroupCharactersRequest) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *AddGroupUsersRequest) GetGroupId() string {
+func (x *AddGroupCharactersRequest) GetGroupId() string {
 	if x != nil {
 		return x.GroupId
 	}
 	return ""
 }
 
-func (x *AddGroupUsersRequest) GetUserIds() []string {
+func (x *AddGroupCharactersRequest) GetCharacterIds() []string {
 	if x != nil {
-		return x.UserIds
+		return x.CharacterIds
 	}
 	return nil
 }
@@ -2433,31 +2433,31 @@ func (x *VerifyEmailCodeRequest) GetCode() string {
 	return ""
 }
 
-// Ban users from a group.
-type BanGroupUsersRequest struct {
+// Ban characters from a group.
+type BanGroupCharactersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The group to ban users from.
+	// The group to ban characters from.
 	GroupId string `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
-	// The users to ban.
-	UserIds       []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	// The characters to ban.
+	CharacterIds  []string `protobuf:"bytes,2,rep,name=character_ids,json=characterIds,proto3" json:"character_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *BanGroupUsersRequest) Reset() {
-	*x = BanGroupUsersRequest{}
+func (x *BanGroupCharactersRequest) Reset() {
+	*x = BanGroupCharactersRequest{}
 	mi := &file_api_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *BanGroupUsersRequest) String() string {
+func (x *BanGroupCharactersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*BanGroupUsersRequest) ProtoMessage() {}
+func (*BanGroupCharactersRequest) ProtoMessage() {}
 
-func (x *BanGroupUsersRequest) ProtoReflect() protoreflect.Message {
+func (x *BanGroupCharactersRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_api_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2469,32 +2469,32 @@ func (x *BanGroupUsersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use BanGroupUsersRequest.ProtoReflect.Descriptor instead.
-func (*BanGroupUsersRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use BanGroupCharactersRequest.ProtoReflect.Descriptor instead.
+func (*BanGroupCharactersRequest) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *BanGroupUsersRequest) GetGroupId() string {
+func (x *BanGroupCharactersRequest) GetGroupId() string {
 	if x != nil {
 		return x.GroupId
 	}
 	return ""
 }
 
-func (x *BanGroupUsersRequest) GetUserIds() []string {
+func (x *BanGroupCharactersRequest) GetCharacterIds() []string {
 	if x != nil {
-		return x.UserIds
+		return x.CharacterIds
 	}
 	return nil
 }
 
-// Block one or more friends for the current user.
+// Block one or more friends for the current character.
 type BlockFriendsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The account id of a user.
 	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	// The account username of a user.
-	Usernames     []string `protobuf:"bytes,2,rep,name=usernames,proto3" json:"usernames,omitempty"`
+	// The character name.
+	Names         []string `protobuf:"bytes,2,rep,name=names,proto3" json:"names,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2536,9 +2536,9 @@ func (x *BlockFriendsRequest) GetIds() []string {
 	return nil
 }
 
-func (x *BlockFriendsRequest) GetUsernames() []string {
+func (x *BlockFriendsRequest) GetNames() []string {
 	if x != nil {
-		return x.Usernames
+		return x.Names
 	}
 	return nil
 }
@@ -2898,13 +2898,13 @@ func (x *CreateGroupRequest) GetScopeType() uint32 {
 	return 0
 }
 
-// Delete one or more friends for the current user.
+// Delete one or more friends for the current character.
 type DeleteFriendsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The account id of a user.
 	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	// The account username of a user.
-	Usernames     []string `protobuf:"bytes,2,rep,name=usernames,proto3" json:"usernames,omitempty"`
+	// The character name.
+	Names         []string `protobuf:"bytes,2,rep,name=names,proto3" json:"names,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2946,9 +2946,9 @@ func (x *DeleteFriendsRequest) GetIds() []string {
 	return nil
 }
 
-func (x *DeleteFriendsRequest) GetUsernames() []string {
+func (x *DeleteFriendsRequest) GetNames() []string {
 	if x != nil {
-		return x.Usernames
+		return x.Names
 	}
 	return nil
 }
@@ -3329,25 +3329,19 @@ func (x *Event) GetExternal() bool {
 	return false
 }
 
-// A friend of a user.
+// A friend of a character.
 type Friend struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The user object.
-	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	// The character object.
+	Character *Character `protobuf:"bytes,1,opt,name=character,proto3" json:"character,omitempty"`
 	// The friend status.
 	State *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"` // one of "Friend.State".
 	// Time of the latest relationship update.
 	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// Metadata.
-	Metadata string `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// The friend's character in the filtered realm (only set when realm_id filter is used).
-	Character *Character `protobuf:"bytes,5,opt,name=character,proto3" json:"character,omitempty"`
-	// The realm ID the friend is currently online in (populated when friend is online).
-	CurrentRealmId string `protobuf:"bytes,6,opt,name=current_realm_id,json=currentRealmId,proto3" json:"current_realm_id,omitempty"`
-	// The character ID the friend is currently playing as (populated when friend is online).
-	CurrentCharacterId string `protobuf:"bytes,7,opt,name=current_character_id,json=currentCharacterId,proto3" json:"current_character_id,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	Metadata      string `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Friend) Reset() {
@@ -3380,9 +3374,9 @@ func (*Friend) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{40}
 }
 
-func (x *Friend) GetUser() *User {
+func (x *Friend) GetCharacter() *Character {
 	if x != nil {
-		return x.User
+		return x.Character
 	}
 	return nil
 }
@@ -3404,27 +3398,6 @@ func (x *Friend) GetUpdateTime() *timestamppb.Timestamp {
 func (x *Friend) GetMetadata() string {
 	if x != nil {
 		return x.Metadata
-	}
-	return ""
-}
-
-func (x *Friend) GetCharacter() *Character {
-	if x != nil {
-		return x.Character
-	}
-	return nil
-}
-
-func (x *Friend) GetCurrentRealmId() string {
-	if x != nil {
-		return x.CurrentRealmId
-	}
-	return ""
-}
-
-func (x *Friend) GetCurrentCharacterId() string {
-	if x != nil {
-		return x.CurrentCharacterId
 	}
 	return ""
 }
@@ -3876,31 +3849,31 @@ func (x *GroupList) GetCursor() string {
 	return ""
 }
 
-// A list of users belonging to a group, along with their role.
-type GroupUserList struct {
+// A list of characters belonging to a group, along with their role.
+type GroupCharacterList struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// User-role pairs for a group.
-	GroupUsers []*GroupUserList_GroupUser `protobuf:"bytes,1,rep,name=group_users,json=groupUsers,proto3" json:"group_users,omitempty"`
+	// Character-role pairs for a group.
+	GroupCharacters []*GroupCharacterList_GroupCharacter `protobuf:"bytes,1,rep,name=group_characters,json=groupCharacters,proto3" json:"group_characters,omitempty"`
 	// Cursor for the next page of results, if any.
 	Cursor        string `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GroupUserList) Reset() {
-	*x = GroupUserList{}
+func (x *GroupCharacterList) Reset() {
+	*x = GroupCharacterList{}
 	mi := &file_api_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GroupUserList) String() string {
+func (x *GroupCharacterList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GroupUserList) ProtoMessage() {}
+func (*GroupCharacterList) ProtoMessage() {}
 
-func (x *GroupUserList) ProtoReflect() protoreflect.Message {
+func (x *GroupCharacterList) ProtoReflect() protoreflect.Message {
 	mi := &file_api_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3912,133 +3885,23 @@ func (x *GroupUserList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GroupUserList.ProtoReflect.Descriptor instead.
-func (*GroupUserList) Descriptor() ([]byte, []int) {
+// Deprecated: Use GroupCharacterList.ProtoReflect.Descriptor instead.
+func (*GroupCharacterList) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{47}
 }
 
-func (x *GroupUserList) GetGroupUsers() []*GroupUserList_GroupUser {
+func (x *GroupCharacterList) GetGroupCharacters() []*GroupCharacterList_GroupCharacter {
 	if x != nil {
-		return x.GroupUsers
+		return x.GroupCharacters
 	}
 	return nil
 }
 
-func (x *GroupUserList) GetCursor() string {
+func (x *GroupCharacterList) GetCursor() string {
 	if x != nil {
 		return x.Cursor
 	}
 	return ""
-}
-
-// Import Facebook friends into the current user's account.
-type ImportFacebookFriendsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The Facebook account details.
-	Account *AccountFacebook `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
-	// Reset the current user's friends list.
-	Reset_        *wrapperspb.BoolValue `protobuf:"bytes,2,opt,name=reset,proto3" json:"reset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ImportFacebookFriendsRequest) Reset() {
-	*x = ImportFacebookFriendsRequest{}
-	mi := &file_api_proto_msgTypes[48]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ImportFacebookFriendsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ImportFacebookFriendsRequest) ProtoMessage() {}
-
-func (x *ImportFacebookFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[48]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ImportFacebookFriendsRequest.ProtoReflect.Descriptor instead.
-func (*ImportFacebookFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{48}
-}
-
-func (x *ImportFacebookFriendsRequest) GetAccount() *AccountFacebook {
-	if x != nil {
-		return x.Account
-	}
-	return nil
-}
-
-func (x *ImportFacebookFriendsRequest) GetReset_() *wrapperspb.BoolValue {
-	if x != nil {
-		return x.Reset_
-	}
-	return nil
-}
-
-// Import Facebook friends into the current user's account.
-type ImportSteamFriendsRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// The Facebook account details.
-	Account *AccountSteam `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"`
-	// Reset the current user's friends list.
-	Reset_        *wrapperspb.BoolValue `protobuf:"bytes,2,opt,name=reset,proto3" json:"reset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ImportSteamFriendsRequest) Reset() {
-	*x = ImportSteamFriendsRequest{}
-	mi := &file_api_proto_msgTypes[49]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ImportSteamFriendsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ImportSteamFriendsRequest) ProtoMessage() {}
-
-func (x *ImportSteamFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[49]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ImportSteamFriendsRequest.ProtoReflect.Descriptor instead.
-func (*ImportSteamFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{49}
-}
-
-func (x *ImportSteamFriendsRequest) GetAccount() *AccountSteam {
-	if x != nil {
-		return x.Account
-	}
-	return nil
-}
-
-func (x *ImportSteamFriendsRequest) GetReset_() *wrapperspb.BoolValue {
-	if x != nil {
-		return x.Reset_
-	}
-	return nil
 }
 
 // Immediately join an open group, or request to join a closed one.
@@ -4052,7 +3915,7 @@ type JoinGroupRequest struct {
 
 func (x *JoinGroupRequest) Reset() {
 	*x = JoinGroupRequest{}
-	mi := &file_api_proto_msgTypes[50]
+	mi := &file_api_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4064,7 +3927,7 @@ func (x *JoinGroupRequest) String() string {
 func (*JoinGroupRequest) ProtoMessage() {}
 
 func (x *JoinGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[50]
+	mi := &file_api_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4077,7 +3940,7 @@ func (x *JoinGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinGroupRequest.ProtoReflect.Descriptor instead.
 func (*JoinGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{50}
+	return file_api_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *JoinGroupRequest) GetGroupId() string {
@@ -4098,7 +3961,7 @@ type JoinTournamentRequest struct {
 
 func (x *JoinTournamentRequest) Reset() {
 	*x = JoinTournamentRequest{}
-	mi := &file_api_proto_msgTypes[51]
+	mi := &file_api_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4110,7 +3973,7 @@ func (x *JoinTournamentRequest) String() string {
 func (*JoinTournamentRequest) ProtoMessage() {}
 
 func (x *JoinTournamentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[51]
+	mi := &file_api_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4123,7 +3986,7 @@ func (x *JoinTournamentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinTournamentRequest.ProtoReflect.Descriptor instead.
 func (*JoinTournamentRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{51}
+	return file_api_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *JoinTournamentRequest) GetTournamentId() string {
@@ -4133,32 +3996,32 @@ func (x *JoinTournamentRequest) GetTournamentId() string {
 	return ""
 }
 
-// Kick a set of users from a group.
-type KickGroupUsersRequest struct {
+// Kick a set of characters from a group.
+type KickGroupCharactersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The group ID to kick from.
 	GroupId string `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
-	// The users to kick.
-	UserIds       []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	// The characters to kick.
+	CharacterIds  []string `protobuf:"bytes,2,rep,name=character_ids,json=characterIds,proto3" json:"character_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *KickGroupUsersRequest) Reset() {
-	*x = KickGroupUsersRequest{}
-	mi := &file_api_proto_msgTypes[52]
+func (x *KickGroupCharactersRequest) Reset() {
+	*x = KickGroupCharactersRequest{}
+	mi := &file_api_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *KickGroupUsersRequest) String() string {
+func (x *KickGroupCharactersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*KickGroupUsersRequest) ProtoMessage() {}
+func (*KickGroupCharactersRequest) ProtoMessage() {}
 
-func (x *KickGroupUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[52]
+func (x *KickGroupCharactersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4169,21 +4032,21 @@ func (x *KickGroupUsersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use KickGroupUsersRequest.ProtoReflect.Descriptor instead.
-func (*KickGroupUsersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{52}
+// Deprecated: Use KickGroupCharactersRequest.ProtoReflect.Descriptor instead.
+func (*KickGroupCharactersRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *KickGroupUsersRequest) GetGroupId() string {
+func (x *KickGroupCharactersRequest) GetGroupId() string {
 	if x != nil {
 		return x.GroupId
 	}
 	return ""
 }
 
-func (x *KickGroupUsersRequest) GetUserIds() []string {
+func (x *KickGroupCharactersRequest) GetCharacterIds() []string {
 	if x != nil {
-		return x.UserIds
+		return x.CharacterIds
 	}
 	return nil
 }
@@ -4219,7 +4082,7 @@ type Leaderboard struct {
 
 func (x *Leaderboard) Reset() {
 	*x = Leaderboard{}
-	mi := &file_api_proto_msgTypes[53]
+	mi := &file_api_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4231,7 +4094,7 @@ func (x *Leaderboard) String() string {
 func (*Leaderboard) ProtoMessage() {}
 
 func (x *Leaderboard) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[53]
+	mi := &file_api_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4244,7 +4107,7 @@ func (x *Leaderboard) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Leaderboard.ProtoReflect.Descriptor instead.
 func (*Leaderboard) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{53}
+	return file_api_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *Leaderboard) GetId() string {
@@ -4337,7 +4200,7 @@ type LeaderboardList struct {
 
 func (x *LeaderboardList) Reset() {
 	*x = LeaderboardList{}
-	mi := &file_api_proto_msgTypes[54]
+	mi := &file_api_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4349,7 +4212,7 @@ func (x *LeaderboardList) String() string {
 func (*LeaderboardList) ProtoMessage() {}
 
 func (x *LeaderboardList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[54]
+	mi := &file_api_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4362,7 +4225,7 @@ func (x *LeaderboardList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaderboardList.ProtoReflect.Descriptor instead.
 func (*LeaderboardList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{54}
+	return file_api_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *LeaderboardList) GetLeaderboards() []*Leaderboard {
@@ -4416,7 +4279,7 @@ type LeaderboardRecord struct {
 
 func (x *LeaderboardRecord) Reset() {
 	*x = LeaderboardRecord{}
-	mi := &file_api_proto_msgTypes[55]
+	mi := &file_api_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4428,7 +4291,7 @@ func (x *LeaderboardRecord) String() string {
 func (*LeaderboardRecord) ProtoMessage() {}
 
 func (x *LeaderboardRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[55]
+	mi := &file_api_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4441,7 +4304,7 @@ func (x *LeaderboardRecord) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaderboardRecord.ProtoReflect.Descriptor instead.
 func (*LeaderboardRecord) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{55}
+	return file_api_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *LeaderboardRecord) GetLeaderboardId() string {
@@ -4561,7 +4424,7 @@ type LeaderboardRecordList struct {
 
 func (x *LeaderboardRecordList) Reset() {
 	*x = LeaderboardRecordList{}
-	mi := &file_api_proto_msgTypes[56]
+	mi := &file_api_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4573,7 +4436,7 @@ func (x *LeaderboardRecordList) String() string {
 func (*LeaderboardRecordList) ProtoMessage() {}
 
 func (x *LeaderboardRecordList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[56]
+	mi := &file_api_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4586,7 +4449,7 @@ func (x *LeaderboardRecordList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaderboardRecordList.ProtoReflect.Descriptor instead.
 func (*LeaderboardRecordList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{56}
+	return file_api_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *LeaderboardRecordList) GetRecords() []*LeaderboardRecord {
@@ -4635,7 +4498,7 @@ type LeaveGroupRequest struct {
 
 func (x *LeaveGroupRequest) Reset() {
 	*x = LeaveGroupRequest{}
-	mi := &file_api_proto_msgTypes[57]
+	mi := &file_api_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4647,7 +4510,7 @@ func (x *LeaveGroupRequest) String() string {
 func (*LeaveGroupRequest) ProtoMessage() {}
 
 func (x *LeaveGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[57]
+	mi := &file_api_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4660,7 +4523,7 @@ func (x *LeaveGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LeaveGroupRequest.ProtoReflect.Descriptor instead.
 func (*LeaveGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{57}
+	return file_api_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *LeaveGroupRequest) GetGroupId() string {
@@ -4683,7 +4546,7 @@ type LinkFacebookRequest struct {
 
 func (x *LinkFacebookRequest) Reset() {
 	*x = LinkFacebookRequest{}
-	mi := &file_api_proto_msgTypes[58]
+	mi := &file_api_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4695,7 +4558,7 @@ func (x *LinkFacebookRequest) String() string {
 func (*LinkFacebookRequest) ProtoMessage() {}
 
 func (x *LinkFacebookRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[58]
+	mi := &file_api_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4708,7 +4571,7 @@ func (x *LinkFacebookRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkFacebookRequest.ProtoReflect.Descriptor instead.
 func (*LinkFacebookRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{58}
+	return file_api_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *LinkFacebookRequest) GetAccount() *AccountFacebook {
@@ -4738,7 +4601,7 @@ type LinkSteamRequest struct {
 
 func (x *LinkSteamRequest) Reset() {
 	*x = LinkSteamRequest{}
-	mi := &file_api_proto_msgTypes[59]
+	mi := &file_api_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4750,7 +4613,7 @@ func (x *LinkSteamRequest) String() string {
 func (*LinkSteamRequest) ProtoMessage() {}
 
 func (x *LinkSteamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[59]
+	mi := &file_api_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4763,7 +4626,7 @@ func (x *LinkSteamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkSteamRequest.ProtoReflect.Descriptor instead.
 func (*LinkSteamRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{59}
+	return file_api_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *LinkSteamRequest) GetAccount() *AccountSteam {
@@ -4801,7 +4664,7 @@ type ListChannelMessagesRequest struct {
 
 func (x *ListChannelMessagesRequest) Reset() {
 	*x = ListChannelMessagesRequest{}
-	mi := &file_api_proto_msgTypes[60]
+	mi := &file_api_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4813,7 +4676,7 @@ func (x *ListChannelMessagesRequest) String() string {
 func (*ListChannelMessagesRequest) ProtoMessage() {}
 
 func (x *ListChannelMessagesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[60]
+	mi := &file_api_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4826,7 +4689,7 @@ func (x *ListChannelMessagesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListChannelMessagesRequest.ProtoReflect.Descriptor instead.
 func (*ListChannelMessagesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{60}
+	return file_api_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ListChannelMessagesRequest) GetChannelId() string {
@@ -4871,7 +4734,7 @@ func (x *ListChannelMessagesRequest) GetIncludeGlobal() bool {
 	return false
 }
 
-// List friends for a user.
+// List friends for a character.
 type ListFriendsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Max number of records to return. Between 1 and 100.
@@ -4879,20 +4742,14 @@ type ListFriendsRequest struct {
 	// The friend state to list.
 	State *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	// An optional next page cursor.
-	Cursor string `protobuf:"bytes,3,opt,name=cursor,proto3" json:"cursor,omitempty"`
-	// Optional realm ID to filter friends with characters in this realm.
-	RealmId string `protobuf:"bytes,4,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
-	// Include all friends when listing in a realm context. Default false.
-	// When true and realm_id is set, returns realm-filtered friends with character data
-	// plus all other friends without character data.
-	IncludeGlobal *wrapperspb.BoolValue `protobuf:"bytes,5,opt,name=include_global,json=includeGlobal,proto3" json:"include_global,omitempty"`
+	Cursor        string `protobuf:"bytes,3,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ListFriendsRequest) Reset() {
 	*x = ListFriendsRequest{}
-	mi := &file_api_proto_msgTypes[61]
+	mi := &file_api_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4904,7 +4761,7 @@ func (x *ListFriendsRequest) String() string {
 func (*ListFriendsRequest) ProtoMessage() {}
 
 func (x *ListFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[61]
+	mi := &file_api_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4917,7 +4774,7 @@ func (x *ListFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFriendsRequest.ProtoReflect.Descriptor instead.
 func (*ListFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{61}
+	return file_api_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ListFriendsRequest) GetLimit() *wrapperspb.Int32Value {
@@ -4941,20 +4798,6 @@ func (x *ListFriendsRequest) GetCursor() string {
 	return ""
 }
 
-func (x *ListFriendsRequest) GetRealmId() string {
-	if x != nil {
-		return x.RealmId
-	}
-	return ""
-}
-
-func (x *ListFriendsRequest) GetIncludeGlobal() *wrapperspb.BoolValue {
-	if x != nil {
-		return x.IncludeGlobal
-	}
-	return nil
-}
-
 type ListFriendsOfFriendsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Max number of records to return. Between 1 and 100.
@@ -4967,7 +4810,7 @@ type ListFriendsOfFriendsRequest struct {
 
 func (x *ListFriendsOfFriendsRequest) Reset() {
 	*x = ListFriendsOfFriendsRequest{}
-	mi := &file_api_proto_msgTypes[62]
+	mi := &file_api_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4979,7 +4822,7 @@ func (x *ListFriendsOfFriendsRequest) String() string {
 func (*ListFriendsOfFriendsRequest) ProtoMessage() {}
 
 func (x *ListFriendsOfFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[62]
+	mi := &file_api_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4992,7 +4835,7 @@ func (x *ListFriendsOfFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFriendsOfFriendsRequest.ProtoReflect.Descriptor instead.
 func (*ListFriendsOfFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{62}
+	return file_api_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *ListFriendsOfFriendsRequest) GetLimit() *wrapperspb.Int32Value {
@@ -5034,7 +4877,7 @@ type ListGroupsRequest struct {
 
 func (x *ListGroupsRequest) Reset() {
 	*x = ListGroupsRequest{}
-	mi := &file_api_proto_msgTypes[63]
+	mi := &file_api_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5046,7 +4889,7 @@ func (x *ListGroupsRequest) String() string {
 func (*ListGroupsRequest) ProtoMessage() {}
 
 func (x *ListGroupsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[63]
+	mi := &file_api_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5059,7 +4902,7 @@ func (x *ListGroupsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupsRequest.ProtoReflect.Descriptor instead.
 func (*ListGroupsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{63}
+	return file_api_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *ListGroupsRequest) GetName() string {
@@ -5135,7 +4978,7 @@ type ListGroupUsersRequest struct {
 
 func (x *ListGroupUsersRequest) Reset() {
 	*x = ListGroupUsersRequest{}
-	mi := &file_api_proto_msgTypes[64]
+	mi := &file_api_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5147,7 +4990,7 @@ func (x *ListGroupUsersRequest) String() string {
 func (*ListGroupUsersRequest) ProtoMessage() {}
 
 func (x *ListGroupUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[64]
+	mi := &file_api_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5160,7 +5003,7 @@ func (x *ListGroupUsersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListGroupUsersRequest.ProtoReflect.Descriptor instead.
 func (*ListGroupUsersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{64}
+	return file_api_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *ListGroupUsersRequest) GetGroupId() string {
@@ -5210,7 +5053,7 @@ type ListLeaderboardRecordsAroundOwnerRequest struct {
 
 func (x *ListLeaderboardRecordsAroundOwnerRequest) Reset() {
 	*x = ListLeaderboardRecordsAroundOwnerRequest{}
-	mi := &file_api_proto_msgTypes[65]
+	mi := &file_api_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5222,7 +5065,7 @@ func (x *ListLeaderboardRecordsAroundOwnerRequest) String() string {
 func (*ListLeaderboardRecordsAroundOwnerRequest) ProtoMessage() {}
 
 func (x *ListLeaderboardRecordsAroundOwnerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[65]
+	mi := &file_api_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5235,7 +5078,7 @@ func (x *ListLeaderboardRecordsAroundOwnerRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use ListLeaderboardRecordsAroundOwnerRequest.ProtoReflect.Descriptor instead.
 func (*ListLeaderboardRecordsAroundOwnerRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{65}
+	return file_api_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ListLeaderboardRecordsAroundOwnerRequest) GetLeaderboardId() string {
@@ -5292,7 +5135,7 @@ type ListLeaderboardRecordsRequest struct {
 
 func (x *ListLeaderboardRecordsRequest) Reset() {
 	*x = ListLeaderboardRecordsRequest{}
-	mi := &file_api_proto_msgTypes[66]
+	mi := &file_api_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5304,7 +5147,7 @@ func (x *ListLeaderboardRecordsRequest) String() string {
 func (*ListLeaderboardRecordsRequest) ProtoMessage() {}
 
 func (x *ListLeaderboardRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[66]
+	mi := &file_api_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5317,7 +5160,7 @@ func (x *ListLeaderboardRecordsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLeaderboardRecordsRequest.ProtoReflect.Descriptor instead.
 func (*ListLeaderboardRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{66}
+	return file_api_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ListLeaderboardRecordsRequest) GetLeaderboardId() string {
@@ -5376,7 +5219,7 @@ type ListMatchesRequest struct {
 
 func (x *ListMatchesRequest) Reset() {
 	*x = ListMatchesRequest{}
-	mi := &file_api_proto_msgTypes[67]
+	mi := &file_api_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5388,7 +5231,7 @@ func (x *ListMatchesRequest) String() string {
 func (*ListMatchesRequest) ProtoMessage() {}
 
 func (x *ListMatchesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[67]
+	mi := &file_api_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5401,7 +5244,7 @@ func (x *ListMatchesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMatchesRequest.ProtoReflect.Descriptor instead.
 func (*ListMatchesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{67}
+	return file_api_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ListMatchesRequest) GetLimit() *wrapperspb.Int32Value {
@@ -5463,7 +5306,7 @@ type ListNotificationsRequest struct {
 
 func (x *ListNotificationsRequest) Reset() {
 	*x = ListNotificationsRequest{}
-	mi := &file_api_proto_msgTypes[68]
+	mi := &file_api_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5475,7 +5318,7 @@ func (x *ListNotificationsRequest) String() string {
 func (*ListNotificationsRequest) ProtoMessage() {}
 
 func (x *ListNotificationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[68]
+	mi := &file_api_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5488,7 +5331,7 @@ func (x *ListNotificationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNotificationsRequest.ProtoReflect.Descriptor instead.
 func (*ListNotificationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{68}
+	return file_api_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ListNotificationsRequest) GetLimit() *wrapperspb.Int32Value {
@@ -5539,7 +5382,7 @@ type ListStorageObjectsRequest struct {
 
 func (x *ListStorageObjectsRequest) Reset() {
 	*x = ListStorageObjectsRequest{}
-	mi := &file_api_proto_msgTypes[69]
+	mi := &file_api_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5551,7 +5394,7 @@ func (x *ListStorageObjectsRequest) String() string {
 func (*ListStorageObjectsRequest) ProtoMessage() {}
 
 func (x *ListStorageObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[69]
+	mi := &file_api_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5564,7 +5407,7 @@ func (x *ListStorageObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListStorageObjectsRequest.ProtoReflect.Descriptor instead.
 func (*ListStorageObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{69}
+	return file_api_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ListStorageObjectsRequest) GetUserId() string {
@@ -5621,7 +5464,7 @@ type ListSubscriptionsRequest struct {
 
 func (x *ListSubscriptionsRequest) Reset() {
 	*x = ListSubscriptionsRequest{}
-	mi := &file_api_proto_msgTypes[70]
+	mi := &file_api_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5633,7 +5476,7 @@ func (x *ListSubscriptionsRequest) String() string {
 func (*ListSubscriptionsRequest) ProtoMessage() {}
 
 func (x *ListSubscriptionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[70]
+	mi := &file_api_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5646,7 +5489,7 @@ func (x *ListSubscriptionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSubscriptionsRequest.ProtoReflect.Descriptor instead.
 func (*ListSubscriptionsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{70}
+	return file_api_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ListSubscriptionsRequest) GetLimit() *wrapperspb.Int32Value {
@@ -5703,7 +5546,7 @@ type ListTournamentRecordsAroundOwnerRequest struct {
 
 func (x *ListTournamentRecordsAroundOwnerRequest) Reset() {
 	*x = ListTournamentRecordsAroundOwnerRequest{}
-	mi := &file_api_proto_msgTypes[71]
+	mi := &file_api_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5715,7 +5558,7 @@ func (x *ListTournamentRecordsAroundOwnerRequest) String() string {
 func (*ListTournamentRecordsAroundOwnerRequest) ProtoMessage() {}
 
 func (x *ListTournamentRecordsAroundOwnerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[71]
+	mi := &file_api_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5728,7 +5571,7 @@ func (x *ListTournamentRecordsAroundOwnerRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ListTournamentRecordsAroundOwnerRequest.ProtoReflect.Descriptor instead.
 func (*ListTournamentRecordsAroundOwnerRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{71}
+	return file_api_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *ListTournamentRecordsAroundOwnerRequest) GetTournamentId() string {
@@ -5785,7 +5628,7 @@ type ListTournamentRecordsRequest struct {
 
 func (x *ListTournamentRecordsRequest) Reset() {
 	*x = ListTournamentRecordsRequest{}
-	mi := &file_api_proto_msgTypes[72]
+	mi := &file_api_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5797,7 +5640,7 @@ func (x *ListTournamentRecordsRequest) String() string {
 func (*ListTournamentRecordsRequest) ProtoMessage() {}
 
 func (x *ListTournamentRecordsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[72]
+	mi := &file_api_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5810,7 +5653,7 @@ func (x *ListTournamentRecordsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTournamentRecordsRequest.ProtoReflect.Descriptor instead.
 func (*ListTournamentRecordsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{72}
+	return file_api_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *ListTournamentRecordsRequest) GetTournamentId() string {
@@ -5873,7 +5716,7 @@ type ListTournamentsRequest struct {
 
 func (x *ListTournamentsRequest) Reset() {
 	*x = ListTournamentsRequest{}
-	mi := &file_api_proto_msgTypes[73]
+	mi := &file_api_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5885,7 +5728,7 @@ func (x *ListTournamentsRequest) String() string {
 func (*ListTournamentsRequest) ProtoMessage() {}
 
 func (x *ListTournamentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[73]
+	mi := &file_api_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5898,7 +5741,7 @@ func (x *ListTournamentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTournamentsRequest.ProtoReflect.Descriptor instead.
 func (*ListTournamentsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{73}
+	return file_api_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *ListTournamentsRequest) GetCategoryStart() *wrapperspb.UInt32Value {
@@ -5957,14 +5800,14 @@ func (x *ListTournamentsRequest) GetIncludeGlobal() *wrapperspb.BoolValue {
 	return nil
 }
 
-// List the groups a user is part of, and their relationship to each.
-type ListUserGroupsRequest struct {
+// List the groups a character is part of, and their relationship to each.
+type ListCharacterGroupsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// ID of the user.
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// ID of the character.
+	CharacterId string `protobuf:"bytes,1,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
 	// Max number of records to return. Between 1 and 100.
 	Limit *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	// The user group state to list.
+	// The character group state to list.
 	State *wrapperspb.Int32Value `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
 	// An optional next page cursor.
 	Cursor        string `protobuf:"bytes,4,opt,name=cursor,proto3" json:"cursor,omitempty"`
@@ -5972,21 +5815,21 @@ type ListUserGroupsRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListUserGroupsRequest) Reset() {
-	*x = ListUserGroupsRequest{}
-	mi := &file_api_proto_msgTypes[74]
+func (x *ListCharacterGroupsRequest) Reset() {
+	*x = ListCharacterGroupsRequest{}
+	mi := &file_api_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListUserGroupsRequest) String() string {
+func (x *ListCharacterGroupsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListUserGroupsRequest) ProtoMessage() {}
+func (*ListCharacterGroupsRequest) ProtoMessage() {}
 
-func (x *ListUserGroupsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[74]
+func (x *ListCharacterGroupsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5997,33 +5840,33 @@ func (x *ListUserGroupsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListUserGroupsRequest.ProtoReflect.Descriptor instead.
-func (*ListUserGroupsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{74}
+// Deprecated: Use ListCharacterGroupsRequest.ProtoReflect.Descriptor instead.
+func (*ListCharacterGroupsRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{72}
 }
 
-func (x *ListUserGroupsRequest) GetUserId() string {
+func (x *ListCharacterGroupsRequest) GetCharacterId() string {
 	if x != nil {
-		return x.UserId
+		return x.CharacterId
 	}
 	return ""
 }
 
-func (x *ListUserGroupsRequest) GetLimit() *wrapperspb.Int32Value {
+func (x *ListCharacterGroupsRequest) GetLimit() *wrapperspb.Int32Value {
 	if x != nil {
 		return x.Limit
 	}
 	return nil
 }
 
-func (x *ListUserGroupsRequest) GetState() *wrapperspb.Int32Value {
+func (x *ListCharacterGroupsRequest) GetState() *wrapperspb.Int32Value {
 	if x != nil {
 		return x.State
 	}
 	return nil
 }
 
-func (x *ListUserGroupsRequest) GetCursor() string {
+func (x *ListCharacterGroupsRequest) GetCursor() string {
 	if x != nil {
 		return x.Cursor
 	}
@@ -6051,7 +5894,7 @@ type Match struct {
 
 func (x *Match) Reset() {
 	*x = Match{}
-	mi := &file_api_proto_msgTypes[75]
+	mi := &file_api_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6063,7 +5906,7 @@ func (x *Match) String() string {
 func (*Match) ProtoMessage() {}
 
 func (x *Match) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[75]
+	mi := &file_api_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6076,7 +5919,7 @@ func (x *Match) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Match.ProtoReflect.Descriptor instead.
 func (*Match) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{75}
+	return file_api_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *Match) GetMatchId() string {
@@ -6132,7 +5975,7 @@ type MatchList struct {
 
 func (x *MatchList) Reset() {
 	*x = MatchList{}
-	mi := &file_api_proto_msgTypes[76]
+	mi := &file_api_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6144,7 +5987,7 @@ func (x *MatchList) String() string {
 func (*MatchList) ProtoMessage() {}
 
 func (x *MatchList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[76]
+	mi := &file_api_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6157,7 +6000,7 @@ func (x *MatchList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchList.ProtoReflect.Descriptor instead.
 func (*MatchList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{76}
+	return file_api_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *MatchList) GetMatches() []*Match {
@@ -6178,7 +6021,7 @@ type MatchmakerCompletionStats struct {
 
 func (x *MatchmakerCompletionStats) Reset() {
 	*x = MatchmakerCompletionStats{}
-	mi := &file_api_proto_msgTypes[77]
+	mi := &file_api_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6190,7 +6033,7 @@ func (x *MatchmakerCompletionStats) String() string {
 func (*MatchmakerCompletionStats) ProtoMessage() {}
 
 func (x *MatchmakerCompletionStats) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[77]
+	mi := &file_api_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6203,7 +6046,7 @@ func (x *MatchmakerCompletionStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerCompletionStats.ProtoReflect.Descriptor instead.
 func (*MatchmakerCompletionStats) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{77}
+	return file_api_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *MatchmakerCompletionStats) GetCreateTime() *timestamppb.Timestamp {
@@ -6232,7 +6075,7 @@ type MatchmakerStats struct {
 
 func (x *MatchmakerStats) Reset() {
 	*x = MatchmakerStats{}
-	mi := &file_api_proto_msgTypes[78]
+	mi := &file_api_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6244,7 +6087,7 @@ func (x *MatchmakerStats) String() string {
 func (*MatchmakerStats) ProtoMessage() {}
 
 func (x *MatchmakerStats) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[78]
+	mi := &file_api_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6257,7 +6100,7 @@ func (x *MatchmakerStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerStats.ProtoReflect.Descriptor instead.
 func (*MatchmakerStats) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{78}
+	return file_api_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *MatchmakerStats) GetTicketCount() int32 {
@@ -6310,7 +6153,7 @@ type Notification struct {
 
 func (x *Notification) Reset() {
 	*x = Notification{}
-	mi := &file_api_proto_msgTypes[79]
+	mi := &file_api_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6322,7 +6165,7 @@ func (x *Notification) String() string {
 func (*Notification) ProtoMessage() {}
 
 func (x *Notification) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[79]
+	mi := &file_api_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6335,7 +6178,7 @@ func (x *Notification) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Notification.ProtoReflect.Descriptor instead.
 func (*Notification) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{79}
+	return file_api_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *Notification) GetId() string {
@@ -6421,7 +6264,7 @@ type NotificationList struct {
 
 func (x *NotificationList) Reset() {
 	*x = NotificationList{}
-	mi := &file_api_proto_msgTypes[80]
+	mi := &file_api_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6433,7 +6276,7 @@ func (x *NotificationList) String() string {
 func (*NotificationList) ProtoMessage() {}
 
 func (x *NotificationList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[80]
+	mi := &file_api_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6446,7 +6289,7 @@ func (x *NotificationList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NotificationList.ProtoReflect.Descriptor instead.
 func (*NotificationList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{80}
+	return file_api_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *NotificationList) GetNotifications() []*Notification {
@@ -6463,32 +6306,32 @@ func (x *NotificationList) GetCacheableCursor() string {
 	return ""
 }
 
-// Promote a set of users in a group to the next role up.
-type PromoteGroupUsersRequest struct {
+// Promote a set of characters in a group to the next role up.
+type PromoteGroupCharactersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The group ID to promote in.
 	GroupId string `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
-	// The users to promote.
-	UserIds       []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	// The characters to promote.
+	CharacterIds  []string `protobuf:"bytes,2,rep,name=character_ids,json=characterIds,proto3" json:"character_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PromoteGroupUsersRequest) Reset() {
-	*x = PromoteGroupUsersRequest{}
-	mi := &file_api_proto_msgTypes[81]
+func (x *PromoteGroupCharactersRequest) Reset() {
+	*x = PromoteGroupCharactersRequest{}
+	mi := &file_api_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PromoteGroupUsersRequest) String() string {
+func (x *PromoteGroupCharactersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PromoteGroupUsersRequest) ProtoMessage() {}
+func (*PromoteGroupCharactersRequest) ProtoMessage() {}
 
-func (x *PromoteGroupUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[81]
+func (x *PromoteGroupCharactersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6499,51 +6342,51 @@ func (x *PromoteGroupUsersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PromoteGroupUsersRequest.ProtoReflect.Descriptor instead.
-func (*PromoteGroupUsersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{81}
+// Deprecated: Use PromoteGroupCharactersRequest.ProtoReflect.Descriptor instead.
+func (*PromoteGroupCharactersRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{79}
 }
 
-func (x *PromoteGroupUsersRequest) GetGroupId() string {
+func (x *PromoteGroupCharactersRequest) GetGroupId() string {
 	if x != nil {
 		return x.GroupId
 	}
 	return ""
 }
 
-func (x *PromoteGroupUsersRequest) GetUserIds() []string {
+func (x *PromoteGroupCharactersRequest) GetCharacterIds() []string {
 	if x != nil {
-		return x.UserIds
+		return x.CharacterIds
 	}
 	return nil
 }
 
-// Demote a set of users in a group to the next role down.
-type DemoteGroupUsersRequest struct {
+// Demote a set of characters in a group to the next role down.
+type DemoteGroupCharactersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The group ID to demote in.
 	GroupId string `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
-	// The users to demote.
-	UserIds       []string `protobuf:"bytes,2,rep,name=user_ids,json=userIds,proto3" json:"user_ids,omitempty"`
+	// The characters to demote.
+	CharacterIds  []string `protobuf:"bytes,2,rep,name=character_ids,json=characterIds,proto3" json:"character_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DemoteGroupUsersRequest) Reset() {
-	*x = DemoteGroupUsersRequest{}
-	mi := &file_api_proto_msgTypes[82]
+func (x *DemoteGroupCharactersRequest) Reset() {
+	*x = DemoteGroupCharactersRequest{}
+	mi := &file_api_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DemoteGroupUsersRequest) String() string {
+func (x *DemoteGroupCharactersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DemoteGroupUsersRequest) ProtoMessage() {}
+func (*DemoteGroupCharactersRequest) ProtoMessage() {}
 
-func (x *DemoteGroupUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[82]
+func (x *DemoteGroupCharactersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6554,21 +6397,21 @@ func (x *DemoteGroupUsersRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DemoteGroupUsersRequest.ProtoReflect.Descriptor instead.
-func (*DemoteGroupUsersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{82}
+// Deprecated: Use DemoteGroupCharactersRequest.ProtoReflect.Descriptor instead.
+func (*DemoteGroupCharactersRequest) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{80}
 }
 
-func (x *DemoteGroupUsersRequest) GetGroupId() string {
+func (x *DemoteGroupCharactersRequest) GetGroupId() string {
 	if x != nil {
 		return x.GroupId
 	}
 	return ""
 }
 
-func (x *DemoteGroupUsersRequest) GetUserIds() []string {
+func (x *DemoteGroupCharactersRequest) GetCharacterIds() []string {
 	if x != nil {
-		return x.UserIds
+		return x.CharacterIds
 	}
 	return nil
 }
@@ -6590,7 +6433,7 @@ type ReadStorageObjectId struct {
 
 func (x *ReadStorageObjectId) Reset() {
 	*x = ReadStorageObjectId{}
-	mi := &file_api_proto_msgTypes[83]
+	mi := &file_api_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6602,7 +6445,7 @@ func (x *ReadStorageObjectId) String() string {
 func (*ReadStorageObjectId) ProtoMessage() {}
 
 func (x *ReadStorageObjectId) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[83]
+	mi := &file_api_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6615,7 +6458,7 @@ func (x *ReadStorageObjectId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadStorageObjectId.ProtoReflect.Descriptor instead.
 func (*ReadStorageObjectId) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{83}
+	return file_api_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ReadStorageObjectId) GetCollection() string {
@@ -6657,7 +6500,7 @@ type ReadStorageObjectsRequest struct {
 
 func (x *ReadStorageObjectsRequest) Reset() {
 	*x = ReadStorageObjectsRequest{}
-	mi := &file_api_proto_msgTypes[84]
+	mi := &file_api_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6669,7 +6512,7 @@ func (x *ReadStorageObjectsRequest) String() string {
 func (*ReadStorageObjectsRequest) ProtoMessage() {}
 
 func (x *ReadStorageObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[84]
+	mi := &file_api_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6682,7 +6525,7 @@ func (x *ReadStorageObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadStorageObjectsRequest.ProtoReflect.Descriptor instead.
 func (*ReadStorageObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{84}
+	return file_api_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *ReadStorageObjectsRequest) GetObjectIds() []*ReadStorageObjectId {
@@ -6707,7 +6550,7 @@ type Rpc struct {
 
 func (x *Rpc) Reset() {
 	*x = Rpc{}
-	mi := &file_api_proto_msgTypes[85]
+	mi := &file_api_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6719,7 +6562,7 @@ func (x *Rpc) String() string {
 func (*Rpc) ProtoMessage() {}
 
 func (x *Rpc) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[85]
+	mi := &file_api_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6732,7 +6575,7 @@ func (x *Rpc) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Rpc.ProtoReflect.Descriptor instead.
 func (*Rpc) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{85}
+	return file_api_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *Rpc) GetId() string {
@@ -6771,7 +6614,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_api_proto_msgTypes[86]
+	mi := &file_api_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6783,7 +6626,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[86]
+	mi := &file_api_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6796,7 +6639,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{86}
+	return file_api_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *Session) GetCreated() bool {
@@ -6851,7 +6694,7 @@ type StorageObject struct {
 
 func (x *StorageObject) Reset() {
 	*x = StorageObject{}
-	mi := &file_api_proto_msgTypes[87]
+	mi := &file_api_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6863,7 +6706,7 @@ func (x *StorageObject) String() string {
 func (*StorageObject) ProtoMessage() {}
 
 func (x *StorageObject) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[87]
+	mi := &file_api_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6876,7 +6719,7 @@ func (x *StorageObject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageObject.ProtoReflect.Descriptor instead.
 func (*StorageObject) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{87}
+	return file_api_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *StorageObject) GetCollection() string {
@@ -6981,7 +6824,7 @@ type StorageObjectAck struct {
 
 func (x *StorageObjectAck) Reset() {
 	*x = StorageObjectAck{}
-	mi := &file_api_proto_msgTypes[88]
+	mi := &file_api_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6993,7 +6836,7 @@ func (x *StorageObjectAck) String() string {
 func (*StorageObjectAck) ProtoMessage() {}
 
 func (x *StorageObjectAck) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[88]
+	mi := &file_api_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7006,7 +6849,7 @@ func (x *StorageObjectAck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageObjectAck.ProtoReflect.Descriptor instead.
 func (*StorageObjectAck) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{88}
+	return file_api_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *StorageObjectAck) GetCollection() string {
@@ -7076,7 +6919,7 @@ type StorageObjectAcks struct {
 
 func (x *StorageObjectAcks) Reset() {
 	*x = StorageObjectAcks{}
-	mi := &file_api_proto_msgTypes[89]
+	mi := &file_api_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7088,7 +6931,7 @@ func (x *StorageObjectAcks) String() string {
 func (*StorageObjectAcks) ProtoMessage() {}
 
 func (x *StorageObjectAcks) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[89]
+	mi := &file_api_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7101,7 +6944,7 @@ func (x *StorageObjectAcks) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageObjectAcks.ProtoReflect.Descriptor instead.
 func (*StorageObjectAcks) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{89}
+	return file_api_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *StorageObjectAcks) GetAcks() []*StorageObjectAck {
@@ -7122,7 +6965,7 @@ type StorageObjects struct {
 
 func (x *StorageObjects) Reset() {
 	*x = StorageObjects{}
-	mi := &file_api_proto_msgTypes[90]
+	mi := &file_api_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7134,7 +6977,7 @@ func (x *StorageObjects) String() string {
 func (*StorageObjects) ProtoMessage() {}
 
 func (x *StorageObjects) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[90]
+	mi := &file_api_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7147,7 +6990,7 @@ func (x *StorageObjects) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageObjects.ProtoReflect.Descriptor instead.
 func (*StorageObjects) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{90}
+	return file_api_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *StorageObjects) GetObjects() []*StorageObject {
@@ -7170,7 +7013,7 @@ type StorageObjectList struct {
 
 func (x *StorageObjectList) Reset() {
 	*x = StorageObjectList{}
-	mi := &file_api_proto_msgTypes[91]
+	mi := &file_api_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7182,7 +7025,7 @@ func (x *StorageObjectList) String() string {
 func (*StorageObjectList) ProtoMessage() {}
 
 func (x *StorageObjectList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[91]
+	mi := &file_api_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7195,7 +7038,7 @@ func (x *StorageObjectList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StorageObjectList.ProtoReflect.Descriptor instead.
 func (*StorageObjectList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{91}
+	return file_api_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *StorageObjectList) GetObjects() []*StorageObject {
@@ -7269,7 +7112,7 @@ type Tournament struct {
 
 func (x *Tournament) Reset() {
 	*x = Tournament{}
-	mi := &file_api_proto_msgTypes[92]
+	mi := &file_api_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7281,7 +7124,7 @@ func (x *Tournament) String() string {
 func (*Tournament) ProtoMessage() {}
 
 func (x *Tournament) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[92]
+	mi := &file_api_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7294,7 +7137,7 @@ func (x *Tournament) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tournament.ProtoReflect.Descriptor instead.
 func (*Tournament) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{92}
+	return file_api_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *Tournament) GetId() string {
@@ -7478,7 +7321,7 @@ type TournamentList struct {
 
 func (x *TournamentList) Reset() {
 	*x = TournamentList{}
-	mi := &file_api_proto_msgTypes[93]
+	mi := &file_api_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7490,7 +7333,7 @@ func (x *TournamentList) String() string {
 func (*TournamentList) ProtoMessage() {}
 
 func (x *TournamentList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[93]
+	mi := &file_api_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7503,7 +7346,7 @@ func (x *TournamentList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TournamentList.ProtoReflect.Descriptor instead.
 func (*TournamentList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{93}
+	return file_api_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *TournamentList) GetTournaments() []*Tournament {
@@ -7539,7 +7382,7 @@ type TournamentRecordList struct {
 
 func (x *TournamentRecordList) Reset() {
 	*x = TournamentRecordList{}
-	mi := &file_api_proto_msgTypes[94]
+	mi := &file_api_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7551,7 +7394,7 @@ func (x *TournamentRecordList) String() string {
 func (*TournamentRecordList) ProtoMessage() {}
 
 func (x *TournamentRecordList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[94]
+	mi := &file_api_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7564,7 +7407,7 @@ func (x *TournamentRecordList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TournamentRecordList.ProtoReflect.Descriptor instead.
 func (*TournamentRecordList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{94}
+	return file_api_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *TournamentRecordList) GetRecords() []*LeaderboardRecord {
@@ -7623,7 +7466,7 @@ type UpdateAccountRequest struct {
 
 func (x *UpdateAccountRequest) Reset() {
 	*x = UpdateAccountRequest{}
-	mi := &file_api_proto_msgTypes[95]
+	mi := &file_api_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7635,7 +7478,7 @@ func (x *UpdateAccountRequest) String() string {
 func (*UpdateAccountRequest) ProtoMessage() {}
 
 func (x *UpdateAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[95]
+	mi := &file_api_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7648,7 +7491,7 @@ func (x *UpdateAccountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateAccountRequest.ProtoReflect.Descriptor instead.
 func (*UpdateAccountRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{95}
+	return file_api_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *UpdateAccountRequest) GetUsername() *wrapperspb.StringValue {
@@ -7714,7 +7557,7 @@ type UpdateGroupRequest struct {
 
 func (x *UpdateGroupRequest) Reset() {
 	*x = UpdateGroupRequest{}
-	mi := &file_api_proto_msgTypes[96]
+	mi := &file_api_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7726,7 +7569,7 @@ func (x *UpdateGroupRequest) String() string {
 func (*UpdateGroupRequest) ProtoMessage() {}
 
 func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[96]
+	mi := &file_api_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7739,7 +7582,7 @@ func (x *UpdateGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateGroupRequest.ProtoReflect.Descriptor instead.
 func (*UpdateGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{96}
+	return file_api_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *UpdateGroupRequest) GetGroupId() string {
@@ -7829,7 +7672,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_api_proto_msgTypes[97]
+	mi := &file_api_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7841,7 +7684,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[97]
+	mi := &file_api_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7854,7 +7697,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{97}
+	return file_api_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *User) GetId() string {
@@ -7983,32 +7826,32 @@ func (x *User) GetAppleId() string {
 	return ""
 }
 
-// A list of groups belonging to a user, along with the user's role in each group.
-type UserGroupList struct {
+// A list of groups belonging to a character, along with the character's role in each group.
+type CharacterGroupList struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Group-role pairs for a user.
-	UserGroups []*UserGroupList_UserGroup `protobuf:"bytes,1,rep,name=user_groups,json=userGroups,proto3" json:"user_groups,omitempty"`
+	// Group-role pairs for a character.
+	CharacterGroups []*CharacterGroupList_CharacterGroup `protobuf:"bytes,1,rep,name=character_groups,json=characterGroups,proto3" json:"character_groups,omitempty"`
 	// Cursor for the next page of results, if any.
 	Cursor        string `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserGroupList) Reset() {
-	*x = UserGroupList{}
-	mi := &file_api_proto_msgTypes[98]
+func (x *CharacterGroupList) Reset() {
+	*x = CharacterGroupList{}
+	mi := &file_api_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserGroupList) String() string {
+func (x *CharacterGroupList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserGroupList) ProtoMessage() {}
+func (*CharacterGroupList) ProtoMessage() {}
 
-func (x *UserGroupList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[98]
+func (x *CharacterGroupList) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8019,19 +7862,19 @@ func (x *UserGroupList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserGroupList.ProtoReflect.Descriptor instead.
-func (*UserGroupList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{98}
+// Deprecated: Use CharacterGroupList.ProtoReflect.Descriptor instead.
+func (*CharacterGroupList) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{96}
 }
 
-func (x *UserGroupList) GetUserGroups() []*UserGroupList_UserGroup {
+func (x *CharacterGroupList) GetCharacterGroups() []*CharacterGroupList_CharacterGroup {
 	if x != nil {
-		return x.UserGroups
+		return x.CharacterGroups
 	}
 	return nil
 }
 
-func (x *UserGroupList) GetCursor() string {
+func (x *CharacterGroupList) GetCursor() string {
 	if x != nil {
 		return x.Cursor
 	}
@@ -8049,7 +7892,7 @@ type Users struct {
 
 func (x *Users) Reset() {
 	*x = Users{}
-	mi := &file_api_proto_msgTypes[99]
+	mi := &file_api_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8061,7 +7904,7 @@ func (x *Users) String() string {
 func (*Users) ProtoMessage() {}
 
 func (x *Users) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[99]
+	mi := &file_api_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8074,7 +7917,7 @@ func (x *Users) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Users.ProtoReflect.Descriptor instead.
 func (*Users) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{99}
+	return file_api_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *Users) GetUsers() []*User {
@@ -8097,7 +7940,7 @@ type ValidatePurchaseAppleRequest struct {
 
 func (x *ValidatePurchaseAppleRequest) Reset() {
 	*x = ValidatePurchaseAppleRequest{}
-	mi := &file_api_proto_msgTypes[100]
+	mi := &file_api_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8109,7 +7952,7 @@ func (x *ValidatePurchaseAppleRequest) String() string {
 func (*ValidatePurchaseAppleRequest) ProtoMessage() {}
 
 func (x *ValidatePurchaseAppleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[100]
+	mi := &file_api_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8122,7 +7965,7 @@ func (x *ValidatePurchaseAppleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatePurchaseAppleRequest.ProtoReflect.Descriptor instead.
 func (*ValidatePurchaseAppleRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{100}
+	return file_api_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *ValidatePurchaseAppleRequest) GetReceipt() string {
@@ -8152,7 +7995,7 @@ type ValidateSubscriptionAppleRequest struct {
 
 func (x *ValidateSubscriptionAppleRequest) Reset() {
 	*x = ValidateSubscriptionAppleRequest{}
-	mi := &file_api_proto_msgTypes[101]
+	mi := &file_api_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8164,7 +8007,7 @@ func (x *ValidateSubscriptionAppleRequest) String() string {
 func (*ValidateSubscriptionAppleRequest) ProtoMessage() {}
 
 func (x *ValidateSubscriptionAppleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[101]
+	mi := &file_api_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8177,7 +8020,7 @@ func (x *ValidateSubscriptionAppleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateSubscriptionAppleRequest.ProtoReflect.Descriptor instead.
 func (*ValidateSubscriptionAppleRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{101}
+	return file_api_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *ValidateSubscriptionAppleRequest) GetReceipt() string {
@@ -8207,7 +8050,7 @@ type ValidatePurchaseGoogleRequest struct {
 
 func (x *ValidatePurchaseGoogleRequest) Reset() {
 	*x = ValidatePurchaseGoogleRequest{}
-	mi := &file_api_proto_msgTypes[102]
+	mi := &file_api_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8219,7 +8062,7 @@ func (x *ValidatePurchaseGoogleRequest) String() string {
 func (*ValidatePurchaseGoogleRequest) ProtoMessage() {}
 
 func (x *ValidatePurchaseGoogleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[102]
+	mi := &file_api_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8232,7 +8075,7 @@ func (x *ValidatePurchaseGoogleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatePurchaseGoogleRequest.ProtoReflect.Descriptor instead.
 func (*ValidatePurchaseGoogleRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{102}
+	return file_api_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *ValidatePurchaseGoogleRequest) GetPurchase() string {
@@ -8262,7 +8105,7 @@ type ValidateSubscriptionGoogleRequest struct {
 
 func (x *ValidateSubscriptionGoogleRequest) Reset() {
 	*x = ValidateSubscriptionGoogleRequest{}
-	mi := &file_api_proto_msgTypes[103]
+	mi := &file_api_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8274,7 +8117,7 @@ func (x *ValidateSubscriptionGoogleRequest) String() string {
 func (*ValidateSubscriptionGoogleRequest) ProtoMessage() {}
 
 func (x *ValidateSubscriptionGoogleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[103]
+	mi := &file_api_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8287,7 +8130,7 @@ func (x *ValidateSubscriptionGoogleRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ValidateSubscriptionGoogleRequest.ProtoReflect.Descriptor instead.
 func (*ValidateSubscriptionGoogleRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{103}
+	return file_api_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *ValidateSubscriptionGoogleRequest) GetReceipt() string {
@@ -8319,7 +8162,7 @@ type ValidatePurchaseHuaweiRequest struct {
 
 func (x *ValidatePurchaseHuaweiRequest) Reset() {
 	*x = ValidatePurchaseHuaweiRequest{}
-	mi := &file_api_proto_msgTypes[104]
+	mi := &file_api_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8331,7 +8174,7 @@ func (x *ValidatePurchaseHuaweiRequest) String() string {
 func (*ValidatePurchaseHuaweiRequest) ProtoMessage() {}
 
 func (x *ValidatePurchaseHuaweiRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[104]
+	mi := &file_api_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8344,7 +8187,7 @@ func (x *ValidatePurchaseHuaweiRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatePurchaseHuaweiRequest.ProtoReflect.Descriptor instead.
 func (*ValidatePurchaseHuaweiRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{104}
+	return file_api_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *ValidatePurchaseHuaweiRequest) GetPurchase() string {
@@ -8381,7 +8224,7 @@ type ValidatePurchaseFacebookInstantRequest struct {
 
 func (x *ValidatePurchaseFacebookInstantRequest) Reset() {
 	*x = ValidatePurchaseFacebookInstantRequest{}
-	mi := &file_api_proto_msgTypes[105]
+	mi := &file_api_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8393,7 +8236,7 @@ func (x *ValidatePurchaseFacebookInstantRequest) String() string {
 func (*ValidatePurchaseFacebookInstantRequest) ProtoMessage() {}
 
 func (x *ValidatePurchaseFacebookInstantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[105]
+	mi := &file_api_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8406,7 +8249,7 @@ func (x *ValidatePurchaseFacebookInstantRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ValidatePurchaseFacebookInstantRequest.ProtoReflect.Descriptor instead.
 func (*ValidatePurchaseFacebookInstantRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{105}
+	return file_api_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *ValidatePurchaseFacebookInstantRequest) GetSignedRequest() string {
@@ -8460,7 +8303,7 @@ type ValidatedPurchase struct {
 
 func (x *ValidatedPurchase) Reset() {
 	*x = ValidatedPurchase{}
-	mi := &file_api_proto_msgTypes[106]
+	mi := &file_api_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8472,7 +8315,7 @@ func (x *ValidatedPurchase) String() string {
 func (*ValidatedPurchase) ProtoMessage() {}
 
 func (x *ValidatedPurchase) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[106]
+	mi := &file_api_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8485,7 +8328,7 @@ func (x *ValidatedPurchase) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatedPurchase.ProtoReflect.Descriptor instead.
 func (*ValidatedPurchase) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{106}
+	return file_api_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *ValidatedPurchase) GetUserId() string {
@@ -8597,7 +8440,7 @@ type ValidatePurchaseResponse struct {
 
 func (x *ValidatePurchaseResponse) Reset() {
 	*x = ValidatePurchaseResponse{}
-	mi := &file_api_proto_msgTypes[107]
+	mi := &file_api_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8609,7 +8452,7 @@ func (x *ValidatePurchaseResponse) String() string {
 func (*ValidatePurchaseResponse) ProtoMessage() {}
 
 func (x *ValidatePurchaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[107]
+	mi := &file_api_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8622,7 +8465,7 @@ func (x *ValidatePurchaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatePurchaseResponse.ProtoReflect.Descriptor instead.
 func (*ValidatePurchaseResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{107}
+	return file_api_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *ValidatePurchaseResponse) GetValidatedPurchases() []*ValidatedPurchase {
@@ -8642,7 +8485,7 @@ type ValidateSubscriptionResponse struct {
 
 func (x *ValidateSubscriptionResponse) Reset() {
 	*x = ValidateSubscriptionResponse{}
-	mi := &file_api_proto_msgTypes[108]
+	mi := &file_api_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8654,7 +8497,7 @@ func (x *ValidateSubscriptionResponse) String() string {
 func (*ValidateSubscriptionResponse) ProtoMessage() {}
 
 func (x *ValidateSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[108]
+	mi := &file_api_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8667,7 +8510,7 @@ func (x *ValidateSubscriptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidateSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*ValidateSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{108}
+	return file_api_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *ValidateSubscriptionResponse) GetValidatedSubscription() *ValidatedSubscription {
@@ -8717,7 +8560,7 @@ type ValidatedSubscription struct {
 
 func (x *ValidatedSubscription) Reset() {
 	*x = ValidatedSubscription{}
-	mi := &file_api_proto_msgTypes[109]
+	mi := &file_api_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8729,7 +8572,7 @@ func (x *ValidatedSubscription) String() string {
 func (*ValidatedSubscription) ProtoMessage() {}
 
 func (x *ValidatedSubscription) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[109]
+	mi := &file_api_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8742,7 +8585,7 @@ func (x *ValidatedSubscription) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ValidatedSubscription.ProtoReflect.Descriptor instead.
 func (*ValidatedSubscription) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{109}
+	return file_api_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *ValidatedSubscription) GetUserId() string {
@@ -8872,7 +8715,7 @@ type PurchaseList struct {
 
 func (x *PurchaseList) Reset() {
 	*x = PurchaseList{}
-	mi := &file_api_proto_msgTypes[110]
+	mi := &file_api_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8884,7 +8727,7 @@ func (x *PurchaseList) String() string {
 func (*PurchaseList) ProtoMessage() {}
 
 func (x *PurchaseList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[110]
+	mi := &file_api_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8897,7 +8740,7 @@ func (x *PurchaseList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PurchaseList.ProtoReflect.Descriptor instead.
 func (*PurchaseList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{110}
+	return file_api_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *PurchaseList) GetValidatedPurchases() []*ValidatedPurchase {
@@ -8936,7 +8779,7 @@ type SubscriptionList struct {
 
 func (x *SubscriptionList) Reset() {
 	*x = SubscriptionList{}
-	mi := &file_api_proto_msgTypes[111]
+	mi := &file_api_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8948,7 +8791,7 @@ func (x *SubscriptionList) String() string {
 func (*SubscriptionList) ProtoMessage() {}
 
 func (x *SubscriptionList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[111]
+	mi := &file_api_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8961,7 +8804,7 @@ func (x *SubscriptionList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscriptionList.ProtoReflect.Descriptor instead.
 func (*SubscriptionList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{111}
+	return file_api_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *SubscriptionList) GetValidatedSubscriptions() []*ValidatedSubscription {
@@ -8998,7 +8841,7 @@ type WriteLeaderboardRecordRequest struct {
 
 func (x *WriteLeaderboardRecordRequest) Reset() {
 	*x = WriteLeaderboardRecordRequest{}
-	mi := &file_api_proto_msgTypes[112]
+	mi := &file_api_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9010,7 +8853,7 @@ func (x *WriteLeaderboardRecordRequest) String() string {
 func (*WriteLeaderboardRecordRequest) ProtoMessage() {}
 
 func (x *WriteLeaderboardRecordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[112]
+	mi := &file_api_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9023,7 +8866,7 @@ func (x *WriteLeaderboardRecordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WriteLeaderboardRecordRequest.ProtoReflect.Descriptor instead.
 func (*WriteLeaderboardRecordRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{112}
+	return file_api_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *WriteLeaderboardRecordRequest) GetLeaderboardId() string {
@@ -9063,7 +8906,7 @@ type WriteStorageObject struct {
 
 func (x *WriteStorageObject) Reset() {
 	*x = WriteStorageObject{}
-	mi := &file_api_proto_msgTypes[113]
+	mi := &file_api_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9075,7 +8918,7 @@ func (x *WriteStorageObject) String() string {
 func (*WriteStorageObject) ProtoMessage() {}
 
 func (x *WriteStorageObject) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[113]
+	mi := &file_api_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9088,7 +8931,7 @@ func (x *WriteStorageObject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WriteStorageObject.ProtoReflect.Descriptor instead.
 func (*WriteStorageObject) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{113}
+	return file_api_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *WriteStorageObject) GetCollection() string {
@@ -9151,7 +8994,7 @@ type WriteStorageObjectsRequest struct {
 
 func (x *WriteStorageObjectsRequest) Reset() {
 	*x = WriteStorageObjectsRequest{}
-	mi := &file_api_proto_msgTypes[114]
+	mi := &file_api_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9163,7 +9006,7 @@ func (x *WriteStorageObjectsRequest) String() string {
 func (*WriteStorageObjectsRequest) ProtoMessage() {}
 
 func (x *WriteStorageObjectsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[114]
+	mi := &file_api_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9176,7 +9019,7 @@ func (x *WriteStorageObjectsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WriteStorageObjectsRequest.ProtoReflect.Descriptor instead.
 func (*WriteStorageObjectsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{114}
+	return file_api_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *WriteStorageObjectsRequest) GetObjects() []*WriteStorageObject {
@@ -9199,7 +9042,7 @@ type WriteTournamentRecordRequest struct {
 
 func (x *WriteTournamentRecordRequest) Reset() {
 	*x = WriteTournamentRecordRequest{}
-	mi := &file_api_proto_msgTypes[115]
+	mi := &file_api_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9211,7 +9054,7 @@ func (x *WriteTournamentRecordRequest) String() string {
 func (*WriteTournamentRecordRequest) ProtoMessage() {}
 
 func (x *WriteTournamentRecordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[115]
+	mi := &file_api_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9224,7 +9067,7 @@ func (x *WriteTournamentRecordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WriteTournamentRecordRequest.ProtoReflect.Descriptor instead.
 func (*WriteTournamentRecordRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{115}
+	return file_api_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *WriteTournamentRecordRequest) GetTournamentId() string {
@@ -9258,7 +9101,7 @@ type ListPartiesRequest struct {
 
 func (x *ListPartiesRequest) Reset() {
 	*x = ListPartiesRequest{}
-	mi := &file_api_proto_msgTypes[116]
+	mi := &file_api_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9270,7 +9113,7 @@ func (x *ListPartiesRequest) String() string {
 func (*ListPartiesRequest) ProtoMessage() {}
 
 func (x *ListPartiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[116]
+	mi := &file_api_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9283,7 +9126,7 @@ func (x *ListPartiesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPartiesRequest.ProtoReflect.Descriptor instead.
 func (*ListPartiesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{116}
+	return file_api_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *ListPartiesRequest) GetLimit() *wrapperspb.Int32Value {
@@ -9333,7 +9176,7 @@ type Party struct {
 
 func (x *Party) Reset() {
 	*x = Party{}
-	mi := &file_api_proto_msgTypes[117]
+	mi := &file_api_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9345,7 +9188,7 @@ func (x *Party) String() string {
 func (*Party) ProtoMessage() {}
 
 func (x *Party) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[117]
+	mi := &file_api_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9358,7 +9201,7 @@ func (x *Party) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Party.ProtoReflect.Descriptor instead.
 func (*Party) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{117}
+	return file_api_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *Party) GetPartyId() string {
@@ -9409,7 +9252,7 @@ type PartyList struct {
 
 func (x *PartyList) Reset() {
 	*x = PartyList{}
-	mi := &file_api_proto_msgTypes[118]
+	mi := &file_api_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9421,7 +9264,7 @@ func (x *PartyList) String() string {
 func (*PartyList) ProtoMessage() {}
 
 func (x *PartyList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[118]
+	mi := &file_api_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9434,7 +9277,7 @@ func (x *PartyList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyList.ProtoReflect.Descriptor instead.
 func (*PartyList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{118}
+	return file_api_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *PartyList) GetParties() []*Party {
@@ -9475,7 +9318,7 @@ type TransferPolicy struct {
 
 func (x *TransferPolicy) Reset() {
 	*x = TransferPolicy{}
-	mi := &file_api_proto_msgTypes[119]
+	mi := &file_api_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9487,7 +9330,7 @@ func (x *TransferPolicy) String() string {
 func (*TransferPolicy) ProtoMessage() {}
 
 func (x *TransferPolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[119]
+	mi := &file_api_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9500,7 +9343,7 @@ func (x *TransferPolicy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferPolicy.ProtoReflect.Descriptor instead.
 func (*TransferPolicy) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{119}
+	return file_api_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *TransferPolicy) GetEnabledIn() bool {
@@ -9567,7 +9410,7 @@ type QueuePolicy struct {
 
 func (x *QueuePolicy) Reset() {
 	*x = QueuePolicy{}
-	mi := &file_api_proto_msgTypes[120]
+	mi := &file_api_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9579,7 +9422,7 @@ func (x *QueuePolicy) String() string {
 func (*QueuePolicy) ProtoMessage() {}
 
 func (x *QueuePolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[120]
+	mi := &file_api_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9592,7 +9435,7 @@ func (x *QueuePolicy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueuePolicy.ProtoReflect.Descriptor instead.
 func (*QueuePolicy) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{120}
+	return file_api_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *QueuePolicy) GetEnabled() bool {
@@ -9635,7 +9478,7 @@ type NamingPolicy struct {
 
 func (x *NamingPolicy) Reset() {
 	*x = NamingPolicy{}
-	mi := &file_api_proto_msgTypes[121]
+	mi := &file_api_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9647,7 +9490,7 @@ func (x *NamingPolicy) String() string {
 func (*NamingPolicy) ProtoMessage() {}
 
 func (x *NamingPolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[121]
+	mi := &file_api_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9660,7 +9503,7 @@ func (x *NamingPolicy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NamingPolicy.ProtoReflect.Descriptor instead.
 func (*NamingPolicy) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{121}
+	return file_api_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *NamingPolicy) GetPolicy() string {
@@ -9715,7 +9558,7 @@ type AccessPolicy struct {
 
 func (x *AccessPolicy) Reset() {
 	*x = AccessPolicy{}
-	mi := &file_api_proto_msgTypes[122]
+	mi := &file_api_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9727,7 +9570,7 @@ func (x *AccessPolicy) String() string {
 func (*AccessPolicy) ProtoMessage() {}
 
 func (x *AccessPolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[122]
+	mi := &file_api_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9740,7 +9583,7 @@ func (x *AccessPolicy) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccessPolicy.ProtoReflect.Descriptor instead.
 func (*AccessPolicy) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{122}
+	return file_api_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *AccessPolicy) GetAllowNewPlayers() *wrapperspb.BoolValue {
@@ -9795,7 +9638,7 @@ type RealmPolicies struct {
 
 func (x *RealmPolicies) Reset() {
 	*x = RealmPolicies{}
-	mi := &file_api_proto_msgTypes[123]
+	mi := &file_api_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9807,7 +9650,7 @@ func (x *RealmPolicies) String() string {
 func (*RealmPolicies) ProtoMessage() {}
 
 func (x *RealmPolicies) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[123]
+	mi := &file_api_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9820,7 +9663,7 @@ func (x *RealmPolicies) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmPolicies.ProtoReflect.Descriptor instead.
 func (*RealmPolicies) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{123}
+	return file_api_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *RealmPolicies) GetTransfer() *TransferPolicy {
@@ -9916,7 +9759,7 @@ type Realm struct {
 
 func (x *Realm) Reset() {
 	*x = Realm{}
-	mi := &file_api_proto_msgTypes[124]
+	mi := &file_api_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9928,7 +9771,7 @@ func (x *Realm) String() string {
 func (*Realm) ProtoMessage() {}
 
 func (x *Realm) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[124]
+	mi := &file_api_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9941,7 +9784,7 @@ func (x *Realm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Realm.ProtoReflect.Descriptor instead.
 func (*Realm) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{124}
+	return file_api_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *Realm) GetId() string {
@@ -10094,7 +9937,7 @@ type Character struct {
 
 func (x *Character) Reset() {
 	*x = Character{}
-	mi := &file_api_proto_msgTypes[125]
+	mi := &file_api_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10106,7 +9949,7 @@ func (x *Character) String() string {
 func (*Character) ProtoMessage() {}
 
 func (x *Character) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[125]
+	mi := &file_api_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10119,7 +9962,7 @@ func (x *Character) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Character.ProtoReflect.Descriptor instead.
 func (*Character) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{125}
+	return file_api_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *Character) GetId() string {
@@ -10210,7 +10053,7 @@ type ListRealmsRequest struct {
 
 func (x *ListRealmsRequest) Reset() {
 	*x = ListRealmsRequest{}
-	mi := &file_api_proto_msgTypes[126]
+	mi := &file_api_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10222,7 +10065,7 @@ func (x *ListRealmsRequest) String() string {
 func (*ListRealmsRequest) ProtoMessage() {}
 
 func (x *ListRealmsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[126]
+	mi := &file_api_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10235,7 +10078,7 @@ func (x *ListRealmsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRealmsRequest.ProtoReflect.Descriptor instead.
 func (*ListRealmsRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{126}
+	return file_api_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *ListRealmsRequest) GetStatus() *wrapperspb.Int32Value {
@@ -10256,7 +10099,7 @@ type RealmList struct {
 
 func (x *RealmList) Reset() {
 	*x = RealmList{}
-	mi := &file_api_proto_msgTypes[127]
+	mi := &file_api_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10268,7 +10111,7 @@ func (x *RealmList) String() string {
 func (*RealmList) ProtoMessage() {}
 
 func (x *RealmList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[127]
+	mi := &file_api_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10281,7 +10124,7 @@ func (x *RealmList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmList.ProtoReflect.Descriptor instead.
 func (*RealmList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{127}
+	return file_api_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *RealmList) GetRealms() []*Realm {
@@ -10302,7 +10145,7 @@ type GetRealmRequest struct {
 
 func (x *GetRealmRequest) Reset() {
 	*x = GetRealmRequest{}
-	mi := &file_api_proto_msgTypes[128]
+	mi := &file_api_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10314,7 +10157,7 @@ func (x *GetRealmRequest) String() string {
 func (*GetRealmRequest) ProtoMessage() {}
 
 func (x *GetRealmRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[128]
+	mi := &file_api_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10327,7 +10170,7 @@ func (x *GetRealmRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRealmRequest.ProtoReflect.Descriptor instead.
 func (*GetRealmRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{128}
+	return file_api_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *GetRealmRequest) GetId() string {
@@ -10346,7 +10189,7 @@ type ListCharactersRequest struct {
 
 func (x *ListCharactersRequest) Reset() {
 	*x = ListCharactersRequest{}
-	mi := &file_api_proto_msgTypes[129]
+	mi := &file_api_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10358,7 +10201,7 @@ func (x *ListCharactersRequest) String() string {
 func (*ListCharactersRequest) ProtoMessage() {}
 
 func (x *ListCharactersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[129]
+	mi := &file_api_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10371,7 +10214,7 @@ func (x *ListCharactersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCharactersRequest.ProtoReflect.Descriptor instead.
 func (*ListCharactersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{129}
+	return file_api_proto_rawDescGZIP(), []int{127}
 }
 
 // A list of characters.
@@ -10385,7 +10228,7 @@ type CharacterList struct {
 
 func (x *CharacterList) Reset() {
 	*x = CharacterList{}
-	mi := &file_api_proto_msgTypes[130]
+	mi := &file_api_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10397,7 +10240,7 @@ func (x *CharacterList) String() string {
 func (*CharacterList) ProtoMessage() {}
 
 func (x *CharacterList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[130]
+	mi := &file_api_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10410,7 +10253,7 @@ func (x *CharacterList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterList.ProtoReflect.Descriptor instead.
 func (*CharacterList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{130}
+	return file_api_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *CharacterList) GetCharacters() []*Character {
@@ -10437,7 +10280,7 @@ type CreateCharacterRequest struct {
 
 func (x *CreateCharacterRequest) Reset() {
 	*x = CreateCharacterRequest{}
-	mi := &file_api_proto_msgTypes[131]
+	mi := &file_api_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10449,7 +10292,7 @@ func (x *CreateCharacterRequest) String() string {
 func (*CreateCharacterRequest) ProtoMessage() {}
 
 func (x *CreateCharacterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[131]
+	mi := &file_api_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10462,7 +10305,7 @@ func (x *CreateCharacterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCharacterRequest.ProtoReflect.Descriptor instead.
 func (*CreateCharacterRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{131}
+	return file_api_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *CreateCharacterRequest) GetRealmId() string {
@@ -10504,7 +10347,7 @@ type SelectCharacterRequest struct {
 
 func (x *SelectCharacterRequest) Reset() {
 	*x = SelectCharacterRequest{}
-	mi := &file_api_proto_msgTypes[132]
+	mi := &file_api_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10516,7 +10359,7 @@ func (x *SelectCharacterRequest) String() string {
 func (*SelectCharacterRequest) ProtoMessage() {}
 
 func (x *SelectCharacterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[132]
+	mi := &file_api_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10529,7 +10372,7 @@ func (x *SelectCharacterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectCharacterRequest.ProtoReflect.Descriptor instead.
 func (*SelectCharacterRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{132}
+	return file_api_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *SelectCharacterRequest) GetCharacterId() string {
@@ -10554,7 +10397,7 @@ type SelectCharacterResponse struct {
 
 func (x *SelectCharacterResponse) Reset() {
 	*x = SelectCharacterResponse{}
-	mi := &file_api_proto_msgTypes[133]
+	mi := &file_api_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10566,7 +10409,7 @@ func (x *SelectCharacterResponse) String() string {
 func (*SelectCharacterResponse) ProtoMessage() {}
 
 func (x *SelectCharacterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[133]
+	mi := &file_api_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10579,7 +10422,7 @@ func (x *SelectCharacterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectCharacterResponse.ProtoReflect.Descriptor instead.
 func (*SelectCharacterResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{133}
+	return file_api_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *SelectCharacterResponse) GetToken() string {
@@ -10624,7 +10467,7 @@ type CharacterWallet struct {
 
 func (x *CharacterWallet) Reset() {
 	*x = CharacterWallet{}
-	mi := &file_api_proto_msgTypes[134]
+	mi := &file_api_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10636,7 +10479,7 @@ func (x *CharacterWallet) String() string {
 func (*CharacterWallet) ProtoMessage() {}
 
 func (x *CharacterWallet) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[134]
+	mi := &file_api_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10649,7 +10492,7 @@ func (x *CharacterWallet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWallet.ProtoReflect.Descriptor instead.
 func (*CharacterWallet) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{134}
+	return file_api_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *CharacterWallet) GetCharacterId() string {
@@ -10705,7 +10548,7 @@ type GetCharacterWalletRequest struct {
 
 func (x *GetCharacterWalletRequest) Reset() {
 	*x = GetCharacterWalletRequest{}
-	mi := &file_api_proto_msgTypes[135]
+	mi := &file_api_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10717,7 +10560,7 @@ func (x *GetCharacterWalletRequest) String() string {
 func (*GetCharacterWalletRequest) ProtoMessage() {}
 
 func (x *GetCharacterWalletRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[135]
+	mi := &file_api_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10730,7 +10573,7 @@ func (x *GetCharacterWalletRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCharacterWalletRequest.ProtoReflect.Descriptor instead.
 func (*GetCharacterWalletRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{135}
+	return file_api_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *GetCharacterWalletRequest) GetCharacterId() string {
@@ -10755,7 +10598,7 @@ type UpdateCharacterWalletRequest struct {
 
 func (x *UpdateCharacterWalletRequest) Reset() {
 	*x = UpdateCharacterWalletRequest{}
-	mi := &file_api_proto_msgTypes[136]
+	mi := &file_api_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10767,7 +10610,7 @@ func (x *UpdateCharacterWalletRequest) String() string {
 func (*UpdateCharacterWalletRequest) ProtoMessage() {}
 
 func (x *UpdateCharacterWalletRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[136]
+	mi := &file_api_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10780,7 +10623,7 @@ func (x *UpdateCharacterWalletRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCharacterWalletRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCharacterWalletRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{136}
+	return file_api_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *UpdateCharacterWalletRequest) GetCharacterId() string {
@@ -10819,7 +10662,7 @@ type UpdateCharacterWalletResponse struct {
 
 func (x *UpdateCharacterWalletResponse) Reset() {
 	*x = UpdateCharacterWalletResponse{}
-	mi := &file_api_proto_msgTypes[137]
+	mi := &file_api_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10831,7 +10674,7 @@ func (x *UpdateCharacterWalletResponse) String() string {
 func (*UpdateCharacterWalletResponse) ProtoMessage() {}
 
 func (x *UpdateCharacterWalletResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[137]
+	mi := &file_api_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10844,7 +10687,7 @@ func (x *UpdateCharacterWalletResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCharacterWalletResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCharacterWalletResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{137}
+	return file_api_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *UpdateCharacterWalletResponse) GetWallet() *CharacterWallet {
@@ -10893,7 +10736,7 @@ type CharacterWalletLedger struct {
 
 func (x *CharacterWalletLedger) Reset() {
 	*x = CharacterWalletLedger{}
-	mi := &file_api_proto_msgTypes[138]
+	mi := &file_api_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10905,7 +10748,7 @@ func (x *CharacterWalletLedger) String() string {
 func (*CharacterWalletLedger) ProtoMessage() {}
 
 func (x *CharacterWalletLedger) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[138]
+	mi := &file_api_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10918,7 +10761,7 @@ func (x *CharacterWalletLedger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWalletLedger.ProtoReflect.Descriptor instead.
 func (*CharacterWalletLedger) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{138}
+	return file_api_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *CharacterWalletLedger) GetId() string {
@@ -10992,7 +10835,7 @@ type ListCharacterWalletLedgerRequest struct {
 
 func (x *ListCharacterWalletLedgerRequest) Reset() {
 	*x = ListCharacterWalletLedgerRequest{}
-	mi := &file_api_proto_msgTypes[139]
+	mi := &file_api_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11004,7 +10847,7 @@ func (x *ListCharacterWalletLedgerRequest) String() string {
 func (*ListCharacterWalletLedgerRequest) ProtoMessage() {}
 
 func (x *ListCharacterWalletLedgerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[139]
+	mi := &file_api_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11017,7 +10860,7 @@ func (x *ListCharacterWalletLedgerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCharacterWalletLedgerRequest.ProtoReflect.Descriptor instead.
 func (*ListCharacterWalletLedgerRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{139}
+	return file_api_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *ListCharacterWalletLedgerRequest) GetCharacterId() string {
@@ -11056,7 +10899,7 @@ type CharacterWalletLedgerList struct {
 
 func (x *CharacterWalletLedgerList) Reset() {
 	*x = CharacterWalletLedgerList{}
-	mi := &file_api_proto_msgTypes[140]
+	mi := &file_api_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11068,7 +10911,7 @@ func (x *CharacterWalletLedgerList) String() string {
 func (*CharacterWalletLedgerList) ProtoMessage() {}
 
 func (x *CharacterWalletLedgerList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[140]
+	mi := &file_api_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11081,7 +10924,7 @@ func (x *CharacterWalletLedgerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWalletLedgerList.ProtoReflect.Descriptor instead.
 func (*CharacterWalletLedgerList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{140}
+	return file_api_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *CharacterWalletLedgerList) GetItems() []*CharacterWalletLedger {
@@ -11124,7 +10967,7 @@ type ListPurchasesRequest struct {
 
 func (x *ListPurchasesRequest) Reset() {
 	*x = ListPurchasesRequest{}
-	mi := &file_api_proto_msgTypes[141]
+	mi := &file_api_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11136,7 +10979,7 @@ func (x *ListPurchasesRequest) String() string {
 func (*ListPurchasesRequest) ProtoMessage() {}
 
 func (x *ListPurchasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[141]
+	mi := &file_api_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11149,7 +10992,7 @@ func (x *ListPurchasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPurchasesRequest.ProtoReflect.Descriptor instead.
 func (*ListPurchasesRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{141}
+	return file_api_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *ListPurchasesRequest) GetLimit() *wrapperspb.Int32Value {
@@ -11222,7 +11065,7 @@ type CharacterTransfer struct {
 
 func (x *CharacterTransfer) Reset() {
 	*x = CharacterTransfer{}
-	mi := &file_api_proto_msgTypes[142]
+	mi := &file_api_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11234,7 +11077,7 @@ func (x *CharacterTransfer) String() string {
 func (*CharacterTransfer) ProtoMessage() {}
 
 func (x *CharacterTransfer) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[142]
+	mi := &file_api_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11247,7 +11090,7 @@ func (x *CharacterTransfer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterTransfer.ProtoReflect.Descriptor instead.
 func (*CharacterTransfer) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{142}
+	return file_api_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *CharacterTransfer) GetId() string {
@@ -11356,7 +11199,7 @@ type TransferCharacterRequest struct {
 
 func (x *TransferCharacterRequest) Reset() {
 	*x = TransferCharacterRequest{}
-	mi := &file_api_proto_msgTypes[143]
+	mi := &file_api_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11368,7 +11211,7 @@ func (x *TransferCharacterRequest) String() string {
 func (*TransferCharacterRequest) ProtoMessage() {}
 
 func (x *TransferCharacterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[143]
+	mi := &file_api_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11381,7 +11224,7 @@ func (x *TransferCharacterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferCharacterRequest.ProtoReflect.Descriptor instead.
 func (*TransferCharacterRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{143}
+	return file_api_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *TransferCharacterRequest) GetCharacterId() string {
@@ -11418,7 +11261,7 @@ type TransferCharacterResponse struct {
 
 func (x *TransferCharacterResponse) Reset() {
 	*x = TransferCharacterResponse{}
-	mi := &file_api_proto_msgTypes[144]
+	mi := &file_api_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11430,7 +11273,7 @@ func (x *TransferCharacterResponse) String() string {
 func (*TransferCharacterResponse) ProtoMessage() {}
 
 func (x *TransferCharacterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[144]
+	mi := &file_api_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11443,7 +11286,7 @@ func (x *TransferCharacterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferCharacterResponse.ProtoReflect.Descriptor instead.
 func (*TransferCharacterResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{144}
+	return file_api_proto_rawDescGZIP(), []int{142}
 }
 
 func (x *TransferCharacterResponse) GetTransfer() *CharacterTransfer {
@@ -11475,7 +11318,7 @@ type ListCharacterTransfersRequest struct {
 
 func (x *ListCharacterTransfersRequest) Reset() {
 	*x = ListCharacterTransfersRequest{}
-	mi := &file_api_proto_msgTypes[145]
+	mi := &file_api_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11487,7 +11330,7 @@ func (x *ListCharacterTransfersRequest) String() string {
 func (*ListCharacterTransfersRequest) ProtoMessage() {}
 
 func (x *ListCharacterTransfersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[145]
+	mi := &file_api_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11500,7 +11343,7 @@ func (x *ListCharacterTransfersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCharacterTransfersRequest.ProtoReflect.Descriptor instead.
 func (*ListCharacterTransfersRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{145}
+	return file_api_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *ListCharacterTransfersRequest) GetCharacterId() string {
@@ -11537,7 +11380,7 @@ type CharacterTransferList struct {
 
 func (x *CharacterTransferList) Reset() {
 	*x = CharacterTransferList{}
-	mi := &file_api_proto_msgTypes[146]
+	mi := &file_api_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11549,7 +11392,7 @@ func (x *CharacterTransferList) String() string {
 func (*CharacterTransferList) ProtoMessage() {}
 
 func (x *CharacterTransferList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[146]
+	mi := &file_api_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11562,7 +11405,7 @@ func (x *CharacterTransferList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterTransferList.ProtoReflect.Descriptor instead.
 func (*CharacterTransferList) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{146}
+	return file_api_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *CharacterTransferList) GetTransfers() []*CharacterTransfer {
@@ -11592,7 +11435,7 @@ type TransferEligibilityRequest struct {
 
 func (x *TransferEligibilityRequest) Reset() {
 	*x = TransferEligibilityRequest{}
-	mi := &file_api_proto_msgTypes[147]
+	mi := &file_api_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11604,7 +11447,7 @@ func (x *TransferEligibilityRequest) String() string {
 func (*TransferEligibilityRequest) ProtoMessage() {}
 
 func (x *TransferEligibilityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[147]
+	mi := &file_api_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11617,7 +11460,7 @@ func (x *TransferEligibilityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferEligibilityRequest.ProtoReflect.Descriptor instead.
 func (*TransferEligibilityRequest) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{147}
+	return file_api_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *TransferEligibilityRequest) GetCharacterId() string {
@@ -11655,7 +11498,7 @@ type TransferEligibilityResponse struct {
 
 func (x *TransferEligibilityResponse) Reset() {
 	*x = TransferEligibilityResponse{}
-	mi := &file_api_proto_msgTypes[148]
+	mi := &file_api_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11667,7 +11510,7 @@ func (x *TransferEligibilityResponse) String() string {
 func (*TransferEligibilityResponse) ProtoMessage() {}
 
 func (x *TransferEligibilityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[148]
+	mi := &file_api_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11680,7 +11523,7 @@ func (x *TransferEligibilityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferEligibilityResponse.ProtoReflect.Descriptor instead.
 func (*TransferEligibilityResponse) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{148}
+	return file_api_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *TransferEligibilityResponse) GetEligible() bool {
@@ -11772,7 +11615,7 @@ type MaintenanceWindow struct {
 
 func (x *MaintenanceWindow) Reset() {
 	*x = MaintenanceWindow{}
-	mi := &file_api_proto_msgTypes[149]
+	mi := &file_api_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11784,7 +11627,7 @@ func (x *MaintenanceWindow) String() string {
 func (*MaintenanceWindow) ProtoMessage() {}
 
 func (x *MaintenanceWindow) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[149]
+	mi := &file_api_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11797,7 +11640,7 @@ func (x *MaintenanceWindow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaintenanceWindow.ProtoReflect.Descriptor instead.
 func (*MaintenanceWindow) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{149}
+	return file_api_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *MaintenanceWindow) GetId() string {
@@ -11962,7 +11805,7 @@ type RealmGroup struct {
 
 func (x *RealmGroup) Reset() {
 	*x = RealmGroup{}
-	mi := &file_api_proto_msgTypes[150]
+	mi := &file_api_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11974,7 +11817,7 @@ func (x *RealmGroup) String() string {
 func (*RealmGroup) ProtoMessage() {}
 
 func (x *RealmGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[150]
+	mi := &file_api_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11987,7 +11830,7 @@ func (x *RealmGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmGroup.ProtoReflect.Descriptor instead.
 func (*RealmGroup) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{150}
+	return file_api_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *RealmGroup) GetId() string {
@@ -12089,7 +11932,7 @@ type RealmBan struct {
 
 func (x *RealmBan) Reset() {
 	*x = RealmBan{}
-	mi := &file_api_proto_msgTypes[151]
+	mi := &file_api_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12101,7 +11944,7 @@ func (x *RealmBan) String() string {
 func (*RealmBan) ProtoMessage() {}
 
 func (x *RealmBan) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[151]
+	mi := &file_api_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12114,7 +11957,7 @@ func (x *RealmBan) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmBan.ProtoReflect.Descriptor instead.
 func (*RealmBan) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{151}
+	return file_api_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *RealmBan) GetId() string {
@@ -12190,17 +12033,17 @@ func (x *RealmBan) GetMetadata() string {
 // A friend of a friend.
 type FriendsOfFriendsList_FriendOfFriend struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// The user who referred its friend.
+	// The character who referred its friend.
 	Referrer string `protobuf:"bytes,1,opt,name=referrer,proto3" json:"referrer,omitempty"`
-	// User.
-	User          *User `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	// Character.
+	Character     *Character `protobuf:"bytes,2,opt,name=character,proto3" json:"character,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FriendsOfFriendsList_FriendOfFriend) Reset() {
 	*x = FriendsOfFriendsList_FriendOfFriend{}
-	mi := &file_api_proto_msgTypes[165]
+	mi := &file_api_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12212,7 +12055,7 @@ func (x *FriendsOfFriendsList_FriendOfFriend) String() string {
 func (*FriendsOfFriendsList_FriendOfFriend) ProtoMessage() {}
 
 func (x *FriendsOfFriendsList_FriendOfFriend) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[165]
+	mi := &file_api_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12235,39 +12078,39 @@ func (x *FriendsOfFriendsList_FriendOfFriend) GetReferrer() string {
 	return ""
 }
 
-func (x *FriendsOfFriendsList_FriendOfFriend) GetUser() *User {
+func (x *FriendsOfFriendsList_FriendOfFriend) GetCharacter() *Character {
 	if x != nil {
-		return x.User
+		return x.Character
 	}
 	return nil
 }
 
-// A single user-role pair.
-type GroupUserList_GroupUser struct {
+// A single character-role pair.
+type GroupCharacterList_GroupCharacter struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// User.
-	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	// Character.
+	Character *Character `protobuf:"bytes,1,opt,name=character,proto3" json:"character,omitempty"`
 	// Their relationship to the group.
 	State         *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GroupUserList_GroupUser) Reset() {
-	*x = GroupUserList_GroupUser{}
-	mi := &file_api_proto_msgTypes[166]
+func (x *GroupCharacterList_GroupCharacter) Reset() {
+	*x = GroupCharacterList_GroupCharacter{}
+	mi := &file_api_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GroupUserList_GroupUser) String() string {
+func (x *GroupCharacterList_GroupCharacter) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GroupUserList_GroupUser) ProtoMessage() {}
+func (*GroupCharacterList_GroupCharacter) ProtoMessage() {}
 
-func (x *GroupUserList_GroupUser) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[166]
+func (x *GroupCharacterList_GroupCharacter) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12278,19 +12121,19 @@ func (x *GroupUserList_GroupUser) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GroupUserList_GroupUser.ProtoReflect.Descriptor instead.
-func (*GroupUserList_GroupUser) Descriptor() ([]byte, []int) {
+// Deprecated: Use GroupCharacterList_GroupCharacter.ProtoReflect.Descriptor instead.
+func (*GroupCharacterList_GroupCharacter) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{47, 0}
 }
 
-func (x *GroupUserList_GroupUser) GetUser() *User {
+func (x *GroupCharacterList_GroupCharacter) GetCharacter() *Character {
 	if x != nil {
-		return x.User
+		return x.Character
 	}
 	return nil
 }
 
-func (x *GroupUserList_GroupUser) GetState() *wrapperspb.Int32Value {
+func (x *GroupCharacterList_GroupCharacter) GetState() *wrapperspb.Int32Value {
 	if x != nil {
 		return x.State
 	}
@@ -12298,31 +12141,31 @@ func (x *GroupUserList_GroupUser) GetState() *wrapperspb.Int32Value {
 }
 
 // A single group-role pair.
-type UserGroupList_UserGroup struct {
+type CharacterGroupList_CharacterGroup struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Group.
 	Group *Group `protobuf:"bytes,1,opt,name=group,proto3" json:"group,omitempty"`
-	// The user's relationship to the group.
+	// The character's relationship to the group.
 	State         *wrapperspb.Int32Value `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserGroupList_UserGroup) Reset() {
-	*x = UserGroupList_UserGroup{}
-	mi := &file_api_proto_msgTypes[167]
+func (x *CharacterGroupList_CharacterGroup) Reset() {
+	*x = CharacterGroupList_CharacterGroup{}
+	mi := &file_api_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserGroupList_UserGroup) String() string {
+func (x *CharacterGroupList_CharacterGroup) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserGroupList_UserGroup) ProtoMessage() {}
+func (*CharacterGroupList_CharacterGroup) ProtoMessage() {}
 
-func (x *UserGroupList_UserGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[167]
+func (x *CharacterGroupList_CharacterGroup) ProtoReflect() protoreflect.Message {
+	mi := &file_api_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12333,19 +12176,19 @@ func (x *UserGroupList_UserGroup) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserGroupList_UserGroup.ProtoReflect.Descriptor instead.
-func (*UserGroupList_UserGroup) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{98, 0}
+// Deprecated: Use CharacterGroupList_CharacterGroup.ProtoReflect.Descriptor instead.
+func (*CharacterGroupList_CharacterGroup) Descriptor() ([]byte, []int) {
+	return file_api_proto_rawDescGZIP(), []int{96, 0}
 }
 
-func (x *UserGroupList_UserGroup) GetGroup() *Group {
+func (x *CharacterGroupList_CharacterGroup) GetGroup() *Group {
 	if x != nil {
 		return x.Group
 	}
 	return nil
 }
 
-func (x *UserGroupList_UserGroup) GetState() *wrapperspb.Int32Value {
+func (x *CharacterGroupList_CharacterGroup) GetState() *wrapperspb.Int32Value {
 	if x != nil {
 		return x.State
 	}
@@ -12369,7 +12212,7 @@ type WriteLeaderboardRecordRequest_LeaderboardRecordWrite struct {
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) Reset() {
 	*x = WriteLeaderboardRecordRequest_LeaderboardRecordWrite{}
-	mi := &file_api_proto_msgTypes[168]
+	mi := &file_api_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12381,7 +12224,7 @@ func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) String() string {
 func (*WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoMessage() {}
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[168]
+	mi := &file_api_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12394,7 +12237,7 @@ func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoReflect() pr
 
 // Deprecated: Use WriteLeaderboardRecordRequest_LeaderboardRecordWrite.ProtoReflect.Descriptor instead.
 func (*WriteLeaderboardRecordRequest_LeaderboardRecordWrite) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{112, 0}
+	return file_api_proto_rawDescGZIP(), []int{110, 0}
 }
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) GetScore() int64 {
@@ -12442,7 +12285,7 @@ type WriteTournamentRecordRequest_TournamentRecordWrite struct {
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) Reset() {
 	*x = WriteTournamentRecordRequest_TournamentRecordWrite{}
-	mi := &file_api_proto_msgTypes[169]
+	mi := &file_api_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12454,7 +12297,7 @@ func (x *WriteTournamentRecordRequest_TournamentRecordWrite) String() string {
 func (*WriteTournamentRecordRequest_TournamentRecordWrite) ProtoMessage() {}
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[169]
+	mi := &file_api_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12467,7 +12310,7 @@ func (x *WriteTournamentRecordRequest_TournamentRecordWrite) ProtoReflect() prot
 
 // Deprecated: Use WriteTournamentRecordRequest_TournamentRecordWrite.ProtoReflect.Descriptor instead.
 func (*WriteTournamentRecordRequest_TournamentRecordWrite) Descriptor() ([]byte, []int) {
-	return file_api_proto_rawDescGZIP(), []int{115, 0}
+	return file_api_proto_rawDescGZIP(), []int{113, 0}
 }
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) GetScore() int64 {
@@ -12578,14 +12421,14 @@ const file_api_proto_rawDesc = "" +
 	"\x04vars\x18\x02 \x03(\v2\".nakama.api.AccountSteam.VarsEntryR\x04vars\x1a7\n" +
 	"\tVarsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"_\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"W\n" +
 	"\x11AddFriendsRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x1c\n" +
-	"\tusernames\x18\x02 \x03(\tR\tusernames\x12\x1a\n" +
-	"\bmetadata\x18\x03 \x01(\tR\bmetadata\"L\n" +
-	"\x14AddGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\buser_ids\x18\x02 \x03(\tR\auserIds\"\xa7\x01\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x14\n" +
+	"\x05names\x18\x02 \x03(\tR\x05names\x12\x1a\n" +
+	"\bmetadata\x18\x03 \x01(\tR\bmetadata\"[\n" +
+	"\x19AddGroupCharactersRequest\x12\x19\n" +
+	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"\xa7\x01\n" +
 	"\x15SessionRefreshRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12?\n" +
 	"\x04vars\x18\x02 \x03(\v2+.nakama.api.SessionRefreshRequest.VarsEntryR\x04vars\x1a7\n" +
@@ -12645,13 +12488,13 @@ const file_api_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"B\n" +
 	"\x16VerifyEmailCodeRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\tR\x04code\"L\n" +
-	"\x14BanGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\buser_ids\x18\x02 \x03(\tR\auserIds\"E\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\"[\n" +
+	"\x19BanGroupCharactersRequest\x12\x19\n" +
+	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"=\n" +
 	"\x13BlockFriendsRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x1c\n" +
-	"\tusernames\x18\x02 \x03(\tR\tusernames\"\xd7\x04\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x14\n" +
+	"\x05names\x18\x02 \x03(\tR\x05names\"\xd7\x04\n" +
 	"\x0eChannelMessage\x12\x1d\n" +
 	"\n" +
 	"channel_id\x18\x01 \x01(\tR\tchannelId\x12\x1d\n" +
@@ -12693,10 +12536,10 @@ const file_api_proto_rawDesc = "" +
 	"\x04open\x18\x05 \x01(\bR\x04open\x12\x1b\n" +
 	"\tmax_count\x18\x06 \x01(\x05R\bmaxCount\x12\x1d\n" +
 	"\n" +
-	"scope_type\x18\a \x01(\rR\tscopeType\"F\n" +
+	"scope_type\x18\a \x01(\rR\tscopeType\">\n" +
 	"\x14DeleteFriendsRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x1c\n" +
-	"\tusernames\x18\x02 \x03(\tR\tusernames\"/\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x14\n" +
+	"\x05names\x18\x02 \x03(\tR\x05names\"/\n" +
 	"\x12DeleteGroupRequest\x12\x19\n" +
 	"\bgroup_id\x18\x01 \x01(\tR\agroupId\"G\n" +
 	"\x1eDeleteLeaderboardRecordRequest\x12%\n" +
@@ -12724,16 +12567,13 @@ const file_api_proto_rawDesc = "" +
 	"\bexternal\x18\x04 \x01(\bR\bexternal\x1a=\n" +
 	"\x0fPropertiesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x93\x03\n" +
-	"\x06Friend\x12$\n" +
-	"\x04user\x18\x01 \x01(\v2\x10.nakama.api.UserR\x04user\x121\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x91\x02\n" +
+	"\x06Friend\x123\n" +
+	"\tcharacter\x18\x01 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\x121\n" +
 	"\x05state\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\x12;\n" +
 	"\vupdate_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x12\x1a\n" +
-	"\bmetadata\x18\x04 \x01(\tR\bmetadata\x123\n" +
-	"\tcharacter\x18\x05 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\x12(\n" +
-	"\x10current_realm_id\x18\x06 \x01(\tR\x0ecurrentRealmId\x120\n" +
-	"\x14current_character_id\x18\a \x01(\tR\x12currentCharacterId\"F\n" +
+	"\bmetadata\x18\x04 \x01(\tR\bmetadata\"F\n" +
 	"\x05State\x12\n" +
 	"\n" +
 	"\x06FRIEND\x10\x00\x12\x0f\n" +
@@ -12743,13 +12583,13 @@ const file_api_proto_rawDesc = "" +
 	"\n" +
 	"FriendList\x12,\n" +
 	"\afriends\x18\x01 \x03(\v2\x12.nakama.api.FriendR\afriends\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xe1\x01\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xf0\x01\n" +
 	"\x14FriendsOfFriendsList\x12]\n" +
 	"\x12friends_of_friends\x18\x01 \x03(\v2/.nakama.api.FriendsOfFriendsList.FriendOfFriendR\x10friendsOfFriends\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1aR\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1aa\n" +
 	"\x0eFriendOfFriend\x12\x1a\n" +
-	"\breferrer\x18\x01 \x01(\tR\breferrer\x12$\n" +
-	"\x04user\x18\x02 \x01(\v2\x10.nakama.api.UserR\x04user\"d\n" +
+	"\breferrer\x18\x01 \x01(\tR\breferrer\x123\n" +
+	"\tcharacter\x18\x02 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\"d\n" +
 	"\x0fGetUsersRequest\x12\x10\n" +
 	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x1c\n" +
 	"\tusernames\x18\x02 \x03(\tR\tusernames\x12!\n" +
@@ -12782,13 +12622,12 @@ const file_api_proto_rawDesc = "" +
 	"\tcohort_id\x18\x0f \x01(\tR\bcohortId\"N\n" +
 	"\tGroupList\x12)\n" +
 	"\x06groups\x18\x01 \x03(\v2\x11.nakama.api.GroupR\x06groups\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\x96\x02\n" +
-	"\rGroupUserList\x12D\n" +
-	"\vgroup_users\x18\x01 \x03(\v2#.nakama.api.GroupUserList.GroupUserR\n" +
-	"groupUsers\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1a\xa6\x01\n" +
-	"\tGroupUser\x12$\n" +
-	"\x04user\x18\x01 \x01(\v2\x10.nakama.api.UserR\x04user\x121\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xc3\x02\n" +
+	"\x12GroupCharacterList\x12X\n" +
+	"\x10group_characters\x18\x01 \x03(\v2-.nakama.api.GroupCharacterList.GroupCharacterR\x0fgroupCharacters\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1a\xba\x01\n" +
+	"\x0eGroupCharacter\x123\n" +
+	"\tcharacter\x18\x01 \x01(\v2\x15.nakama.api.CharacterR\tcharacter\x121\n" +
 	"\x05state\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\"@\n" +
 	"\x05State\x12\x0e\n" +
 	"\n" +
@@ -12796,20 +12635,14 @@ const file_api_proto_rawDesc = "" +
 	"\x05ADMIN\x10\x01\x12\n" +
 	"\n" +
 	"\x06MEMBER\x10\x02\x12\x10\n" +
-	"\fJOIN_REQUEST\x10\x03\"\x87\x01\n" +
-	"\x1cImportFacebookFriendsRequest\x125\n" +
-	"\aaccount\x18\x01 \x01(\v2\x1b.nakama.api.AccountFacebookR\aaccount\x120\n" +
-	"\x05reset\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\x05reset\"\x81\x01\n" +
-	"\x19ImportSteamFriendsRequest\x122\n" +
-	"\aaccount\x18\x01 \x01(\v2\x18.nakama.api.AccountSteamR\aaccount\x120\n" +
-	"\x05reset\x18\x02 \x01(\v2\x1a.google.protobuf.BoolValueR\x05reset\"-\n" +
+	"\fJOIN_REQUEST\x10\x03\"-\n" +
 	"\x10JoinGroupRequest\x12\x19\n" +
 	"\bgroup_id\x18\x01 \x01(\tR\agroupId\"<\n" +
 	"\x15JoinTournamentRequest\x12#\n" +
-	"\rtournament_id\x18\x01 \x01(\tR\ftournamentId\"M\n" +
-	"\x15KickGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\buser_ids\x18\x02 \x03(\tR\auserIds\"\x82\x03\n" +
+	"\rtournament_id\x18\x01 \x01(\tR\ftournamentId\"\\\n" +
+	"\x1aKickGroupCharactersRequest\x12\x19\n" +
+	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"\x82\x03\n" +
 	"\vLeaderboard\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -12874,13 +12707,11 @@ const file_api_proto_rawDesc = "" +
 	"\aforward\x18\x03 \x01(\v2\x1a.google.protobuf.BoolValueR\aforward\x12\x16\n" +
 	"\x06cursor\x18\x04 \x01(\tR\x06cursor\x12\x19\n" +
 	"\brealm_id\x18\x05 \x01(\tR\arealmId\x12%\n" +
-	"\x0einclude_global\x18\x06 \x01(\bR\rincludeGlobal\"\xf0\x01\n" +
+	"\x0einclude_global\x18\x06 \x01(\bR\rincludeGlobal\"\x92\x01\n" +
 	"\x12ListFriendsRequest\x121\n" +
 	"\x05limit\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x121\n" +
 	"\x05state\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\x12\x16\n" +
-	"\x06cursor\x18\x03 \x01(\tR\x06cursor\x12\x19\n" +
-	"\brealm_id\x18\x04 \x01(\tR\arealmId\x12A\n" +
-	"\x0einclude_global\x18\x05 \x01(\v2\x1a.google.protobuf.BoolValueR\rincludeGlobal\"h\n" +
+	"\x06cursor\x18\x03 \x01(\tR\x06cursor\"h\n" +
 	"\x1bListFriendsOfFriendsRequest\x121\n" +
 	"\x05limit\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x12\x16\n" +
 	"\x06cursor\x18\x02 \x01(\tR\x06cursor\"\xf4\x02\n" +
@@ -12960,9 +12791,9 @@ const file_api_proto_rawDesc = "" +
 	"\n" +
 	"scope_type\x18\t \x01(\v2\x1c.google.protobuf.UInt32ValueR\tscopeType\x12A\n" +
 	"\x0einclude_global\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.BoolValueR\rincludeGlobal\"\xae\x01\n" +
-	"\x15ListUserGroupsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x121\n" +
+	" \x01(\v2\x1a.google.protobuf.BoolValueR\rincludeGlobal\"\xbd\x01\n" +
+	"\x1aListCharacterGroupsRequest\x12!\n" +
+	"\fcharacter_id\x18\x01 \x01(\tR\vcharacterId\x121\n" +
 	"\x05limit\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05limit\x121\n" +
 	"\x05state\x18\x03 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\x12\x16\n" +
 	"\x06cursor\x18\x04 \x01(\tR\x06cursor\"\xd0\x01\n" +
@@ -13001,13 +12832,13 @@ const file_api_proto_rawDesc = "" +
 	" \x01(\tR\bcohortId\"}\n" +
 	"\x10NotificationList\x12>\n" +
 	"\rnotifications\x18\x01 \x03(\v2\x18.nakama.api.NotificationR\rnotifications\x12)\n" +
-	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\"P\n" +
-	"\x18PromoteGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\buser_ids\x18\x02 \x03(\tR\auserIds\"O\n" +
-	"\x17DemoteGroupUsersRequest\x12\x19\n" +
-	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12\x19\n" +
-	"\buser_ids\x18\x02 \x03(\tR\auserIds\"\x83\x01\n" +
+	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\"_\n" +
+	"\x1dPromoteGroupCharactersRequest\x12\x19\n" +
+	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"^\n" +
+	"\x1cDemoteGroupCharactersRequest\x12\x19\n" +
+	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"\x83\x01\n" +
 	"\x13ReadStorageObjectId\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x01 \x01(\tR\n" +
@@ -13149,12 +12980,11 @@ const file_api_proto_rawDesc = "" +
 	"\vupdate_time\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x127\n" +
 	"\x18facebook_instant_game_id\x18\x11 \x01(\tR\x15facebookInstantGameId\x12\x19\n" +
-	"\bapple_id\x18\x12 \x01(\tR\aappleId\"\x99\x02\n" +
-	"\rUserGroupList\x12D\n" +
-	"\vuser_groups\x18\x01 \x03(\v2#.nakama.api.UserGroupList.UserGroupR\n" +
-	"userGroups\x12\x16\n" +
-	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1a\xa9\x01\n" +
-	"\tUserGroup\x12'\n" +
+	"\bapple_id\x18\x12 \x01(\tR\aappleId\"\xb7\x02\n" +
+	"\x12CharacterGroupList\x12X\n" +
+	"\x10character_groups\x18\x01 \x03(\v2-.nakama.api.CharacterGroupList.CharacterGroupR\x0fcharacterGroups\x12\x16\n" +
+	"\x06cursor\x18\x02 \x01(\tR\x06cursor\x1a\xae\x01\n" +
+	"\x0eCharacterGroup\x12'\n" +
 	"\x05group\x18\x01 \x01(\v2\x11.nakama.api.GroupR\x05group\x121\n" +
 	"\x05state\x18\x02 \x01(\v2\x1b.google.protobuf.Int32ValueR\x05state\"@\n" +
 	"\x05State\x12\x0e\n" +
@@ -13606,7 +13436,7 @@ func file_api_proto_rawDescGZIP() []byte {
 }
 
 var file_api_proto_enumTypes = make([]protoimpl.EnumInfo, 12)
-var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 176)
+var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 174)
 var file_api_proto_goTypes = []any{
 	(StoreProvider)(0),                               // 0: nakama.api.StoreProvider
 	(StoreEnvironment)(0),                            // 1: nakama.api.StoreEnvironment
@@ -13618,8 +13448,8 @@ var file_api_proto_goTypes = []any{
 	(MaintenanceScope)(0),                            // 7: nakama.api.MaintenanceScope
 	(MaintenanceStatus)(0),                           // 8: nakama.api.MaintenanceStatus
 	(Friend_State)(0),                                // 9: nakama.api.Friend.State
-	(GroupUserList_GroupUser_State)(0),               // 10: nakama.api.GroupUserList.GroupUser.State
-	(UserGroupList_UserGroup_State)(0),               // 11: nakama.api.UserGroupList.UserGroup.State
+	(GroupCharacterList_GroupCharacter_State)(0),     // 10: nakama.api.GroupCharacterList.GroupCharacter.State
+	(CharacterGroupList_CharacterGroup_State)(0),     // 11: nakama.api.CharacterGroupList.CharacterGroup.State
 	(*Account)(nil),                                  // 12: nakama.api.Account
 	(*AccountRefresh)(nil),                           // 13: nakama.api.AccountRefresh
 	(*AccountApple)(nil),                             // 14: nakama.api.AccountApple
@@ -13632,7 +13462,7 @@ var file_api_proto_goTypes = []any{
 	(*AccountGoogle)(nil),                            // 21: nakama.api.AccountGoogle
 	(*AccountSteam)(nil),                             // 22: nakama.api.AccountSteam
 	(*AddFriendsRequest)(nil),                        // 23: nakama.api.AddFriendsRequest
-	(*AddGroupUsersRequest)(nil),                     // 24: nakama.api.AddGroupUsersRequest
+	(*AddGroupCharactersRequest)(nil),                // 24: nakama.api.AddGroupCharactersRequest
 	(*SessionRefreshRequest)(nil),                    // 25: nakama.api.SessionRefreshRequest
 	(*SessionLogoutRequest)(nil),                     // 26: nakama.api.SessionLogoutRequest
 	(*AuthenticateAppleRequest)(nil),                 // 27: nakama.api.AuthenticateAppleRequest
@@ -13647,7 +13477,7 @@ var file_api_proto_goTypes = []any{
 	(*RequestEmailCodeRequest)(nil),                  // 36: nakama.api.RequestEmailCodeRequest
 	(*AuthenticateEmailOTPRequest)(nil),              // 37: nakama.api.AuthenticateEmailOTPRequest
 	(*VerifyEmailCodeRequest)(nil),                   // 38: nakama.api.VerifyEmailCodeRequest
-	(*BanGroupUsersRequest)(nil),                     // 39: nakama.api.BanGroupUsersRequest
+	(*BanGroupCharactersRequest)(nil),                // 39: nakama.api.BanGroupCharactersRequest
 	(*BlockFriendsRequest)(nil),                      // 40: nakama.api.BlockFriendsRequest
 	(*ChannelMessage)(nil),                           // 41: nakama.api.ChannelMessage
 	(*ChannelMessageList)(nil),                       // 42: nakama.api.ChannelMessageList
@@ -13667,397 +13497,389 @@ var file_api_proto_goTypes = []any{
 	(*GetSubscriptionRequest)(nil),                   // 56: nakama.api.GetSubscriptionRequest
 	(*Group)(nil),                                    // 57: nakama.api.Group
 	(*GroupList)(nil),                                // 58: nakama.api.GroupList
-	(*GroupUserList)(nil),                            // 59: nakama.api.GroupUserList
-	(*ImportFacebookFriendsRequest)(nil),             // 60: nakama.api.ImportFacebookFriendsRequest
-	(*ImportSteamFriendsRequest)(nil),                // 61: nakama.api.ImportSteamFriendsRequest
-	(*JoinGroupRequest)(nil),                         // 62: nakama.api.JoinGroupRequest
-	(*JoinTournamentRequest)(nil),                    // 63: nakama.api.JoinTournamentRequest
-	(*KickGroupUsersRequest)(nil),                    // 64: nakama.api.KickGroupUsersRequest
-	(*Leaderboard)(nil),                              // 65: nakama.api.Leaderboard
-	(*LeaderboardList)(nil),                          // 66: nakama.api.LeaderboardList
-	(*LeaderboardRecord)(nil),                        // 67: nakama.api.LeaderboardRecord
-	(*LeaderboardRecordList)(nil),                    // 68: nakama.api.LeaderboardRecordList
-	(*LeaveGroupRequest)(nil),                        // 69: nakama.api.LeaveGroupRequest
-	(*LinkFacebookRequest)(nil),                      // 70: nakama.api.LinkFacebookRequest
-	(*LinkSteamRequest)(nil),                         // 71: nakama.api.LinkSteamRequest
-	(*ListChannelMessagesRequest)(nil),               // 72: nakama.api.ListChannelMessagesRequest
-	(*ListFriendsRequest)(nil),                       // 73: nakama.api.ListFriendsRequest
-	(*ListFriendsOfFriendsRequest)(nil),              // 74: nakama.api.ListFriendsOfFriendsRequest
-	(*ListGroupsRequest)(nil),                        // 75: nakama.api.ListGroupsRequest
-	(*ListGroupUsersRequest)(nil),                    // 76: nakama.api.ListGroupUsersRequest
-	(*ListLeaderboardRecordsAroundOwnerRequest)(nil), // 77: nakama.api.ListLeaderboardRecordsAroundOwnerRequest
-	(*ListLeaderboardRecordsRequest)(nil),            // 78: nakama.api.ListLeaderboardRecordsRequest
-	(*ListMatchesRequest)(nil),                       // 79: nakama.api.ListMatchesRequest
-	(*ListNotificationsRequest)(nil),                 // 80: nakama.api.ListNotificationsRequest
-	(*ListStorageObjectsRequest)(nil),                // 81: nakama.api.ListStorageObjectsRequest
-	(*ListSubscriptionsRequest)(nil),                 // 82: nakama.api.ListSubscriptionsRequest
-	(*ListTournamentRecordsAroundOwnerRequest)(nil),  // 83: nakama.api.ListTournamentRecordsAroundOwnerRequest
-	(*ListTournamentRecordsRequest)(nil),             // 84: nakama.api.ListTournamentRecordsRequest
-	(*ListTournamentsRequest)(nil),                   // 85: nakama.api.ListTournamentsRequest
-	(*ListUserGroupsRequest)(nil),                    // 86: nakama.api.ListUserGroupsRequest
-	(*Match)(nil),                                    // 87: nakama.api.Match
-	(*MatchList)(nil),                                // 88: nakama.api.MatchList
-	(*MatchmakerCompletionStats)(nil),                // 89: nakama.api.MatchmakerCompletionStats
-	(*MatchmakerStats)(nil),                          // 90: nakama.api.MatchmakerStats
-	(*Notification)(nil),                             // 91: nakama.api.Notification
-	(*NotificationList)(nil),                         // 92: nakama.api.NotificationList
-	(*PromoteGroupUsersRequest)(nil),                 // 93: nakama.api.PromoteGroupUsersRequest
-	(*DemoteGroupUsersRequest)(nil),                  // 94: nakama.api.DemoteGroupUsersRequest
-	(*ReadStorageObjectId)(nil),                      // 95: nakama.api.ReadStorageObjectId
-	(*ReadStorageObjectsRequest)(nil),                // 96: nakama.api.ReadStorageObjectsRequest
-	(*Rpc)(nil),                                      // 97: nakama.api.Rpc
-	(*Session)(nil),                                  // 98: nakama.api.Session
-	(*StorageObject)(nil),                            // 99: nakama.api.StorageObject
-	(*StorageObjectAck)(nil),                         // 100: nakama.api.StorageObjectAck
-	(*StorageObjectAcks)(nil),                        // 101: nakama.api.StorageObjectAcks
-	(*StorageObjects)(nil),                           // 102: nakama.api.StorageObjects
-	(*StorageObjectList)(nil),                        // 103: nakama.api.StorageObjectList
-	(*Tournament)(nil),                               // 104: nakama.api.Tournament
-	(*TournamentList)(nil),                           // 105: nakama.api.TournamentList
-	(*TournamentRecordList)(nil),                     // 106: nakama.api.TournamentRecordList
-	(*UpdateAccountRequest)(nil),                     // 107: nakama.api.UpdateAccountRequest
-	(*UpdateGroupRequest)(nil),                       // 108: nakama.api.UpdateGroupRequest
-	(*User)(nil),                                     // 109: nakama.api.User
-	(*UserGroupList)(nil),                            // 110: nakama.api.UserGroupList
-	(*Users)(nil),                                    // 111: nakama.api.Users
-	(*ValidatePurchaseAppleRequest)(nil),             // 112: nakama.api.ValidatePurchaseAppleRequest
-	(*ValidateSubscriptionAppleRequest)(nil),         // 113: nakama.api.ValidateSubscriptionAppleRequest
-	(*ValidatePurchaseGoogleRequest)(nil),            // 114: nakama.api.ValidatePurchaseGoogleRequest
-	(*ValidateSubscriptionGoogleRequest)(nil),        // 115: nakama.api.ValidateSubscriptionGoogleRequest
-	(*ValidatePurchaseHuaweiRequest)(nil),            // 116: nakama.api.ValidatePurchaseHuaweiRequest
-	(*ValidatePurchaseFacebookInstantRequest)(nil),   // 117: nakama.api.ValidatePurchaseFacebookInstantRequest
-	(*ValidatedPurchase)(nil),                        // 118: nakama.api.ValidatedPurchase
-	(*ValidatePurchaseResponse)(nil),                 // 119: nakama.api.ValidatePurchaseResponse
-	(*ValidateSubscriptionResponse)(nil),             // 120: nakama.api.ValidateSubscriptionResponse
-	(*ValidatedSubscription)(nil),                    // 121: nakama.api.ValidatedSubscription
-	(*PurchaseList)(nil),                             // 122: nakama.api.PurchaseList
-	(*SubscriptionList)(nil),                         // 123: nakama.api.SubscriptionList
-	(*WriteLeaderboardRecordRequest)(nil),            // 124: nakama.api.WriteLeaderboardRecordRequest
-	(*WriteStorageObject)(nil),                       // 125: nakama.api.WriteStorageObject
-	(*WriteStorageObjectsRequest)(nil),               // 126: nakama.api.WriteStorageObjectsRequest
-	(*WriteTournamentRecordRequest)(nil),             // 127: nakama.api.WriteTournamentRecordRequest
-	(*ListPartiesRequest)(nil),                       // 128: nakama.api.ListPartiesRequest
-	(*Party)(nil),                                    // 129: nakama.api.Party
-	(*PartyList)(nil),                                // 130: nakama.api.PartyList
-	(*TransferPolicy)(nil),                           // 131: nakama.api.TransferPolicy
-	(*QueuePolicy)(nil),                              // 132: nakama.api.QueuePolicy
-	(*NamingPolicy)(nil),                             // 133: nakama.api.NamingPolicy
-	(*AccessPolicy)(nil),                             // 134: nakama.api.AccessPolicy
-	(*RealmPolicies)(nil),                            // 135: nakama.api.RealmPolicies
-	(*Realm)(nil),                                    // 136: nakama.api.Realm
-	(*Character)(nil),                                // 137: nakama.api.Character
-	(*ListRealmsRequest)(nil),                        // 138: nakama.api.ListRealmsRequest
-	(*RealmList)(nil),                                // 139: nakama.api.RealmList
-	(*GetRealmRequest)(nil),                          // 140: nakama.api.GetRealmRequest
-	(*ListCharactersRequest)(nil),                    // 141: nakama.api.ListCharactersRequest
-	(*CharacterList)(nil),                            // 142: nakama.api.CharacterList
-	(*CreateCharacterRequest)(nil),                   // 143: nakama.api.CreateCharacterRequest
-	(*SelectCharacterRequest)(nil),                   // 144: nakama.api.SelectCharacterRequest
-	(*SelectCharacterResponse)(nil),                  // 145: nakama.api.SelectCharacterResponse
-	(*CharacterWallet)(nil),                          // 146: nakama.api.CharacterWallet
-	(*GetCharacterWalletRequest)(nil),                // 147: nakama.api.GetCharacterWalletRequest
-	(*UpdateCharacterWalletRequest)(nil),             // 148: nakama.api.UpdateCharacterWalletRequest
-	(*UpdateCharacterWalletResponse)(nil),            // 149: nakama.api.UpdateCharacterWalletResponse
-	(*CharacterWalletLedger)(nil),                    // 150: nakama.api.CharacterWalletLedger
-	(*ListCharacterWalletLedgerRequest)(nil),         // 151: nakama.api.ListCharacterWalletLedgerRequest
-	(*CharacterWalletLedgerList)(nil),                // 152: nakama.api.CharacterWalletLedgerList
-	(*ListPurchasesRequest)(nil),                     // 153: nakama.api.ListPurchasesRequest
-	(*CharacterTransfer)(nil),                        // 154: nakama.api.CharacterTransfer
-	(*TransferCharacterRequest)(nil),                 // 155: nakama.api.TransferCharacterRequest
-	(*TransferCharacterResponse)(nil),                // 156: nakama.api.TransferCharacterResponse
-	(*ListCharacterTransfersRequest)(nil),            // 157: nakama.api.ListCharacterTransfersRequest
-	(*CharacterTransferList)(nil),                    // 158: nakama.api.CharacterTransferList
-	(*TransferEligibilityRequest)(nil),               // 159: nakama.api.TransferEligibilityRequest
-	(*TransferEligibilityResponse)(nil),              // 160: nakama.api.TransferEligibilityResponse
-	(*MaintenanceWindow)(nil),                        // 161: nakama.api.MaintenanceWindow
-	(*RealmGroup)(nil),                               // 162: nakama.api.RealmGroup
-	(*RealmBan)(nil),                                 // 163: nakama.api.RealmBan
-	nil,                                              // 164: nakama.api.AccountRefresh.VarsEntry
-	nil,                                              // 165: nakama.api.AccountApple.VarsEntry
-	nil,                                              // 166: nakama.api.AccountCustom.VarsEntry
-	nil,                                              // 167: nakama.api.AccountDevice.VarsEntry
-	nil,                                              // 168: nakama.api.AccountEmail.VarsEntry
-	nil,                                              // 169: nakama.api.AccountFacebook.VarsEntry
-	nil,                                              // 170: nakama.api.AccountFacebookInstantGame.VarsEntry
-	nil,                                              // 171: nakama.api.AccountGameCenter.VarsEntry
-	nil,                                              // 172: nakama.api.AccountGoogle.VarsEntry
-	nil,                                              // 173: nakama.api.AccountSteam.VarsEntry
-	nil,                                              // 174: nakama.api.SessionRefreshRequest.VarsEntry
-	nil,                                              // 175: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	nil,                                              // 176: nakama.api.Event.PropertiesEntry
-	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 177: nakama.api.FriendsOfFriendsList.FriendOfFriend
-	(*GroupUserList_GroupUser)(nil),                  // 178: nakama.api.GroupUserList.GroupUser
-	(*UserGroupList_UserGroup)(nil),                  // 179: nakama.api.UserGroupList.UserGroup
-	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 180: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 181: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	nil,                            // 182: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	nil,                            // 183: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	nil,                            // 184: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	nil,                            // 185: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	nil,                            // 186: nakama.api.CharacterWalletLedger.ChangesetEntry
-	nil,                            // 187: nakama.api.CharacterWalletLedger.MetadataEntry
-	(*timestamppb.Timestamp)(nil),  // 188: google.protobuf.Timestamp
-	(*wrapperspb.BoolValue)(nil),   // 189: google.protobuf.BoolValue
-	(*wrapperspb.Int32Value)(nil),  // 190: google.protobuf.Int32Value
-	(*wrapperspb.StringValue)(nil), // 191: google.protobuf.StringValue
-	(*wrapperspb.UInt32Value)(nil), // 192: google.protobuf.UInt32Value
-	(*wrapperspb.Int64Value)(nil),  // 193: google.protobuf.Int64Value
+	(*GroupCharacterList)(nil),                       // 59: nakama.api.GroupCharacterList
+	(*JoinGroupRequest)(nil),                         // 60: nakama.api.JoinGroupRequest
+	(*JoinTournamentRequest)(nil),                    // 61: nakama.api.JoinTournamentRequest
+	(*KickGroupCharactersRequest)(nil),               // 62: nakama.api.KickGroupCharactersRequest
+	(*Leaderboard)(nil),                              // 63: nakama.api.Leaderboard
+	(*LeaderboardList)(nil),                          // 64: nakama.api.LeaderboardList
+	(*LeaderboardRecord)(nil),                        // 65: nakama.api.LeaderboardRecord
+	(*LeaderboardRecordList)(nil),                    // 66: nakama.api.LeaderboardRecordList
+	(*LeaveGroupRequest)(nil),                        // 67: nakama.api.LeaveGroupRequest
+	(*LinkFacebookRequest)(nil),                      // 68: nakama.api.LinkFacebookRequest
+	(*LinkSteamRequest)(nil),                         // 69: nakama.api.LinkSteamRequest
+	(*ListChannelMessagesRequest)(nil),               // 70: nakama.api.ListChannelMessagesRequest
+	(*ListFriendsRequest)(nil),                       // 71: nakama.api.ListFriendsRequest
+	(*ListFriendsOfFriendsRequest)(nil),              // 72: nakama.api.ListFriendsOfFriendsRequest
+	(*ListGroupsRequest)(nil),                        // 73: nakama.api.ListGroupsRequest
+	(*ListGroupUsersRequest)(nil),                    // 74: nakama.api.ListGroupUsersRequest
+	(*ListLeaderboardRecordsAroundOwnerRequest)(nil), // 75: nakama.api.ListLeaderboardRecordsAroundOwnerRequest
+	(*ListLeaderboardRecordsRequest)(nil),            // 76: nakama.api.ListLeaderboardRecordsRequest
+	(*ListMatchesRequest)(nil),                       // 77: nakama.api.ListMatchesRequest
+	(*ListNotificationsRequest)(nil),                 // 78: nakama.api.ListNotificationsRequest
+	(*ListStorageObjectsRequest)(nil),                // 79: nakama.api.ListStorageObjectsRequest
+	(*ListSubscriptionsRequest)(nil),                 // 80: nakama.api.ListSubscriptionsRequest
+	(*ListTournamentRecordsAroundOwnerRequest)(nil),  // 81: nakama.api.ListTournamentRecordsAroundOwnerRequest
+	(*ListTournamentRecordsRequest)(nil),             // 82: nakama.api.ListTournamentRecordsRequest
+	(*ListTournamentsRequest)(nil),                   // 83: nakama.api.ListTournamentsRequest
+	(*ListCharacterGroupsRequest)(nil),               // 84: nakama.api.ListCharacterGroupsRequest
+	(*Match)(nil),                                    // 85: nakama.api.Match
+	(*MatchList)(nil),                                // 86: nakama.api.MatchList
+	(*MatchmakerCompletionStats)(nil),                // 87: nakama.api.MatchmakerCompletionStats
+	(*MatchmakerStats)(nil),                          // 88: nakama.api.MatchmakerStats
+	(*Notification)(nil),                             // 89: nakama.api.Notification
+	(*NotificationList)(nil),                         // 90: nakama.api.NotificationList
+	(*PromoteGroupCharactersRequest)(nil),            // 91: nakama.api.PromoteGroupCharactersRequest
+	(*DemoteGroupCharactersRequest)(nil),             // 92: nakama.api.DemoteGroupCharactersRequest
+	(*ReadStorageObjectId)(nil),                      // 93: nakama.api.ReadStorageObjectId
+	(*ReadStorageObjectsRequest)(nil),                // 94: nakama.api.ReadStorageObjectsRequest
+	(*Rpc)(nil),                                      // 95: nakama.api.Rpc
+	(*Session)(nil),                                  // 96: nakama.api.Session
+	(*StorageObject)(nil),                            // 97: nakama.api.StorageObject
+	(*StorageObjectAck)(nil),                         // 98: nakama.api.StorageObjectAck
+	(*StorageObjectAcks)(nil),                        // 99: nakama.api.StorageObjectAcks
+	(*StorageObjects)(nil),                           // 100: nakama.api.StorageObjects
+	(*StorageObjectList)(nil),                        // 101: nakama.api.StorageObjectList
+	(*Tournament)(nil),                               // 102: nakama.api.Tournament
+	(*TournamentList)(nil),                           // 103: nakama.api.TournamentList
+	(*TournamentRecordList)(nil),                     // 104: nakama.api.TournamentRecordList
+	(*UpdateAccountRequest)(nil),                     // 105: nakama.api.UpdateAccountRequest
+	(*UpdateGroupRequest)(nil),                       // 106: nakama.api.UpdateGroupRequest
+	(*User)(nil),                                     // 107: nakama.api.User
+	(*CharacterGroupList)(nil),                       // 108: nakama.api.CharacterGroupList
+	(*Users)(nil),                                    // 109: nakama.api.Users
+	(*ValidatePurchaseAppleRequest)(nil),             // 110: nakama.api.ValidatePurchaseAppleRequest
+	(*ValidateSubscriptionAppleRequest)(nil),         // 111: nakama.api.ValidateSubscriptionAppleRequest
+	(*ValidatePurchaseGoogleRequest)(nil),            // 112: nakama.api.ValidatePurchaseGoogleRequest
+	(*ValidateSubscriptionGoogleRequest)(nil),        // 113: nakama.api.ValidateSubscriptionGoogleRequest
+	(*ValidatePurchaseHuaweiRequest)(nil),            // 114: nakama.api.ValidatePurchaseHuaweiRequest
+	(*ValidatePurchaseFacebookInstantRequest)(nil),   // 115: nakama.api.ValidatePurchaseFacebookInstantRequest
+	(*ValidatedPurchase)(nil),                        // 116: nakama.api.ValidatedPurchase
+	(*ValidatePurchaseResponse)(nil),                 // 117: nakama.api.ValidatePurchaseResponse
+	(*ValidateSubscriptionResponse)(nil),             // 118: nakama.api.ValidateSubscriptionResponse
+	(*ValidatedSubscription)(nil),                    // 119: nakama.api.ValidatedSubscription
+	(*PurchaseList)(nil),                             // 120: nakama.api.PurchaseList
+	(*SubscriptionList)(nil),                         // 121: nakama.api.SubscriptionList
+	(*WriteLeaderboardRecordRequest)(nil),            // 122: nakama.api.WriteLeaderboardRecordRequest
+	(*WriteStorageObject)(nil),                       // 123: nakama.api.WriteStorageObject
+	(*WriteStorageObjectsRequest)(nil),               // 124: nakama.api.WriteStorageObjectsRequest
+	(*WriteTournamentRecordRequest)(nil),             // 125: nakama.api.WriteTournamentRecordRequest
+	(*ListPartiesRequest)(nil),                       // 126: nakama.api.ListPartiesRequest
+	(*Party)(nil),                                    // 127: nakama.api.Party
+	(*PartyList)(nil),                                // 128: nakama.api.PartyList
+	(*TransferPolicy)(nil),                           // 129: nakama.api.TransferPolicy
+	(*QueuePolicy)(nil),                              // 130: nakama.api.QueuePolicy
+	(*NamingPolicy)(nil),                             // 131: nakama.api.NamingPolicy
+	(*AccessPolicy)(nil),                             // 132: nakama.api.AccessPolicy
+	(*RealmPolicies)(nil),                            // 133: nakama.api.RealmPolicies
+	(*Realm)(nil),                                    // 134: nakama.api.Realm
+	(*Character)(nil),                                // 135: nakama.api.Character
+	(*ListRealmsRequest)(nil),                        // 136: nakama.api.ListRealmsRequest
+	(*RealmList)(nil),                                // 137: nakama.api.RealmList
+	(*GetRealmRequest)(nil),                          // 138: nakama.api.GetRealmRequest
+	(*ListCharactersRequest)(nil),                    // 139: nakama.api.ListCharactersRequest
+	(*CharacterList)(nil),                            // 140: nakama.api.CharacterList
+	(*CreateCharacterRequest)(nil),                   // 141: nakama.api.CreateCharacterRequest
+	(*SelectCharacterRequest)(nil),                   // 142: nakama.api.SelectCharacterRequest
+	(*SelectCharacterResponse)(nil),                  // 143: nakama.api.SelectCharacterResponse
+	(*CharacterWallet)(nil),                          // 144: nakama.api.CharacterWallet
+	(*GetCharacterWalletRequest)(nil),                // 145: nakama.api.GetCharacterWalletRequest
+	(*UpdateCharacterWalletRequest)(nil),             // 146: nakama.api.UpdateCharacterWalletRequest
+	(*UpdateCharacterWalletResponse)(nil),            // 147: nakama.api.UpdateCharacterWalletResponse
+	(*CharacterWalletLedger)(nil),                    // 148: nakama.api.CharacterWalletLedger
+	(*ListCharacterWalletLedgerRequest)(nil),         // 149: nakama.api.ListCharacterWalletLedgerRequest
+	(*CharacterWalletLedgerList)(nil),                // 150: nakama.api.CharacterWalletLedgerList
+	(*ListPurchasesRequest)(nil),                     // 151: nakama.api.ListPurchasesRequest
+	(*CharacterTransfer)(nil),                        // 152: nakama.api.CharacterTransfer
+	(*TransferCharacterRequest)(nil),                 // 153: nakama.api.TransferCharacterRequest
+	(*TransferCharacterResponse)(nil),                // 154: nakama.api.TransferCharacterResponse
+	(*ListCharacterTransfersRequest)(nil),            // 155: nakama.api.ListCharacterTransfersRequest
+	(*CharacterTransferList)(nil),                    // 156: nakama.api.CharacterTransferList
+	(*TransferEligibilityRequest)(nil),               // 157: nakama.api.TransferEligibilityRequest
+	(*TransferEligibilityResponse)(nil),              // 158: nakama.api.TransferEligibilityResponse
+	(*MaintenanceWindow)(nil),                        // 159: nakama.api.MaintenanceWindow
+	(*RealmGroup)(nil),                               // 160: nakama.api.RealmGroup
+	(*RealmBan)(nil),                                 // 161: nakama.api.RealmBan
+	nil,                                              // 162: nakama.api.AccountRefresh.VarsEntry
+	nil,                                              // 163: nakama.api.AccountApple.VarsEntry
+	nil,                                              // 164: nakama.api.AccountCustom.VarsEntry
+	nil,                                              // 165: nakama.api.AccountDevice.VarsEntry
+	nil,                                              // 166: nakama.api.AccountEmail.VarsEntry
+	nil,                                              // 167: nakama.api.AccountFacebook.VarsEntry
+	nil,                                              // 168: nakama.api.AccountFacebookInstantGame.VarsEntry
+	nil,                                              // 169: nakama.api.AccountGameCenter.VarsEntry
+	nil,                                              // 170: nakama.api.AccountGoogle.VarsEntry
+	nil,                                              // 171: nakama.api.AccountSteam.VarsEntry
+	nil,                                              // 172: nakama.api.SessionRefreshRequest.VarsEntry
+	nil,                                              // 173: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	nil,                                              // 174: nakama.api.Event.PropertiesEntry
+	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 175: nakama.api.FriendsOfFriendsList.FriendOfFriend
+	(*GroupCharacterList_GroupCharacter)(nil),        // 176: nakama.api.GroupCharacterList.GroupCharacter
+	(*CharacterGroupList_CharacterGroup)(nil),        // 177: nakama.api.CharacterGroupList.CharacterGroup
+	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 178: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 179: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	nil,                            // 180: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	nil,                            // 181: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	nil,                            // 182: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	nil,                            // 183: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	nil,                            // 184: nakama.api.CharacterWalletLedger.ChangesetEntry
+	nil,                            // 185: nakama.api.CharacterWalletLedger.MetadataEntry
+	(*timestamppb.Timestamp)(nil),  // 186: google.protobuf.Timestamp
+	(*wrapperspb.BoolValue)(nil),   // 187: google.protobuf.BoolValue
+	(*wrapperspb.Int32Value)(nil),  // 188: google.protobuf.Int32Value
+	(*wrapperspb.StringValue)(nil), // 189: google.protobuf.StringValue
+	(*wrapperspb.UInt32Value)(nil), // 190: google.protobuf.UInt32Value
+	(*wrapperspb.Int64Value)(nil),  // 191: google.protobuf.Int64Value
 }
 var file_api_proto_depIdxs = []int32{
-	109, // 0: nakama.api.Account.user:type_name -> nakama.api.User
+	107, // 0: nakama.api.Account.user:type_name -> nakama.api.User
 	16,  // 1: nakama.api.Account.devices:type_name -> nakama.api.AccountDevice
-	188, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
-	188, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
-	164, // 4: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
-	165, // 5: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
-	166, // 6: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
-	167, // 7: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
-	168, // 8: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
-	169, // 9: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
-	170, // 10: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
-	171, // 11: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
-	172, // 12: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
-	173, // 13: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
-	174, // 14: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
+	186, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
+	186, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
+	162, // 4: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
+	163, // 5: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
+	164, // 6: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
+	165, // 7: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
+	166, // 8: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
+	167, // 9: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
+	168, // 10: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
+	169, // 11: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
+	170, // 12: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
+	171, // 13: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
+	172, // 14: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
 	14,  // 15: nakama.api.AuthenticateAppleRequest.account:type_name -> nakama.api.AccountApple
-	189, // 16: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 16: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
 	15,  // 17: nakama.api.AuthenticateCustomRequest.account:type_name -> nakama.api.AccountCustom
-	189, // 18: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 18: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
 	16,  // 19: nakama.api.AuthenticateDeviceRequest.account:type_name -> nakama.api.AccountDevice
-	189, // 20: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 20: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
 	17,  // 21: nakama.api.AuthenticateEmailRequest.account:type_name -> nakama.api.AccountEmail
-	189, // 22: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 22: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
 	18,  // 23: nakama.api.AuthenticateFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	189, // 24: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
-	189, // 25: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	187, // 24: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 25: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
 	19,  // 26: nakama.api.AuthenticateFacebookInstantGameRequest.account:type_name -> nakama.api.AccountFacebookInstantGame
-	189, // 27: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 27: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
 	20,  // 28: nakama.api.AuthenticateGameCenterRequest.account:type_name -> nakama.api.AccountGameCenter
-	189, // 29: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 29: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
 	21,  // 30: nakama.api.AuthenticateGoogleRequest.account:type_name -> nakama.api.AccountGoogle
-	189, // 31: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 31: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
 	22,  // 32: nakama.api.AuthenticateSteamRequest.account:type_name -> nakama.api.AccountSteam
-	189, // 33: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
-	189, // 34: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	175, // 35: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	190, // 36: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
-	188, // 37: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
-	188, // 38: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
-	189, // 39: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
+	187, // 33: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
+	187, // 34: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	173, // 35: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	188, // 36: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
+	186, // 37: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
+	186, // 38: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
+	187, // 39: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
 	41,  // 40: nakama.api.ChannelMessageList.messages:type_name -> nakama.api.ChannelMessage
 	49,  // 41: nakama.api.DeleteStorageObjectsRequest.object_ids:type_name -> nakama.api.DeleteStorageObjectId
-	176, // 42: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
-	188, // 43: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
-	109, // 44: nakama.api.Friend.user:type_name -> nakama.api.User
-	190, // 45: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
-	188, // 46: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
-	137, // 47: nakama.api.Friend.character:type_name -> nakama.api.Character
-	52,  // 48: nakama.api.FriendList.friends:type_name -> nakama.api.Friend
-	177, // 49: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
-	189, // 50: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
-	188, // 51: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
-	188, // 52: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
-	57,  // 53: nakama.api.GroupList.groups:type_name -> nakama.api.Group
-	178, // 54: nakama.api.GroupUserList.group_users:type_name -> nakama.api.GroupUserList.GroupUser
-	18,  // 55: nakama.api.ImportFacebookFriendsRequest.account:type_name -> nakama.api.AccountFacebook
-	189, // 56: nakama.api.ImportFacebookFriendsRequest.reset:type_name -> google.protobuf.BoolValue
-	22,  // 57: nakama.api.ImportSteamFriendsRequest.account:type_name -> nakama.api.AccountSteam
-	189, // 58: nakama.api.ImportSteamFriendsRequest.reset:type_name -> google.protobuf.BoolValue
-	2,   // 59: nakama.api.Leaderboard.operator:type_name -> nakama.api.Operator
-	188, // 60: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
-	65,  // 61: nakama.api.LeaderboardList.leaderboards:type_name -> nakama.api.Leaderboard
-	191, // 62: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
-	188, // 63: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
-	188, // 64: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
-	188, // 65: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
-	67,  // 66: nakama.api.LeaderboardRecordList.records:type_name -> nakama.api.LeaderboardRecord
-	67,  // 67: nakama.api.LeaderboardRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
-	18,  // 68: nakama.api.LinkFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	189, // 69: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
-	22,  // 70: nakama.api.LinkSteamRequest.account:type_name -> nakama.api.AccountSteam
-	189, // 71: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	190, // 72: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
-	189, // 73: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
-	190, // 74: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 75: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
-	189, // 76: nakama.api.ListFriendsRequest.include_global:type_name -> google.protobuf.BoolValue
-	190, // 77: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 78: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 79: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
-	189, // 80: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
-	192, // 81: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	189, // 82: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
-	190, // 83: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 84: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
-	192, // 85: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	193, // 86: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	190, // 87: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	193, // 88: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	190, // 89: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
-	189, // 90: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
-	191, // 91: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
-	190, // 92: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
-	190, // 93: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
-	191, // 94: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
-	190, // 95: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 96: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 97: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
-	189, // 98: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	192, // 99: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	193, // 100: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	190, // 101: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	193, // 102: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	192, // 103: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
-	192, // 104: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
-	192, // 105: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
-	192, // 106: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
-	190, // 107: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
-	192, // 108: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	189, // 109: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
-	190, // 110: nakama.api.ListUserGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	190, // 111: nakama.api.ListUserGroupsRequest.state:type_name -> google.protobuf.Int32Value
-	191, // 112: nakama.api.Match.label:type_name -> google.protobuf.StringValue
-	87,  // 113: nakama.api.MatchList.matches:type_name -> nakama.api.Match
-	188, // 114: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
-	188, // 115: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
-	188, // 116: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
-	89,  // 117: nakama.api.MatchmakerStats.completions:type_name -> nakama.api.MatchmakerCompletionStats
-	188, // 118: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
-	91,  // 119: nakama.api.NotificationList.notifications:type_name -> nakama.api.Notification
-	95,  // 120: nakama.api.ReadStorageObjectsRequest.object_ids:type_name -> nakama.api.ReadStorageObjectId
-	188, // 121: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
-	188, // 122: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
-	188, // 123: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
-	188, // 124: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
-	100, // 125: nakama.api.StorageObjectAcks.acks:type_name -> nakama.api.StorageObjectAck
-	99,  // 126: nakama.api.StorageObjects.objects:type_name -> nakama.api.StorageObject
-	99,  // 127: nakama.api.StorageObjectList.objects:type_name -> nakama.api.StorageObject
-	188, // 128: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
-	188, // 129: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
-	188, // 130: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
-	2,   // 131: nakama.api.Tournament.operator:type_name -> nakama.api.Operator
-	104, // 132: nakama.api.TournamentList.tournaments:type_name -> nakama.api.Tournament
-	67,  // 133: nakama.api.TournamentRecordList.records:type_name -> nakama.api.LeaderboardRecord
-	67,  // 134: nakama.api.TournamentRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
-	191, // 135: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
-	191, // 136: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
-	191, // 137: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
-	191, // 138: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
-	191, // 139: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
-	191, // 140: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
-	191, // 141: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
-	191, // 142: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
-	191, // 143: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
-	191, // 144: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
-	189, // 145: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
-	188, // 146: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
-	188, // 147: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
-	179, // 148: nakama.api.UserGroupList.user_groups:type_name -> nakama.api.UserGroupList.UserGroup
-	109, // 149: nakama.api.Users.users:type_name -> nakama.api.User
-	189, // 150: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	189, // 151: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	189, // 152: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	189, // 153: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	189, // 154: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
-	189, // 155: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
-	0,   // 156: nakama.api.ValidatedPurchase.store:type_name -> nakama.api.StoreProvider
-	188, // 157: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
-	188, // 158: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
-	188, // 159: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
-	188, // 160: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
-	1,   // 161: nakama.api.ValidatedPurchase.environment:type_name -> nakama.api.StoreEnvironment
-	118, // 162: nakama.api.ValidatePurchaseResponse.validated_purchases:type_name -> nakama.api.ValidatedPurchase
-	121, // 163: nakama.api.ValidateSubscriptionResponse.validated_subscription:type_name -> nakama.api.ValidatedSubscription
-	0,   // 164: nakama.api.ValidatedSubscription.store:type_name -> nakama.api.StoreProvider
-	188, // 165: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
-	188, // 166: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
-	188, // 167: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
-	1,   // 168: nakama.api.ValidatedSubscription.environment:type_name -> nakama.api.StoreEnvironment
-	188, // 169: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
-	188, // 170: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
-	118, // 171: nakama.api.PurchaseList.validated_purchases:type_name -> nakama.api.ValidatedPurchase
-	121, // 172: nakama.api.SubscriptionList.validated_subscriptions:type_name -> nakama.api.ValidatedSubscription
-	180, // 173: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	190, // 174: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
-	190, // 175: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
-	125, // 176: nakama.api.WriteStorageObjectsRequest.objects:type_name -> nakama.api.WriteStorageObject
-	181, // 177: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	190, // 178: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
-	189, // 179: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
-	191, // 180: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
-	191, // 181: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
-	129, // 182: nakama.api.PartyList.parties:type_name -> nakama.api.Party
-	189, // 183: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
-	131, // 184: nakama.api.RealmPolicies.transfer:type_name -> nakama.api.TransferPolicy
-	132, // 185: nakama.api.RealmPolicies.queue:type_name -> nakama.api.QueuePolicy
-	133, // 186: nakama.api.RealmPolicies.naming:type_name -> nakama.api.NamingPolicy
-	134, // 187: nakama.api.RealmPolicies.access:type_name -> nakama.api.AccessPolicy
-	3,   // 188: nakama.api.Realm.status:type_name -> nakama.api.RealmStatus
-	188, // 189: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
-	188, // 190: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
-	135, // 191: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
-	137, // 192: nakama.api.Realm.my_character:type_name -> nakama.api.Character
-	4,   // 193: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
-	188, // 194: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
-	188, // 195: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
-	188, // 196: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
-	136, // 197: nakama.api.Character.realm:type_name -> nakama.api.Realm
-	190, // 198: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
-	136, // 199: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
-	137, // 200: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
-	137, // 201: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
-	188, // 202: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
-	188, // 203: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
-	182, // 204: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	183, // 205: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	146, // 206: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
-	184, // 207: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	185, // 208: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	186, // 209: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
-	187, // 210: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
-	188, // 211: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
-	188, // 212: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
-	190, // 213: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
-	150, // 214: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
-	190, // 215: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
-	189, // 216: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	5,   // 217: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
-	6,   // 218: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
-	188, // 219: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
-	188, // 220: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
-	188, // 221: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
-	154, // 222: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
-	137, // 223: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
-	190, // 224: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
-	154, // 225: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
-	188, // 226: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
-	136, // 227: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
-	136, // 228: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
-	7,   // 229: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
-	188, // 230: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
-	188, // 231: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
-	188, // 232: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
-	188, // 233: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
-	8,   // 234: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
-	188, // 235: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
-	188, // 236: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
-	188, // 237: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
-	135, // 238: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
-	188, // 239: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
-	188, // 240: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
-	188, // 241: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
-	109, // 242: nakama.api.FriendsOfFriendsList.FriendOfFriend.user:type_name -> nakama.api.User
-	109, // 243: nakama.api.GroupUserList.GroupUser.user:type_name -> nakama.api.User
-	190, // 244: nakama.api.GroupUserList.GroupUser.state:type_name -> google.protobuf.Int32Value
-	57,  // 245: nakama.api.UserGroupList.UserGroup.group:type_name -> nakama.api.Group
-	190, // 246: nakama.api.UserGroupList.UserGroup.state:type_name -> google.protobuf.Int32Value
-	2,   // 247: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
-	2,   // 248: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
-	249, // [249:249] is the sub-list for method output_type
-	249, // [249:249] is the sub-list for method input_type
-	249, // [249:249] is the sub-list for extension type_name
-	249, // [249:249] is the sub-list for extension extendee
-	0,   // [0:249] is the sub-list for field type_name
+	174, // 42: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
+	186, // 43: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
+	135, // 44: nakama.api.Friend.character:type_name -> nakama.api.Character
+	188, // 45: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
+	186, // 46: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
+	52,  // 47: nakama.api.FriendList.friends:type_name -> nakama.api.Friend
+	175, // 48: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
+	187, // 49: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
+	186, // 50: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
+	186, // 51: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
+	57,  // 52: nakama.api.GroupList.groups:type_name -> nakama.api.Group
+	176, // 53: nakama.api.GroupCharacterList.group_characters:type_name -> nakama.api.GroupCharacterList.GroupCharacter
+	2,   // 54: nakama.api.Leaderboard.operator:type_name -> nakama.api.Operator
+	186, // 55: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
+	63,  // 56: nakama.api.LeaderboardList.leaderboards:type_name -> nakama.api.Leaderboard
+	189, // 57: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
+	186, // 58: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
+	186, // 59: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
+	186, // 60: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
+	65,  // 61: nakama.api.LeaderboardRecordList.records:type_name -> nakama.api.LeaderboardRecord
+	65,  // 62: nakama.api.LeaderboardRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
+	18,  // 63: nakama.api.LinkFacebookRequest.account:type_name -> nakama.api.AccountFacebook
+	187, // 64: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	22,  // 65: nakama.api.LinkSteamRequest.account:type_name -> nakama.api.AccountSteam
+	187, // 66: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	188, // 67: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
+	187, // 68: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
+	188, // 69: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 70: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
+	188, // 71: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 72: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 73: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
+	187, // 74: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
+	190, // 75: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	187, // 76: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
+	188, // 77: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 78: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
+	190, // 79: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	191, // 80: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	188, // 81: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	191, // 82: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	188, // 83: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
+	187, // 84: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
+	189, // 85: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
+	188, // 86: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
+	188, // 87: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
+	189, // 88: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
+	188, // 89: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 90: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 91: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
+	187, // 92: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	190, // 93: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	191, // 94: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	188, // 95: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	191, // 96: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	190, // 97: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
+	190, // 98: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
+	190, // 99: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
+	190, // 100: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
+	188, // 101: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
+	190, // 102: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	187, // 103: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
+	188, // 104: nakama.api.ListCharacterGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	188, // 105: nakama.api.ListCharacterGroupsRequest.state:type_name -> google.protobuf.Int32Value
+	189, // 106: nakama.api.Match.label:type_name -> google.protobuf.StringValue
+	85,  // 107: nakama.api.MatchList.matches:type_name -> nakama.api.Match
+	186, // 108: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
+	186, // 109: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
+	186, // 110: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
+	87,  // 111: nakama.api.MatchmakerStats.completions:type_name -> nakama.api.MatchmakerCompletionStats
+	186, // 112: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
+	89,  // 113: nakama.api.NotificationList.notifications:type_name -> nakama.api.Notification
+	93,  // 114: nakama.api.ReadStorageObjectsRequest.object_ids:type_name -> nakama.api.ReadStorageObjectId
+	186, // 115: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
+	186, // 116: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
+	186, // 117: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
+	186, // 118: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
+	98,  // 119: nakama.api.StorageObjectAcks.acks:type_name -> nakama.api.StorageObjectAck
+	97,  // 120: nakama.api.StorageObjects.objects:type_name -> nakama.api.StorageObject
+	97,  // 121: nakama.api.StorageObjectList.objects:type_name -> nakama.api.StorageObject
+	186, // 122: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
+	186, // 123: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
+	186, // 124: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
+	2,   // 125: nakama.api.Tournament.operator:type_name -> nakama.api.Operator
+	102, // 126: nakama.api.TournamentList.tournaments:type_name -> nakama.api.Tournament
+	65,  // 127: nakama.api.TournamentRecordList.records:type_name -> nakama.api.LeaderboardRecord
+	65,  // 128: nakama.api.TournamentRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
+	189, // 129: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
+	189, // 130: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
+	189, // 131: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
+	189, // 132: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
+	189, // 133: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
+	189, // 134: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
+	189, // 135: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
+	189, // 136: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
+	189, // 137: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
+	189, // 138: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
+	187, // 139: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
+	186, // 140: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
+	186, // 141: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
+	177, // 142: nakama.api.CharacterGroupList.character_groups:type_name -> nakama.api.CharacterGroupList.CharacterGroup
+	107, // 143: nakama.api.Users.users:type_name -> nakama.api.User
+	187, // 144: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	187, // 145: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	187, // 146: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	187, // 147: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	187, // 148: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
+	187, // 149: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
+	0,   // 150: nakama.api.ValidatedPurchase.store:type_name -> nakama.api.StoreProvider
+	186, // 151: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
+	186, // 152: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
+	186, // 153: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
+	186, // 154: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
+	1,   // 155: nakama.api.ValidatedPurchase.environment:type_name -> nakama.api.StoreEnvironment
+	116, // 156: nakama.api.ValidatePurchaseResponse.validated_purchases:type_name -> nakama.api.ValidatedPurchase
+	119, // 157: nakama.api.ValidateSubscriptionResponse.validated_subscription:type_name -> nakama.api.ValidatedSubscription
+	0,   // 158: nakama.api.ValidatedSubscription.store:type_name -> nakama.api.StoreProvider
+	186, // 159: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
+	186, // 160: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
+	186, // 161: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
+	1,   // 162: nakama.api.ValidatedSubscription.environment:type_name -> nakama.api.StoreEnvironment
+	186, // 163: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
+	186, // 164: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
+	116, // 165: nakama.api.PurchaseList.validated_purchases:type_name -> nakama.api.ValidatedPurchase
+	119, // 166: nakama.api.SubscriptionList.validated_subscriptions:type_name -> nakama.api.ValidatedSubscription
+	178, // 167: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	188, // 168: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
+	188, // 169: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
+	123, // 170: nakama.api.WriteStorageObjectsRequest.objects:type_name -> nakama.api.WriteStorageObject
+	179, // 171: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	188, // 172: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
+	187, // 173: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
+	189, // 174: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
+	189, // 175: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
+	127, // 176: nakama.api.PartyList.parties:type_name -> nakama.api.Party
+	187, // 177: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
+	129, // 178: nakama.api.RealmPolicies.transfer:type_name -> nakama.api.TransferPolicy
+	130, // 179: nakama.api.RealmPolicies.queue:type_name -> nakama.api.QueuePolicy
+	131, // 180: nakama.api.RealmPolicies.naming:type_name -> nakama.api.NamingPolicy
+	132, // 181: nakama.api.RealmPolicies.access:type_name -> nakama.api.AccessPolicy
+	3,   // 182: nakama.api.Realm.status:type_name -> nakama.api.RealmStatus
+	186, // 183: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
+	186, // 184: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
+	133, // 185: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
+	135, // 186: nakama.api.Realm.my_character:type_name -> nakama.api.Character
+	4,   // 187: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
+	186, // 188: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
+	186, // 189: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
+	186, // 190: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
+	134, // 191: nakama.api.Character.realm:type_name -> nakama.api.Realm
+	188, // 192: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
+	134, // 193: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
+	135, // 194: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
+	135, // 195: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
+	186, // 196: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
+	186, // 197: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
+	180, // 198: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	181, // 199: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	144, // 200: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
+	182, // 201: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	183, // 202: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	184, // 203: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
+	185, // 204: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
+	186, // 205: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
+	186, // 206: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
+	188, // 207: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
+	148, // 208: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
+	188, // 209: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
+	187, // 210: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	5,   // 211: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
+	6,   // 212: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
+	186, // 213: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
+	186, // 214: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
+	186, // 215: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
+	152, // 216: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
+	135, // 217: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
+	188, // 218: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
+	152, // 219: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
+	186, // 220: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
+	134, // 221: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
+	134, // 222: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
+	7,   // 223: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
+	186, // 224: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
+	186, // 225: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
+	186, // 226: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
+	186, // 227: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
+	8,   // 228: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
+	186, // 229: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
+	186, // 230: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
+	186, // 231: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
+	133, // 232: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
+	186, // 233: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
+	186, // 234: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
+	186, // 235: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
+	135, // 236: nakama.api.FriendsOfFriendsList.FriendOfFriend.character:type_name -> nakama.api.Character
+	135, // 237: nakama.api.GroupCharacterList.GroupCharacter.character:type_name -> nakama.api.Character
+	188, // 238: nakama.api.GroupCharacterList.GroupCharacter.state:type_name -> google.protobuf.Int32Value
+	57,  // 239: nakama.api.CharacterGroupList.CharacterGroup.group:type_name -> nakama.api.Group
+	188, // 240: nakama.api.CharacterGroupList.CharacterGroup.state:type_name -> google.protobuf.Int32Value
+	2,   // 241: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
+	2,   // 242: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
+	243, // [243:243] is the sub-list for method output_type
+	243, // [243:243] is the sub-list for method input_type
+	243, // [243:243] is the sub-list for extension type_name
+	243, // [243:243] is the sub-list for extension extendee
+	0,   // [0:243] is the sub-list for field type_name
 }
 
 func init() { file_api_proto_init() }
@@ -14071,7 +13893,7 @@ func file_api_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_rawDesc), len(file_api_proto_rawDesc)),
 			NumEnums:      12,
-			NumMessages:   176,
+			NumMessages:   174,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -143,9 +143,9 @@ message Channel {
   // The ID of the channel.
   string id = 1;
   // The users currently in the channel.
-  repeated UserPresence presences = 2;
+  repeated Presence presences = 2;
   // A reference to the current user's presence in the channel.
-  UserPresence self = 3;
+  Presence self = 3;
   // The name of the chat room, or an empty string if this message was not sent through a chat room.
   string room_name = 4;
   // The ID of the group, or an empty string if this message was not sent through a group channel.
@@ -243,9 +243,9 @@ message ChannelPresenceEvent {
   // The channel identifier this event is for.
   string channel_id = 1;
   // Presences joining the channel as part of this event, if any.
-  repeated UserPresence joins = 2;
+  repeated Presence joins = 2;
   // Presences leaving the channel as part of this event, if any.
-  repeated UserPresence leaves = 3;
+  repeated Presence leaves = 3;
   // The name of the chat room, or an empty string if this message was not sent through a chat room.
   string room_name = 4;
   // The ID of the group, or an empty string if this message was not sent through a group channel.
@@ -297,9 +297,9 @@ message Match {
   // The number of users currently in the match.
   int32 size = 4;
   // The users currently in the match.
-  repeated UserPresence presences = 5;
+  repeated Presence presences = 5;
   // A reference to the current user's presence in the match.
-  UserPresence self = 6;
+  Presence self = 6;
 }
 
 // Create a new realtime match.
@@ -313,7 +313,7 @@ message MatchData {
   // The match unique ID.
   string match_id = 1;
   // A reference to the user presence that sent this data, if any.
-  UserPresence presence = 2;
+  Presence presence = 2;
   // Op code value.
   int64 op_code = 3;
   // Data payload, if any.
@@ -331,7 +331,7 @@ message MatchDataSend {
   // Data payload, if any.
   bytes data = 3;
   // List of presences in the match to deliver to, if filtering is required. Otherwise deliver to everyone in the match.
-  repeated UserPresence presences = 4;
+  repeated Presence presences = 4;
   // True if the data should be sent reliably, false otherwise.
   bool reliable = 5;
 }
@@ -359,9 +359,9 @@ message MatchPresenceEvent {
   // The match unique ID.
   string match_id = 1;
   // User presences that have just joined the match.
-  repeated UserPresence joins = 2;
+  repeated Presence joins = 2;
   // User presences that have just left the match.
-  repeated UserPresence leaves = 3;
+  repeated Presence leaves = 3;
 }
 
 // Start a new matchmaking process.
@@ -388,7 +388,7 @@ message MatchmakerAdd {
 message MatchmakerMatched {
   message MatchmakerUser {
     // User info.
-    UserPresence presence = 1;
+    Presence presence = 1;
     // Party identifier, if this user was matched as a party member.
     string party_id = 2;
     // String properties.
@@ -445,11 +445,11 @@ message Party {
   // Maximum number of party members.
   int32 max_size = 4;
   // Self.
-  UserPresence self = 5;
+  Presence self = 5;
   // Leader.
-  UserPresence leader = 6;
+  Presence leader = 6;
   // All current party members.
-  repeated UserPresence presences = 7;
+  repeated Presence presences = 7;
   // Label for party listing.
   string label = 8;
 }
@@ -495,7 +495,7 @@ message PartyPromote {
   // Party ID to promote a new leader for.
   string party_id = 1;
   // The presence of an existing party member to promote as the new leader.
-  UserPresence presence = 2;
+  Presence presence = 2;
 }
 
 // Announcement of a new party leader.
@@ -503,7 +503,7 @@ message PartyLeader {
   // Party ID to announce the new leader for.
   string party_id = 1;
   // The presence of the new party leader.
-  UserPresence presence = 2;
+  Presence presence = 2;
 }
 
 // Accept a request to join.
@@ -511,7 +511,7 @@ message PartyAccept {
   // Party ID to accept a join request for.
   string party_id = 1;
   // The presence to accept as a party member.
-  UserPresence presence = 2;
+  Presence presence = 2;
 }
 
 // Kick a party member, or decline a request to join.
@@ -519,7 +519,7 @@ message PartyRemove {
   // Party ID to remove/reject from.
   string party_id = 1;
   // The presence to remove or reject.
-  UserPresence presence = 2;
+  Presence presence = 2;
 }
 
 // End a party, kicking all party members and closing it.
@@ -539,7 +539,7 @@ message PartyJoinRequest {
   // Party ID these presences are attempting to join.
   string party_id = 1;
   // Presences attempting to join.
-  repeated UserPresence presences = 2;
+  repeated Presence presences = 2;
 }
 
 // Begin matchmaking as a party.
@@ -581,7 +581,7 @@ message PartyData {
   // The party ID.
   string party_id = 1;
   // A reference to the user presence that sent this data, if any.
-  UserPresence presence = 2;
+  Presence presence = 2;
   // Op code value.
   int64 op_code = 3;
   // Data payload, if any.
@@ -603,9 +603,9 @@ message PartyPresenceEvent {
   // The party ID.
   string party_id = 1;
   // User presences that have just joined the party.
-  repeated UserPresence joins = 2;
+  repeated Presence joins = 2;
   // User presences that have just left the party.
-  repeated UserPresence leaves = 3;
+  repeated Presence leaves = 3;
 }
 
 
@@ -618,29 +618,29 @@ message Pong {}
 // A snapshot of statuses for some set of users.
 message Status {
   // User statuses.
-  repeated UserPresence presences = 1;
+  repeated Presence presences = 1;
 }
 
-// Start receiving status updates for some set of users.
+// Start receiving status updates for some set of characters.
 message StatusFollow {
-  // User IDs to follow.
-  repeated string user_ids = 1;
-  // Usernames to follow.
-  repeated string usernames = 2;
+  // Character IDs to follow.
+  repeated string character_ids = 1;
+  // Character names to follow.
+  repeated string names = 2;
 }
 
 // A batch of status updates for a given user.
 message StatusPresenceEvent {
   // New statuses for the user.
-  repeated UserPresence joins = 2;
+  repeated Presence joins = 2;
   // Previous statuses for the user.
-  repeated UserPresence leaves = 3;
+  repeated Presence leaves = 3;
 }
 
-// Stop receiving status updates for some set of users.
+// Stop receiving status updates for some set of characters.
 message StatusUnfollow {
-  // Users to unfollow.
-  repeated string user_ids = 1;
+  // Characters to unfollow.
+  repeated string character_ids = 1;
 }
 
 // Set the user's own status.
@@ -666,7 +666,7 @@ message StreamData {
   // The stream this data message relates to.
   Stream stream = 1;
   // The sender, if any.
-  UserPresence sender = 2;
+  Presence sender = 2;
   // Arbitrary contents of the data message.
   string data = 3;
   // True if this data was delivered reliably, false otherwise.
@@ -678,13 +678,13 @@ message StreamPresenceEvent {
   // The stream this event relates to.
   Stream stream = 1;
   // Presences joining the stream as part of this event, if any.
-  repeated UserPresence joins = 2;
+  repeated Presence joins = 2;
   // Presences leaving the stream as part of this event, if any.
-  repeated UserPresence leaves = 3;
+  repeated Presence leaves = 3;
 }
 
-// A user session associated to a stream, usually through a list operation or a join/leave event.
-message UserPresence {
+// A session presence associated to a stream, usually through a list operation or a join/leave event.
+message Presence {
   // The user this presence belongs to.
   string user_id = 1;
   // A unique session ID identifying the particular connection, because the user may have many.
@@ -699,4 +699,6 @@ message UserPresence {
   string realm_id = 6;
   // The character ID the user is playing as, if any.
   string character_id = 7;
+  // The character name for display purposes.
+  string character_name = 8;
 }

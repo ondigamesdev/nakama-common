@@ -753,18 +753,6 @@ type Initializer interface {
 	// RegisterAfterBlockFriends can be used to perform additional logic after friends are blocked.
 	RegisterAfterBlockFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.BlockFriendsRequest) error) error
 
-	// RegisterBeforeImportFacebookFriends can be used to perform additional logic before Facebook friends are imported.
-	RegisterBeforeImportFacebookFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ImportFacebookFriendsRequest) (*api.ImportFacebookFriendsRequest, error)) error
-
-	// RegisterAfterImportFacebookFriends can be used to perform additional logic after Facebook friends are imported.
-	RegisterAfterImportFacebookFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ImportFacebookFriendsRequest) error) error
-
-	// RegisterBeforeImportSteamFriends can be used to perform additional logic before Facebook friends are imported.
-	RegisterBeforeImportSteamFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ImportSteamFriendsRequest) (*api.ImportSteamFriendsRequest, error)) error
-
-	// RegisterAfterImportSteamFriends can be used to perform additional logic after Facebook friends are imported.
-	RegisterAfterImportSteamFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ImportSteamFriendsRequest) error) error
-
 	// RegisterBeforeCreateGroup can be used to perform additional logic before a group is created.
 	RegisterBeforeCreateGroup(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.CreateGroupRequest) (*api.CreateGroupRequest, error)) error
 
@@ -795,47 +783,47 @@ type Initializer interface {
 	// RegisterAfterLeaveGroup can be used to perform additional logic after user leaves a group.
 	RegisterAfterLeaveGroup(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.LeaveGroupRequest) error) error
 
-	// RegisterBeforeAddGroupUsers can be used to perform additional logic before user is added to a group.
-	RegisterBeforeAddGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AddGroupUsersRequest) (*api.AddGroupUsersRequest, error)) error
+	// RegisterBeforeAddGroupCharacters can be used to perform additional logic before character is added to a group.
+	RegisterBeforeAddGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AddGroupCharactersRequest) (*api.AddGroupCharactersRequest, error)) error
 
-	// RegisterAfterAddGroupUsers can be used to perform additional logic after user is added to a group.
-	RegisterAfterAddGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AddGroupUsersRequest) error) error
+	// RegisterAfterAddGroupCharacters can be used to perform additional logic after character is added to a group.
+	RegisterAfterAddGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AddGroupCharactersRequest) error) error
 
-	// RegisterBeforeBanGroupUsers can be used to perform additional logic before user is banned from a group.
-	RegisterBeforeBanGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.BanGroupUsersRequest) (*api.BanGroupUsersRequest, error)) error
+	// RegisterBeforeBanGroupCharacters can be used to perform additional logic before character is banned from a group.
+	RegisterBeforeBanGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.BanGroupCharactersRequest) (*api.BanGroupCharactersRequest, error)) error
 
-	// RegisterAfterBanGroupUsers can be used to perform additional logic after user is banned from a group.
-	RegisterAfterBanGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.BanGroupUsersRequest) error) error
+	// RegisterAfterBanGroupCharacters can be used to perform additional logic after character is banned from a group.
+	RegisterAfterBanGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.BanGroupCharactersRequest) error) error
 
-	// RegisterBeforeKickGroupUsers can be used to perform additional logic before user is kicked to a group.
-	RegisterBeforeKickGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.KickGroupUsersRequest) (*api.KickGroupUsersRequest, error)) error
+	// RegisterBeforeKickGroupCharacters can be used to perform additional logic before character is kicked from a group.
+	RegisterBeforeKickGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.KickGroupCharactersRequest) (*api.KickGroupCharactersRequest, error)) error
 
-	// RegisterAfterKickGroupUsers can be used to perform additional logic after user is kicked from a group.
-	RegisterAfterKickGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.KickGroupUsersRequest) error) error
+	// RegisterAfterKickGroupCharacters can be used to perform additional logic after character is kicked from a group.
+	RegisterAfterKickGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.KickGroupCharactersRequest) error) error
 
-	// RegisterBeforePromoteGroupUsers can be used to perform additional logic before user is promoted.
-	RegisterBeforePromoteGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.PromoteGroupUsersRequest) (*api.PromoteGroupUsersRequest, error)) error
+	// RegisterBeforePromoteGroupCharacters can be used to perform additional logic before character is promoted.
+	RegisterBeforePromoteGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.PromoteGroupCharactersRequest) (*api.PromoteGroupCharactersRequest, error)) error
 
-	// RegisterAfterPromoteGroupUsers can be used to perform additional logic after user is promoted.
-	RegisterAfterPromoteGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.PromoteGroupUsersRequest) error) error
+	// RegisterAfterPromoteGroupCharacters can be used to perform additional logic after character is promoted.
+	RegisterAfterPromoteGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.PromoteGroupCharactersRequest) error) error
 
-	// RegisterBeforeDemoteGroupUsers can be used to perform additional logic before user is demoted.
-	RegisterBeforeDemoteGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.DemoteGroupUsersRequest) (*api.DemoteGroupUsersRequest, error)) error
+	// RegisterBeforeDemoteGroupCharacters can be used to perform additional logic before character is demoted.
+	RegisterBeforeDemoteGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.DemoteGroupCharactersRequest) (*api.DemoteGroupCharactersRequest, error)) error
 
-	// RegisterAfterDemoteGroupUsers can be used to perform additional logic after user is demoted.
-	RegisterAfterDemoteGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.DemoteGroupUsersRequest) error) error
+	// RegisterAfterDemoteGroupCharacters can be used to perform additional logic after character is demoted.
+	RegisterAfterDemoteGroupCharacters(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.DemoteGroupCharactersRequest) error) error
 
-	// RegisterBeforeListGroupUsers can be used to perform additional logic before users in a group is listed.
+	// RegisterBeforeListGroupUsers can be used to perform additional logic before characters in a group is listed.
 	RegisterBeforeListGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListGroupUsersRequest) (*api.ListGroupUsersRequest, error)) error
 
-	// RegisterAfterListGroupUsers can be used to perform additional logic after users in a group is listed.
-	RegisterAfterListGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.GroupUserList, in *api.ListGroupUsersRequest) error) error
+	// RegisterAfterListGroupUsers can be used to perform additional logic after characters in a group is listed.
+	RegisterAfterListGroupUsers(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.GroupCharacterList, in *api.ListGroupUsersRequest) error) error
 
-	// RegisterBeforeListUserGroups can be used to perform additional logic before groups for a user is listed.
-	RegisterBeforeListUserGroups(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListUserGroupsRequest) (*api.ListUserGroupsRequest, error)) error
+	// RegisterBeforeListCharacterGroups can be used to perform additional logic before groups for a character is listed.
+	RegisterBeforeListCharacterGroups(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListCharacterGroupsRequest) (*api.ListCharacterGroupsRequest, error)) error
 
-	// RegisterAfterListUserGroups can be used to perform additional logic after groups for a user is listed.
-	RegisterAfterListUserGroups(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.UserGroupList, in *api.ListUserGroupsRequest) error) error
+	// RegisterAfterListCharacterGroups can be used to perform additional logic after groups for a character is listed.
+	RegisterAfterListCharacterGroups(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.CharacterGroupList, in *api.ListCharacterGroupsRequest) error) error
 
 	// RegisterBeforeListGroups can be used to perform additional logic before groups are listed.
 	RegisterBeforeListGroups(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListGroupsRequest) (*api.ListGroupsRequest, error)) error
@@ -1649,27 +1637,27 @@ type NakamaModule interface {
 	TournamentRecordsHaystack(ctx context.Context, id, ownerID string, limit int, cursor string, expiry int64) (*api.TournamentRecordList, error)
 
 	GroupsGetId(ctx context.Context, groupIDs []string) ([]*api.Group, error)
-	GroupCreate(ctx context.Context, userID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) (*api.Group, error)
-	GroupUpdate(ctx context.Context, id, userID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) error
+	GroupCreate(ctx context.Context, characterID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) (*api.Group, error)
+	GroupUpdate(ctx context.Context, id, characterID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) error
 	GroupDelete(ctx context.Context, id string) error
-	GroupUserJoin(ctx context.Context, groupID, userID, username string) error
-	GroupUserLeave(ctx context.Context, groupID, userID, username string) error
-	GroupUsersAdd(ctx context.Context, callerID, groupID string, userIDs []string) error
-	GroupUsersBan(ctx context.Context, callerID, groupID string, userIDs []string) error
-	GroupUsersKick(ctx context.Context, callerID, groupID string, userIDs []string) error
-	GroupUsersPromote(ctx context.Context, callerID, groupID string, userIDs []string) error
-	GroupUsersDemote(ctx context.Context, callerID, groupID string, userIDs []string) error
-	GroupUsersList(ctx context.Context, id string, limit int, state *int, cursor string) ([]*api.GroupUserList_GroupUser, string, error)
+	GroupUserJoin(ctx context.Context, groupID, characterID, characterName string) error
+	GroupUserLeave(ctx context.Context, groupID, characterID, characterName string) error
+	GroupUsersAdd(ctx context.Context, callerCharacterID, groupID string, characterIDs []string) error
+	GroupUsersBan(ctx context.Context, callerCharacterID, groupID string, characterIDs []string) error
+	GroupUsersKick(ctx context.Context, callerCharacterID, groupID string, characterIDs []string) error
+	GroupUsersPromote(ctx context.Context, callerCharacterID, groupID string, characterIDs []string) error
+	GroupUsersDemote(ctx context.Context, callerCharacterID, groupID string, characterIDs []string) error
+	GroupUsersList(ctx context.Context, id string, limit int, state *int, cursor string) ([]*api.GroupCharacterList_GroupCharacter, string, error)
 	GroupsList(ctx context.Context, name, langTag string, members *int, open *bool, limit int, cursor string) ([]*api.Group, string, error)
 	GroupsGetRandom(ctx context.Context, count int) ([]*api.Group, error)
-	UserGroupsList(ctx context.Context, userID string, limit int, state *int, cursor string) ([]*api.UserGroupList_UserGroup, string, error)
+	CharacterGroupsList(ctx context.Context, characterID string, limit int, state *int, cursor string) ([]*api.CharacterGroupList_CharacterGroup, string, error)
 
-	FriendMetadataUpdate(ctx context.Context, userID string, friendUserId string, metadata map[string]any) error
-	FriendsList(ctx context.Context, userID string, limit int, state *int, cursor string) ([]*api.Friend, string, error)
-	FriendsOfFriendsList(ctx context.Context, userID string, limit int, cursor string) ([]*api.FriendsOfFriendsList_FriendOfFriend, string, error)
-	FriendsAdd(ctx context.Context, userID string, username string, ids []string, usernames []string, metadata map[string]any) error
-	FriendsDelete(ctx context.Context, userID string, username string, ids []string, usernames []string) error
-	FriendsBlock(ctx context.Context, userID string, username string, ids []string, usernames []string) error
+	FriendMetadataUpdate(ctx context.Context, characterID string, friendCharacterID string, metadata map[string]any) error
+	FriendsList(ctx context.Context, characterID string, limit int, state *int, cursor string) ([]*api.Friend, string, error)
+	FriendsOfFriendsList(ctx context.Context, characterID string, limit int, cursor string) ([]*api.FriendsOfFriendsList_FriendOfFriend, string, error)
+	FriendsAdd(ctx context.Context, characterID string, characterName string, ids []string, names []string, metadata map[string]any) error
+	FriendsDelete(ctx context.Context, characterID string, characterName string, ids []string, names []string) error
+	FriendsBlock(ctx context.Context, characterID string, characterName string, ids []string, names []string) error
 
 	Event(ctx context.Context, evt *api.Event) error
 
@@ -1692,8 +1680,8 @@ type NakamaModule interface {
 
 	PartyList(ctx context.Context, limit int, open *bool, showHidden bool, query, cursor string) ([]*api.Party, string, error)
 
-	StatusFollow(sessionID string, userIDs []string) error
-	StatusUnfollow(sessionID string, userIDs []string) error
+	StatusFollow(sessionID string, characterIDs []string) error
+	StatusUnfollow(sessionID string, characterIDs []string) error
 
 	// Realm Classification - Tags
 	// RealmGetTags retrieves classification tags for a realm.

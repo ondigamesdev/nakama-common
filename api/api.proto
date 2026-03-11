@@ -142,22 +142,22 @@ message AccountSteam {
   map<string, string> vars = 2;
 }
 
-// Add one or more friends to the current user.
+// Add one or more friends to the current character.
 message AddFriendsRequest {
   // The account id of a user.
   repeated string ids = 1;
-  // The account username of a user.
-  repeated string usernames = 2;
+  // The character name.
+  repeated string names = 2;
   // Optional metadata to add to friends.
   string metadata = 3;
 }
 
-// Add users to a group.
-message AddGroupUsersRequest {
-  // The group to add users to.
+// Add characters to a group.
+message AddGroupCharactersRequest {
+  // The group to add characters to.
   string group_id = 1;
-  // The users to add.
-  repeated string user_ids = 2;
+  // The characters to add.
+  repeated string character_ids = 2;
 }
 
 // Authenticate against the server with a refresh token.
@@ -296,20 +296,20 @@ message VerifyEmailCodeRequest {
   string code = 2;
 }
 
-// Ban users from a group.
-message BanGroupUsersRequest {
-  // The group to ban users from.
+// Ban characters from a group.
+message BanGroupCharactersRequest {
+  // The group to ban characters from.
   string group_id = 1;
-  // The users to ban.
-  repeated string user_ids = 2;
+  // The characters to ban.
+  repeated string character_ids = 2;
 }
 
-// Block one or more friends for the current user.
+// Block one or more friends for the current character.
 message BlockFriendsRequest {
   // The account id of a user.
   repeated string ids = 1;
-  // The account username of a user.
-  repeated string usernames = 2;
+  // The character name.
+  repeated string names = 2;
 }
 
 // A message sent on a channel.
@@ -379,12 +379,12 @@ message CreateGroupRequest {
   uint32 scope_type = 7;
 }
 
-// Delete one or more friends for the current user.
+// Delete one or more friends for the current character.
 message DeleteFriendsRequest {
   // The account id of a user.
   repeated string ids = 1;
-  // The account username of a user.
-  repeated string usernames = 2;
+  // The character name.
+  repeated string names = 2;
 }
 
 // Delete a group the user has access to.
@@ -441,34 +441,28 @@ message Event {
   bool external = 4;
 }
 
-// A friend of a user.
+// A friend of a character.
 message Friend {
   // The friendship status.
   enum State {
-    // The user is a friend of the current user.
+    // The character is a friend of the current character.
     FRIEND = 0;
-    // The current user has sent an invite to the user.
+    // The current character has sent an invite to the character.
     INVITE_SENT = 1;
-    // The current user has received an invite from this user.
+    // The current character has received an invite from this character.
     INVITE_RECEIVED = 2;
-    // The current user has blocked this user.
+    // The current character has blocked this character.
     BLOCKED = 3;
   }
 
-  // The user object.
-  User user = 1;
+  // The character object.
+  Character character = 1;
   // The friend status.
   google.protobuf.Int32Value state = 2; // one of "Friend.State".
   // Time of the latest relationship update.
   google.protobuf.Timestamp update_time = 3;
   // Metadata.
   string metadata = 4;
-  // The friend's character in the filtered realm (only set when realm_id filter is used).
-  Character character = 5;
-  // The realm ID the friend is currently online in (populated when friend is online).
-  string current_realm_id = 6;
-  // The character ID the friend is currently playing as (populated when friend is online).
-  string current_character_id = 7;
 }
 
 // A collection of zero or more friends of the user.
@@ -483,10 +477,10 @@ message FriendList {
 message FriendsOfFriendsList {
   // A friend of a friend.
   message FriendOfFriend {
-    // The user who referred its friend.
+    // The character who referred its friend.
     string referrer = 1;
-    // User.
-    User user = 2;
+    // Character.
+    Character character = 2;
   }
   // User friends of friends.
   repeated FriendOfFriend friends_of_friends = 1;
@@ -552,48 +546,32 @@ message GroupList {
   string cursor = 2;
 }
 
-// A list of users belonging to a group, along with their role.
-message GroupUserList {
-  // A single user-role pair.
-  message GroupUser {
+// A list of characters belonging to a group, along with their role.
+message GroupCharacterList {
+  // A single character-role pair.
+  message GroupCharacter {
     // The group role status.
     enum State {
-      // The user is a superadmin with full control of the group.
+      // The character is a superadmin with full control of the group.
       SUPERADMIN = 0;
-      // The user is an admin with additional privileges.
+      // The character is an admin with additional privileges.
       ADMIN = 1;
-      // The user is a regular member.
+      // The character is a regular member.
       MEMBER = 2;
-      // The user has requested to join the group
+      // The character has requested to join the group
       JOIN_REQUEST = 3;
     }
 
-    // User.
-    User user = 1;
+    // Character.
+    Character character = 1;
     // Their relationship to the group.
     google.protobuf.Int32Value state = 2;
   }
 
-  // User-role pairs for a group.
-  repeated GroupUser group_users = 1;
+  // Character-role pairs for a group.
+  repeated GroupCharacter group_characters = 1;
   // Cursor for the next page of results, if any.
   string cursor = 2;
-}
-
-// Import Facebook friends into the current user's account.
-message ImportFacebookFriendsRequest {
-  // The Facebook account details.
-  AccountFacebook account = 1;
-  // Reset the current user's friends list.
-  google.protobuf.BoolValue reset = 2;
-}
-
-// Import Facebook friends into the current user's account.
-message ImportSteamFriendsRequest {
-  // The Facebook account details.
-  AccountSteam account = 1;
-  // Reset the current user's friends list.
-  google.protobuf.BoolValue reset = 2;
 }
 
 // Immediately join an open group, or request to join a closed one.
@@ -608,12 +586,12 @@ message JoinTournamentRequest {
   string tournament_id = 1;
 }
 
-// Kick a set of users from a group.
-message KickGroupUsersRequest {
+// Kick a set of characters from a group.
+message KickGroupCharactersRequest {
   // The group ID to kick from.
   string group_id = 1;
-  // The users to kick.
-  repeated string user_ids = 2;
+  // The characters to kick.
+  repeated string character_ids = 2;
 }
 
 // A leaderboard on the server.
@@ -734,7 +712,7 @@ message ListChannelMessagesRequest {
   bool include_global = 6;
 }
 
-// List friends for a user.
+// List friends for a character.
 message ListFriendsRequest {
   // Max number of records to return. Between 1 and 100.
   google.protobuf.Int32Value limit = 1;
@@ -742,12 +720,6 @@ message ListFriendsRequest {
   google.protobuf.Int32Value state = 2;
   // An optional next page cursor.
   string cursor = 3;
-  // Optional realm ID to filter friends with characters in this realm.
-  string realm_id = 4;
-  // Include all friends when listing in a realm context. Default false.
-  // When true and realm_id is set, returns realm-filtered friends with character data
-  // plus all other friends without character data.
-  google.protobuf.BoolValue include_global = 5;
 }
 
 message ListFriendsOfFriendsRequest {
@@ -922,13 +894,13 @@ message ListTournamentsRequest {
   google.protobuf.BoolValue include_global = 10;
 }
 
-// List the groups a user is part of, and their relationship to each.
-message ListUserGroupsRequest {
-  // ID of the user.
-  string user_id = 1;
+// List the groups a character is part of, and their relationship to each.
+message ListCharacterGroupsRequest {
+  // ID of the character.
+  string character_id = 1;
   // Max number of records to return. Between 1 and 100.
   google.protobuf.Int32Value limit = 2;
-  // The user group state to list.
+  // The character group state to list.
   google.protobuf.Int32Value state = 3;
   // An optional next page cursor.
   string cursor = 4;
@@ -1001,20 +973,20 @@ message NotificationList {
   string cacheable_cursor = 2;
 }
 
-// Promote a set of users in a group to the next role up.
-message PromoteGroupUsersRequest {
+// Promote a set of characters in a group to the next role up.
+message PromoteGroupCharactersRequest {
   // The group ID to promote in.
   string group_id = 1;
-  // The users to promote.
-  repeated string user_ids = 2;
+  // The characters to promote.
+  repeated string character_ids = 2;
 }
 
-// Demote a set of users in a group to the next role down.
-message DemoteGroupUsersRequest {
+// Demote a set of characters in a group to the next role down.
+message DemoteGroupCharactersRequest {
   // The group ID to demote in.
   string group_id = 1;
-  // The users to demote.
-  repeated string user_ids = 2;
+  // The characters to demote.
+  repeated string character_ids = 2;
 }
 
 // Storage objects to get.
@@ -1267,30 +1239,30 @@ message User {
   string apple_id = 18;
 }
 
-// A list of groups belonging to a user, along with the user's role in each group.
-message UserGroupList {
+// A list of groups belonging to a character, along with the character's role in each group.
+message CharacterGroupList {
   // A single group-role pair.
-  message UserGroup {
+  message CharacterGroup {
     // The group role status.
     enum State {
-      // The user is a superadmin with full control of the group.
+      // The character is a superadmin with full control of the group.
       SUPERADMIN = 0;
-      // The user is an admin with additional privileges.
+      // The character is an admin with additional privileges.
       ADMIN = 1;
-      // The user is a regular member.
+      // The character is a regular member.
       MEMBER = 2;
-      // The user has requested to join the group
+      // The character has requested to join the group
       JOIN_REQUEST = 3;
     }
 
     // Group.
     Group group = 1;
-    // The user's relationship to the group.
+    // The character's relationship to the group.
     google.protobuf.Int32Value state = 2;
   }
 
-  // Group-role pairs for a user.
-  repeated UserGroup user_groups = 1;
+  // Group-role pairs for a character.
+  repeated CharacterGroup character_groups = 1;
   // Cursor for the next page of results, if any.
   string cursor = 2;
 }
