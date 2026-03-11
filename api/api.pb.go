@@ -7656,16 +7656,14 @@ type User struct {
 	SteamId string `protobuf:"bytes,12,opt,name=steam_id,json=steamId,proto3" json:"steam_id,omitempty"`
 	// Indicates whether the user is currently online.
 	Online bool `protobuf:"varint,13,opt,name=online,proto3" json:"online,omitempty"`
-	// Number of related edges to this user.
-	EdgeCount int32 `protobuf:"varint,14,opt,name=edge_count,json=edgeCount,proto3" json:"edge_count,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user was created.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user was last updated.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
 	// The Facebook Instant Game ID in the user's account.
-	FacebookInstantGameId string `protobuf:"bytes,17,opt,name=facebook_instant_game_id,json=facebookInstantGameId,proto3" json:"facebook_instant_game_id,omitempty"`
+	FacebookInstantGameId string `protobuf:"bytes,16,opt,name=facebook_instant_game_id,json=facebookInstantGameId,proto3" json:"facebook_instant_game_id,omitempty"`
 	// The Apple Sign In ID in the user's account.
-	AppleId       string `protobuf:"bytes,18,opt,name=apple_id,json=appleId,proto3" json:"apple_id,omitempty"`
+	AppleId       string `protobuf:"bytes,17,opt,name=apple_id,json=appleId,proto3" json:"apple_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7789,13 +7787,6 @@ func (x *User) GetOnline() bool {
 		return x.Online
 	}
 	return false
-}
-
-func (x *User) GetEdgeCount() int32 {
-	if x != nil {
-		return x.EdgeCount
-	}
-	return 0
 }
 
 func (x *User) GetCreateTime() *timestamppb.Timestamp {
@@ -9932,7 +9923,9 @@ type Character struct {
 	// The realm object, if embedded.
 	Realm *Realm `protobuf:"bytes,11,opt,name=realm,proto3" json:"realm,omitempty"`
 	// Indicates whether the character is currently online.
-	Online        bool `protobuf:"varint,12,opt,name=online,proto3" json:"online,omitempty"`
+	Online bool `protobuf:"varint,12,opt,name=online,proto3" json:"online,omitempty"`
+	// Number of related edges to this character (e.g. friends).
+	EdgeCount     int32 `protobuf:"varint,13,opt,name=edge_count,json=edgeCount,proto3" json:"edge_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -10049,6 +10042,13 @@ func (x *Character) GetOnline() bool {
 		return x.Online
 	}
 	return false
+}
+
+func (x *Character) GetEdgeCount() int32 {
+	if x != nil {
+		return x.EdgeCount
+	}
+	return 0
 }
 
 // Request to list realms.

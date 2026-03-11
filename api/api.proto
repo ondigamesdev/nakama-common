@@ -1227,16 +1227,14 @@ message User {
   string steam_id = 12;
   // Indicates whether the user is currently online.
   bool online = 13;
-  // Number of related edges to this user.
-  int32 edge_count = 14;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user was created.
-  google.protobuf.Timestamp create_time = 15;
+  google.protobuf.Timestamp create_time = 14;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user was last updated.
-  google.protobuf.Timestamp update_time = 16;
+  google.protobuf.Timestamp update_time = 15;
   // The Facebook Instant Game ID in the user's account.
-  string facebook_instant_game_id = 17;
+  string facebook_instant_game_id = 16;
   // The Apple Sign In ID in the user's account.
-  string apple_id = 18;
+  string apple_id = 17;
 }
 
 // A list of groups belonging to a character, along with the character's role in each group.
@@ -1750,6 +1748,8 @@ message Character {
   Realm realm = 11;
   // Indicates whether the character is currently online.
   bool online = 12;
+  // Number of related edges to this character (e.g. friends).
+  int32 edge_count = 13;
 }
 
 // Request to list realms.
