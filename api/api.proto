@@ -2108,3 +2108,123 @@ message RealmBan {
   // Additional metadata as a JSON object.
   string metadata = 10;
 }
+
+// The type of giftcode campaign.
+enum GiftcodeCampaignType {
+  // A universal campaign with a single shared code.
+  CAMPAIGN_TYPE_UNIVERSAL = 0;
+  // A batch campaign with many unique codes.
+  CAMPAIGN_TYPE_BATCH = 1;
+  // A targeted campaign restricted to specific users.
+  CAMPAIGN_TYPE_TARGETED = 2;
+}
+
+// How uniqueness is enforced for giftcode redemptions.
+enum GiftcodeUniquenessScope {
+  // One redemption per user account.
+  UNIQUENESS_SCOPE_USER = 0;
+  // One redemption per character.
+  UNIQUENESS_SCOPE_CHARACTER = 1;
+}
+
+// Request to change the email address on the current user's account.
+message RequestChangeEmailRequest {
+  // The new email address to change to.
+  string new_email = 1;
+}
+
+// Verify the old email address during email change flow.
+message VerifyOldEmailRequest {
+  // The OTP code sent to the old email address.
+  string code = 1;
+}
+
+// Confirm the email change by verifying the new email address.
+message ConfirmChangeEmailRequest {
+  // The OTP code sent to the new email address.
+  string code = 1;
+}
+
+// Redeem a giftcode.
+message RedeemGiftcodeRequest {
+  // The giftcode string to redeem.
+  string code = 1;
+}
+
+// Response after successful giftcode redemption.
+message RedeemGiftcodeResponse {
+  // The reward payload as a JSON string.
+  string reward_payload = 1;
+  // The name of the campaign this code belongs to.
+  string campaign_name = 2;
+  // When the code was redeemed.
+  google.protobuf.Timestamp redeemed_at = 3;
+}
+
+// A giftcode campaign definition.
+message GiftcodeCampaign {
+  // The unique identifier of the campaign.
+  string id = 1;
+  // The name of the campaign.
+  string name = 2;
+  // A description of the campaign.
+  string description = 3;
+  // The type of campaign.
+  GiftcodeCampaignType campaign_type = 4;
+  // How uniqueness is enforced for redemptions.
+  GiftcodeUniquenessScope uniqueness_scope = 5;
+  // The reward payload as a JSON string.
+  string reward_payload = 6;
+  // The realm this campaign is scoped to (empty = global).
+  string realm_id = 7;
+  // Maximum number of redemptions allowed (0 = unlimited).
+  int32 max_redemptions = 8;
+  // Whether the campaign is currently active.
+  bool enabled = 9;
+  // When the campaign becomes available.
+  google.protobuf.Timestamp start_time = 10;
+  // When the campaign expires.
+  google.protobuf.Timestamp end_time = 11;
+  // When the campaign was created.
+  google.protobuf.Timestamp create_time = 12;
+  // When the campaign was last updated.
+  google.protobuf.Timestamp update_time = 13;
+}
+
+// A giftcode code entry.
+message GiftcodeCode {
+  // The unique identifier of the code entry.
+  string id = 1;
+  // The campaign this code belongs to.
+  string campaign_id = 2;
+  // The code string.
+  string code = 3;
+  // Whether the code is enabled.
+  bool enabled = 4;
+  // Maximum number of times this code can be used.
+  int32 max_uses = 5;
+  // Number of times this code has been used.
+  int32 use_count = 6;
+  // When the code was created.
+  google.protobuf.Timestamp create_time = 7;
+}
+
+// A giftcode redemption record.
+message GiftcodeRedemption {
+  // The unique identifier of the redemption.
+  string id = 1;
+  // The code entry that was redeemed.
+  string code_id = 2;
+  // The campaign the code belongs to.
+  string campaign_id = 3;
+  // The user who redeemed the code.
+  string user_id = 4;
+  // The character that redeemed the code (if applicable).
+  string character_id = 5;
+  // The realm context of the redemption (if applicable).
+  string realm_id = 6;
+  // When the code was redeemed.
+  google.protobuf.Timestamp redeemed_at = 7;
+  // The delivery status (0=pending, 1=delivered, 2=failed).
+  int32 delivery_status = 8;
+}
