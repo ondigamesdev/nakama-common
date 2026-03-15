@@ -165,6 +165,9 @@ const (
 
 	// Whether the user's email has been verified.
 	RUNTIME_CTX_EMAIL_VERIFIED = "email_verified"
+
+	// The user's previous email address. Only available in AfterConfirmChangeEmail hook.
+	RUNTIME_CTX_OLD_EMAIL = "old_email"
 )
 
 // RealmContext holds the active realm and character context from a session token.
@@ -710,6 +713,18 @@ type Initializer interface {
 
 	// RegisterAfterRequestEmailCode can be used to perform logic after an email OTP code is requested.
 	RegisterAfterRequestEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *emptypb.Empty, in *api.RequestEmailCodeRequest) error) error
+
+	// RegisterBeforeRequestChangeEmail can be used to intercept email change requests.
+	RegisterBeforeRequestChangeEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.RequestChangeEmailRequest) (*api.RequestChangeEmailRequest, error)) error
+
+	// RegisterAfterRequestChangeEmail can be used to perform logic after an email change is requested.
+	RegisterAfterRequestChangeEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *emptypb.Empty, in *api.RequestChangeEmailRequest) error) error
+
+	// RegisterBeforeConfirmChangeEmail can be used to intercept email change confirmations.
+	RegisterBeforeConfirmChangeEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ConfirmChangeEmailRequest) (*api.ConfirmChangeEmailRequest, error)) error
+
+	// RegisterAfterConfirmChangeEmail can be used to perform logic after an email change is confirmed.
+	RegisterAfterConfirmChangeEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.ConfirmChangeEmailRequest) error) error
 
 	// RegisterBeforeAuthenticateEmailOTP can be used to perform pre-authentication checks for email OTP login.
 	RegisterBeforeAuthenticateEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AuthenticateEmailOTPRequest) (*api.AuthenticateEmailOTPRequest, error)) error

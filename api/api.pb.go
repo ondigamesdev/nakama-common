@@ -12233,11 +12233,13 @@ func (x *VerifyOldEmailRequest) GetCode() string {
 	return ""
 }
 
-// Confirm the email change by verifying the new email address.
+// Confirm the email change by verifying both old and new email OTP codes.
 type ConfirmChangeEmailRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// The OTP code sent to the old (current) email address.
+	OldCode string `protobuf:"bytes,1,opt,name=old_code,json=oldCode,proto3" json:"old_code,omitempty"`
 	// The OTP code sent to the new email address.
-	Code          string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	NewCode       string `protobuf:"bytes,2,opt,name=new_code,json=newCode,proto3" json:"new_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -12272,9 +12274,16 @@ func (*ConfirmChangeEmailRequest) Descriptor() ([]byte, []int) {
 	return file_api_proto_rawDescGZIP(), []int{152}
 }
 
-func (x *ConfirmChangeEmailRequest) GetCode() string {
+func (x *ConfirmChangeEmailRequest) GetOldCode() string {
 	if x != nil {
-		return x.Code
+		return x.OldCode
+	}
+	return ""
+}
+
+func (x *ConfirmChangeEmailRequest) GetNewCode() string {
+	if x != nil {
+		return x.NewCode
 	}
 	return ""
 }
@@ -12662,8 +12671,16 @@ type GiftcodeRedemption struct {
 	RedeemedAt *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=redeemed_at,json=redeemedAt,proto3" json:"redeemed_at,omitempty"`
 	// The delivery status (0=pending, 1=delivered, 2=failed).
 	DeliveryStatus int32 `protobuf:"varint,8,opt,name=delivery_status,json=deliveryStatus,proto3" json:"delivery_status,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// The actual code string (enriched from giftcode_codes JOIN).
+	Code string `protobuf:"bytes,9,opt,name=code,proto3" json:"code,omitempty"`
+	// The username of the redeeming user (enriched from users JOIN).
+	Username string `protobuf:"bytes,10,opt,name=username,proto3" json:"username,omitempty"`
+	// The client IP address at time of redemption.
+	ClientIp string `protobuf:"bytes,11,opt,name=client_ip,json=clientIp,proto3" json:"client_ip,omitempty"`
+	// The user agent string at time of redemption.
+	UserAgent string `protobuf:"bytes,12,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GiftcodeRedemption) Reset() {
@@ -12750,6 +12767,34 @@ func (x *GiftcodeRedemption) GetDeliveryStatus() int32 {
 		return x.DeliveryStatus
 	}
 	return 0
+}
+
+func (x *GiftcodeRedemption) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *GiftcodeRedemption) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *GiftcodeRedemption) GetClientIp() string {
+	if x != nil {
+		return x.ClientIp
+	}
+	return ""
+}
+
+func (x *GiftcodeRedemption) GetUserAgent() string {
+	if x != nil {
+		return x.UserAgent
+	}
+	return ""
 }
 
 // A friend of a friend.

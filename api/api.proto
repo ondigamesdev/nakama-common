@@ -2139,10 +2139,12 @@ message VerifyOldEmailRequest {
   string code = 1;
 }
 
-// Confirm the email change by verifying the new email address.
+// Confirm the email change by verifying both old and new email OTP codes.
 message ConfirmChangeEmailRequest {
+  // The OTP code sent to the old (current) email address.
+  string old_code = 1;
   // The OTP code sent to the new email address.
-  string code = 1;
+  string new_code = 2;
 }
 
 // Redeem a giftcode.
@@ -2227,4 +2229,12 @@ message GiftcodeRedemption {
   google.protobuf.Timestamp redeemed_at = 7;
   // The delivery status (0=pending, 1=delivered, 2=failed).
   int32 delivery_status = 8;
+  // The actual code string (enriched from giftcode_codes JOIN).
+  string code = 9;
+  // The username of the redeeming user (enriched from users JOIN).
+  string username = 10;
+  // The client IP address at time of redemption.
+  string client_ip = 11;
+  // The user agent string at time of redemption.
+  string user_agent = 12;
 }
