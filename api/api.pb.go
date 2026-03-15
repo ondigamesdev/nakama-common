@@ -12342,7 +12342,11 @@ type RedeemGiftcodeResponse struct {
 	// The name of the campaign this code belongs to.
 	CampaignName string `protobuf:"bytes,2,opt,name=campaign_name,json=campaignName,proto3" json:"campaign_name,omitempty"`
 	// When the code was redeemed.
-	RedeemedAt    *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=redeemed_at,json=redeemedAt,proto3" json:"redeemed_at,omitempty"`
+	RedeemedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=redeemed_at,json=redeemedAt,proto3" json:"redeemed_at,omitempty"`
+	// The campaign ID this code belongs to.
+	CampaignId string `protobuf:"bytes,4,opt,name=campaign_id,json=campaignId,proto3" json:"campaign_id,omitempty"`
+	// The unique redemption record ID.
+	RedemptionId  string `protobuf:"bytes,5,opt,name=redemption_id,json=redemptionId,proto3" json:"redemption_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -12396,6 +12400,20 @@ func (x *RedeemGiftcodeResponse) GetRedeemedAt() *timestamppb.Timestamp {
 		return x.RedeemedAt
 	}
 	return nil
+}
+
+func (x *RedeemGiftcodeResponse) GetCampaignId() string {
+	if x != nil {
+		return x.CampaignId
+	}
+	return ""
+}
+
+func (x *RedeemGiftcodeResponse) GetRedemptionId() string {
+	if x != nil {
+		return x.RedemptionId
+	}
+	return ""
 }
 
 // A giftcode campaign definition.

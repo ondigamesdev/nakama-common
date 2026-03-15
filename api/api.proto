@@ -2133,12 +2133,6 @@ message RequestChangeEmailRequest {
   string new_email = 1;
 }
 
-// Verify the old email address during email change flow.
-message VerifyOldEmailRequest {
-  // The OTP code sent to the old email address.
-  string code = 1;
-}
-
 // Confirm the email change by verifying both old and new email OTP codes.
 message ConfirmChangeEmailRequest {
   // The OTP code sent to the old (current) email address.
@@ -2161,6 +2155,10 @@ message RedeemGiftcodeResponse {
   string campaign_name = 2;
   // When the code was redeemed.
   google.protobuf.Timestamp redeemed_at = 3;
+  // The campaign ID this code belongs to.
+  string campaign_id = 4;
+  // The unique redemption record ID.
+  string redemption_id = 5;
 }
 
 // A giftcode campaign definition.

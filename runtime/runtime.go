@@ -204,6 +204,20 @@ func RequireRealmContext(ctx context.Context) (*RealmContext, error) {
 	return rc, nil
 }
 
+// GiftcodeValidation contains the result of validating a giftcode without consuming it.
+type GiftcodeValidation struct {
+	// Valid indicates whether the giftcode can be redeemed by the user.
+	Valid bool
+	// CampaignID is the campaign this code belongs to.
+	CampaignID string
+	// CampaignName is the human-readable campaign name.
+	CampaignName string
+	// RewardPayload is the JSON reward data the user would receive.
+	RewardPayload string
+	// Reason describes why the code is invalid. Empty if Valid is true.
+	Reason string
+}
+
 type AchievementRow struct {
 	AchievementID        string
 	CharacterID          string
@@ -725,6 +739,11 @@ type Initializer interface {
 
 	// RegisterAfterConfirmChangeEmail can be used to perform logic after an email change is confirmed.
 	RegisterAfterConfirmChangeEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.ConfirmChangeEmailRequest) error) error
+
+	// RegisterBeforeRedeemGiftcode can be used to intercept giftcode redemptions.
+	RegisterBeforeRedeemGiftcode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.RedeemGiftcodeRequest) (*api.RedeemGiftcodeRequest, error)) error
+	// RegisterAfterRedeemGiftcode can be used to perform logic after a giftcode is redeemed.
+	RegisterAfterRedeemGiftcode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.RedeemGiftcodeResponse, in *api.RedeemGiftcodeRequest) error) error
 
 	// RegisterBeforeAuthenticateEmailOTP can be used to perform pre-authentication checks for email OTP login.
 	RegisterBeforeAuthenticateEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AuthenticateEmailOTPRequest) (*api.AuthenticateEmailOTPRequest, error)) error
@@ -1757,6 +1776,11 @@ type NakamaModule interface {
 	NATSClient() NATSOperations
 	// NATSEnabled returns true if NATS is configured and available.
 	NATSEnabled() bool
+
+	// GiftcodeRedeem redeems a giftcode for the specified user. Bypasses Before/After hooks but emits audit event.
+	GiftcodeRedeem(ctx context.Context, userID, code string) (*api.RedeemGiftcodeResponse, error)
+	// GiftcodeValidate checks if a giftcode is valid for the specified user without consuming it.
+	GiftcodeValidate(ctx context.Context, userID, code string) (*GiftcodeValidation, error)
 }
 
 // SecurityModule is an optional interface that PamOps-aware NakamaModule
