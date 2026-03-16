@@ -1782,14 +1782,9 @@ type NakamaModule interface {
 	// GiftcodeValidate checks if a giftcode is valid for the specified user without consuming it.
 	GiftcodeValidate(ctx context.Context, userID, code string) (*GiftcodeValidation, error)
 
-	// ListOnlineUserIDs returns up to limit user IDs that are currently online across all server nodes.
-	// Uses the distributed status registry which is backed by Redis for cross-node visibility.
-	ListOnlineUserIDs(limit int) ([]string, error)
-
-	// GetOnlineUserCharacterIDs returns a map of userID → characterID for users that are
-	// currently online and have an active character selected. Uses the distributed status
-	// registry for cross-node visibility. Users without a character context are omitted.
-	GetOnlineUserCharacterIDs(userIDs []string) (map[string]string, error)
+	// ListOnlineCharacterIDs returns up to limit character IDs that are currently online
+	// across all server nodes. Uses the distributed status registry backed by Redis.
+	ListOnlineCharacterIDs(limit int) ([]string, error)
 }
 
 // SecurityModule is an optional interface that PamOps-aware NakamaModule
