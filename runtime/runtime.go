@@ -1791,6 +1791,10 @@ type NakamaModule interface {
 	// ListOnlineCharacterIDs returns up to limit character IDs that are currently online
 	// across all server nodes. Uses the distributed status registry backed by Redis.
 	ListOnlineCharacterIDs(limit int) ([]string, error)
+
+	// GetOnlineCharacterUserIDs returns a map of characterID → userID for the given
+	// character IDs that are currently online. Uses the distributed status registry.
+	GetOnlineCharacterUserIDs(characterIDs []string) (map[string]string, error)
 }
 
 // SecurityModule is an optional interface that PamOps-aware NakamaModule
