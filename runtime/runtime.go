@@ -1795,6 +1795,11 @@ type NakamaModule interface {
 	// GetOnlineCharacterUserIDs returns a map of characterID → userID for the given
 	// character IDs that are currently online. Uses the distributed status registry.
 	GetOnlineCharacterUserIDs(characterIDs []string) (map[string]string, error)
+
+	// GetOnlineUserCharacterIDs returns a map of userID → characterID for the given
+	// user IDs that are currently online. Reverse of GetOnlineCharacterUserIDs.
+	// Uses the distributed status registry.
+	GetOnlineUserCharacterIDs(userIDs []string) (map[string]string, error)
 }
 
 // SecurityModule is an optional interface that PamOps-aware NakamaModule
