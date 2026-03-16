@@ -1431,6 +1431,12 @@ const (
 	Group
 )
 
+// CrossNodeMode constants define how cross-node match communication is handled.
+const (
+	CrossNodeModeRelay         = 0 // All match data relayed through the match-hosting node
+	CrossNodeModeDirectConnect = 1 // Clients connect directly to the match-hosting node
+)
+
 // ChannelIdBuildOptions provides options for building channel IDs with realm control.
 type ChannelIdBuildOptions struct {
 	// CrossRealm if true, the channel bypasses realm isolation and is accessible

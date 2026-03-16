@@ -300,6 +300,10 @@ message Match {
   repeated Presence presences = 5;
   // A reference to the current user's presence in the match.
   Presence self = 6;
+  // The external URL of the node hosting this match, if available.
+  string node_url = 7;
+  // Cross-node mode for this match (0=relay, 1=direct-connect).
+  int32 cross_node_mode = 8;
 }
 
 // Create a new realtime match.

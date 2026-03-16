@@ -920,6 +920,8 @@ message Match {
   int32 tick_rate = 5;
   // Handler name
   string handler_name = 6;
+  // The external URL of the node hosting this match, if available.
+  string node_url = 7;
 }
 
 // A list of realtime matches.

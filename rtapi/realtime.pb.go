@@ -19,7 +19,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v5.29.3
-// source: realtime.proto
+// source: rtapi/realtime.proto
 
 package rtapi
 
@@ -82,11 +82,11 @@ func (x ChannelJoin_Type) String() string {
 }
 
 func (ChannelJoin_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_realtime_proto_enumTypes[0].Descriptor()
+	return file_rtapi_realtime_proto_enumTypes[0].Descriptor()
 }
 
 func (ChannelJoin_Type) Type() protoreflect.EnumType {
-	return &file_realtime_proto_enumTypes[0]
+	return &file_rtapi_realtime_proto_enumTypes[0]
 }
 
 func (x ChannelJoin_Type) Number() protoreflect.EnumNumber {
@@ -95,7 +95,7 @@ func (x ChannelJoin_Type) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ChannelJoin_Type.Descriptor instead.
 func (ChannelJoin_Type) EnumDescriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{2, 0}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{2, 0}
 }
 
 // The selection of possible error codes.
@@ -155,11 +155,11 @@ func (x Error_Code) String() string {
 }
 
 func (Error_Code) Descriptor() protoreflect.EnumDescriptor {
-	return file_realtime_proto_enumTypes[1].Descriptor()
+	return file_rtapi_realtime_proto_enumTypes[1].Descriptor()
 }
 
 func (Error_Code) Type() protoreflect.EnumType {
-	return &file_realtime_proto_enumTypes[1]
+	return &file_rtapi_realtime_proto_enumTypes[1]
 }
 
 func (x Error_Code) Number() protoreflect.EnumNumber {
@@ -168,7 +168,7 @@ func (x Error_Code) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Error_Code.Descriptor instead.
 func (Error_Code) EnumDescriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{9, 0}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{9, 0}
 }
 
 // An envelope for a realtime message.
@@ -234,7 +234,7 @@ type Envelope struct {
 
 func (x *Envelope) Reset() {
 	*x = Envelope{}
-	mi := &file_realtime_proto_msgTypes[0]
+	mi := &file_rtapi_realtime_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -246,7 +246,7 @@ func (x *Envelope) String() string {
 func (*Envelope) ProtoMessage() {}
 
 func (x *Envelope) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[0]
+	mi := &file_rtapi_realtime_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -259,7 +259,7 @@ func (x *Envelope) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Envelope.ProtoReflect.Descriptor instead.
 func (*Envelope) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{0}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Envelope) GetCid() string {
@@ -1103,7 +1103,7 @@ type Channel struct {
 
 func (x *Channel) Reset() {
 	*x = Channel{}
-	mi := &file_realtime_proto_msgTypes[1]
+	mi := &file_rtapi_realtime_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1115,7 +1115,7 @@ func (x *Channel) String() string {
 func (*Channel) ProtoMessage() {}
 
 func (x *Channel) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[1]
+	mi := &file_rtapi_realtime_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1128,7 +1128,7 @@ func (x *Channel) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Channel.ProtoReflect.Descriptor instead.
 func (*Channel) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{1}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Channel) GetId() string {
@@ -1197,7 +1197,7 @@ type ChannelJoin struct {
 
 func (x *ChannelJoin) Reset() {
 	*x = ChannelJoin{}
-	mi := &file_realtime_proto_msgTypes[2]
+	mi := &file_rtapi_realtime_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1209,7 +1209,7 @@ func (x *ChannelJoin) String() string {
 func (*ChannelJoin) ProtoMessage() {}
 
 func (x *ChannelJoin) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[2]
+	mi := &file_rtapi_realtime_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1222,7 +1222,7 @@ func (x *ChannelJoin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelJoin.ProtoReflect.Descriptor instead.
 func (*ChannelJoin) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{2}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ChannelJoin) GetTarget() string {
@@ -1264,7 +1264,7 @@ type ChannelLeave struct {
 
 func (x *ChannelLeave) Reset() {
 	*x = ChannelLeave{}
-	mi := &file_realtime_proto_msgTypes[3]
+	mi := &file_rtapi_realtime_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1276,7 +1276,7 @@ func (x *ChannelLeave) String() string {
 func (*ChannelLeave) ProtoMessage() {}
 
 func (x *ChannelLeave) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[3]
+	mi := &file_rtapi_realtime_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1289,7 +1289,7 @@ func (x *ChannelLeave) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelLeave.ProtoReflect.Descriptor instead.
 func (*ChannelLeave) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{3}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ChannelLeave) GetChannelId() string {
@@ -1330,7 +1330,7 @@ type ChannelMessageAck struct {
 
 func (x *ChannelMessageAck) Reset() {
 	*x = ChannelMessageAck{}
-	mi := &file_realtime_proto_msgTypes[4]
+	mi := &file_rtapi_realtime_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1342,7 +1342,7 @@ func (x *ChannelMessageAck) String() string {
 func (*ChannelMessageAck) ProtoMessage() {}
 
 func (x *ChannelMessageAck) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[4]
+	mi := &file_rtapi_realtime_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1355,7 +1355,7 @@ func (x *ChannelMessageAck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelMessageAck.ProtoReflect.Descriptor instead.
 func (*ChannelMessageAck) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{4}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ChannelMessageAck) GetChannelId() string {
@@ -1448,7 +1448,7 @@ type ChannelMessageSend struct {
 
 func (x *ChannelMessageSend) Reset() {
 	*x = ChannelMessageSend{}
-	mi := &file_realtime_proto_msgTypes[5]
+	mi := &file_rtapi_realtime_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1460,7 +1460,7 @@ func (x *ChannelMessageSend) String() string {
 func (*ChannelMessageSend) ProtoMessage() {}
 
 func (x *ChannelMessageSend) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[5]
+	mi := &file_rtapi_realtime_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1473,7 +1473,7 @@ func (x *ChannelMessageSend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelMessageSend.ProtoReflect.Descriptor instead.
 func (*ChannelMessageSend) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{5}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ChannelMessageSend) GetChannelId() string {
@@ -1505,7 +1505,7 @@ type ChannelMessageUpdate struct {
 
 func (x *ChannelMessageUpdate) Reset() {
 	*x = ChannelMessageUpdate{}
-	mi := &file_realtime_proto_msgTypes[6]
+	mi := &file_rtapi_realtime_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1517,7 +1517,7 @@ func (x *ChannelMessageUpdate) String() string {
 func (*ChannelMessageUpdate) ProtoMessage() {}
 
 func (x *ChannelMessageUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[6]
+	mi := &file_rtapi_realtime_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1530,7 +1530,7 @@ func (x *ChannelMessageUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelMessageUpdate.ProtoReflect.Descriptor instead.
 func (*ChannelMessageUpdate) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{6}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ChannelMessageUpdate) GetChannelId() string {
@@ -1567,7 +1567,7 @@ type ChannelMessageRemove struct {
 
 func (x *ChannelMessageRemove) Reset() {
 	*x = ChannelMessageRemove{}
-	mi := &file_realtime_proto_msgTypes[7]
+	mi := &file_rtapi_realtime_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1579,7 +1579,7 @@ func (x *ChannelMessageRemove) String() string {
 func (*ChannelMessageRemove) ProtoMessage() {}
 
 func (x *ChannelMessageRemove) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[7]
+	mi := &file_rtapi_realtime_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1592,7 +1592,7 @@ func (x *ChannelMessageRemove) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelMessageRemove.ProtoReflect.Descriptor instead.
 func (*ChannelMessageRemove) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{7}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ChannelMessageRemove) GetChannelId() string {
@@ -1632,7 +1632,7 @@ type ChannelPresenceEvent struct {
 
 func (x *ChannelPresenceEvent) Reset() {
 	*x = ChannelPresenceEvent{}
-	mi := &file_realtime_proto_msgTypes[8]
+	mi := &file_rtapi_realtime_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1644,7 +1644,7 @@ func (x *ChannelPresenceEvent) String() string {
 func (*ChannelPresenceEvent) ProtoMessage() {}
 
 func (x *ChannelPresenceEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[8]
+	mi := &file_rtapi_realtime_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1657,7 +1657,7 @@ func (x *ChannelPresenceEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChannelPresenceEvent.ProtoReflect.Descriptor instead.
 func (*ChannelPresenceEvent) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{8}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ChannelPresenceEvent) GetChannelId() string {
@@ -1724,7 +1724,7 @@ type Error struct {
 
 func (x *Error) Reset() {
 	*x = Error{}
-	mi := &file_realtime_proto_msgTypes[9]
+	mi := &file_rtapi_realtime_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1736,7 +1736,7 @@ func (x *Error) String() string {
 func (*Error) ProtoMessage() {}
 
 func (x *Error) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[9]
+	mi := &file_rtapi_realtime_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1749,7 +1749,7 @@ func (x *Error) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Error.ProtoReflect.Descriptor instead.
 func (*Error) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{9}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Error) GetCode() int32 {
@@ -1787,14 +1787,18 @@ type Match struct {
 	// The users currently in the match.
 	Presences []*Presence `protobuf:"bytes,5,rep,name=presences,proto3" json:"presences,omitempty"`
 	// A reference to the current user's presence in the match.
-	Self          *Presence `protobuf:"bytes,6,opt,name=self,proto3" json:"self,omitempty"`
+	Self *Presence `protobuf:"bytes,6,opt,name=self,proto3" json:"self,omitempty"`
+	// The external URL of the node hosting this match, if available.
+	NodeUrl string `protobuf:"bytes,7,opt,name=node_url,json=nodeUrl,proto3" json:"node_url,omitempty"`
+	// Cross-node mode for this match (0=relay, 1=direct-connect).
+	CrossNodeMode int32 `protobuf:"varint,8,opt,name=cross_node_mode,json=crossNodeMode,proto3" json:"cross_node_mode,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Match) Reset() {
 	*x = Match{}
-	mi := &file_realtime_proto_msgTypes[10]
+	mi := &file_rtapi_realtime_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1806,7 +1810,7 @@ func (x *Match) String() string {
 func (*Match) ProtoMessage() {}
 
 func (x *Match) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[10]
+	mi := &file_rtapi_realtime_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1819,7 +1823,7 @@ func (x *Match) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Match.ProtoReflect.Descriptor instead.
 func (*Match) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{10}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Match) GetMatchId() string {
@@ -1864,6 +1868,20 @@ func (x *Match) GetSelf() *Presence {
 	return nil
 }
 
+func (x *Match) GetNodeUrl() string {
+	if x != nil {
+		return x.NodeUrl
+	}
+	return ""
+}
+
+func (x *Match) GetCrossNodeMode() int32 {
+	if x != nil {
+		return x.CrossNodeMode
+	}
+	return 0
+}
+
 // Create a new realtime match.
 type MatchCreate struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1875,7 +1893,7 @@ type MatchCreate struct {
 
 func (x *MatchCreate) Reset() {
 	*x = MatchCreate{}
-	mi := &file_realtime_proto_msgTypes[11]
+	mi := &file_rtapi_realtime_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1887,7 +1905,7 @@ func (x *MatchCreate) String() string {
 func (*MatchCreate) ProtoMessage() {}
 
 func (x *MatchCreate) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[11]
+	mi := &file_rtapi_realtime_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1900,7 +1918,7 @@ func (x *MatchCreate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchCreate.ProtoReflect.Descriptor instead.
 func (*MatchCreate) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{11}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *MatchCreate) GetName() string {
@@ -1929,7 +1947,7 @@ type MatchData struct {
 
 func (x *MatchData) Reset() {
 	*x = MatchData{}
-	mi := &file_realtime_proto_msgTypes[12]
+	mi := &file_rtapi_realtime_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1941,7 +1959,7 @@ func (x *MatchData) String() string {
 func (*MatchData) ProtoMessage() {}
 
 func (x *MatchData) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[12]
+	mi := &file_rtapi_realtime_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1954,7 +1972,7 @@ func (x *MatchData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchData.ProtoReflect.Descriptor instead.
 func (*MatchData) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{12}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *MatchData) GetMatchId() string {
@@ -2011,7 +2029,7 @@ type MatchDataSend struct {
 
 func (x *MatchDataSend) Reset() {
 	*x = MatchDataSend{}
-	mi := &file_realtime_proto_msgTypes[13]
+	mi := &file_rtapi_realtime_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2023,7 +2041,7 @@ func (x *MatchDataSend) String() string {
 func (*MatchDataSend) ProtoMessage() {}
 
 func (x *MatchDataSend) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[13]
+	mi := &file_rtapi_realtime_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2036,7 +2054,7 @@ func (x *MatchDataSend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchDataSend.ProtoReflect.Descriptor instead.
 func (*MatchDataSend) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{13}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *MatchDataSend) GetMatchId() string {
@@ -2090,7 +2108,7 @@ type MatchJoin struct {
 
 func (x *MatchJoin) Reset() {
 	*x = MatchJoin{}
-	mi := &file_realtime_proto_msgTypes[14]
+	mi := &file_rtapi_realtime_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2102,7 +2120,7 @@ func (x *MatchJoin) String() string {
 func (*MatchJoin) ProtoMessage() {}
 
 func (x *MatchJoin) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[14]
+	mi := &file_rtapi_realtime_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2115,7 +2133,7 @@ func (x *MatchJoin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchJoin.ProtoReflect.Descriptor instead.
 func (*MatchJoin) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{14}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *MatchJoin) GetId() isMatchJoin_Id {
@@ -2179,7 +2197,7 @@ type MatchLeave struct {
 
 func (x *MatchLeave) Reset() {
 	*x = MatchLeave{}
-	mi := &file_realtime_proto_msgTypes[15]
+	mi := &file_rtapi_realtime_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2191,7 +2209,7 @@ func (x *MatchLeave) String() string {
 func (*MatchLeave) ProtoMessage() {}
 
 func (x *MatchLeave) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[15]
+	mi := &file_rtapi_realtime_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2204,7 +2222,7 @@ func (x *MatchLeave) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchLeave.ProtoReflect.Descriptor instead.
 func (*MatchLeave) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{15}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *MatchLeave) GetMatchId() string {
@@ -2229,7 +2247,7 @@ type MatchPresenceEvent struct {
 
 func (x *MatchPresenceEvent) Reset() {
 	*x = MatchPresenceEvent{}
-	mi := &file_realtime_proto_msgTypes[16]
+	mi := &file_rtapi_realtime_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2241,7 +2259,7 @@ func (x *MatchPresenceEvent) String() string {
 func (*MatchPresenceEvent) ProtoMessage() {}
 
 func (x *MatchPresenceEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[16]
+	mi := &file_rtapi_realtime_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2254,7 +2272,7 @@ func (x *MatchPresenceEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchPresenceEvent.ProtoReflect.Descriptor instead.
 func (*MatchPresenceEvent) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{16}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MatchPresenceEvent) GetMatchId() string {
@@ -2303,7 +2321,7 @@ type MatchmakerAdd struct {
 
 func (x *MatchmakerAdd) Reset() {
 	*x = MatchmakerAdd{}
-	mi := &file_realtime_proto_msgTypes[17]
+	mi := &file_rtapi_realtime_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2315,7 +2333,7 @@ func (x *MatchmakerAdd) String() string {
 func (*MatchmakerAdd) ProtoMessage() {}
 
 func (x *MatchmakerAdd) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[17]
+	mi := &file_rtapi_realtime_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2328,7 +2346,7 @@ func (x *MatchmakerAdd) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerAdd.ProtoReflect.Descriptor instead.
 func (*MatchmakerAdd) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{17}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *MatchmakerAdd) GetMinCount() int32 {
@@ -2409,7 +2427,7 @@ type MatchmakerMatched struct {
 
 func (x *MatchmakerMatched) Reset() {
 	*x = MatchmakerMatched{}
-	mi := &file_realtime_proto_msgTypes[18]
+	mi := &file_rtapi_realtime_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2421,7 +2439,7 @@ func (x *MatchmakerMatched) String() string {
 func (*MatchmakerMatched) ProtoMessage() {}
 
 func (x *MatchmakerMatched) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[18]
+	mi := &file_rtapi_realtime_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2434,7 +2452,7 @@ func (x *MatchmakerMatched) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerMatched.ProtoReflect.Descriptor instead.
 func (*MatchmakerMatched) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{18}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *MatchmakerMatched) GetTicket() string {
@@ -2512,7 +2530,7 @@ type MatchmakerRemove struct {
 
 func (x *MatchmakerRemove) Reset() {
 	*x = MatchmakerRemove{}
-	mi := &file_realtime_proto_msgTypes[19]
+	mi := &file_rtapi_realtime_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2524,7 +2542,7 @@ func (x *MatchmakerRemove) String() string {
 func (*MatchmakerRemove) ProtoMessage() {}
 
 func (x *MatchmakerRemove) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[19]
+	mi := &file_rtapi_realtime_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2537,7 +2555,7 @@ func (x *MatchmakerRemove) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerRemove.ProtoReflect.Descriptor instead.
 func (*MatchmakerRemove) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{19}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *MatchmakerRemove) GetTicket() string {
@@ -2558,7 +2576,7 @@ type MatchmakerTicket struct {
 
 func (x *MatchmakerTicket) Reset() {
 	*x = MatchmakerTicket{}
-	mi := &file_realtime_proto_msgTypes[20]
+	mi := &file_rtapi_realtime_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2570,7 +2588,7 @@ func (x *MatchmakerTicket) String() string {
 func (*MatchmakerTicket) ProtoMessage() {}
 
 func (x *MatchmakerTicket) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[20]
+	mi := &file_rtapi_realtime_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2583,7 +2601,7 @@ func (x *MatchmakerTicket) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerTicket.ProtoReflect.Descriptor instead.
 func (*MatchmakerTicket) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{20}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *MatchmakerTicket) GetTicket() string {
@@ -2604,7 +2622,7 @@ type Notifications struct {
 
 func (x *Notifications) Reset() {
 	*x = Notifications{}
-	mi := &file_realtime_proto_msgTypes[21]
+	mi := &file_rtapi_realtime_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2616,7 +2634,7 @@ func (x *Notifications) String() string {
 func (*Notifications) ProtoMessage() {}
 
 func (x *Notifications) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[21]
+	mi := &file_rtapi_realtime_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2629,7 +2647,7 @@ func (x *Notifications) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Notifications.ProtoReflect.Descriptor instead.
 func (*Notifications) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{21}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *Notifications) GetNotifications() []*api.Notification {
@@ -2664,7 +2682,7 @@ type Party struct {
 
 func (x *Party) Reset() {
 	*x = Party{}
-	mi := &file_realtime_proto_msgTypes[22]
+	mi := &file_rtapi_realtime_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2676,7 +2694,7 @@ func (x *Party) String() string {
 func (*Party) ProtoMessage() {}
 
 func (x *Party) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[22]
+	mi := &file_rtapi_realtime_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2689,7 +2707,7 @@ func (x *Party) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Party.ProtoReflect.Descriptor instead.
 func (*Party) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{22}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *Party) GetPartyId() string {
@@ -2765,7 +2783,7 @@ type PartyCreate struct {
 
 func (x *PartyCreate) Reset() {
 	*x = PartyCreate{}
-	mi := &file_realtime_proto_msgTypes[23]
+	mi := &file_rtapi_realtime_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2777,7 +2795,7 @@ func (x *PartyCreate) String() string {
 func (*PartyCreate) ProtoMessage() {}
 
 func (x *PartyCreate) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[23]
+	mi := &file_rtapi_realtime_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2790,7 +2808,7 @@ func (x *PartyCreate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyCreate.ProtoReflect.Descriptor instead.
 func (*PartyCreate) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{23}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *PartyCreate) GetOpen() bool {
@@ -2838,7 +2856,7 @@ type PartyUpdate struct {
 
 func (x *PartyUpdate) Reset() {
 	*x = PartyUpdate{}
-	mi := &file_realtime_proto_msgTypes[24]
+	mi := &file_rtapi_realtime_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2850,7 +2868,7 @@ func (x *PartyUpdate) String() string {
 func (*PartyUpdate) ProtoMessage() {}
 
 func (x *PartyUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[24]
+	mi := &file_rtapi_realtime_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2863,7 +2881,7 @@ func (x *PartyUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyUpdate.ProtoReflect.Descriptor instead.
 func (*PartyUpdate) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{24}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *PartyUpdate) GetPartyId() string {
@@ -2905,7 +2923,7 @@ type PartyJoin struct {
 
 func (x *PartyJoin) Reset() {
 	*x = PartyJoin{}
-	mi := &file_realtime_proto_msgTypes[25]
+	mi := &file_rtapi_realtime_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2917,7 +2935,7 @@ func (x *PartyJoin) String() string {
 func (*PartyJoin) ProtoMessage() {}
 
 func (x *PartyJoin) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[25]
+	mi := &file_rtapi_realtime_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2930,7 +2948,7 @@ func (x *PartyJoin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyJoin.ProtoReflect.Descriptor instead.
 func (*PartyJoin) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{25}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *PartyJoin) GetPartyId() string {
@@ -2951,7 +2969,7 @@ type PartyLeave struct {
 
 func (x *PartyLeave) Reset() {
 	*x = PartyLeave{}
-	mi := &file_realtime_proto_msgTypes[26]
+	mi := &file_rtapi_realtime_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2963,7 +2981,7 @@ func (x *PartyLeave) String() string {
 func (*PartyLeave) ProtoMessage() {}
 
 func (x *PartyLeave) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[26]
+	mi := &file_rtapi_realtime_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2976,7 +2994,7 @@ func (x *PartyLeave) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyLeave.ProtoReflect.Descriptor instead.
 func (*PartyLeave) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{26}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *PartyLeave) GetPartyId() string {
@@ -2999,7 +3017,7 @@ type PartyPromote struct {
 
 func (x *PartyPromote) Reset() {
 	*x = PartyPromote{}
-	mi := &file_realtime_proto_msgTypes[27]
+	mi := &file_rtapi_realtime_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3011,7 +3029,7 @@ func (x *PartyPromote) String() string {
 func (*PartyPromote) ProtoMessage() {}
 
 func (x *PartyPromote) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[27]
+	mi := &file_rtapi_realtime_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3024,7 +3042,7 @@ func (x *PartyPromote) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyPromote.ProtoReflect.Descriptor instead.
 func (*PartyPromote) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{27}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *PartyPromote) GetPartyId() string {
@@ -3054,7 +3072,7 @@ type PartyLeader struct {
 
 func (x *PartyLeader) Reset() {
 	*x = PartyLeader{}
-	mi := &file_realtime_proto_msgTypes[28]
+	mi := &file_rtapi_realtime_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3066,7 +3084,7 @@ func (x *PartyLeader) String() string {
 func (*PartyLeader) ProtoMessage() {}
 
 func (x *PartyLeader) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[28]
+	mi := &file_rtapi_realtime_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3079,7 +3097,7 @@ func (x *PartyLeader) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyLeader.ProtoReflect.Descriptor instead.
 func (*PartyLeader) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{28}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *PartyLeader) GetPartyId() string {
@@ -3109,7 +3127,7 @@ type PartyAccept struct {
 
 func (x *PartyAccept) Reset() {
 	*x = PartyAccept{}
-	mi := &file_realtime_proto_msgTypes[29]
+	mi := &file_rtapi_realtime_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3121,7 +3139,7 @@ func (x *PartyAccept) String() string {
 func (*PartyAccept) ProtoMessage() {}
 
 func (x *PartyAccept) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[29]
+	mi := &file_rtapi_realtime_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3134,7 +3152,7 @@ func (x *PartyAccept) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyAccept.ProtoReflect.Descriptor instead.
 func (*PartyAccept) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{29}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *PartyAccept) GetPartyId() string {
@@ -3164,7 +3182,7 @@ type PartyRemove struct {
 
 func (x *PartyRemove) Reset() {
 	*x = PartyRemove{}
-	mi := &file_realtime_proto_msgTypes[30]
+	mi := &file_rtapi_realtime_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3176,7 +3194,7 @@ func (x *PartyRemove) String() string {
 func (*PartyRemove) ProtoMessage() {}
 
 func (x *PartyRemove) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[30]
+	mi := &file_rtapi_realtime_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3189,7 +3207,7 @@ func (x *PartyRemove) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyRemove.ProtoReflect.Descriptor instead.
 func (*PartyRemove) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{30}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *PartyRemove) GetPartyId() string {
@@ -3217,7 +3235,7 @@ type PartyClose struct {
 
 func (x *PartyClose) Reset() {
 	*x = PartyClose{}
-	mi := &file_realtime_proto_msgTypes[31]
+	mi := &file_rtapi_realtime_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3229,7 +3247,7 @@ func (x *PartyClose) String() string {
 func (*PartyClose) ProtoMessage() {}
 
 func (x *PartyClose) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[31]
+	mi := &file_rtapi_realtime_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3242,7 +3260,7 @@ func (x *PartyClose) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyClose.ProtoReflect.Descriptor instead.
 func (*PartyClose) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{31}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *PartyClose) GetPartyId() string {
@@ -3263,7 +3281,7 @@ type PartyJoinRequestList struct {
 
 func (x *PartyJoinRequestList) Reset() {
 	*x = PartyJoinRequestList{}
-	mi := &file_realtime_proto_msgTypes[32]
+	mi := &file_rtapi_realtime_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3275,7 +3293,7 @@ func (x *PartyJoinRequestList) String() string {
 func (*PartyJoinRequestList) ProtoMessage() {}
 
 func (x *PartyJoinRequestList) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[32]
+	mi := &file_rtapi_realtime_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3288,7 +3306,7 @@ func (x *PartyJoinRequestList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyJoinRequestList.ProtoReflect.Descriptor instead.
 func (*PartyJoinRequestList) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{32}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *PartyJoinRequestList) GetPartyId() string {
@@ -3311,7 +3329,7 @@ type PartyJoinRequest struct {
 
 func (x *PartyJoinRequest) Reset() {
 	*x = PartyJoinRequest{}
-	mi := &file_realtime_proto_msgTypes[33]
+	mi := &file_rtapi_realtime_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3323,7 +3341,7 @@ func (x *PartyJoinRequest) String() string {
 func (*PartyJoinRequest) ProtoMessage() {}
 
 func (x *PartyJoinRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[33]
+	mi := &file_rtapi_realtime_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3336,7 +3354,7 @@ func (x *PartyJoinRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyJoinRequest.ProtoReflect.Descriptor instead.
 func (*PartyJoinRequest) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{33}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *PartyJoinRequest) GetPartyId() string {
@@ -3376,7 +3394,7 @@ type PartyMatchmakerAdd struct {
 
 func (x *PartyMatchmakerAdd) Reset() {
 	*x = PartyMatchmakerAdd{}
-	mi := &file_realtime_proto_msgTypes[34]
+	mi := &file_rtapi_realtime_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3388,7 +3406,7 @@ func (x *PartyMatchmakerAdd) String() string {
 func (*PartyMatchmakerAdd) ProtoMessage() {}
 
 func (x *PartyMatchmakerAdd) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[34]
+	mi := &file_rtapi_realtime_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3401,7 +3419,7 @@ func (x *PartyMatchmakerAdd) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyMatchmakerAdd.ProtoReflect.Descriptor instead.
 func (*PartyMatchmakerAdd) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{34}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *PartyMatchmakerAdd) GetPartyId() string {
@@ -3466,7 +3484,7 @@ type PartyMatchmakerRemove struct {
 
 func (x *PartyMatchmakerRemove) Reset() {
 	*x = PartyMatchmakerRemove{}
-	mi := &file_realtime_proto_msgTypes[35]
+	mi := &file_rtapi_realtime_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3478,7 +3496,7 @@ func (x *PartyMatchmakerRemove) String() string {
 func (*PartyMatchmakerRemove) ProtoMessage() {}
 
 func (x *PartyMatchmakerRemove) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[35]
+	mi := &file_rtapi_realtime_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3491,7 +3509,7 @@ func (x *PartyMatchmakerRemove) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyMatchmakerRemove.ProtoReflect.Descriptor instead.
 func (*PartyMatchmakerRemove) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{35}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *PartyMatchmakerRemove) GetPartyId() string {
@@ -3521,7 +3539,7 @@ type PartyMatchmakerTicket struct {
 
 func (x *PartyMatchmakerTicket) Reset() {
 	*x = PartyMatchmakerTicket{}
-	mi := &file_realtime_proto_msgTypes[36]
+	mi := &file_rtapi_realtime_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3533,7 +3551,7 @@ func (x *PartyMatchmakerTicket) String() string {
 func (*PartyMatchmakerTicket) ProtoMessage() {}
 
 func (x *PartyMatchmakerTicket) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[36]
+	mi := &file_rtapi_realtime_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3546,7 +3564,7 @@ func (x *PartyMatchmakerTicket) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyMatchmakerTicket.ProtoReflect.Descriptor instead.
 func (*PartyMatchmakerTicket) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{36}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *PartyMatchmakerTicket) GetPartyId() string {
@@ -3580,7 +3598,7 @@ type PartyData struct {
 
 func (x *PartyData) Reset() {
 	*x = PartyData{}
-	mi := &file_realtime_proto_msgTypes[37]
+	mi := &file_rtapi_realtime_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3592,7 +3610,7 @@ func (x *PartyData) String() string {
 func (*PartyData) ProtoMessage() {}
 
 func (x *PartyData) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[37]
+	mi := &file_rtapi_realtime_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3605,7 +3623,7 @@ func (x *PartyData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyData.ProtoReflect.Descriptor instead.
 func (*PartyData) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{37}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *PartyData) GetPartyId() string {
@@ -3651,7 +3669,7 @@ type PartyDataSend struct {
 
 func (x *PartyDataSend) Reset() {
 	*x = PartyDataSend{}
-	mi := &file_realtime_proto_msgTypes[38]
+	mi := &file_rtapi_realtime_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3663,7 +3681,7 @@ func (x *PartyDataSend) String() string {
 func (*PartyDataSend) ProtoMessage() {}
 
 func (x *PartyDataSend) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[38]
+	mi := &file_rtapi_realtime_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3676,7 +3694,7 @@ func (x *PartyDataSend) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyDataSend.ProtoReflect.Descriptor instead.
 func (*PartyDataSend) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{38}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *PartyDataSend) GetPartyId() string {
@@ -3715,7 +3733,7 @@ type PartyPresenceEvent struct {
 
 func (x *PartyPresenceEvent) Reset() {
 	*x = PartyPresenceEvent{}
-	mi := &file_realtime_proto_msgTypes[39]
+	mi := &file_rtapi_realtime_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3727,7 +3745,7 @@ func (x *PartyPresenceEvent) String() string {
 func (*PartyPresenceEvent) ProtoMessage() {}
 
 func (x *PartyPresenceEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[39]
+	mi := &file_rtapi_realtime_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3740,7 +3758,7 @@ func (x *PartyPresenceEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PartyPresenceEvent.ProtoReflect.Descriptor instead.
 func (*PartyPresenceEvent) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{39}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *PartyPresenceEvent) GetPartyId() string {
@@ -3773,7 +3791,7 @@ type Ping struct {
 
 func (x *Ping) Reset() {
 	*x = Ping{}
-	mi := &file_realtime_proto_msgTypes[40]
+	mi := &file_rtapi_realtime_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3785,7 +3803,7 @@ func (x *Ping) String() string {
 func (*Ping) ProtoMessage() {}
 
 func (x *Ping) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[40]
+	mi := &file_rtapi_realtime_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3798,7 +3816,7 @@ func (x *Ping) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Ping.ProtoReflect.Descriptor instead.
 func (*Ping) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{40}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{40}
 }
 
 // Application-level heartbeat and connection check response.
@@ -3810,7 +3828,7 @@ type Pong struct {
 
 func (x *Pong) Reset() {
 	*x = Pong{}
-	mi := &file_realtime_proto_msgTypes[41]
+	mi := &file_rtapi_realtime_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3822,7 +3840,7 @@ func (x *Pong) String() string {
 func (*Pong) ProtoMessage() {}
 
 func (x *Pong) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[41]
+	mi := &file_rtapi_realtime_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3835,7 +3853,7 @@ func (x *Pong) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pong.ProtoReflect.Descriptor instead.
 func (*Pong) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{41}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{41}
 }
 
 // A snapshot of statuses for some set of users.
@@ -3849,7 +3867,7 @@ type Status struct {
 
 func (x *Status) Reset() {
 	*x = Status{}
-	mi := &file_realtime_proto_msgTypes[42]
+	mi := &file_rtapi_realtime_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3861,7 +3879,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[42]
+	mi := &file_rtapi_realtime_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3874,7 +3892,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{42}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *Status) GetPresences() []*Presence {
@@ -3897,7 +3915,7 @@ type StatusFollow struct {
 
 func (x *StatusFollow) Reset() {
 	*x = StatusFollow{}
-	mi := &file_realtime_proto_msgTypes[43]
+	mi := &file_rtapi_realtime_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3909,7 +3927,7 @@ func (x *StatusFollow) String() string {
 func (*StatusFollow) ProtoMessage() {}
 
 func (x *StatusFollow) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[43]
+	mi := &file_rtapi_realtime_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3922,7 +3940,7 @@ func (x *StatusFollow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusFollow.ProtoReflect.Descriptor instead.
 func (*StatusFollow) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{43}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *StatusFollow) GetCharacterIds() []string {
@@ -3952,7 +3970,7 @@ type StatusPresenceEvent struct {
 
 func (x *StatusPresenceEvent) Reset() {
 	*x = StatusPresenceEvent{}
-	mi := &file_realtime_proto_msgTypes[44]
+	mi := &file_rtapi_realtime_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3964,7 +3982,7 @@ func (x *StatusPresenceEvent) String() string {
 func (*StatusPresenceEvent) ProtoMessage() {}
 
 func (x *StatusPresenceEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[44]
+	mi := &file_rtapi_realtime_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3977,7 +3995,7 @@ func (x *StatusPresenceEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusPresenceEvent.ProtoReflect.Descriptor instead.
 func (*StatusPresenceEvent) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{44}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *StatusPresenceEvent) GetJoins() []*Presence {
@@ -4005,7 +4023,7 @@ type StatusUnfollow struct {
 
 func (x *StatusUnfollow) Reset() {
 	*x = StatusUnfollow{}
-	mi := &file_realtime_proto_msgTypes[45]
+	mi := &file_rtapi_realtime_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4017,7 +4035,7 @@ func (x *StatusUnfollow) String() string {
 func (*StatusUnfollow) ProtoMessage() {}
 
 func (x *StatusUnfollow) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[45]
+	mi := &file_rtapi_realtime_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4030,7 +4048,7 @@ func (x *StatusUnfollow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusUnfollow.ProtoReflect.Descriptor instead.
 func (*StatusUnfollow) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{45}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *StatusUnfollow) GetCharacterIds() []string {
@@ -4051,7 +4069,7 @@ type StatusUpdate struct {
 
 func (x *StatusUpdate) Reset() {
 	*x = StatusUpdate{}
-	mi := &file_realtime_proto_msgTypes[46]
+	mi := &file_rtapi_realtime_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4063,7 +4081,7 @@ func (x *StatusUpdate) String() string {
 func (*StatusUpdate) ProtoMessage() {}
 
 func (x *StatusUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[46]
+	mi := &file_rtapi_realtime_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4076,7 +4094,7 @@ func (x *StatusUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StatusUpdate.ProtoReflect.Descriptor instead.
 func (*StatusUpdate) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{46}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *StatusUpdate) GetStatus() *wrapperspb.StringValue {
@@ -4103,7 +4121,7 @@ type Stream struct {
 
 func (x *Stream) Reset() {
 	*x = Stream{}
-	mi := &file_realtime_proto_msgTypes[47]
+	mi := &file_rtapi_realtime_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4115,7 +4133,7 @@ func (x *Stream) String() string {
 func (*Stream) ProtoMessage() {}
 
 func (x *Stream) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[47]
+	mi := &file_rtapi_realtime_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4128,7 +4146,7 @@ func (x *Stream) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Stream.ProtoReflect.Descriptor instead.
 func (*Stream) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{47}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *Stream) GetMode() int32 {
@@ -4176,7 +4194,7 @@ type StreamData struct {
 
 func (x *StreamData) Reset() {
 	*x = StreamData{}
-	mi := &file_realtime_proto_msgTypes[48]
+	mi := &file_rtapi_realtime_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4188,7 +4206,7 @@ func (x *StreamData) String() string {
 func (*StreamData) ProtoMessage() {}
 
 func (x *StreamData) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[48]
+	mi := &file_rtapi_realtime_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4201,7 +4219,7 @@ func (x *StreamData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamData.ProtoReflect.Descriptor instead.
 func (*StreamData) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{48}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *StreamData) GetStream() *Stream {
@@ -4247,7 +4265,7 @@ type StreamPresenceEvent struct {
 
 func (x *StreamPresenceEvent) Reset() {
 	*x = StreamPresenceEvent{}
-	mi := &file_realtime_proto_msgTypes[49]
+	mi := &file_rtapi_realtime_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4259,7 +4277,7 @@ func (x *StreamPresenceEvent) String() string {
 func (*StreamPresenceEvent) ProtoMessage() {}
 
 func (x *StreamPresenceEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[49]
+	mi := &file_rtapi_realtime_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4272,7 +4290,7 @@ func (x *StreamPresenceEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StreamPresenceEvent.ProtoReflect.Descriptor instead.
 func (*StreamPresenceEvent) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{49}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *StreamPresenceEvent) GetStream() *Stream {
@@ -4321,7 +4339,7 @@ type Presence struct {
 
 func (x *Presence) Reset() {
 	*x = Presence{}
-	mi := &file_realtime_proto_msgTypes[50]
+	mi := &file_rtapi_realtime_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4333,7 +4351,7 @@ func (x *Presence) String() string {
 func (*Presence) ProtoMessage() {}
 
 func (x *Presence) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[50]
+	mi := &file_rtapi_realtime_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4346,7 +4364,7 @@ func (x *Presence) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Presence.ProtoReflect.Descriptor instead.
 func (*Presence) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{50}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *Presence) GetUserId() string {
@@ -4425,7 +4443,7 @@ type MatchmakerMatched_MatchmakerUser struct {
 
 func (x *MatchmakerMatched_MatchmakerUser) Reset() {
 	*x = MatchmakerMatched_MatchmakerUser{}
-	mi := &file_realtime_proto_msgTypes[55]
+	mi := &file_rtapi_realtime_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4437,7 +4455,7 @@ func (x *MatchmakerMatched_MatchmakerUser) String() string {
 func (*MatchmakerMatched_MatchmakerUser) ProtoMessage() {}
 
 func (x *MatchmakerMatched_MatchmakerUser) ProtoReflect() protoreflect.Message {
-	mi := &file_realtime_proto_msgTypes[55]
+	mi := &file_rtapi_realtime_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4450,7 +4468,7 @@ func (x *MatchmakerMatched_MatchmakerUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MatchmakerMatched_MatchmakerUser.ProtoReflect.Descriptor instead.
 func (*MatchmakerMatched_MatchmakerUser) Descriptor() ([]byte, []int) {
-	return file_realtime_proto_rawDescGZIP(), []int{18, 0}
+	return file_rtapi_realtime_proto_rawDescGZIP(), []int{18, 0}
 }
 
 func (x *MatchmakerMatched_MatchmakerUser) GetPresence() *Presence {
@@ -4495,11 +4513,11 @@ func (x *MatchmakerMatched_MatchmakerUser) GetCohortId() string {
 	return ""
 }
 
-var File_realtime_proto protoreflect.FileDescriptor
+var File_rtapi_realtime_proto protoreflect.FileDescriptor
 
-const file_realtime_proto_rawDesc = "" +
+const file_rtapi_realtime_proto_rawDesc = "" +
 	"\n" +
-	"\x0erealtime.proto\x12\x0fnakama.realtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\rapi/api.proto\"\xb7\x1c\n" +
+	"\x14rtapi/realtime.proto\x12\x0fnakama.realtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\rapi/api.proto\"\xb7\x1c\n" +
 	"\bEnvelope\x12\x10\n" +
 	"\x03cid\x18\x01 \x01(\tR\x03cid\x124\n" +
 	"\achannel\x18\x02 \x01(\v2\x18.nakama.realtime.ChannelH\x00R\achannel\x12A\n" +
@@ -4641,14 +4659,16 @@ const file_realtime_proto_rawDesc = "" +
 	"\x0fMATCH_NOT_FOUND\x10\x04\x12\x17\n" +
 	"\x13MATCH_JOIN_REJECTED\x10\x05\x12\x1e\n" +
 	"\x1aRUNTIME_FUNCTION_NOT_FOUND\x10\x06\x12\x1e\n" +
-	"\x1aRUNTIME_FUNCTION_EXCEPTION\x10\a\"\xf8\x01\n" +
+	"\x1aRUNTIME_FUNCTION_EXCEPTION\x10\a\"\xbb\x02\n" +
 	"\x05Match\x12\x19\n" +
 	"\bmatch_id\x18\x01 \x01(\tR\amatchId\x12$\n" +
 	"\rauthoritative\x18\x02 \x01(\bR\rauthoritative\x122\n" +
 	"\x05label\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\x05label\x12\x12\n" +
 	"\x04size\x18\x04 \x01(\x05R\x04size\x127\n" +
 	"\tpresences\x18\x05 \x03(\v2\x19.nakama.realtime.PresenceR\tpresences\x12-\n" +
-	"\x04self\x18\x06 \x01(\v2\x19.nakama.realtime.PresenceR\x04self\"!\n" +
+	"\x04self\x18\x06 \x01(\v2\x19.nakama.realtime.PresenceR\x04self\x12\x19\n" +
+	"\bnode_url\x18\a \x01(\tR\anodeUrl\x12&\n" +
+	"\x0fcross_node_mode\x18\b \x01(\x05R\rcrossNodeMode\"!\n" +
 	"\vMatchCreate\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"\xa6\x01\n" +
 	"\tMatchData\x12\x19\n" +
@@ -4840,20 +4860,20 @@ const file_realtime_proto_rawDesc = "" +
 	"\x1bcom.heroiclabs.nakama.rtapiB\x0eNakamaRealtimeP\x01Z)github.com/heroiclabs/nakama-common/rtapi\xaa\x02\x0fNakama.Protobufb\x06proto3"
 
 var (
-	file_realtime_proto_rawDescOnce sync.Once
-	file_realtime_proto_rawDescData []byte
+	file_rtapi_realtime_proto_rawDescOnce sync.Once
+	file_rtapi_realtime_proto_rawDescData []byte
 )
 
-func file_realtime_proto_rawDescGZIP() []byte {
-	file_realtime_proto_rawDescOnce.Do(func() {
-		file_realtime_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_realtime_proto_rawDesc), len(file_realtime_proto_rawDesc)))
+func file_rtapi_realtime_proto_rawDescGZIP() []byte {
+	file_rtapi_realtime_proto_rawDescOnce.Do(func() {
+		file_rtapi_realtime_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_rtapi_realtime_proto_rawDesc), len(file_rtapi_realtime_proto_rawDesc)))
 	})
-	return file_realtime_proto_rawDescData
+	return file_rtapi_realtime_proto_rawDescData
 }
 
-var file_realtime_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_realtime_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
-var file_realtime_proto_goTypes = []any{
+var file_rtapi_realtime_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_rtapi_realtime_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
+var file_rtapi_realtime_proto_goTypes = []any{
 	(ChannelJoin_Type)(0),                    // 0: nakama.realtime.ChannelJoin.Type
 	(Error_Code)(0),                          // 1: nakama.realtime.Error.Code
 	(*Envelope)(nil),                         // 2: nakama.realtime.Envelope
@@ -4924,7 +4944,7 @@ var file_realtime_proto_goTypes = []any{
 	(*wrapperspb.StringValue)(nil),           // 67: google.protobuf.StringValue
 	(*api.Notification)(nil),                 // 68: nakama.api.Notification
 }
-var file_realtime_proto_depIdxs = []int32{
+var file_rtapi_realtime_proto_depIdxs = []int32{
 	3,   // 0: nakama.realtime.Envelope.channel:type_name -> nakama.realtime.Channel
 	4,   // 1: nakama.realtime.Envelope.channel_join:type_name -> nakama.realtime.ChannelJoin
 	5,   // 2: nakama.realtime.Envelope.channel_leave:type_name -> nakama.realtime.ChannelLeave
@@ -5034,12 +5054,12 @@ var file_realtime_proto_depIdxs = []int32{
 	0,   // [0:102] is the sub-list for field type_name
 }
 
-func init() { file_realtime_proto_init() }
-func file_realtime_proto_init() {
-	if File_realtime_proto != nil {
+func init() { file_rtapi_realtime_proto_init() }
+func file_rtapi_realtime_proto_init() {
+	if File_rtapi_realtime_proto != nil {
 		return
 	}
-	file_realtime_proto_msgTypes[0].OneofWrappers = []any{
+	file_rtapi_realtime_proto_msgTypes[0].OneofWrappers = []any{
 		(*Envelope_Channel)(nil),
 		(*Envelope_ChannelJoin)(nil),
 		(*Envelope_ChannelLeave)(nil),
@@ -5091,11 +5111,11 @@ func file_realtime_proto_init() {
 		(*Envelope_PartyPresenceEvent)(nil),
 		(*Envelope_PartyUpdate)(nil),
 	}
-	file_realtime_proto_msgTypes[14].OneofWrappers = []any{
+	file_rtapi_realtime_proto_msgTypes[14].OneofWrappers = []any{
 		(*MatchJoin_MatchId)(nil),
 		(*MatchJoin_Token)(nil),
 	}
-	file_realtime_proto_msgTypes[18].OneofWrappers = []any{
+	file_rtapi_realtime_proto_msgTypes[18].OneofWrappers = []any{
 		(*MatchmakerMatched_MatchId)(nil),
 		(*MatchmakerMatched_Token)(nil),
 	}
@@ -5103,18 +5123,18 @@ func file_realtime_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_realtime_proto_rawDesc), len(file_realtime_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rtapi_realtime_proto_rawDesc), len(file_rtapi_realtime_proto_rawDesc)),
 			NumEnums:      2,
 			NumMessages:   60,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_realtime_proto_goTypes,
-		DependencyIndexes: file_realtime_proto_depIdxs,
-		EnumInfos:         file_realtime_proto_enumTypes,
-		MessageInfos:      file_realtime_proto_msgTypes,
+		GoTypes:           file_rtapi_realtime_proto_goTypes,
+		DependencyIndexes: file_rtapi_realtime_proto_depIdxs,
+		EnumInfos:         file_rtapi_realtime_proto_enumTypes,
+		MessageInfos:      file_rtapi_realtime_proto_msgTypes,
 	}.Build()
-	File_realtime_proto = out.File
-	file_realtime_proto_goTypes = nil
-	file_realtime_proto_depIdxs = nil
+	File_rtapi_realtime_proto = out.File
+	file_rtapi_realtime_proto_goTypes = nil
+	file_rtapi_realtime_proto_depIdxs = nil
 }
