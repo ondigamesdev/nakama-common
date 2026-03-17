@@ -609,6 +609,11 @@ type Initializer interface {
 	// RegisterTournamentReset
 	RegisterTournamentReset(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, tournament *api.Tournament, end, reset int64) error) error
 
+	// RegisterTournamentScoreTransform registers a function that is invoked for each tournament record
+	// during a tournament reset. The function receives the tournament and the owner's leaderboard record,
+	// and returns the new score, new subscore. If no function is registered, records are left unmodified.
+	RegisterTournamentScoreTransform(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, tournament *api.Tournament, ownerID string, score, subscore int64) (int64, int64, error)) error
+
 	// RegisterLeaderboardReset
 	RegisterLeaderboardReset(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, leaderboard *api.Leaderboard, reset int64) error) error
 
