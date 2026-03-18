@@ -1686,6 +1686,10 @@ type NakamaModule interface {
 	TournamentRecordWrite(ctx context.Context, id, ownerID, username string, score, subscore int64, metadata map[string]interface{}, operatorOverride *int) (*api.LeaderboardRecord, error)
 	TournamentRecordDelete(ctx context.Context, id, ownerID string) error
 	TournamentRecordsHaystack(ctx context.Context, id, ownerID string, limit int, cursor string, expiry int64) (*api.TournamentRecordList, error)
+	// TournamentRecordsByScoreRange returns tournament records within a score range in random order.
+	// Excludes records matching any of the provided excludeOwnerIDs.
+	// Returns up to `limit` records. This is a generic API not tied to any specific game feature.
+	TournamentRecordsByScoreRange(ctx context.Context, id string, minScore, maxScore int64, limit int, excludeOwnerIDs []string) ([]*api.LeaderboardRecord, error)
 
 	GroupsGetId(ctx context.Context, groupIDs []string) ([]*api.Group, error)
 	GroupCreate(ctx context.Context, characterID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) (*api.Group, error)
