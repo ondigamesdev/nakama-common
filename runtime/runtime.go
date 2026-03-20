@@ -1314,12 +1314,13 @@ type AccountUpdate struct {
 }
 
 type NotificationSend struct {
-	UserID     string
-	Subject    string
-	Content    map[string]interface{}
-	Code       int
-	Sender     string
-	Persistent bool
+	UserID      string
+	CharacterID string // If set and UserID is empty, auto-resolves UserID from characters table
+	Subject     string
+	Content     map[string]interface{}
+	Code        int
+	Sender      string
+	Persistent  bool
 }
 
 type NotificationDelete struct {
@@ -1809,6 +1810,10 @@ type NakamaModule interface {
 	// user IDs that are currently online. Reverse of GetOnlineCharacterUserIDs.
 	// Uses the distributed status registry.
 	GetOnlineUserCharacterIDs(userIDs []string) (map[string]string, error)
+
+	// ResolveCharacterUserIDs returns a map of characterID → owning userID from the database.
+	// Unlike GetOnlineCharacterUserIDs, this works regardless of online status and across all nodes.
+	ResolveCharacterUserIDs(ctx context.Context, characterIDs []string) (map[string]string, error)
 }
 
 // SecurityModule is an optional interface that PamOps-aware NakamaModule
