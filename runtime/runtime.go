@@ -1405,27 +1405,23 @@ type CharacterWalletLedgerItem interface {
 type StorageRead struct {
 	Collection  string
 	Key         string
-	UserID      string
-	CharacterID string // Empty for user-scoped storage
+	CharacterID string
 }
 
 type StorageWrite struct {
 	Collection      string
 	Key             string
-	UserID          string
-	CharacterID     string // Empty for user-scoped storage
+	CharacterID     string
 	Value           string
 	Version         string
 	PermissionRead  int
 	PermissionWrite int
-	UserScoped      bool // Force user-scoped even with active character
 }
 
 type StorageDelete struct {
 	Collection  string
 	Key         string
-	UserID      string
-	CharacterID string // Empty for user-scoped storage
+	CharacterID string
 	Version     string
 }
 

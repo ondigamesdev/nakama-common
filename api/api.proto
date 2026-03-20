@@ -997,10 +997,8 @@ message ReadStorageObjectId {
   string collection = 1;
   // The key of the object within the collection.
   string key = 2;
-  // The user owner of the object.
-  string user_id = 3;
-  // The character owner of the object. Empty for user-scoped storage.
-  string character_id = 4;
+  // The character owner of the object.
+  string character_id = 3;
 }
 
 // Batch get storage objects.
@@ -1035,24 +1033,22 @@ message StorageObject {
   string collection = 1;
   // The key of the object within the collection.
   string key = 2;
-  // The user owner of the object.
-  string user_id = 3;
   // The value of the object.
-  string value = 4;
+  string value = 3;
   // The version hash of the object.
-  string version = 5;
+  string version = 4;
   // The read access permissions for the object.
-  int32 permission_read = 6;
+  int32 permission_read = 5;
   // The write access permissions for the object.
-  int32 permission_write = 7;
+  int32 permission_write = 6;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was created.
-  google.protobuf.Timestamp create_time = 8;
+  google.protobuf.Timestamp create_time = 7;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
-  google.protobuf.Timestamp update_time = 9;
-  // The character owner of the object. Empty for user-scoped storage.
-  string character_id = 10;
-  // The realm associated with the object. Empty for user-scoped storage.
-  string realm_id = 11;
+  google.protobuf.Timestamp update_time = 8;
+  // The character owner of the object.
+  string character_id = 9;
+  // The realm associated with the object.
+  string realm_id = 10;
 }
 
 // A storage acknowledgement.
@@ -1063,16 +1059,14 @@ message StorageObjectAck {
   string key = 2;
   // The version hash of the object.
   string version = 3;
-  // The owner of the object.
-  string user_id = 4;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was created.
-  google.protobuf.Timestamp create_time = 5;
+  google.protobuf.Timestamp create_time = 4;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
-  google.protobuf.Timestamp update_time = 6;
-  // The character owner of the object. Empty for user-scoped storage.
-  string character_id = 7;
-  // The realm associated with the object. Empty for user-scoped storage.
-  string realm_id = 8;
+  google.protobuf.Timestamp update_time = 5;
+  // The character owner of the object.
+  string character_id = 6;
+  // The realm associated with the object.
+  string realm_id = 7;
 }
 
 // Batch of acknowledgements for the storage object write.

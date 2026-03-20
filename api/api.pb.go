@@ -6534,10 +6534,8 @@ type ReadStorageObjectId struct {
 	Collection string `protobuf:"bytes,1,opt,name=collection,proto3" json:"collection,omitempty"`
 	// The key of the object within the collection.
 	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	// The user owner of the object.
-	UserId string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// The character owner of the object. Empty for user-scoped storage.
-	CharacterId   string `protobuf:"bytes,4,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// The character owner of the object.
+	CharacterId   string `protobuf:"bytes,3,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6582,13 +6580,6 @@ func (x *ReadStorageObjectId) GetCollection() string {
 func (x *ReadStorageObjectId) GetKey() string {
 	if x != nil {
 		return x.Key
-	}
-	return ""
-}
-
-func (x *ReadStorageObjectId) GetUserId() string {
-	if x != nil {
-		return x.UserId
 	}
 	return ""
 }
@@ -6781,24 +6772,22 @@ type StorageObject struct {
 	Collection string `protobuf:"bytes,1,opt,name=collection,proto3" json:"collection,omitempty"`
 	// The key of the object within the collection.
 	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	// The user owner of the object.
-	UserId string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	// The value of the object.
-	Value string `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
+	Value string `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
 	// The version hash of the object.
-	Version string `protobuf:"bytes,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version string `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
 	// The read access permissions for the object.
-	PermissionRead int32 `protobuf:"varint,6,opt,name=permission_read,json=permissionRead,proto3" json:"permission_read,omitempty"`
+	PermissionRead int32 `protobuf:"varint,5,opt,name=permission_read,json=permissionRead,proto3" json:"permission_read,omitempty"`
 	// The write access permissions for the object.
-	PermissionWrite int32 `protobuf:"varint,7,opt,name=permission_write,json=permissionWrite,proto3" json:"permission_write,omitempty"`
+	PermissionWrite int32 `protobuf:"varint,6,opt,name=permission_write,json=permissionWrite,proto3" json:"permission_write,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was created.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	// The character owner of the object. Empty for user-scoped storage.
-	CharacterId string `protobuf:"bytes,10,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
-	// The realm associated with the object. Empty for user-scoped storage.
-	RealmId       string `protobuf:"bytes,11,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// The character owner of the object.
+	CharacterId string `protobuf:"bytes,9,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// The realm associated with the object.
+	RealmId       string `protobuf:"bytes,10,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6843,13 +6832,6 @@ func (x *StorageObject) GetCollection() string {
 func (x *StorageObject) GetKey() string {
 	if x != nil {
 		return x.Key
-	}
-	return ""
-}
-
-func (x *StorageObject) GetUserId() string {
-	if x != nil {
-		return x.UserId
 	}
 	return ""
 }
@@ -6919,16 +6901,14 @@ type StorageObjectAck struct {
 	Key string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
 	// The version hash of the object.
 	Version string `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
-	// The owner of the object.
-	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was created.
-	CreateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
+	CreateTime *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the object was last updated.
-	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
-	// The character owner of the object. Empty for user-scoped storage.
-	CharacterId string `protobuf:"bytes,7,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
-	// The realm associated with the object. Empty for user-scoped storage.
-	RealmId       string `protobuf:"bytes,8,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
+	UpdateTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	// The character owner of the object.
+	CharacterId string `protobuf:"bytes,6,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// The realm associated with the object.
+	RealmId       string `protobuf:"bytes,7,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6980,13 +6960,6 @@ func (x *StorageObjectAck) GetKey() string {
 func (x *StorageObjectAck) GetVersion() string {
 	if x != nil {
 		return x.Version
-	}
-	return ""
-}
-
-func (x *StorageObjectAck) GetUserId() string {
-	if x != nil {
-		return x.UserId
 	}
 	return ""
 }
@@ -13587,14 +13560,13 @@ const file_api_api_proto_rawDesc = "" +
 	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"^\n" +
 	"\x1cDemoteGroupCharactersRequest\x12\x19\n" +
 	"\bgroup_id\x18\x01 \x01(\tR\agroupId\x12#\n" +
-	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"\x83\x01\n" +
+	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"j\n" +
 	"\x13ReadStorageObjectId\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x01 \x01(\tR\n" +
 	"collection\x12\x10\n" +
-	"\x03key\x18\x02 \x01(\tR\x03key\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\x12!\n" +
-	"\fcharacter_id\x18\x04 \x01(\tR\vcharacterId\"[\n" +
+	"\x03key\x18\x02 \x01(\tR\x03key\x12!\n" +
+	"\fcharacter_id\x18\x03 \x01(\tR\vcharacterId\"[\n" +
 	"\x19ReadStorageObjectsRequest\x12>\n" +
 	"\n" +
 	"object_ids\x18\x01 \x03(\v2\x1f.nakama.api.ReadStorageObjectIdR\tobjectIds\"J\n" +
@@ -13605,37 +13577,35 @@ const file_api_api_proto_rawDesc = "" +
 	"\aSession\x12\x18\n" +
 	"\acreated\x18\x01 \x01(\bR\acreated\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12#\n" +
-	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"\x96\x03\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"\xfd\x02\n" +
 	"\rStorageObject\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x01 \x01(\tR\n" +
 	"collection\x12\x10\n" +
-	"\x03key\x18\x02 \x01(\tR\x03key\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x14\n" +
-	"\x05value\x18\x04 \x01(\tR\x05value\x12\x18\n" +
-	"\aversion\x18\x05 \x01(\tR\aversion\x12'\n" +
-	"\x0fpermission_read\x18\x06 \x01(\x05R\x0epermissionRead\x12)\n" +
-	"\x10permission_write\x18\a \x01(\x05R\x0fpermissionWrite\x12;\n" +
-	"\vcreate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"\x03key\x18\x02 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\tR\x05value\x12\x18\n" +
+	"\aversion\x18\x04 \x01(\tR\aversion\x12'\n" +
+	"\x0fpermission_read\x18\x05 \x01(\x05R\x0epermissionRead\x12)\n" +
+	"\x10permission_write\x18\x06 \x01(\x05R\x0fpermissionWrite\x12;\n" +
+	"\vcreate_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
-	"\vupdate_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"\vupdate_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x12!\n" +
-	"\fcharacter_id\x18\n" +
-	" \x01(\tR\vcharacterId\x12\x19\n" +
-	"\brealm_id\x18\v \x01(\tR\arealmId\"\xaf\x02\n" +
+	"\fcharacter_id\x18\t \x01(\tR\vcharacterId\x12\x19\n" +
+	"\brealm_id\x18\n" +
+	" \x01(\tR\arealmId\"\x96\x02\n" +
 	"\x10StorageObjectAck\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x01 \x01(\tR\n" +
 	"collection\x12\x10\n" +
 	"\x03key\x18\x02 \x01(\tR\x03key\x12\x18\n" +
-	"\aversion\x18\x03 \x01(\tR\aversion\x12\x17\n" +
-	"\auser_id\x18\x04 \x01(\tR\x06userId\x12;\n" +
-	"\vcreate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"\aversion\x18\x03 \x01(\tR\aversion\x12;\n" +
+	"\vcreate_time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
-	"\vupdate_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"\vupdate_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x12!\n" +
-	"\fcharacter_id\x18\a \x01(\tR\vcharacterId\x12\x19\n" +
-	"\brealm_id\x18\b \x01(\tR\arealmId\"E\n" +
+	"\fcharacter_id\x18\x06 \x01(\tR\vcharacterId\x12\x19\n" +
+	"\brealm_id\x18\a \x01(\tR\arealmId\"E\n" +
 	"\x11StorageObjectAcks\x120\n" +
 	"\x04acks\x18\x01 \x03(\v2\x1c.nakama.api.StorageObjectAckR\x04acks\"E\n" +
 	"\x0eStorageObjects\x123\n" +
