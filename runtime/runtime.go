@@ -1267,6 +1267,7 @@ type Presence interface {
 	GetUserId() string
 	GetSessionId() string
 	GetNodeId() string
+	GetCharacterId() string
 }
 
 type MatchmakerEntry interface {
