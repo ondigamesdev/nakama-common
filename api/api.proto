@@ -965,6 +965,8 @@ message Notification {
   string realm_id = 9;
   // The cohort ID if this notification is cohort-scoped.
   string cohort_id = 10;
+  // The character ID if this notification is character-targeted.
+  string character_id = 11;
 }
 
 // A collection of zero or more notifications.
@@ -1471,8 +1473,6 @@ message WriteStorageObject {
   google.protobuf.Int32Value permission_read = 5;
   // The write access permissions for the object.
   google.protobuf.Int32Value permission_write = 6;
-  // Force user-scoped storage even when a character is selected. Default false (character-scoped when character selected).
-  bool user_scoped = 7;
 }
 
 // Write objects to the storage engine.

@@ -6257,7 +6257,9 @@ type Notification struct {
 	// The realm ID if this notification is realm-scoped.
 	RealmId string `protobuf:"bytes,9,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	// The cohort ID if this notification is cohort-scoped.
-	CohortId      string `protobuf:"bytes,10,opt,name=cohort_id,json=cohortId,proto3" json:"cohort_id,omitempty"`
+	CohortId string `protobuf:"bytes,10,opt,name=cohort_id,json=cohortId,proto3" json:"cohort_id,omitempty"`
+	// The character ID if this notification is character-targeted.
+	CharacterId   string `protobuf:"bytes,11,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -6358,6 +6360,13 @@ func (x *Notification) GetRealmId() string {
 func (x *Notification) GetCohortId() string {
 	if x != nil {
 		return x.CohortId
+	}
+	return ""
+}
+
+func (x *Notification) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
 	}
 	return ""
 }
@@ -8973,10 +8982,8 @@ type WriteStorageObject struct {
 	PermissionRead *wrapperspb.Int32Value `protobuf:"bytes,5,opt,name=permission_read,json=permissionRead,proto3" json:"permission_read,omitempty"`
 	// The write access permissions for the object.
 	PermissionWrite *wrapperspb.Int32Value `protobuf:"bytes,6,opt,name=permission_write,json=permissionWrite,proto3" json:"permission_write,omitempty"`
-	// Force user-scoped storage even when a character is selected. Default false (character-scoped when character selected).
-	UserScoped    bool `protobuf:"varint,7,opt,name=user_scoped,json=userScoped,proto3" json:"user_scoped,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *WriteStorageObject) Reset() {
@@ -9049,13 +9056,6 @@ func (x *WriteStorageObject) GetPermissionWrite() *wrapperspb.Int32Value {
 		return x.PermissionWrite
 	}
 	return nil
-}
-
-func (x *WriteStorageObject) GetUserScoped() bool {
-	if x != nil {
-		return x.UserScoped
-	}
-	return false
 }
 
 // Write objects to the storage engine.
@@ -13535,7 +13535,7 @@ const file_api_api_proto_rawDesc = "" +
 	"\x0fMatchmakerStats\x12!\n" +
 	"\fticket_count\x18\x01 \x01(\x05R\vticketCount\x12U\n" +
 	"\x19oldest_ticket_create_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x16oldestTicketCreateTime\x12G\n" +
-	"\vcompletions\x18\x03 \x03(\v2%.nakama.api.MatchmakerCompletionStatsR\vcompletions\"\xb7\x02\n" +
+	"\vcompletions\x18\x03 \x03(\v2%.nakama.api.MatchmakerCompletionStatsR\vcompletions\"\xda\x02\n" +
 	"\fNotification\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\asubject\x18\x02 \x01(\tR\asubject\x12\x18\n" +
@@ -13551,7 +13551,8 @@ const file_api_api_proto_rawDesc = "" +
 	"scope_type\x18\b \x01(\rR\tscopeType\x12\x19\n" +
 	"\brealm_id\x18\t \x01(\tR\arealmId\x12\x1b\n" +
 	"\tcohort_id\x18\n" +
-	" \x01(\tR\bcohortId\"}\n" +
+	" \x01(\tR\bcohortId\x12!\n" +
+	"\fcharacter_id\x18\v \x01(\tR\vcharacterId\"}\n" +
 	"\x10NotificationList\x12>\n" +
 	"\rnotifications\x18\x01 \x03(\v2\x18.nakama.api.NotificationR\rnotifications\x12)\n" +
 	"\x10cacheable_cursor\x18\x02 \x01(\tR\x0fcacheableCursor\"_\n" +
@@ -13799,7 +13800,7 @@ const file_api_api_proto_rawDesc = "" +
 	"\x05score\x18\x01 \x01(\x03R\x05score\x12\x1a\n" +
 	"\bsubscore\x18\x02 \x01(\x03R\bsubscore\x12\x1a\n" +
 	"\bmetadata\x18\x03 \x01(\tR\bmetadata\x120\n" +
-	"\boperator\x18\x04 \x01(\x0e2\x14.nakama.api.OperatorR\boperator\"\xa5\x02\n" +
+	"\boperator\x18\x04 \x01(\x0e2\x14.nakama.api.OperatorR\boperator\"\x84\x02\n" +
 	"\x12WriteStorageObject\x12\x1e\n" +
 	"\n" +
 	"collection\x18\x01 \x01(\tR\n" +
@@ -13808,9 +13809,7 @@ const file_api_api_proto_rawDesc = "" +
 	"\x05value\x18\x03 \x01(\tR\x05value\x12\x18\n" +
 	"\aversion\x18\x04 \x01(\tR\aversion\x12D\n" +
 	"\x0fpermission_read\x18\x05 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0epermissionRead\x12F\n" +
-	"\x10permission_write\x18\x06 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fpermissionWrite\x12\x1f\n" +
-	"\vuser_scoped\x18\a \x01(\bR\n" +
-	"userScoped\"V\n" +
+	"\x10permission_write\x18\x06 \x01(\v2\x1b.google.protobuf.Int32ValueR\x0fpermissionWrite\"V\n" +
 	"\x1aWriteStorageObjectsRequest\x128\n" +
 	"\aobjects\x18\x01 \x03(\v2\x1e.nakama.api.WriteStorageObjectR\aobjects\"\xb5\x02\n" +
 	"\x1cWriteTournamentRecordRequest\x12#\n" +
