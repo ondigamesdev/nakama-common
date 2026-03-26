@@ -168,6 +168,12 @@ const (
 
 	// The user's previous email address. Only available in AfterConfirmChangeEmail hook.
 	RUNTIME_CTX_OLD_EMAIL = "old_email"
+
+	// The character ID associated with the execution context.
+	RUNTIME_CTX_CHARACTER_ID = "character_id"
+
+	// The realm ID associated with the execution context.
+	RUNTIME_CTX_REALM_ID = "realm_id"
 )
 
 // RealmContext holds the active realm and character context from a session token.
@@ -182,6 +188,14 @@ type RealmContext struct {
 // GetRealmContext extracts realm context from the request context.
 // Returns nil if no realm context is present (user has not selected a character).
 func GetRealmContext(ctx context.Context) *RealmContext {
+	// Fast path: check top-level context keys.
+	if characterID, ok := ctx.Value(RUNTIME_CTX_CHARACTER_ID).(string); ok && characterID != "" {
+		if realmID, ok := ctx.Value(RUNTIME_CTX_REALM_ID).(string); ok && realmID != "" {
+			return &RealmContext{RealmID: realmID, CharacterID: characterID}
+		}
+	}
+
+	// Fallback: parse from vars map.
 	vars, ok := ctx.Value(RUNTIME_CTX_VARS).(map[string]string)
 	if !ok || vars == nil {
 		return nil
