@@ -1788,6 +1788,18 @@ message CreateCharacterRequest {
   string metadata = 4;
 }
 
+// Request to update a character's profile (name, tags, metadata).
+message UpdateCharacterRequest {
+  // The character ID to update. If empty, uses active character from session.
+  string character_id = 1;
+  // The new name for the character (optional).
+  google.protobuf.StringValue name = 2;
+  // Tags/labels for the character (optional, max 10, max 50 chars each). Replaces all existing tags.
+  repeated string tags = 3;
+  // Additional character metadata as a JSON object (optional). Replaces all existing metadata.
+  google.protobuf.StringValue metadata = 4;
+}
+
 // Request to select an active character.
 message SelectCharacterRequest {
   // The ID of the character to select.

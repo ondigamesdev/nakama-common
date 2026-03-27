@@ -1173,6 +1173,12 @@ type Initializer interface {
 	// The context will contain realm context (realm_id, character_id) for the newly created character.
 	RegisterAfterCreateCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Character, in *api.CreateCharacterRequest) error) error
 
+	// RegisterBeforeUpdateCharacter can be used to perform additional logic before updating a character.
+	RegisterBeforeUpdateCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.UpdateCharacterRequest) (*api.UpdateCharacterRequest, error)) error
+
+	// RegisterAfterUpdateCharacter can be used to perform additional logic after a character is updated.
+	RegisterAfterUpdateCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Character, in *api.UpdateCharacterRequest) error) error
+
 	// RegisterBeforeSelectCharacter can be used to perform additional logic before selecting a character.
 	RegisterBeforeSelectCharacter(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.SelectCharacterRequest) (*api.SelectCharacterRequest, error)) error
 
