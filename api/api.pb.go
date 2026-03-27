@@ -10429,6 +10429,79 @@ func (x *CreateCharacterRequest) GetMetadata() string {
 	return ""
 }
 
+// Request to update a character's profile (name, tags, metadata).
+type UpdateCharacterRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The character ID to update. If empty, uses active character from session.
+	CharacterId string `protobuf:"bytes,1,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// The new name for the character (optional).
+	Name *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// Tags/labels for the character (optional, max 10, max 50 chars each). Replaces all existing tags.
+	Tags []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
+	// Additional character metadata as a JSON object (optional). Replaces all existing metadata.
+	Metadata      *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCharacterRequest) Reset() {
+	*x = UpdateCharacterRequest{}
+	mi := &file_api_api_proto_msgTypes[130]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCharacterRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCharacterRequest) ProtoMessage() {}
+
+func (x *UpdateCharacterRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_api_proto_msgTypes[130]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCharacterRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCharacterRequest) Descriptor() ([]byte, []int) {
+	return file_api_api_proto_rawDescGZIP(), []int{130}
+}
+
+func (x *UpdateCharacterRequest) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *UpdateCharacterRequest) GetName() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Name
+	}
+	return nil
+}
+
+func (x *UpdateCharacterRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *UpdateCharacterRequest) GetMetadata() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
 // Request to select an active character.
 type SelectCharacterRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -10440,7 +10513,7 @@ type SelectCharacterRequest struct {
 
 func (x *SelectCharacterRequest) Reset() {
 	*x = SelectCharacterRequest{}
-	mi := &file_api_api_proto_msgTypes[130]
+	mi := &file_api_api_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10452,7 +10525,7 @@ func (x *SelectCharacterRequest) String() string {
 func (*SelectCharacterRequest) ProtoMessage() {}
 
 func (x *SelectCharacterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[130]
+	mi := &file_api_api_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10465,7 +10538,7 @@ func (x *SelectCharacterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectCharacterRequest.ProtoReflect.Descriptor instead.
 func (*SelectCharacterRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{130}
+	return file_api_api_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *SelectCharacterRequest) GetCharacterId() string {
@@ -10490,7 +10563,7 @@ type SelectCharacterResponse struct {
 
 func (x *SelectCharacterResponse) Reset() {
 	*x = SelectCharacterResponse{}
-	mi := &file_api_api_proto_msgTypes[131]
+	mi := &file_api_api_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10502,7 +10575,7 @@ func (x *SelectCharacterResponse) String() string {
 func (*SelectCharacterResponse) ProtoMessage() {}
 
 func (x *SelectCharacterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[131]
+	mi := &file_api_api_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10515,7 +10588,7 @@ func (x *SelectCharacterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SelectCharacterResponse.ProtoReflect.Descriptor instead.
 func (*SelectCharacterResponse) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{131}
+	return file_api_api_proto_rawDescGZIP(), []int{132}
 }
 
 func (x *SelectCharacterResponse) GetToken() string {
@@ -10560,7 +10633,7 @@ type CharacterWallet struct {
 
 func (x *CharacterWallet) Reset() {
 	*x = CharacterWallet{}
-	mi := &file_api_api_proto_msgTypes[132]
+	mi := &file_api_api_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10572,7 +10645,7 @@ func (x *CharacterWallet) String() string {
 func (*CharacterWallet) ProtoMessage() {}
 
 func (x *CharacterWallet) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[132]
+	mi := &file_api_api_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10585,7 +10658,7 @@ func (x *CharacterWallet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWallet.ProtoReflect.Descriptor instead.
 func (*CharacterWallet) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{132}
+	return file_api_api_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *CharacterWallet) GetCharacterId() string {
@@ -10641,7 +10714,7 @@ type GetCharacterWalletRequest struct {
 
 func (x *GetCharacterWalletRequest) Reset() {
 	*x = GetCharacterWalletRequest{}
-	mi := &file_api_api_proto_msgTypes[133]
+	mi := &file_api_api_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10653,7 +10726,7 @@ func (x *GetCharacterWalletRequest) String() string {
 func (*GetCharacterWalletRequest) ProtoMessage() {}
 
 func (x *GetCharacterWalletRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[133]
+	mi := &file_api_api_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10666,7 +10739,7 @@ func (x *GetCharacterWalletRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCharacterWalletRequest.ProtoReflect.Descriptor instead.
 func (*GetCharacterWalletRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{133}
+	return file_api_api_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *GetCharacterWalletRequest) GetCharacterId() string {
@@ -10691,7 +10764,7 @@ type UpdateCharacterWalletRequest struct {
 
 func (x *UpdateCharacterWalletRequest) Reset() {
 	*x = UpdateCharacterWalletRequest{}
-	mi := &file_api_api_proto_msgTypes[134]
+	mi := &file_api_api_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10703,7 +10776,7 @@ func (x *UpdateCharacterWalletRequest) String() string {
 func (*UpdateCharacterWalletRequest) ProtoMessage() {}
 
 func (x *UpdateCharacterWalletRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[134]
+	mi := &file_api_api_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10716,7 +10789,7 @@ func (x *UpdateCharacterWalletRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCharacterWalletRequest.ProtoReflect.Descriptor instead.
 func (*UpdateCharacterWalletRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{134}
+	return file_api_api_proto_rawDescGZIP(), []int{135}
 }
 
 func (x *UpdateCharacterWalletRequest) GetCharacterId() string {
@@ -10755,7 +10828,7 @@ type UpdateCharacterWalletResponse struct {
 
 func (x *UpdateCharacterWalletResponse) Reset() {
 	*x = UpdateCharacterWalletResponse{}
-	mi := &file_api_api_proto_msgTypes[135]
+	mi := &file_api_api_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10767,7 +10840,7 @@ func (x *UpdateCharacterWalletResponse) String() string {
 func (*UpdateCharacterWalletResponse) ProtoMessage() {}
 
 func (x *UpdateCharacterWalletResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[135]
+	mi := &file_api_api_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10780,7 +10853,7 @@ func (x *UpdateCharacterWalletResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateCharacterWalletResponse.ProtoReflect.Descriptor instead.
 func (*UpdateCharacterWalletResponse) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{135}
+	return file_api_api_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *UpdateCharacterWalletResponse) GetWallet() *CharacterWallet {
@@ -10829,7 +10902,7 @@ type CharacterWalletLedger struct {
 
 func (x *CharacterWalletLedger) Reset() {
 	*x = CharacterWalletLedger{}
-	mi := &file_api_api_proto_msgTypes[136]
+	mi := &file_api_api_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10841,7 +10914,7 @@ func (x *CharacterWalletLedger) String() string {
 func (*CharacterWalletLedger) ProtoMessage() {}
 
 func (x *CharacterWalletLedger) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[136]
+	mi := &file_api_api_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10854,7 +10927,7 @@ func (x *CharacterWalletLedger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWalletLedger.ProtoReflect.Descriptor instead.
 func (*CharacterWalletLedger) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{136}
+	return file_api_api_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *CharacterWalletLedger) GetId() string {
@@ -10928,7 +11001,7 @@ type ListCharacterWalletLedgerRequest struct {
 
 func (x *ListCharacterWalletLedgerRequest) Reset() {
 	*x = ListCharacterWalletLedgerRequest{}
-	mi := &file_api_api_proto_msgTypes[137]
+	mi := &file_api_api_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10940,7 +11013,7 @@ func (x *ListCharacterWalletLedgerRequest) String() string {
 func (*ListCharacterWalletLedgerRequest) ProtoMessage() {}
 
 func (x *ListCharacterWalletLedgerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[137]
+	mi := &file_api_api_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10953,7 +11026,7 @@ func (x *ListCharacterWalletLedgerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCharacterWalletLedgerRequest.ProtoReflect.Descriptor instead.
 func (*ListCharacterWalletLedgerRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{137}
+	return file_api_api_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *ListCharacterWalletLedgerRequest) GetCharacterId() string {
@@ -10992,7 +11065,7 @@ type CharacterWalletLedgerList struct {
 
 func (x *CharacterWalletLedgerList) Reset() {
 	*x = CharacterWalletLedgerList{}
-	mi := &file_api_api_proto_msgTypes[138]
+	mi := &file_api_api_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11004,7 +11077,7 @@ func (x *CharacterWalletLedgerList) String() string {
 func (*CharacterWalletLedgerList) ProtoMessage() {}
 
 func (x *CharacterWalletLedgerList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[138]
+	mi := &file_api_api_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11017,7 +11090,7 @@ func (x *CharacterWalletLedgerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterWalletLedgerList.ProtoReflect.Descriptor instead.
 func (*CharacterWalletLedgerList) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{138}
+	return file_api_api_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *CharacterWalletLedgerList) GetItems() []*CharacterWalletLedger {
@@ -11060,7 +11133,7 @@ type ListPurchasesRequest struct {
 
 func (x *ListPurchasesRequest) Reset() {
 	*x = ListPurchasesRequest{}
-	mi := &file_api_api_proto_msgTypes[139]
+	mi := &file_api_api_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11072,7 +11145,7 @@ func (x *ListPurchasesRequest) String() string {
 func (*ListPurchasesRequest) ProtoMessage() {}
 
 func (x *ListPurchasesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[139]
+	mi := &file_api_api_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11085,7 +11158,7 @@ func (x *ListPurchasesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPurchasesRequest.ProtoReflect.Descriptor instead.
 func (*ListPurchasesRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{139}
+	return file_api_api_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *ListPurchasesRequest) GetLimit() *wrapperspb.Int32Value {
@@ -11158,7 +11231,7 @@ type CharacterTransfer struct {
 
 func (x *CharacterTransfer) Reset() {
 	*x = CharacterTransfer{}
-	mi := &file_api_api_proto_msgTypes[140]
+	mi := &file_api_api_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11170,7 +11243,7 @@ func (x *CharacterTransfer) String() string {
 func (*CharacterTransfer) ProtoMessage() {}
 
 func (x *CharacterTransfer) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[140]
+	mi := &file_api_api_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11183,7 +11256,7 @@ func (x *CharacterTransfer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterTransfer.ProtoReflect.Descriptor instead.
 func (*CharacterTransfer) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{140}
+	return file_api_api_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *CharacterTransfer) GetId() string {
@@ -11292,7 +11365,7 @@ type TransferCharacterRequest struct {
 
 func (x *TransferCharacterRequest) Reset() {
 	*x = TransferCharacterRequest{}
-	mi := &file_api_api_proto_msgTypes[141]
+	mi := &file_api_api_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11304,7 +11377,7 @@ func (x *TransferCharacterRequest) String() string {
 func (*TransferCharacterRequest) ProtoMessage() {}
 
 func (x *TransferCharacterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[141]
+	mi := &file_api_api_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11317,7 +11390,7 @@ func (x *TransferCharacterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferCharacterRequest.ProtoReflect.Descriptor instead.
 func (*TransferCharacterRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{141}
+	return file_api_api_proto_rawDescGZIP(), []int{142}
 }
 
 func (x *TransferCharacterRequest) GetCharacterId() string {
@@ -11354,7 +11427,7 @@ type TransferCharacterResponse struct {
 
 func (x *TransferCharacterResponse) Reset() {
 	*x = TransferCharacterResponse{}
-	mi := &file_api_api_proto_msgTypes[142]
+	mi := &file_api_api_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11366,7 +11439,7 @@ func (x *TransferCharacterResponse) String() string {
 func (*TransferCharacterResponse) ProtoMessage() {}
 
 func (x *TransferCharacterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[142]
+	mi := &file_api_api_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11379,7 +11452,7 @@ func (x *TransferCharacterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferCharacterResponse.ProtoReflect.Descriptor instead.
 func (*TransferCharacterResponse) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{142}
+	return file_api_api_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *TransferCharacterResponse) GetTransfer() *CharacterTransfer {
@@ -11411,7 +11484,7 @@ type ListCharacterTransfersRequest struct {
 
 func (x *ListCharacterTransfersRequest) Reset() {
 	*x = ListCharacterTransfersRequest{}
-	mi := &file_api_api_proto_msgTypes[143]
+	mi := &file_api_api_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11423,7 +11496,7 @@ func (x *ListCharacterTransfersRequest) String() string {
 func (*ListCharacterTransfersRequest) ProtoMessage() {}
 
 func (x *ListCharacterTransfersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[143]
+	mi := &file_api_api_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11436,7 +11509,7 @@ func (x *ListCharacterTransfersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCharacterTransfersRequest.ProtoReflect.Descriptor instead.
 func (*ListCharacterTransfersRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{143}
+	return file_api_api_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *ListCharacterTransfersRequest) GetCharacterId() string {
@@ -11473,7 +11546,7 @@ type CharacterTransferList struct {
 
 func (x *CharacterTransferList) Reset() {
 	*x = CharacterTransferList{}
-	mi := &file_api_api_proto_msgTypes[144]
+	mi := &file_api_api_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11485,7 +11558,7 @@ func (x *CharacterTransferList) String() string {
 func (*CharacterTransferList) ProtoMessage() {}
 
 func (x *CharacterTransferList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[144]
+	mi := &file_api_api_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11498,7 +11571,7 @@ func (x *CharacterTransferList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CharacterTransferList.ProtoReflect.Descriptor instead.
 func (*CharacterTransferList) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{144}
+	return file_api_api_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *CharacterTransferList) GetTransfers() []*CharacterTransfer {
@@ -11528,7 +11601,7 @@ type TransferEligibilityRequest struct {
 
 func (x *TransferEligibilityRequest) Reset() {
 	*x = TransferEligibilityRequest{}
-	mi := &file_api_api_proto_msgTypes[145]
+	mi := &file_api_api_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11540,7 +11613,7 @@ func (x *TransferEligibilityRequest) String() string {
 func (*TransferEligibilityRequest) ProtoMessage() {}
 
 func (x *TransferEligibilityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[145]
+	mi := &file_api_api_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11553,7 +11626,7 @@ func (x *TransferEligibilityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferEligibilityRequest.ProtoReflect.Descriptor instead.
 func (*TransferEligibilityRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{145}
+	return file_api_api_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *TransferEligibilityRequest) GetCharacterId() string {
@@ -11591,7 +11664,7 @@ type TransferEligibilityResponse struct {
 
 func (x *TransferEligibilityResponse) Reset() {
 	*x = TransferEligibilityResponse{}
-	mi := &file_api_api_proto_msgTypes[146]
+	mi := &file_api_api_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11603,7 +11676,7 @@ func (x *TransferEligibilityResponse) String() string {
 func (*TransferEligibilityResponse) ProtoMessage() {}
 
 func (x *TransferEligibilityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[146]
+	mi := &file_api_api_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11616,7 +11689,7 @@ func (x *TransferEligibilityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferEligibilityResponse.ProtoReflect.Descriptor instead.
 func (*TransferEligibilityResponse) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{146}
+	return file_api_api_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *TransferEligibilityResponse) GetEligible() bool {
@@ -11708,7 +11781,7 @@ type MaintenanceWindow struct {
 
 func (x *MaintenanceWindow) Reset() {
 	*x = MaintenanceWindow{}
-	mi := &file_api_api_proto_msgTypes[147]
+	mi := &file_api_api_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11720,7 +11793,7 @@ func (x *MaintenanceWindow) String() string {
 func (*MaintenanceWindow) ProtoMessage() {}
 
 func (x *MaintenanceWindow) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[147]
+	mi := &file_api_api_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11733,7 +11806,7 @@ func (x *MaintenanceWindow) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaintenanceWindow.ProtoReflect.Descriptor instead.
 func (*MaintenanceWindow) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{147}
+	return file_api_api_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *MaintenanceWindow) GetId() string {
@@ -11898,7 +11971,7 @@ type RealmGroup struct {
 
 func (x *RealmGroup) Reset() {
 	*x = RealmGroup{}
-	mi := &file_api_api_proto_msgTypes[148]
+	mi := &file_api_api_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11910,7 +11983,7 @@ func (x *RealmGroup) String() string {
 func (*RealmGroup) ProtoMessage() {}
 
 func (x *RealmGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[148]
+	mi := &file_api_api_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11923,7 +11996,7 @@ func (x *RealmGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmGroup.ProtoReflect.Descriptor instead.
 func (*RealmGroup) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{148}
+	return file_api_api_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *RealmGroup) GetId() string {
@@ -12025,7 +12098,7 @@ type RealmBan struct {
 
 func (x *RealmBan) Reset() {
 	*x = RealmBan{}
-	mi := &file_api_api_proto_msgTypes[149]
+	mi := &file_api_api_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12037,7 +12110,7 @@ func (x *RealmBan) String() string {
 func (*RealmBan) ProtoMessage() {}
 
 func (x *RealmBan) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[149]
+	mi := &file_api_api_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12050,7 +12123,7 @@ func (x *RealmBan) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RealmBan.ProtoReflect.Descriptor instead.
 func (*RealmBan) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{149}
+	return file_api_api_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *RealmBan) GetId() string {
@@ -12134,7 +12207,7 @@ type RequestChangeEmailRequest struct {
 
 func (x *RequestChangeEmailRequest) Reset() {
 	*x = RequestChangeEmailRequest{}
-	mi := &file_api_api_proto_msgTypes[150]
+	mi := &file_api_api_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12146,7 +12219,7 @@ func (x *RequestChangeEmailRequest) String() string {
 func (*RequestChangeEmailRequest) ProtoMessage() {}
 
 func (x *RequestChangeEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[150]
+	mi := &file_api_api_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12159,7 +12232,7 @@ func (x *RequestChangeEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestChangeEmailRequest.ProtoReflect.Descriptor instead.
 func (*RequestChangeEmailRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{150}
+	return file_api_api_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *RequestChangeEmailRequest) GetNewEmail() string {
@@ -12182,7 +12255,7 @@ type ConfirmChangeEmailRequest struct {
 
 func (x *ConfirmChangeEmailRequest) Reset() {
 	*x = ConfirmChangeEmailRequest{}
-	mi := &file_api_api_proto_msgTypes[151]
+	mi := &file_api_api_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12194,7 +12267,7 @@ func (x *ConfirmChangeEmailRequest) String() string {
 func (*ConfirmChangeEmailRequest) ProtoMessage() {}
 
 func (x *ConfirmChangeEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[151]
+	mi := &file_api_api_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12207,7 +12280,7 @@ func (x *ConfirmChangeEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConfirmChangeEmailRequest.ProtoReflect.Descriptor instead.
 func (*ConfirmChangeEmailRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{151}
+	return file_api_api_proto_rawDescGZIP(), []int{152}
 }
 
 func (x *ConfirmChangeEmailRequest) GetOldCode() string {
@@ -12235,7 +12308,7 @@ type RedeemGiftcodeRequest struct {
 
 func (x *RedeemGiftcodeRequest) Reset() {
 	*x = RedeemGiftcodeRequest{}
-	mi := &file_api_api_proto_msgTypes[152]
+	mi := &file_api_api_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12247,7 +12320,7 @@ func (x *RedeemGiftcodeRequest) String() string {
 func (*RedeemGiftcodeRequest) ProtoMessage() {}
 
 func (x *RedeemGiftcodeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[152]
+	mi := &file_api_api_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12260,7 +12333,7 @@ func (x *RedeemGiftcodeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RedeemGiftcodeRequest.ProtoReflect.Descriptor instead.
 func (*RedeemGiftcodeRequest) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{152}
+	return file_api_api_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *RedeemGiftcodeRequest) GetCode() string {
@@ -12289,7 +12362,7 @@ type RedeemGiftcodeResponse struct {
 
 func (x *RedeemGiftcodeResponse) Reset() {
 	*x = RedeemGiftcodeResponse{}
-	mi := &file_api_api_proto_msgTypes[153]
+	mi := &file_api_api_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12301,7 +12374,7 @@ func (x *RedeemGiftcodeResponse) String() string {
 func (*RedeemGiftcodeResponse) ProtoMessage() {}
 
 func (x *RedeemGiftcodeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[153]
+	mi := &file_api_api_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12314,7 +12387,7 @@ func (x *RedeemGiftcodeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RedeemGiftcodeResponse.ProtoReflect.Descriptor instead.
 func (*RedeemGiftcodeResponse) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{153}
+	return file_api_api_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *RedeemGiftcodeResponse) GetRewardPayload() string {
@@ -12387,7 +12460,7 @@ type GiftcodeCampaign struct {
 
 func (x *GiftcodeCampaign) Reset() {
 	*x = GiftcodeCampaign{}
-	mi := &file_api_api_proto_msgTypes[154]
+	mi := &file_api_api_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12399,7 +12472,7 @@ func (x *GiftcodeCampaign) String() string {
 func (*GiftcodeCampaign) ProtoMessage() {}
 
 func (x *GiftcodeCampaign) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[154]
+	mi := &file_api_api_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12412,7 +12485,7 @@ func (x *GiftcodeCampaign) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GiftcodeCampaign.ProtoReflect.Descriptor instead.
 func (*GiftcodeCampaign) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{154}
+	return file_api_api_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *GiftcodeCampaign) GetId() string {
@@ -12529,7 +12602,7 @@ type GiftcodeCode struct {
 
 func (x *GiftcodeCode) Reset() {
 	*x = GiftcodeCode{}
-	mi := &file_api_api_proto_msgTypes[155]
+	mi := &file_api_api_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12541,7 +12614,7 @@ func (x *GiftcodeCode) String() string {
 func (*GiftcodeCode) ProtoMessage() {}
 
 func (x *GiftcodeCode) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[155]
+	mi := &file_api_api_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12554,7 +12627,7 @@ func (x *GiftcodeCode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GiftcodeCode.ProtoReflect.Descriptor instead.
 func (*GiftcodeCode) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{155}
+	return file_api_api_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *GiftcodeCode) GetId() string {
@@ -12639,7 +12712,7 @@ type GiftcodeRedemption struct {
 
 func (x *GiftcodeRedemption) Reset() {
 	*x = GiftcodeRedemption{}
-	mi := &file_api_api_proto_msgTypes[156]
+	mi := &file_api_api_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12651,7 +12724,7 @@ func (x *GiftcodeRedemption) String() string {
 func (*GiftcodeRedemption) ProtoMessage() {}
 
 func (x *GiftcodeRedemption) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[156]
+	mi := &file_api_api_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12664,7 +12737,7 @@ func (x *GiftcodeRedemption) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GiftcodeRedemption.ProtoReflect.Descriptor instead.
 func (*GiftcodeRedemption) Descriptor() ([]byte, []int) {
-	return file_api_api_proto_rawDescGZIP(), []int{156}
+	return file_api_api_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *GiftcodeRedemption) GetId() string {
@@ -12764,7 +12837,7 @@ type FriendsOfFriendsList_FriendOfFriend struct {
 
 func (x *FriendsOfFriendsList_FriendOfFriend) Reset() {
 	*x = FriendsOfFriendsList_FriendOfFriend{}
-	mi := &file_api_api_proto_msgTypes[170]
+	mi := &file_api_api_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12776,7 +12849,7 @@ func (x *FriendsOfFriendsList_FriendOfFriend) String() string {
 func (*FriendsOfFriendsList_FriendOfFriend) ProtoMessage() {}
 
 func (x *FriendsOfFriendsList_FriendOfFriend) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[170]
+	mi := &file_api_api_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12819,7 +12892,7 @@ type GroupCharacterList_GroupCharacter struct {
 
 func (x *GroupCharacterList_GroupCharacter) Reset() {
 	*x = GroupCharacterList_GroupCharacter{}
-	mi := &file_api_api_proto_msgTypes[171]
+	mi := &file_api_api_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12831,7 +12904,7 @@ func (x *GroupCharacterList_GroupCharacter) String() string {
 func (*GroupCharacterList_GroupCharacter) ProtoMessage() {}
 
 func (x *GroupCharacterList_GroupCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[171]
+	mi := &file_api_api_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12874,7 +12947,7 @@ type CharacterGroupList_CharacterGroup struct {
 
 func (x *CharacterGroupList_CharacterGroup) Reset() {
 	*x = CharacterGroupList_CharacterGroup{}
-	mi := &file_api_api_proto_msgTypes[172]
+	mi := &file_api_api_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12886,7 +12959,7 @@ func (x *CharacterGroupList_CharacterGroup) String() string {
 func (*CharacterGroupList_CharacterGroup) ProtoMessage() {}
 
 func (x *CharacterGroupList_CharacterGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[172]
+	mi := &file_api_api_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12933,7 +13006,7 @@ type WriteLeaderboardRecordRequest_LeaderboardRecordWrite struct {
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) Reset() {
 	*x = WriteLeaderboardRecordRequest_LeaderboardRecordWrite{}
-	mi := &file_api_api_proto_msgTypes[173]
+	mi := &file_api_api_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12945,7 +13018,7 @@ func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) String() string {
 func (*WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoMessage() {}
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[173]
+	mi := &file_api_api_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13006,7 +13079,7 @@ type WriteTournamentRecordRequest_TournamentRecordWrite struct {
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) Reset() {
 	*x = WriteTournamentRecordRequest_TournamentRecordWrite{}
-	mi := &file_api_api_proto_msgTypes[174]
+	mi := &file_api_api_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13018,7 +13091,7 @@ func (x *WriteTournamentRecordRequest_TournamentRecordWrite) String() string {
 func (*WriteTournamentRecordRequest_TournamentRecordWrite) ProtoMessage() {}
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_api_proto_msgTypes[174]
+	mi := &file_api_api_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13924,7 +13997,12 @@ const file_api_api_proto_rawDesc = "" +
 	"\brealm_id\x18\x01 \x01(\tR\arealmId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x12\x1a\n" +
-	"\bmetadata\x18\x04 \x01(\tR\bmetadata\";\n" +
+	"\bmetadata\x18\x04 \x01(\tR\bmetadata\"\xbb\x01\n" +
+	"\x16UpdateCharacterRequest\x12!\n" +
+	"\fcharacter_id\x18\x01 \x01(\tR\vcharacterId\x120\n" +
+	"\x04name\x18\x02 \x01(\v2\x1c.google.protobuf.StringValueR\x04name\x12\x12\n" +
+	"\x04tags\x18\x03 \x03(\tR\x04tags\x128\n" +
+	"\bmetadata\x18\x04 \x01(\v2\x1c.google.protobuf.StringValueR\bmetadata\";\n" +
 	"\x16SelectCharacterRequest\x12!\n" +
 	"\fcharacter_id\x18\x01 \x01(\tR\vcharacterId\"\x89\x01\n" +
 	"\x17SelectCharacterResponse\x12\x14\n" +
@@ -14222,7 +14300,7 @@ func file_api_api_proto_rawDescGZIP() []byte {
 }
 
 var file_api_api_proto_enumTypes = make([]protoimpl.EnumInfo, 14)
-var file_api_api_proto_msgTypes = make([]protoimpl.MessageInfo, 181)
+var file_api_api_proto_msgTypes = make([]protoimpl.MessageInfo, 182)
 var file_api_api_proto_goTypes = []any{
 	(StoreProvider)(0),                               // 0: nakama.api.StoreProvider
 	(StoreEnvironment)(0),                            // 1: nakama.api.StoreEnvironment
@@ -14368,322 +14446,325 @@ var file_api_api_proto_goTypes = []any{
 	(*ListCharactersRequest)(nil),                    // 141: nakama.api.ListCharactersRequest
 	(*CharacterList)(nil),                            // 142: nakama.api.CharacterList
 	(*CreateCharacterRequest)(nil),                   // 143: nakama.api.CreateCharacterRequest
-	(*SelectCharacterRequest)(nil),                   // 144: nakama.api.SelectCharacterRequest
-	(*SelectCharacterResponse)(nil),                  // 145: nakama.api.SelectCharacterResponse
-	(*CharacterWallet)(nil),                          // 146: nakama.api.CharacterWallet
-	(*GetCharacterWalletRequest)(nil),                // 147: nakama.api.GetCharacterWalletRequest
-	(*UpdateCharacterWalletRequest)(nil),             // 148: nakama.api.UpdateCharacterWalletRequest
-	(*UpdateCharacterWalletResponse)(nil),            // 149: nakama.api.UpdateCharacterWalletResponse
-	(*CharacterWalletLedger)(nil),                    // 150: nakama.api.CharacterWalletLedger
-	(*ListCharacterWalletLedgerRequest)(nil),         // 151: nakama.api.ListCharacterWalletLedgerRequest
-	(*CharacterWalletLedgerList)(nil),                // 152: nakama.api.CharacterWalletLedgerList
-	(*ListPurchasesRequest)(nil),                     // 153: nakama.api.ListPurchasesRequest
-	(*CharacterTransfer)(nil),                        // 154: nakama.api.CharacterTransfer
-	(*TransferCharacterRequest)(nil),                 // 155: nakama.api.TransferCharacterRequest
-	(*TransferCharacterResponse)(nil),                // 156: nakama.api.TransferCharacterResponse
-	(*ListCharacterTransfersRequest)(nil),            // 157: nakama.api.ListCharacterTransfersRequest
-	(*CharacterTransferList)(nil),                    // 158: nakama.api.CharacterTransferList
-	(*TransferEligibilityRequest)(nil),               // 159: nakama.api.TransferEligibilityRequest
-	(*TransferEligibilityResponse)(nil),              // 160: nakama.api.TransferEligibilityResponse
-	(*MaintenanceWindow)(nil),                        // 161: nakama.api.MaintenanceWindow
-	(*RealmGroup)(nil),                               // 162: nakama.api.RealmGroup
-	(*RealmBan)(nil),                                 // 163: nakama.api.RealmBan
-	(*RequestChangeEmailRequest)(nil),                // 164: nakama.api.RequestChangeEmailRequest
-	(*ConfirmChangeEmailRequest)(nil),                // 165: nakama.api.ConfirmChangeEmailRequest
-	(*RedeemGiftcodeRequest)(nil),                    // 166: nakama.api.RedeemGiftcodeRequest
-	(*RedeemGiftcodeResponse)(nil),                   // 167: nakama.api.RedeemGiftcodeResponse
-	(*GiftcodeCampaign)(nil),                         // 168: nakama.api.GiftcodeCampaign
-	(*GiftcodeCode)(nil),                             // 169: nakama.api.GiftcodeCode
-	(*GiftcodeRedemption)(nil),                       // 170: nakama.api.GiftcodeRedemption
-	nil,                                              // 171: nakama.api.AccountRefresh.VarsEntry
-	nil,                                              // 172: nakama.api.AccountApple.VarsEntry
-	nil,                                              // 173: nakama.api.AccountCustom.VarsEntry
-	nil,                                              // 174: nakama.api.AccountDevice.VarsEntry
-	nil,                                              // 175: nakama.api.AccountEmail.VarsEntry
-	nil,                                              // 176: nakama.api.AccountFacebook.VarsEntry
-	nil,                                              // 177: nakama.api.AccountFacebookInstantGame.VarsEntry
-	nil,                                              // 178: nakama.api.AccountGameCenter.VarsEntry
-	nil,                                              // 179: nakama.api.AccountGoogle.VarsEntry
-	nil,                                              // 180: nakama.api.AccountSteam.VarsEntry
-	nil,                                              // 181: nakama.api.SessionRefreshRequest.VarsEntry
-	nil,                                              // 182: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	nil,                                              // 183: nakama.api.Event.PropertiesEntry
-	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 184: nakama.api.FriendsOfFriendsList.FriendOfFriend
-	(*GroupCharacterList_GroupCharacter)(nil),        // 185: nakama.api.GroupCharacterList.GroupCharacter
-	(*CharacterGroupList_CharacterGroup)(nil),        // 186: nakama.api.CharacterGroupList.CharacterGroup
-	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 187: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 188: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	nil,                            // 189: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	nil,                            // 190: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	nil,                            // 191: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	nil,                            // 192: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	nil,                            // 193: nakama.api.CharacterWalletLedger.ChangesetEntry
-	nil,                            // 194: nakama.api.CharacterWalletLedger.MetadataEntry
-	(*timestamppb.Timestamp)(nil),  // 195: google.protobuf.Timestamp
-	(*wrapperspb.BoolValue)(nil),   // 196: google.protobuf.BoolValue
-	(*wrapperspb.Int32Value)(nil),  // 197: google.protobuf.Int32Value
-	(*wrapperspb.StringValue)(nil), // 198: google.protobuf.StringValue
-	(*wrapperspb.UInt32Value)(nil), // 199: google.protobuf.UInt32Value
-	(*wrapperspb.Int64Value)(nil),  // 200: google.protobuf.Int64Value
+	(*UpdateCharacterRequest)(nil),                   // 144: nakama.api.UpdateCharacterRequest
+	(*SelectCharacterRequest)(nil),                   // 145: nakama.api.SelectCharacterRequest
+	(*SelectCharacterResponse)(nil),                  // 146: nakama.api.SelectCharacterResponse
+	(*CharacterWallet)(nil),                          // 147: nakama.api.CharacterWallet
+	(*GetCharacterWalletRequest)(nil),                // 148: nakama.api.GetCharacterWalletRequest
+	(*UpdateCharacterWalletRequest)(nil),             // 149: nakama.api.UpdateCharacterWalletRequest
+	(*UpdateCharacterWalletResponse)(nil),            // 150: nakama.api.UpdateCharacterWalletResponse
+	(*CharacterWalletLedger)(nil),                    // 151: nakama.api.CharacterWalletLedger
+	(*ListCharacterWalletLedgerRequest)(nil),         // 152: nakama.api.ListCharacterWalletLedgerRequest
+	(*CharacterWalletLedgerList)(nil),                // 153: nakama.api.CharacterWalletLedgerList
+	(*ListPurchasesRequest)(nil),                     // 154: nakama.api.ListPurchasesRequest
+	(*CharacterTransfer)(nil),                        // 155: nakama.api.CharacterTransfer
+	(*TransferCharacterRequest)(nil),                 // 156: nakama.api.TransferCharacterRequest
+	(*TransferCharacterResponse)(nil),                // 157: nakama.api.TransferCharacterResponse
+	(*ListCharacterTransfersRequest)(nil),            // 158: nakama.api.ListCharacterTransfersRequest
+	(*CharacterTransferList)(nil),                    // 159: nakama.api.CharacterTransferList
+	(*TransferEligibilityRequest)(nil),               // 160: nakama.api.TransferEligibilityRequest
+	(*TransferEligibilityResponse)(nil),              // 161: nakama.api.TransferEligibilityResponse
+	(*MaintenanceWindow)(nil),                        // 162: nakama.api.MaintenanceWindow
+	(*RealmGroup)(nil),                               // 163: nakama.api.RealmGroup
+	(*RealmBan)(nil),                                 // 164: nakama.api.RealmBan
+	(*RequestChangeEmailRequest)(nil),                // 165: nakama.api.RequestChangeEmailRequest
+	(*ConfirmChangeEmailRequest)(nil),                // 166: nakama.api.ConfirmChangeEmailRequest
+	(*RedeemGiftcodeRequest)(nil),                    // 167: nakama.api.RedeemGiftcodeRequest
+	(*RedeemGiftcodeResponse)(nil),                   // 168: nakama.api.RedeemGiftcodeResponse
+	(*GiftcodeCampaign)(nil),                         // 169: nakama.api.GiftcodeCampaign
+	(*GiftcodeCode)(nil),                             // 170: nakama.api.GiftcodeCode
+	(*GiftcodeRedemption)(nil),                       // 171: nakama.api.GiftcodeRedemption
+	nil,                                              // 172: nakama.api.AccountRefresh.VarsEntry
+	nil,                                              // 173: nakama.api.AccountApple.VarsEntry
+	nil,                                              // 174: nakama.api.AccountCustom.VarsEntry
+	nil,                                              // 175: nakama.api.AccountDevice.VarsEntry
+	nil,                                              // 176: nakama.api.AccountEmail.VarsEntry
+	nil,                                              // 177: nakama.api.AccountFacebook.VarsEntry
+	nil,                                              // 178: nakama.api.AccountFacebookInstantGame.VarsEntry
+	nil,                                              // 179: nakama.api.AccountGameCenter.VarsEntry
+	nil,                                              // 180: nakama.api.AccountGoogle.VarsEntry
+	nil,                                              // 181: nakama.api.AccountSteam.VarsEntry
+	nil,                                              // 182: nakama.api.SessionRefreshRequest.VarsEntry
+	nil,                                              // 183: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	nil,                                              // 184: nakama.api.Event.PropertiesEntry
+	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 185: nakama.api.FriendsOfFriendsList.FriendOfFriend
+	(*GroupCharacterList_GroupCharacter)(nil),        // 186: nakama.api.GroupCharacterList.GroupCharacter
+	(*CharacterGroupList_CharacterGroup)(nil),        // 187: nakama.api.CharacterGroupList.CharacterGroup
+	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 188: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 189: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	nil,                            // 190: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	nil,                            // 191: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	nil,                            // 192: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	nil,                            // 193: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	nil,                            // 194: nakama.api.CharacterWalletLedger.ChangesetEntry
+	nil,                            // 195: nakama.api.CharacterWalletLedger.MetadataEntry
+	(*timestamppb.Timestamp)(nil),  // 196: google.protobuf.Timestamp
+	(*wrapperspb.BoolValue)(nil),   // 197: google.protobuf.BoolValue
+	(*wrapperspb.Int32Value)(nil),  // 198: google.protobuf.Int32Value
+	(*wrapperspb.StringValue)(nil), // 199: google.protobuf.StringValue
+	(*wrapperspb.UInt32Value)(nil), // 200: google.protobuf.UInt32Value
+	(*wrapperspb.Int64Value)(nil),  // 201: google.protobuf.Int64Value
 }
 var file_api_api_proto_depIdxs = []int32{
 	109, // 0: nakama.api.Account.user:type_name -> nakama.api.User
 	18,  // 1: nakama.api.Account.devices:type_name -> nakama.api.AccountDevice
-	195, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
-	195, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
-	171, // 4: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
-	172, // 5: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
-	173, // 6: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
-	174, // 7: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
-	175, // 8: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
-	176, // 9: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
-	177, // 10: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
-	178, // 11: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
-	179, // 12: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
-	180, // 13: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
-	181, // 14: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
+	196, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
+	196, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
+	172, // 4: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
+	173, // 5: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
+	174, // 6: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
+	175, // 7: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
+	176, // 8: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
+	177, // 9: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
+	178, // 10: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
+	179, // 11: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
+	180, // 12: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
+	181, // 13: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
+	182, // 14: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
 	16,  // 15: nakama.api.AuthenticateAppleRequest.account:type_name -> nakama.api.AccountApple
-	196, // 16: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 16: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
 	17,  // 17: nakama.api.AuthenticateCustomRequest.account:type_name -> nakama.api.AccountCustom
-	196, // 18: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 18: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
 	18,  // 19: nakama.api.AuthenticateDeviceRequest.account:type_name -> nakama.api.AccountDevice
-	196, // 20: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 20: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
 	19,  // 21: nakama.api.AuthenticateEmailRequest.account:type_name -> nakama.api.AccountEmail
-	196, // 22: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 22: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
 	20,  // 23: nakama.api.AuthenticateFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	196, // 24: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
-	196, // 25: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	197, // 24: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 25: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
 	21,  // 26: nakama.api.AuthenticateFacebookInstantGameRequest.account:type_name -> nakama.api.AccountFacebookInstantGame
-	196, // 27: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 27: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
 	22,  // 28: nakama.api.AuthenticateGameCenterRequest.account:type_name -> nakama.api.AccountGameCenter
-	196, // 29: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 29: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
 	23,  // 30: nakama.api.AuthenticateGoogleRequest.account:type_name -> nakama.api.AccountGoogle
-	196, // 31: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 31: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
 	24,  // 32: nakama.api.AuthenticateSteamRequest.account:type_name -> nakama.api.AccountSteam
-	196, // 33: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
-	196, // 34: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	182, // 35: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	197, // 36: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
-	195, // 37: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
-	195, // 38: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
-	196, // 39: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
+	197, // 33: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
+	197, // 34: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	183, // 35: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	198, // 36: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
+	196, // 37: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
+	196, // 38: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
+	197, // 39: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
 	43,  // 40: nakama.api.ChannelMessageList.messages:type_name -> nakama.api.ChannelMessage
 	51,  // 41: nakama.api.DeleteStorageObjectsRequest.object_ids:type_name -> nakama.api.DeleteStorageObjectId
-	183, // 42: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
-	195, // 43: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
+	184, // 42: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
+	196, // 43: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
 	137, // 44: nakama.api.Friend.character:type_name -> nakama.api.Character
-	197, // 45: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
-	195, // 46: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
+	198, // 45: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
+	196, // 46: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
 	54,  // 47: nakama.api.FriendList.friends:type_name -> nakama.api.Friend
-	184, // 48: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
-	196, // 49: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
-	195, // 50: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
-	195, // 51: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
+	185, // 48: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
+	197, // 49: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
+	196, // 50: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
+	196, // 51: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
 	59,  // 52: nakama.api.GroupList.groups:type_name -> nakama.api.Group
-	185, // 53: nakama.api.GroupCharacterList.group_characters:type_name -> nakama.api.GroupCharacterList.GroupCharacter
+	186, // 53: nakama.api.GroupCharacterList.group_characters:type_name -> nakama.api.GroupCharacterList.GroupCharacter
 	2,   // 54: nakama.api.Leaderboard.operator:type_name -> nakama.api.Operator
-	195, // 55: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
+	196, // 55: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
 	65,  // 56: nakama.api.LeaderboardList.leaderboards:type_name -> nakama.api.Leaderboard
-	198, // 57: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
-	195, // 58: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
-	195, // 59: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
-	195, // 60: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
+	199, // 57: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
+	196, // 58: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
+	196, // 59: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
+	196, // 60: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
 	67,  // 61: nakama.api.LeaderboardRecordList.records:type_name -> nakama.api.LeaderboardRecord
 	67,  // 62: nakama.api.LeaderboardRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
 	20,  // 63: nakama.api.LinkFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	196, // 64: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	197, // 64: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
 	24,  // 65: nakama.api.LinkSteamRequest.account:type_name -> nakama.api.AccountSteam
-	196, // 66: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	197, // 67: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
-	196, // 68: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
-	197, // 69: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 70: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
-	197, // 71: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 72: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 73: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
-	196, // 74: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
-	199, // 75: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	196, // 76: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
-	197, // 77: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 78: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
-	199, // 79: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	200, // 80: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	197, // 81: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	200, // 82: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	197, // 83: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
-	196, // 84: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
-	198, // 85: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
-	197, // 86: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
-	197, // 87: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
-	198, // 88: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
-	197, // 89: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 90: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 91: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
-	196, // 92: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	199, // 93: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	200, // 94: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	197, // 95: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	200, // 96: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	199, // 97: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
-	199, // 98: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
-	199, // 99: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
-	199, // 100: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
-	197, // 101: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
-	199, // 102: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	196, // 103: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
-	197, // 104: nakama.api.ListCharacterGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	197, // 105: nakama.api.ListCharacterGroupsRequest.state:type_name -> google.protobuf.Int32Value
-	198, // 106: nakama.api.Match.label:type_name -> google.protobuf.StringValue
+	197, // 66: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	198, // 67: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
+	197, // 68: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
+	198, // 69: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 70: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
+	198, // 71: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 72: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 73: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
+	197, // 74: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
+	200, // 75: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	197, // 76: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
+	198, // 77: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 78: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
+	200, // 79: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	201, // 80: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	198, // 81: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	201, // 82: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	198, // 83: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
+	197, // 84: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
+	199, // 85: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
+	198, // 86: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
+	198, // 87: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
+	199, // 88: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
+	198, // 89: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 90: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 91: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
+	197, // 92: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	200, // 93: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	201, // 94: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	198, // 95: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	201, // 96: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	200, // 97: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
+	200, // 98: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
+	200, // 99: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
+	200, // 100: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
+	198, // 101: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
+	200, // 102: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	197, // 103: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
+	198, // 104: nakama.api.ListCharacterGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	198, // 105: nakama.api.ListCharacterGroupsRequest.state:type_name -> google.protobuf.Int32Value
+	199, // 106: nakama.api.Match.label:type_name -> google.protobuf.StringValue
 	87,  // 107: nakama.api.MatchList.matches:type_name -> nakama.api.Match
-	195, // 108: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
-	195, // 109: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
-	195, // 110: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
+	196, // 108: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
+	196, // 109: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
+	196, // 110: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
 	89,  // 111: nakama.api.MatchmakerStats.completions:type_name -> nakama.api.MatchmakerCompletionStats
-	195, // 112: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
+	196, // 112: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
 	91,  // 113: nakama.api.NotificationList.notifications:type_name -> nakama.api.Notification
 	95,  // 114: nakama.api.ReadStorageObjectsRequest.object_ids:type_name -> nakama.api.ReadStorageObjectId
-	195, // 115: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
-	195, // 116: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
-	195, // 117: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
-	195, // 118: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
+	196, // 115: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
+	196, // 116: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
+	196, // 117: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
+	196, // 118: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
 	100, // 119: nakama.api.StorageObjectAcks.acks:type_name -> nakama.api.StorageObjectAck
 	99,  // 120: nakama.api.StorageObjects.objects:type_name -> nakama.api.StorageObject
 	99,  // 121: nakama.api.StorageObjectList.objects:type_name -> nakama.api.StorageObject
-	195, // 122: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
-	195, // 123: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
-	195, // 124: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
+	196, // 122: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
+	196, // 123: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
+	196, // 124: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
 	2,   // 125: nakama.api.Tournament.operator:type_name -> nakama.api.Operator
 	104, // 126: nakama.api.TournamentList.tournaments:type_name -> nakama.api.Tournament
 	67,  // 127: nakama.api.TournamentRecordList.records:type_name -> nakama.api.LeaderboardRecord
 	67,  // 128: nakama.api.TournamentRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
-	198, // 129: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
-	198, // 130: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
-	198, // 131: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
-	198, // 132: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
-	198, // 133: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
-	198, // 134: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
-	198, // 135: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
-	198, // 136: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
-	198, // 137: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
-	198, // 138: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
-	196, // 139: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
-	195, // 140: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
-	195, // 141: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
-	186, // 142: nakama.api.CharacterGroupList.character_groups:type_name -> nakama.api.CharacterGroupList.CharacterGroup
+	199, // 129: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
+	199, // 130: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
+	199, // 131: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
+	199, // 132: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
+	199, // 133: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
+	199, // 134: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
+	199, // 135: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
+	199, // 136: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
+	199, // 137: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
+	199, // 138: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
+	197, // 139: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
+	196, // 140: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
+	196, // 141: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
+	187, // 142: nakama.api.CharacterGroupList.character_groups:type_name -> nakama.api.CharacterGroupList.CharacterGroup
 	109, // 143: nakama.api.Users.users:type_name -> nakama.api.User
-	196, // 144: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	196, // 145: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	196, // 146: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	196, // 147: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	196, // 148: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
-	196, // 149: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 144: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 145: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 146: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 147: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 148: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
+	197, // 149: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
 	0,   // 150: nakama.api.ValidatedPurchase.store:type_name -> nakama.api.StoreProvider
-	195, // 151: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
-	195, // 152: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
-	195, // 153: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
-	195, // 154: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
+	196, // 151: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
+	196, // 152: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
+	196, // 153: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
+	196, // 154: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
 	1,   // 155: nakama.api.ValidatedPurchase.environment:type_name -> nakama.api.StoreEnvironment
 	118, // 156: nakama.api.ValidatePurchaseResponse.validated_purchases:type_name -> nakama.api.ValidatedPurchase
 	121, // 157: nakama.api.ValidateSubscriptionResponse.validated_subscription:type_name -> nakama.api.ValidatedSubscription
 	0,   // 158: nakama.api.ValidatedSubscription.store:type_name -> nakama.api.StoreProvider
-	195, // 159: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
-	195, // 160: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
-	195, // 161: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
+	196, // 159: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
+	196, // 160: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
+	196, // 161: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
 	1,   // 162: nakama.api.ValidatedSubscription.environment:type_name -> nakama.api.StoreEnvironment
-	195, // 163: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
-	195, // 164: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
+	196, // 163: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
+	196, // 164: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
 	118, // 165: nakama.api.PurchaseList.validated_purchases:type_name -> nakama.api.ValidatedPurchase
 	121, // 166: nakama.api.SubscriptionList.validated_subscriptions:type_name -> nakama.api.ValidatedSubscription
-	187, // 167: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	197, // 168: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
-	197, // 169: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
+	188, // 167: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	198, // 168: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
+	198, // 169: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
 	125, // 170: nakama.api.WriteStorageObjectsRequest.objects:type_name -> nakama.api.WriteStorageObject
-	188, // 171: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	197, // 172: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
-	196, // 173: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
-	198, // 174: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
-	198, // 175: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
+	189, // 171: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	198, // 172: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
+	197, // 173: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
+	199, // 174: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
+	199, // 175: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
 	129, // 176: nakama.api.PartyList.parties:type_name -> nakama.api.Party
-	196, // 177: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
+	197, // 177: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
 	131, // 178: nakama.api.RealmPolicies.transfer:type_name -> nakama.api.TransferPolicy
 	132, // 179: nakama.api.RealmPolicies.queue:type_name -> nakama.api.QueuePolicy
 	133, // 180: nakama.api.RealmPolicies.naming:type_name -> nakama.api.NamingPolicy
 	134, // 181: nakama.api.RealmPolicies.access:type_name -> nakama.api.AccessPolicy
 	3,   // 182: nakama.api.Realm.status:type_name -> nakama.api.RealmStatus
-	195, // 183: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
-	195, // 184: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
+	196, // 183: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
+	196, // 184: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
 	135, // 185: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
 	137, // 186: nakama.api.Realm.my_character:type_name -> nakama.api.Character
 	4,   // 187: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
-	195, // 188: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
-	195, // 189: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
-	195, // 190: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
+	196, // 188: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
+	196, // 189: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
+	196, // 190: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
 	136, // 191: nakama.api.Character.realm:type_name -> nakama.api.Realm
-	197, // 192: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
+	198, // 192: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
 	136, // 193: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
 	137, // 194: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
-	137, // 195: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
-	195, // 196: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
-	195, // 197: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
-	189, // 198: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	190, // 199: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	146, // 200: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
-	191, // 201: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	192, // 202: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	193, // 203: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
-	194, // 204: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
-	195, // 205: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
-	195, // 206: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
-	197, // 207: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
-	150, // 208: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
-	197, // 209: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
-	196, // 210: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	5,   // 211: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
-	6,   // 212: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
-	195, // 213: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
-	195, // 214: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
-	195, // 215: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
-	154, // 216: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
-	137, // 217: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
-	197, // 218: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
-	154, // 219: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
-	195, // 220: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
-	136, // 221: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
-	136, // 222: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
-	7,   // 223: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
-	195, // 224: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
-	195, // 225: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
-	195, // 226: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
-	195, // 227: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
-	8,   // 228: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
-	195, // 229: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
-	195, // 230: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
-	195, // 231: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
-	135, // 232: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
-	195, // 233: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
-	195, // 234: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
-	195, // 235: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
-	195, // 236: nakama.api.RedeemGiftcodeResponse.redeemed_at:type_name -> google.protobuf.Timestamp
-	9,   // 237: nakama.api.GiftcodeCampaign.campaign_type:type_name -> nakama.api.GiftcodeCampaignType
-	10,  // 238: nakama.api.GiftcodeCampaign.uniqueness_scope:type_name -> nakama.api.GiftcodeUniquenessScope
-	195, // 239: nakama.api.GiftcodeCampaign.start_time:type_name -> google.protobuf.Timestamp
-	195, // 240: nakama.api.GiftcodeCampaign.end_time:type_name -> google.protobuf.Timestamp
-	195, // 241: nakama.api.GiftcodeCampaign.create_time:type_name -> google.protobuf.Timestamp
-	195, // 242: nakama.api.GiftcodeCampaign.update_time:type_name -> google.protobuf.Timestamp
-	195, // 243: nakama.api.GiftcodeCode.create_time:type_name -> google.protobuf.Timestamp
-	195, // 244: nakama.api.GiftcodeRedemption.redeemed_at:type_name -> google.protobuf.Timestamp
-	137, // 245: nakama.api.FriendsOfFriendsList.FriendOfFriend.character:type_name -> nakama.api.Character
-	137, // 246: nakama.api.GroupCharacterList.GroupCharacter.character:type_name -> nakama.api.Character
-	197, // 247: nakama.api.GroupCharacterList.GroupCharacter.state:type_name -> google.protobuf.Int32Value
-	59,  // 248: nakama.api.CharacterGroupList.CharacterGroup.group:type_name -> nakama.api.Group
-	197, // 249: nakama.api.CharacterGroupList.CharacterGroup.state:type_name -> google.protobuf.Int32Value
-	2,   // 250: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
-	2,   // 251: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
-	252, // [252:252] is the sub-list for method output_type
-	252, // [252:252] is the sub-list for method input_type
-	252, // [252:252] is the sub-list for extension type_name
-	252, // [252:252] is the sub-list for extension extendee
-	0,   // [0:252] is the sub-list for field type_name
+	199, // 195: nakama.api.UpdateCharacterRequest.name:type_name -> google.protobuf.StringValue
+	199, // 196: nakama.api.UpdateCharacterRequest.metadata:type_name -> google.protobuf.StringValue
+	137, // 197: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
+	196, // 198: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
+	196, // 199: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
+	190, // 200: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	191, // 201: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	147, // 202: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
+	192, // 203: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	193, // 204: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	194, // 205: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
+	195, // 206: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
+	196, // 207: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
+	196, // 208: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
+	198, // 209: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
+	151, // 210: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
+	198, // 211: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
+	197, // 212: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	5,   // 213: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
+	6,   // 214: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
+	196, // 215: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
+	196, // 216: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
+	196, // 217: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
+	155, // 218: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
+	137, // 219: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
+	198, // 220: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
+	155, // 221: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
+	196, // 222: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
+	136, // 223: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
+	136, // 224: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
+	7,   // 225: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
+	196, // 226: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
+	196, // 227: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
+	196, // 228: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
+	196, // 229: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
+	8,   // 230: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
+	196, // 231: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
+	196, // 232: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
+	196, // 233: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
+	135, // 234: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
+	196, // 235: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
+	196, // 236: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
+	196, // 237: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
+	196, // 238: nakama.api.RedeemGiftcodeResponse.redeemed_at:type_name -> google.protobuf.Timestamp
+	9,   // 239: nakama.api.GiftcodeCampaign.campaign_type:type_name -> nakama.api.GiftcodeCampaignType
+	10,  // 240: nakama.api.GiftcodeCampaign.uniqueness_scope:type_name -> nakama.api.GiftcodeUniquenessScope
+	196, // 241: nakama.api.GiftcodeCampaign.start_time:type_name -> google.protobuf.Timestamp
+	196, // 242: nakama.api.GiftcodeCampaign.end_time:type_name -> google.protobuf.Timestamp
+	196, // 243: nakama.api.GiftcodeCampaign.create_time:type_name -> google.protobuf.Timestamp
+	196, // 244: nakama.api.GiftcodeCampaign.update_time:type_name -> google.protobuf.Timestamp
+	196, // 245: nakama.api.GiftcodeCode.create_time:type_name -> google.protobuf.Timestamp
+	196, // 246: nakama.api.GiftcodeRedemption.redeemed_at:type_name -> google.protobuf.Timestamp
+	137, // 247: nakama.api.FriendsOfFriendsList.FriendOfFriend.character:type_name -> nakama.api.Character
+	137, // 248: nakama.api.GroupCharacterList.GroupCharacter.character:type_name -> nakama.api.Character
+	198, // 249: nakama.api.GroupCharacterList.GroupCharacter.state:type_name -> google.protobuf.Int32Value
+	59,  // 250: nakama.api.CharacterGroupList.CharacterGroup.group:type_name -> nakama.api.Group
+	198, // 251: nakama.api.CharacterGroupList.CharacterGroup.state:type_name -> google.protobuf.Int32Value
+	2,   // 252: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
+	2,   // 253: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
+	254, // [254:254] is the sub-list for method output_type
+	254, // [254:254] is the sub-list for method input_type
+	254, // [254:254] is the sub-list for extension type_name
+	254, // [254:254] is the sub-list for extension extendee
+	0,   // [0:254] is the sub-list for field type_name
 }
 
 func init() { file_api_api_proto_init() }
@@ -14697,7 +14778,7 @@ func file_api_api_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_api_proto_rawDesc), len(file_api_api_proto_rawDesc)),
 			NumEnums:      14,
-			NumMessages:   181,
+			NumMessages:   182,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
