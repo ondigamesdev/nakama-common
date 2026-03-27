@@ -1566,6 +1566,7 @@ type NakamaModule interface {
 	UsersGetUsername(ctx context.Context, usernames []string) ([]*api.User, error)
 	CharacterGetFriendStatus(ctx context.Context, characterID string, characterIDs []string) ([]*api.Friend, error)
 	CharactersGetId(ctx context.Context, characterIDs []string) ([]*api.Character, error)
+	CharacterUpdateMetadata(ctx context.Context, characterID string, metadata map[string]interface{}) error
 	UsersGetRandom(ctx context.Context, count int) ([]*api.User, error)
 	UsersBanId(ctx context.Context, userIDs []string) error
 	UsersUnbanId(ctx context.Context, userIDs []string) error
