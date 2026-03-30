@@ -1730,8 +1730,8 @@ message Character {
   string name = 4;
   // Tags/labels for the character (max 10, max 50 chars each).
   repeated string tags = 5;
-  // Additional character metadata as a JSON object.
-  string metadata = 6;
+  // Additional character metadata as key-value pairs.
+  map<string, string> metadata = 6;
   // The status of the character.
   CharacterStatus status = 7;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the character was created.
@@ -1786,8 +1786,8 @@ message CreateCharacterRequest {
   string name = 2;
   // Tags/labels for the character (optional, max 10, max 50 chars each).
   repeated string tags = 3;
-  // Additional character metadata as a JSON object (optional).
-  string metadata = 4;
+  // Additional character metadata as key-value pairs (optional).
+  map<string, string> metadata = 4;
   // Avatar identifier for the character (optional).
   string avatar = 5;
 }
@@ -1800,8 +1800,8 @@ message UpdateCharacterRequest {
   google.protobuf.StringValue name = 2;
   // Tags/labels for the character (optional, max 10, max 50 chars each). Replaces all existing tags.
   repeated string tags = 3;
-  // Additional character metadata as a JSON object (optional). Replaces all existing metadata.
-  google.protobuf.StringValue metadata = 4;
+  // Additional character metadata as key-value pairs (optional). Replaces all existing metadata.
+  map<string, string> metadata = 4;
   // New avatar identifier for the character (optional).
   google.protobuf.StringValue avatar = 5;
 }
