@@ -354,6 +354,7 @@ var (
 	ErrWalletLedgerInvalidCursor = errors.New("wallet ledger cursor invalid")
 
 	ErrCharacterTransferCursorInvalid = errors.New("character transfer cursor invalid")
+	ErrCharacterNameInUse            = errors.New("character name already in use in this realm")
 
 	ErrCannotEncodeParams    = errors.New("error creating match: cannot encode params")
 	ErrCannotDecodeParams    = errors.New("error creating match: cannot decode params")
@@ -1573,6 +1574,7 @@ type NakamaModule interface {
 	CharacterGetFriendStatus(ctx context.Context, characterID string, characterIDs []string) ([]*api.Friend, error)
 	CharactersGetId(ctx context.Context, characterIDs []string) ([]*api.Character, error)
 	CharacterUpdateMetadata(ctx context.Context, characterID string, metadata map[string]string) error
+	CharacterUpdateName(ctx context.Context, characterID string, name string) error
 	UsersGetRandom(ctx context.Context, count int) ([]*api.User, error)
 	UsersBanId(ctx context.Context, userIDs []string) error
 	UsersUnbanId(ctx context.Context, userIDs []string) error
