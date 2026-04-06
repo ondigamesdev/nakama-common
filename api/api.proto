@@ -296,6 +296,14 @@ message VerifyEmailCodeRequest {
   string code = 2;
 }
 
+// Link an email address to an existing account using an OTP code.
+message LinkEmailOTPRequest {
+  // The email address to link.
+  string email = 1;
+  // The OTP code received via email.
+  string code = 2;
+}
+
 // Ban characters from a group.
 message BanGroupCharactersRequest {
   // The group to ban characters from.

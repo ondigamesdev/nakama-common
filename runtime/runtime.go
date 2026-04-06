@@ -945,6 +945,11 @@ type Initializer interface {
 	// RegisterAfterLinkEmail can be used to perform additional logic after linking email to an account.
 	RegisterAfterLinkEmail(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AccountEmail) error) error
 
+	// RegisterBeforeLinkEmailOTP can be used to perform additional logic before linking email via OTP to an account.
+	RegisterBeforeLinkEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.LinkEmailOTPRequest) (*api.LinkEmailOTPRequest, error)) error
+	// RegisterAfterLinkEmailOTP can be used to perform additional logic after linking email via OTP to an account.
+	RegisterAfterLinkEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.LinkEmailOTPRequest) error) error
+
 	// RegisterBeforeLinkFacebook can be used to perform additional logic before linking Facebook to an account.
 	RegisterBeforeLinkFacebook(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.LinkFacebookRequest) (*api.LinkFacebookRequest, error)) error
 
@@ -1583,6 +1588,7 @@ type NakamaModule interface {
 	LinkCustom(ctx context.Context, userID, customID string) error
 	LinkDevice(ctx context.Context, userID, deviceID string) error
 	LinkEmail(ctx context.Context, userID, email, password string) error
+	LinkEmailOTP(ctx context.Context, userID, email, code string) error
 	LinkFacebook(ctx context.Context, userID, username, token string, importFriends bool) error
 	LinkFacebookInstantGame(ctx context.Context, userID, signedPlayerInfo string) error
 	LinkGameCenter(ctx context.Context, userID, playerID, bundleID string, timestamp int64, salt, signature, publicKeyUrl string) error
