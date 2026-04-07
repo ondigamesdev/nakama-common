@@ -46,6 +46,8 @@ message Account {
   google.protobuf.Timestamp verify_time = 6;
   // The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user's account was disabled/banned.
   google.protobuf.Timestamp disable_time = 7;
+  // Emails associated with each authentication provider. Keys are provider names (e.g. "google", "apple", "email"), values are email addresses.
+  map<string, string> auth_emails = 8;
 }
 
 // Obtain a new authentication token using a refresh token.

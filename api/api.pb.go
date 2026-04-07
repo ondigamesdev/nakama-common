@@ -850,7 +850,9 @@ type Account struct {
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user's email was verified.
 	VerifyTime *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=verify_time,json=verifyTime,proto3" json:"verify_time,omitempty"`
 	// The UNIX time (for gRPC clients) or ISO string (for REST clients) when the user's account was disabled/banned.
-	DisableTime   *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=disable_time,json=disableTime,proto3" json:"disable_time,omitempty"`
+	DisableTime *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=disable_time,json=disableTime,proto3" json:"disable_time,omitempty"`
+	// Emails associated with each authentication provider. Keys are provider names (e.g. "google", "apple", "email"), values are email addresses.
+	AuthEmails    map[string]string `protobuf:"bytes,8,rep,name=auth_emails,json=authEmails,proto3" json:"auth_emails,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -930,6 +932,13 @@ func (x *Account) GetVerifyTime() *timestamppb.Timestamp {
 func (x *Account) GetDisableTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DisableTime
+	}
+	return nil
+}
+
+func (x *Account) GetAuthEmails() map[string]string {
+	if x != nil {
+		return x.AuthEmails
 	}
 	return nil
 }
@@ -12919,7 +12928,7 @@ type FriendsOfFriendsList_FriendOfFriend struct {
 
 func (x *FriendsOfFriendsList_FriendOfFriend) Reset() {
 	*x = FriendsOfFriendsList_FriendOfFriend{}
-	mi := &file_api_proto_msgTypes[172]
+	mi := &file_api_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12931,7 +12940,7 @@ func (x *FriendsOfFriendsList_FriendOfFriend) String() string {
 func (*FriendsOfFriendsList_FriendOfFriend) ProtoMessage() {}
 
 func (x *FriendsOfFriendsList_FriendOfFriend) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[172]
+	mi := &file_api_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12974,7 +12983,7 @@ type GroupCharacterList_GroupCharacter struct {
 
 func (x *GroupCharacterList_GroupCharacter) Reset() {
 	*x = GroupCharacterList_GroupCharacter{}
-	mi := &file_api_proto_msgTypes[173]
+	mi := &file_api_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12986,7 +12995,7 @@ func (x *GroupCharacterList_GroupCharacter) String() string {
 func (*GroupCharacterList_GroupCharacter) ProtoMessage() {}
 
 func (x *GroupCharacterList_GroupCharacter) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[173]
+	mi := &file_api_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13029,7 +13038,7 @@ type CharacterGroupList_CharacterGroup struct {
 
 func (x *CharacterGroupList_CharacterGroup) Reset() {
 	*x = CharacterGroupList_CharacterGroup{}
-	mi := &file_api_proto_msgTypes[174]
+	mi := &file_api_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13041,7 +13050,7 @@ func (x *CharacterGroupList_CharacterGroup) String() string {
 func (*CharacterGroupList_CharacterGroup) ProtoMessage() {}
 
 func (x *CharacterGroupList_CharacterGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[174]
+	mi := &file_api_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13088,7 +13097,7 @@ type WriteLeaderboardRecordRequest_LeaderboardRecordWrite struct {
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) Reset() {
 	*x = WriteLeaderboardRecordRequest_LeaderboardRecordWrite{}
-	mi := &file_api_proto_msgTypes[175]
+	mi := &file_api_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13100,7 +13109,7 @@ func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) String() string {
 func (*WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoMessage() {}
 
 func (x *WriteLeaderboardRecordRequest_LeaderboardRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[175]
+	mi := &file_api_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13161,7 +13170,7 @@ type WriteTournamentRecordRequest_TournamentRecordWrite struct {
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) Reset() {
 	*x = WriteTournamentRecordRequest_TournamentRecordWrite{}
-	mi := &file_api_proto_msgTypes[176]
+	mi := &file_api_proto_msgTypes[177]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13173,7 +13182,7 @@ func (x *WriteTournamentRecordRequest_TournamentRecordWrite) String() string {
 func (*WriteTournamentRecordRequest_TournamentRecordWrite) ProtoMessage() {}
 
 func (x *WriteTournamentRecordRequest_TournamentRecordWrite) ProtoReflect() protoreflect.Message {
-	mi := &file_api_proto_msgTypes[176]
+	mi := &file_api_proto_msgTypes[177]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13222,7 +13231,7 @@ var File_api_proto protoreflect.FileDescriptor
 const file_api_proto_rawDesc = "" +
 	"\n" +
 	"\tapi.proto\x12\n" +
-	"nakama.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xab\x02\n" +
+	"nakama.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xb0\x03\n" +
 	"\aAccount\x12$\n" +
 	"\x04user\x18\x01 \x01(\v2\x10.nakama.api.UserR\x04user\x12\x16\n" +
 	"\x06wallet\x18\x02 \x01(\tR\x06wallet\x12\x14\n" +
@@ -13231,7 +13240,12 @@ const file_api_proto_rawDesc = "" +
 	"\tcustom_id\x18\x05 \x01(\tR\bcustomId\x12;\n" +
 	"\vverify_time\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"verifyTime\x12=\n" +
-	"\fdisable_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vdisableTime\"\x99\x01\n" +
+	"\fdisable_time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vdisableTime\x12D\n" +
+	"\vauth_emails\x18\b \x03(\v2#.nakama.api.Account.AuthEmailsEntryR\n" +
+	"authEmails\x1a=\n" +
+	"\x0fAuthEmailsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x99\x01\n" +
 	"\x0eAccountRefresh\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x128\n" +
 	"\x04vars\x18\x02 \x03(\v2$.nakama.api.AccountRefresh.VarsEntryR\x04vars\x1a7\n" +
@@ -14397,7 +14411,7 @@ func file_api_proto_rawDescGZIP() []byte {
 }
 
 var file_api_proto_enumTypes = make([]protoimpl.EnumInfo, 14)
-var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 186)
+var file_api_proto_msgTypes = make([]protoimpl.MessageInfo, 187)
 var file_api_proto_goTypes = []any{
 	(StoreProvider)(0),                               // 0: nakama.api.StoreProvider
 	(StoreEnvironment)(0),                            // 1: nakama.api.StoreEnvironment
@@ -14572,303 +14586,305 @@ var file_api_proto_goTypes = []any{
 	(*GiftcodeCampaign)(nil),                         // 170: nakama.api.GiftcodeCampaign
 	(*GiftcodeCode)(nil),                             // 171: nakama.api.GiftcodeCode
 	(*GiftcodeRedemption)(nil),                       // 172: nakama.api.GiftcodeRedemption
-	nil,                                              // 173: nakama.api.AccountRefresh.VarsEntry
-	nil,                                              // 174: nakama.api.AccountApple.VarsEntry
-	nil,                                              // 175: nakama.api.AccountCustom.VarsEntry
-	nil,                                              // 176: nakama.api.AccountDevice.VarsEntry
-	nil,                                              // 177: nakama.api.AccountEmail.VarsEntry
-	nil,                                              // 178: nakama.api.AccountFacebook.VarsEntry
-	nil,                                              // 179: nakama.api.AccountFacebookInstantGame.VarsEntry
-	nil,                                              // 180: nakama.api.AccountGameCenter.VarsEntry
-	nil,                                              // 181: nakama.api.AccountGoogle.VarsEntry
-	nil,                                              // 182: nakama.api.AccountSteam.VarsEntry
-	nil,                                              // 183: nakama.api.SessionRefreshRequest.VarsEntry
-	nil,                                              // 184: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	nil,                                              // 185: nakama.api.Event.PropertiesEntry
-	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 186: nakama.api.FriendsOfFriendsList.FriendOfFriend
-	(*GroupCharacterList_GroupCharacter)(nil),        // 187: nakama.api.GroupCharacterList.GroupCharacter
-	(*CharacterGroupList_CharacterGroup)(nil),        // 188: nakama.api.CharacterGroupList.CharacterGroup
-	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 189: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 190: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	nil,                            // 191: nakama.api.Character.MetadataEntry
-	nil,                            // 192: nakama.api.CreateCharacterRequest.MetadataEntry
-	nil,                            // 193: nakama.api.UpdateCharacterRequest.MetadataEntry
-	nil,                            // 194: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	nil,                            // 195: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	nil,                            // 196: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	nil,                            // 197: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	nil,                            // 198: nakama.api.CharacterWalletLedger.ChangesetEntry
-	nil,                            // 199: nakama.api.CharacterWalletLedger.MetadataEntry
-	(*timestamppb.Timestamp)(nil),  // 200: google.protobuf.Timestamp
-	(*wrapperspb.BoolValue)(nil),   // 201: google.protobuf.BoolValue
-	(*wrapperspb.Int32Value)(nil),  // 202: google.protobuf.Int32Value
-	(*wrapperspb.StringValue)(nil), // 203: google.protobuf.StringValue
-	(*wrapperspb.UInt32Value)(nil), // 204: google.protobuf.UInt32Value
-	(*wrapperspb.Int64Value)(nil),  // 205: google.protobuf.Int64Value
+	nil,                                              // 173: nakama.api.Account.AuthEmailsEntry
+	nil,                                              // 174: nakama.api.AccountRefresh.VarsEntry
+	nil,                                              // 175: nakama.api.AccountApple.VarsEntry
+	nil,                                              // 176: nakama.api.AccountCustom.VarsEntry
+	nil,                                              // 177: nakama.api.AccountDevice.VarsEntry
+	nil,                                              // 178: nakama.api.AccountEmail.VarsEntry
+	nil,                                              // 179: nakama.api.AccountFacebook.VarsEntry
+	nil,                                              // 180: nakama.api.AccountFacebookInstantGame.VarsEntry
+	nil,                                              // 181: nakama.api.AccountGameCenter.VarsEntry
+	nil,                                              // 182: nakama.api.AccountGoogle.VarsEntry
+	nil,                                              // 183: nakama.api.AccountSteam.VarsEntry
+	nil,                                              // 184: nakama.api.SessionRefreshRequest.VarsEntry
+	nil,                                              // 185: nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	nil,                                              // 186: nakama.api.Event.PropertiesEntry
+	(*FriendsOfFriendsList_FriendOfFriend)(nil),      // 187: nakama.api.FriendsOfFriendsList.FriendOfFriend
+	(*GroupCharacterList_GroupCharacter)(nil),        // 188: nakama.api.GroupCharacterList.GroupCharacter
+	(*CharacterGroupList_CharacterGroup)(nil),        // 189: nakama.api.CharacterGroupList.CharacterGroup
+	(*WriteLeaderboardRecordRequest_LeaderboardRecordWrite)(nil), // 190: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	(*WriteTournamentRecordRequest_TournamentRecordWrite)(nil),   // 191: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	nil,                            // 192: nakama.api.Character.MetadataEntry
+	nil,                            // 193: nakama.api.CreateCharacterRequest.MetadataEntry
+	nil,                            // 194: nakama.api.UpdateCharacterRequest.MetadataEntry
+	nil,                            // 195: nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	nil,                            // 196: nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	nil,                            // 197: nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	nil,                            // 198: nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	nil,                            // 199: nakama.api.CharacterWalletLedger.ChangesetEntry
+	nil,                            // 200: nakama.api.CharacterWalletLedger.MetadataEntry
+	(*timestamppb.Timestamp)(nil),  // 201: google.protobuf.Timestamp
+	(*wrapperspb.BoolValue)(nil),   // 202: google.protobuf.BoolValue
+	(*wrapperspb.Int32Value)(nil),  // 203: google.protobuf.Int32Value
+	(*wrapperspb.StringValue)(nil), // 204: google.protobuf.StringValue
+	(*wrapperspb.UInt32Value)(nil), // 205: google.protobuf.UInt32Value
+	(*wrapperspb.Int64Value)(nil),  // 206: google.protobuf.Int64Value
 }
 var file_api_proto_depIdxs = []int32{
 	110, // 0: nakama.api.Account.user:type_name -> nakama.api.User
 	18,  // 1: nakama.api.Account.devices:type_name -> nakama.api.AccountDevice
-	200, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
-	200, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
-	173, // 4: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
-	174, // 5: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
-	175, // 6: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
-	176, // 7: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
-	177, // 8: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
-	178, // 9: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
-	179, // 10: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
-	180, // 11: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
-	181, // 12: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
-	182, // 13: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
-	183, // 14: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
-	16,  // 15: nakama.api.AuthenticateAppleRequest.account:type_name -> nakama.api.AccountApple
-	201, // 16: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
-	17,  // 17: nakama.api.AuthenticateCustomRequest.account:type_name -> nakama.api.AccountCustom
-	201, // 18: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
-	18,  // 19: nakama.api.AuthenticateDeviceRequest.account:type_name -> nakama.api.AccountDevice
-	201, // 20: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
-	19,  // 21: nakama.api.AuthenticateEmailRequest.account:type_name -> nakama.api.AccountEmail
-	201, // 22: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
-	20,  // 23: nakama.api.AuthenticateFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	201, // 24: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
-	201, // 25: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
-	21,  // 26: nakama.api.AuthenticateFacebookInstantGameRequest.account:type_name -> nakama.api.AccountFacebookInstantGame
-	201, // 27: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
-	22,  // 28: nakama.api.AuthenticateGameCenterRequest.account:type_name -> nakama.api.AccountGameCenter
-	201, // 29: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
-	23,  // 30: nakama.api.AuthenticateGoogleRequest.account:type_name -> nakama.api.AccountGoogle
-	201, // 31: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
-	24,  // 32: nakama.api.AuthenticateSteamRequest.account:type_name -> nakama.api.AccountSteam
-	201, // 33: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
-	201, // 34: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	184, // 35: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
-	202, // 36: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
-	200, // 37: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
-	200, // 38: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
-	201, // 39: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
-	44,  // 40: nakama.api.ChannelMessageList.messages:type_name -> nakama.api.ChannelMessage
-	52,  // 41: nakama.api.DeleteStorageObjectsRequest.object_ids:type_name -> nakama.api.DeleteStorageObjectId
-	185, // 42: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
-	200, // 43: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
-	138, // 44: nakama.api.Friend.character:type_name -> nakama.api.Character
-	202, // 45: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
-	200, // 46: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
-	55,  // 47: nakama.api.FriendList.friends:type_name -> nakama.api.Friend
-	186, // 48: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
-	201, // 49: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
-	200, // 50: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
-	200, // 51: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
-	60,  // 52: nakama.api.GroupList.groups:type_name -> nakama.api.Group
-	187, // 53: nakama.api.GroupCharacterList.group_characters:type_name -> nakama.api.GroupCharacterList.GroupCharacter
-	2,   // 54: nakama.api.Leaderboard.operator:type_name -> nakama.api.Operator
-	200, // 55: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
-	66,  // 56: nakama.api.LeaderboardList.leaderboards:type_name -> nakama.api.Leaderboard
-	203, // 57: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
-	200, // 58: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
-	200, // 59: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
-	200, // 60: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
-	68,  // 61: nakama.api.LeaderboardRecordList.records:type_name -> nakama.api.LeaderboardRecord
-	68,  // 62: nakama.api.LeaderboardRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
-	20,  // 63: nakama.api.LinkFacebookRequest.account:type_name -> nakama.api.AccountFacebook
-	201, // 64: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
-	24,  // 65: nakama.api.LinkSteamRequest.account:type_name -> nakama.api.AccountSteam
-	201, // 66: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
-	202, // 67: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
-	201, // 68: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
-	202, // 69: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 70: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
-	202, // 71: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 72: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 73: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
-	201, // 74: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
-	204, // 75: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	201, // 76: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
-	202, // 77: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 78: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
-	204, // 79: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	205, // 80: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	202, // 81: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	205, // 82: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	202, // 83: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
-	201, // 84: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
-	203, // 85: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
-	202, // 86: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
-	202, // 87: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
-	203, // 88: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
-	202, // 89: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 90: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 91: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
-	201, // 92: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	204, // 93: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
-	205, // 94: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
-	202, // 95: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
-	205, // 96: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
-	204, // 97: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
-	204, // 98: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
-	204, // 99: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
-	204, // 100: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
-	202, // 101: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
-	204, // 102: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
-	201, // 103: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
-	202, // 104: nakama.api.ListCharacterGroupsRequest.limit:type_name -> google.protobuf.Int32Value
-	202, // 105: nakama.api.ListCharacterGroupsRequest.state:type_name -> google.protobuf.Int32Value
-	203, // 106: nakama.api.Match.label:type_name -> google.protobuf.StringValue
-	88,  // 107: nakama.api.MatchList.matches:type_name -> nakama.api.Match
-	200, // 108: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
-	200, // 109: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
-	200, // 110: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
-	90,  // 111: nakama.api.MatchmakerStats.completions:type_name -> nakama.api.MatchmakerCompletionStats
-	200, // 112: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
-	92,  // 113: nakama.api.NotificationList.notifications:type_name -> nakama.api.Notification
-	96,  // 114: nakama.api.ReadStorageObjectsRequest.object_ids:type_name -> nakama.api.ReadStorageObjectId
-	200, // 115: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
-	200, // 116: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
-	200, // 117: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
-	200, // 118: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
-	101, // 119: nakama.api.StorageObjectAcks.acks:type_name -> nakama.api.StorageObjectAck
-	100, // 120: nakama.api.StorageObjects.objects:type_name -> nakama.api.StorageObject
-	100, // 121: nakama.api.StorageObjectList.objects:type_name -> nakama.api.StorageObject
-	200, // 122: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
-	200, // 123: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
-	200, // 124: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
-	2,   // 125: nakama.api.Tournament.operator:type_name -> nakama.api.Operator
-	105, // 126: nakama.api.TournamentList.tournaments:type_name -> nakama.api.Tournament
-	68,  // 127: nakama.api.TournamentRecordList.records:type_name -> nakama.api.LeaderboardRecord
-	68,  // 128: nakama.api.TournamentRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
-	203, // 129: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
-	203, // 130: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
-	203, // 131: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
-	203, // 132: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
-	203, // 133: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
-	203, // 134: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
-	203, // 135: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
-	203, // 136: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
-	203, // 137: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
-	203, // 138: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
-	201, // 139: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
-	200, // 140: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
-	200, // 141: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
-	188, // 142: nakama.api.CharacterGroupList.character_groups:type_name -> nakama.api.CharacterGroupList.CharacterGroup
-	110, // 143: nakama.api.Users.users:type_name -> nakama.api.User
-	201, // 144: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	201, // 145: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
-	201, // 146: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	201, // 147: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
-	201, // 148: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
-	201, // 149: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
-	0,   // 150: nakama.api.ValidatedPurchase.store:type_name -> nakama.api.StoreProvider
-	200, // 151: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
-	200, // 152: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
-	200, // 153: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
-	200, // 154: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
-	1,   // 155: nakama.api.ValidatedPurchase.environment:type_name -> nakama.api.StoreEnvironment
-	119, // 156: nakama.api.ValidatePurchaseResponse.validated_purchases:type_name -> nakama.api.ValidatedPurchase
-	122, // 157: nakama.api.ValidateSubscriptionResponse.validated_subscription:type_name -> nakama.api.ValidatedSubscription
-	0,   // 158: nakama.api.ValidatedSubscription.store:type_name -> nakama.api.StoreProvider
-	200, // 159: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
-	200, // 160: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
-	200, // 161: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
-	1,   // 162: nakama.api.ValidatedSubscription.environment:type_name -> nakama.api.StoreEnvironment
-	200, // 163: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
-	200, // 164: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
-	119, // 165: nakama.api.PurchaseList.validated_purchases:type_name -> nakama.api.ValidatedPurchase
-	122, // 166: nakama.api.SubscriptionList.validated_subscriptions:type_name -> nakama.api.ValidatedSubscription
-	189, // 167: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
-	202, // 168: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
-	202, // 169: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
-	126, // 170: nakama.api.WriteStorageObjectsRequest.objects:type_name -> nakama.api.WriteStorageObject
-	190, // 171: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
-	202, // 172: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
-	201, // 173: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
-	203, // 174: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
-	203, // 175: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
-	130, // 176: nakama.api.PartyList.parties:type_name -> nakama.api.Party
-	201, // 177: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
-	132, // 178: nakama.api.RealmPolicies.transfer:type_name -> nakama.api.TransferPolicy
-	133, // 179: nakama.api.RealmPolicies.queue:type_name -> nakama.api.QueuePolicy
-	134, // 180: nakama.api.RealmPolicies.naming:type_name -> nakama.api.NamingPolicy
-	135, // 181: nakama.api.RealmPolicies.access:type_name -> nakama.api.AccessPolicy
-	3,   // 182: nakama.api.Realm.status:type_name -> nakama.api.RealmStatus
-	200, // 183: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
-	200, // 184: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
-	136, // 185: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
-	138, // 186: nakama.api.Realm.my_character:type_name -> nakama.api.Character
-	191, // 187: nakama.api.Character.metadata:type_name -> nakama.api.Character.MetadataEntry
-	4,   // 188: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
-	200, // 189: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
-	200, // 190: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
-	200, // 191: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
-	137, // 192: nakama.api.Character.realm:type_name -> nakama.api.Realm
-	202, // 193: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
-	137, // 194: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
-	138, // 195: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
-	192, // 196: nakama.api.CreateCharacterRequest.metadata:type_name -> nakama.api.CreateCharacterRequest.MetadataEntry
-	203, // 197: nakama.api.UpdateCharacterRequest.name:type_name -> google.protobuf.StringValue
-	193, // 198: nakama.api.UpdateCharacterRequest.metadata:type_name -> nakama.api.UpdateCharacterRequest.MetadataEntry
-	203, // 199: nakama.api.UpdateCharacterRequest.avatar:type_name -> google.protobuf.StringValue
-	138, // 200: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
-	200, // 201: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
-	200, // 202: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
-	194, // 203: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
-	195, // 204: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
-	148, // 205: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
-	196, // 206: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
-	197, // 207: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
-	198, // 208: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
-	199, // 209: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
-	200, // 210: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
-	200, // 211: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
-	202, // 212: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
-	152, // 213: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
-	202, // 214: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
-	201, // 215: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
-	5,   // 216: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
-	6,   // 217: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
-	200, // 218: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
-	200, // 219: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
-	200, // 220: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
-	156, // 221: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
-	138, // 222: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
-	202, // 223: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
-	156, // 224: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
-	200, // 225: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
-	137, // 226: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
-	137, // 227: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
-	7,   // 228: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
-	200, // 229: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
-	200, // 230: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
-	200, // 231: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
-	200, // 232: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
-	8,   // 233: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
-	200, // 234: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
-	200, // 235: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
-	200, // 236: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
-	136, // 237: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
-	200, // 238: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
-	200, // 239: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
-	200, // 240: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
-	200, // 241: nakama.api.RedeemGiftcodeResponse.redeemed_at:type_name -> google.protobuf.Timestamp
-	9,   // 242: nakama.api.GiftcodeCampaign.campaign_type:type_name -> nakama.api.GiftcodeCampaignType
-	10,  // 243: nakama.api.GiftcodeCampaign.uniqueness_scope:type_name -> nakama.api.GiftcodeUniquenessScope
-	200, // 244: nakama.api.GiftcodeCampaign.start_time:type_name -> google.protobuf.Timestamp
-	200, // 245: nakama.api.GiftcodeCampaign.end_time:type_name -> google.protobuf.Timestamp
-	200, // 246: nakama.api.GiftcodeCampaign.create_time:type_name -> google.protobuf.Timestamp
-	200, // 247: nakama.api.GiftcodeCampaign.update_time:type_name -> google.protobuf.Timestamp
-	200, // 248: nakama.api.GiftcodeCode.create_time:type_name -> google.protobuf.Timestamp
-	200, // 249: nakama.api.GiftcodeRedemption.redeemed_at:type_name -> google.protobuf.Timestamp
-	138, // 250: nakama.api.FriendsOfFriendsList.FriendOfFriend.character:type_name -> nakama.api.Character
-	138, // 251: nakama.api.GroupCharacterList.GroupCharacter.character:type_name -> nakama.api.Character
-	202, // 252: nakama.api.GroupCharacterList.GroupCharacter.state:type_name -> google.protobuf.Int32Value
-	60,  // 253: nakama.api.CharacterGroupList.CharacterGroup.group:type_name -> nakama.api.Group
-	202, // 254: nakama.api.CharacterGroupList.CharacterGroup.state:type_name -> google.protobuf.Int32Value
-	2,   // 255: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
-	2,   // 256: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
-	257, // [257:257] is the sub-list for method output_type
-	257, // [257:257] is the sub-list for method input_type
-	257, // [257:257] is the sub-list for extension type_name
-	257, // [257:257] is the sub-list for extension extendee
-	0,   // [0:257] is the sub-list for field type_name
+	201, // 2: nakama.api.Account.verify_time:type_name -> google.protobuf.Timestamp
+	201, // 3: nakama.api.Account.disable_time:type_name -> google.protobuf.Timestamp
+	173, // 4: nakama.api.Account.auth_emails:type_name -> nakama.api.Account.AuthEmailsEntry
+	174, // 5: nakama.api.AccountRefresh.vars:type_name -> nakama.api.AccountRefresh.VarsEntry
+	175, // 6: nakama.api.AccountApple.vars:type_name -> nakama.api.AccountApple.VarsEntry
+	176, // 7: nakama.api.AccountCustom.vars:type_name -> nakama.api.AccountCustom.VarsEntry
+	177, // 8: nakama.api.AccountDevice.vars:type_name -> nakama.api.AccountDevice.VarsEntry
+	178, // 9: nakama.api.AccountEmail.vars:type_name -> nakama.api.AccountEmail.VarsEntry
+	179, // 10: nakama.api.AccountFacebook.vars:type_name -> nakama.api.AccountFacebook.VarsEntry
+	180, // 11: nakama.api.AccountFacebookInstantGame.vars:type_name -> nakama.api.AccountFacebookInstantGame.VarsEntry
+	181, // 12: nakama.api.AccountGameCenter.vars:type_name -> nakama.api.AccountGameCenter.VarsEntry
+	182, // 13: nakama.api.AccountGoogle.vars:type_name -> nakama.api.AccountGoogle.VarsEntry
+	183, // 14: nakama.api.AccountSteam.vars:type_name -> nakama.api.AccountSteam.VarsEntry
+	184, // 15: nakama.api.SessionRefreshRequest.vars:type_name -> nakama.api.SessionRefreshRequest.VarsEntry
+	16,  // 16: nakama.api.AuthenticateAppleRequest.account:type_name -> nakama.api.AccountApple
+	202, // 17: nakama.api.AuthenticateAppleRequest.create:type_name -> google.protobuf.BoolValue
+	17,  // 18: nakama.api.AuthenticateCustomRequest.account:type_name -> nakama.api.AccountCustom
+	202, // 19: nakama.api.AuthenticateCustomRequest.create:type_name -> google.protobuf.BoolValue
+	18,  // 20: nakama.api.AuthenticateDeviceRequest.account:type_name -> nakama.api.AccountDevice
+	202, // 21: nakama.api.AuthenticateDeviceRequest.create:type_name -> google.protobuf.BoolValue
+	19,  // 22: nakama.api.AuthenticateEmailRequest.account:type_name -> nakama.api.AccountEmail
+	202, // 23: nakama.api.AuthenticateEmailRequest.create:type_name -> google.protobuf.BoolValue
+	20,  // 24: nakama.api.AuthenticateFacebookRequest.account:type_name -> nakama.api.AccountFacebook
+	202, // 25: nakama.api.AuthenticateFacebookRequest.create:type_name -> google.protobuf.BoolValue
+	202, // 26: nakama.api.AuthenticateFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	21,  // 27: nakama.api.AuthenticateFacebookInstantGameRequest.account:type_name -> nakama.api.AccountFacebookInstantGame
+	202, // 28: nakama.api.AuthenticateFacebookInstantGameRequest.create:type_name -> google.protobuf.BoolValue
+	22,  // 29: nakama.api.AuthenticateGameCenterRequest.account:type_name -> nakama.api.AccountGameCenter
+	202, // 30: nakama.api.AuthenticateGameCenterRequest.create:type_name -> google.protobuf.BoolValue
+	23,  // 31: nakama.api.AuthenticateGoogleRequest.account:type_name -> nakama.api.AccountGoogle
+	202, // 32: nakama.api.AuthenticateGoogleRequest.create:type_name -> google.protobuf.BoolValue
+	24,  // 33: nakama.api.AuthenticateSteamRequest.account:type_name -> nakama.api.AccountSteam
+	202, // 34: nakama.api.AuthenticateSteamRequest.create:type_name -> google.protobuf.BoolValue
+	202, // 35: nakama.api.AuthenticateSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	185, // 36: nakama.api.AuthenticateEmailOTPRequest.vars:type_name -> nakama.api.AuthenticateEmailOTPRequest.VarsEntry
+	203, // 37: nakama.api.ChannelMessage.code:type_name -> google.protobuf.Int32Value
+	201, // 38: nakama.api.ChannelMessage.create_time:type_name -> google.protobuf.Timestamp
+	201, // 39: nakama.api.ChannelMessage.update_time:type_name -> google.protobuf.Timestamp
+	202, // 40: nakama.api.ChannelMessage.persistent:type_name -> google.protobuf.BoolValue
+	44,  // 41: nakama.api.ChannelMessageList.messages:type_name -> nakama.api.ChannelMessage
+	52,  // 42: nakama.api.DeleteStorageObjectsRequest.object_ids:type_name -> nakama.api.DeleteStorageObjectId
+	186, // 43: nakama.api.Event.properties:type_name -> nakama.api.Event.PropertiesEntry
+	201, // 44: nakama.api.Event.timestamp:type_name -> google.protobuf.Timestamp
+	138, // 45: nakama.api.Friend.character:type_name -> nakama.api.Character
+	203, // 46: nakama.api.Friend.state:type_name -> google.protobuf.Int32Value
+	201, // 47: nakama.api.Friend.update_time:type_name -> google.protobuf.Timestamp
+	55,  // 48: nakama.api.FriendList.friends:type_name -> nakama.api.Friend
+	187, // 49: nakama.api.FriendsOfFriendsList.friends_of_friends:type_name -> nakama.api.FriendsOfFriendsList.FriendOfFriend
+	202, // 50: nakama.api.Group.open:type_name -> google.protobuf.BoolValue
+	201, // 51: nakama.api.Group.create_time:type_name -> google.protobuf.Timestamp
+	201, // 52: nakama.api.Group.update_time:type_name -> google.protobuf.Timestamp
+	60,  // 53: nakama.api.GroupList.groups:type_name -> nakama.api.Group
+	188, // 54: nakama.api.GroupCharacterList.group_characters:type_name -> nakama.api.GroupCharacterList.GroupCharacter
+	2,   // 55: nakama.api.Leaderboard.operator:type_name -> nakama.api.Operator
+	201, // 56: nakama.api.Leaderboard.create_time:type_name -> google.protobuf.Timestamp
+	66,  // 57: nakama.api.LeaderboardList.leaderboards:type_name -> nakama.api.Leaderboard
+	204, // 58: nakama.api.LeaderboardRecord.username:type_name -> google.protobuf.StringValue
+	201, // 59: nakama.api.LeaderboardRecord.create_time:type_name -> google.protobuf.Timestamp
+	201, // 60: nakama.api.LeaderboardRecord.update_time:type_name -> google.protobuf.Timestamp
+	201, // 61: nakama.api.LeaderboardRecord.expiry_time:type_name -> google.protobuf.Timestamp
+	68,  // 62: nakama.api.LeaderboardRecordList.records:type_name -> nakama.api.LeaderboardRecord
+	68,  // 63: nakama.api.LeaderboardRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
+	20,  // 64: nakama.api.LinkFacebookRequest.account:type_name -> nakama.api.AccountFacebook
+	202, // 65: nakama.api.LinkFacebookRequest.sync:type_name -> google.protobuf.BoolValue
+	24,  // 66: nakama.api.LinkSteamRequest.account:type_name -> nakama.api.AccountSteam
+	202, // 67: nakama.api.LinkSteamRequest.sync:type_name -> google.protobuf.BoolValue
+	203, // 68: nakama.api.ListChannelMessagesRequest.limit:type_name -> google.protobuf.Int32Value
+	202, // 69: nakama.api.ListChannelMessagesRequest.forward:type_name -> google.protobuf.BoolValue
+	203, // 70: nakama.api.ListFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 71: nakama.api.ListFriendsRequest.state:type_name -> google.protobuf.Int32Value
+	203, // 72: nakama.api.ListFriendsOfFriendsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 73: nakama.api.ListGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 74: nakama.api.ListGroupsRequest.members:type_name -> google.protobuf.Int32Value
+	202, // 75: nakama.api.ListGroupsRequest.open:type_name -> google.protobuf.BoolValue
+	205, // 76: nakama.api.ListGroupsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	202, // 77: nakama.api.ListGroupsRequest.include_global:type_name -> google.protobuf.BoolValue
+	203, // 78: nakama.api.ListGroupUsersRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 79: nakama.api.ListGroupUsersRequest.state:type_name -> google.protobuf.Int32Value
+	205, // 80: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	206, // 81: nakama.api.ListLeaderboardRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	203, // 82: nakama.api.ListLeaderboardRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	206, // 83: nakama.api.ListLeaderboardRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	203, // 84: nakama.api.ListMatchesRequest.limit:type_name -> google.protobuf.Int32Value
+	202, // 85: nakama.api.ListMatchesRequest.authoritative:type_name -> google.protobuf.BoolValue
+	204, // 86: nakama.api.ListMatchesRequest.label:type_name -> google.protobuf.StringValue
+	203, // 87: nakama.api.ListMatchesRequest.min_size:type_name -> google.protobuf.Int32Value
+	203, // 88: nakama.api.ListMatchesRequest.max_size:type_name -> google.protobuf.Int32Value
+	204, // 89: nakama.api.ListMatchesRequest.query:type_name -> google.protobuf.StringValue
+	203, // 90: nakama.api.ListNotificationsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 91: nakama.api.ListStorageObjectsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 92: nakama.api.ListSubscriptionsRequest.limit:type_name -> google.protobuf.Int32Value
+	202, // 93: nakama.api.ListSubscriptionsRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	205, // 94: nakama.api.ListTournamentRecordsAroundOwnerRequest.limit:type_name -> google.protobuf.UInt32Value
+	206, // 95: nakama.api.ListTournamentRecordsAroundOwnerRequest.expiry:type_name -> google.protobuf.Int64Value
+	203, // 96: nakama.api.ListTournamentRecordsRequest.limit:type_name -> google.protobuf.Int32Value
+	206, // 97: nakama.api.ListTournamentRecordsRequest.expiry:type_name -> google.protobuf.Int64Value
+	205, // 98: nakama.api.ListTournamentsRequest.category_start:type_name -> google.protobuf.UInt32Value
+	205, // 99: nakama.api.ListTournamentsRequest.category_end:type_name -> google.protobuf.UInt32Value
+	205, // 100: nakama.api.ListTournamentsRequest.start_time:type_name -> google.protobuf.UInt32Value
+	205, // 101: nakama.api.ListTournamentsRequest.end_time:type_name -> google.protobuf.UInt32Value
+	203, // 102: nakama.api.ListTournamentsRequest.limit:type_name -> google.protobuf.Int32Value
+	205, // 103: nakama.api.ListTournamentsRequest.scope_type:type_name -> google.protobuf.UInt32Value
+	202, // 104: nakama.api.ListTournamentsRequest.include_global:type_name -> google.protobuf.BoolValue
+	203, // 105: nakama.api.ListCharacterGroupsRequest.limit:type_name -> google.protobuf.Int32Value
+	203, // 106: nakama.api.ListCharacterGroupsRequest.state:type_name -> google.protobuf.Int32Value
+	204, // 107: nakama.api.Match.label:type_name -> google.protobuf.StringValue
+	88,  // 108: nakama.api.MatchList.matches:type_name -> nakama.api.Match
+	201, // 109: nakama.api.MatchmakerCompletionStats.create_time:type_name -> google.protobuf.Timestamp
+	201, // 110: nakama.api.MatchmakerCompletionStats.complete_time:type_name -> google.protobuf.Timestamp
+	201, // 111: nakama.api.MatchmakerStats.oldest_ticket_create_time:type_name -> google.protobuf.Timestamp
+	90,  // 112: nakama.api.MatchmakerStats.completions:type_name -> nakama.api.MatchmakerCompletionStats
+	201, // 113: nakama.api.Notification.create_time:type_name -> google.protobuf.Timestamp
+	92,  // 114: nakama.api.NotificationList.notifications:type_name -> nakama.api.Notification
+	96,  // 115: nakama.api.ReadStorageObjectsRequest.object_ids:type_name -> nakama.api.ReadStorageObjectId
+	201, // 116: nakama.api.StorageObject.create_time:type_name -> google.protobuf.Timestamp
+	201, // 117: nakama.api.StorageObject.update_time:type_name -> google.protobuf.Timestamp
+	201, // 118: nakama.api.StorageObjectAck.create_time:type_name -> google.protobuf.Timestamp
+	201, // 119: nakama.api.StorageObjectAck.update_time:type_name -> google.protobuf.Timestamp
+	101, // 120: nakama.api.StorageObjectAcks.acks:type_name -> nakama.api.StorageObjectAck
+	100, // 121: nakama.api.StorageObjects.objects:type_name -> nakama.api.StorageObject
+	100, // 122: nakama.api.StorageObjectList.objects:type_name -> nakama.api.StorageObject
+	201, // 123: nakama.api.Tournament.create_time:type_name -> google.protobuf.Timestamp
+	201, // 124: nakama.api.Tournament.start_time:type_name -> google.protobuf.Timestamp
+	201, // 125: nakama.api.Tournament.end_time:type_name -> google.protobuf.Timestamp
+	2,   // 126: nakama.api.Tournament.operator:type_name -> nakama.api.Operator
+	105, // 127: nakama.api.TournamentList.tournaments:type_name -> nakama.api.Tournament
+	68,  // 128: nakama.api.TournamentRecordList.records:type_name -> nakama.api.LeaderboardRecord
+	68,  // 129: nakama.api.TournamentRecordList.owner_records:type_name -> nakama.api.LeaderboardRecord
+	204, // 130: nakama.api.UpdateAccountRequest.username:type_name -> google.protobuf.StringValue
+	204, // 131: nakama.api.UpdateAccountRequest.display_name:type_name -> google.protobuf.StringValue
+	204, // 132: nakama.api.UpdateAccountRequest.avatar_url:type_name -> google.protobuf.StringValue
+	204, // 133: nakama.api.UpdateAccountRequest.lang_tag:type_name -> google.protobuf.StringValue
+	204, // 134: nakama.api.UpdateAccountRequest.location:type_name -> google.protobuf.StringValue
+	204, // 135: nakama.api.UpdateAccountRequest.timezone:type_name -> google.protobuf.StringValue
+	204, // 136: nakama.api.UpdateGroupRequest.name:type_name -> google.protobuf.StringValue
+	204, // 137: nakama.api.UpdateGroupRequest.description:type_name -> google.protobuf.StringValue
+	204, // 138: nakama.api.UpdateGroupRequest.lang_tag:type_name -> google.protobuf.StringValue
+	204, // 139: nakama.api.UpdateGroupRequest.avatar_url:type_name -> google.protobuf.StringValue
+	202, // 140: nakama.api.UpdateGroupRequest.open:type_name -> google.protobuf.BoolValue
+	201, // 141: nakama.api.User.create_time:type_name -> google.protobuf.Timestamp
+	201, // 142: nakama.api.User.update_time:type_name -> google.protobuf.Timestamp
+	189, // 143: nakama.api.CharacterGroupList.character_groups:type_name -> nakama.api.CharacterGroupList.CharacterGroup
+	110, // 144: nakama.api.Users.users:type_name -> nakama.api.User
+	202, // 145: nakama.api.ValidatePurchaseAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	202, // 146: nakama.api.ValidateSubscriptionAppleRequest.persist:type_name -> google.protobuf.BoolValue
+	202, // 147: nakama.api.ValidatePurchaseGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	202, // 148: nakama.api.ValidateSubscriptionGoogleRequest.persist:type_name -> google.protobuf.BoolValue
+	202, // 149: nakama.api.ValidatePurchaseHuaweiRequest.persist:type_name -> google.protobuf.BoolValue
+	202, // 150: nakama.api.ValidatePurchaseFacebookInstantRequest.persist:type_name -> google.protobuf.BoolValue
+	0,   // 151: nakama.api.ValidatedPurchase.store:type_name -> nakama.api.StoreProvider
+	201, // 152: nakama.api.ValidatedPurchase.purchase_time:type_name -> google.protobuf.Timestamp
+	201, // 153: nakama.api.ValidatedPurchase.create_time:type_name -> google.protobuf.Timestamp
+	201, // 154: nakama.api.ValidatedPurchase.update_time:type_name -> google.protobuf.Timestamp
+	201, // 155: nakama.api.ValidatedPurchase.refund_time:type_name -> google.protobuf.Timestamp
+	1,   // 156: nakama.api.ValidatedPurchase.environment:type_name -> nakama.api.StoreEnvironment
+	119, // 157: nakama.api.ValidatePurchaseResponse.validated_purchases:type_name -> nakama.api.ValidatedPurchase
+	122, // 158: nakama.api.ValidateSubscriptionResponse.validated_subscription:type_name -> nakama.api.ValidatedSubscription
+	0,   // 159: nakama.api.ValidatedSubscription.store:type_name -> nakama.api.StoreProvider
+	201, // 160: nakama.api.ValidatedSubscription.purchase_time:type_name -> google.protobuf.Timestamp
+	201, // 161: nakama.api.ValidatedSubscription.create_time:type_name -> google.protobuf.Timestamp
+	201, // 162: nakama.api.ValidatedSubscription.update_time:type_name -> google.protobuf.Timestamp
+	1,   // 163: nakama.api.ValidatedSubscription.environment:type_name -> nakama.api.StoreEnvironment
+	201, // 164: nakama.api.ValidatedSubscription.expiry_time:type_name -> google.protobuf.Timestamp
+	201, // 165: nakama.api.ValidatedSubscription.refund_time:type_name -> google.protobuf.Timestamp
+	119, // 166: nakama.api.PurchaseList.validated_purchases:type_name -> nakama.api.ValidatedPurchase
+	122, // 167: nakama.api.SubscriptionList.validated_subscriptions:type_name -> nakama.api.ValidatedSubscription
+	190, // 168: nakama.api.WriteLeaderboardRecordRequest.record:type_name -> nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite
+	203, // 169: nakama.api.WriteStorageObject.permission_read:type_name -> google.protobuf.Int32Value
+	203, // 170: nakama.api.WriteStorageObject.permission_write:type_name -> google.protobuf.Int32Value
+	126, // 171: nakama.api.WriteStorageObjectsRequest.objects:type_name -> nakama.api.WriteStorageObject
+	191, // 172: nakama.api.WriteTournamentRecordRequest.record:type_name -> nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite
+	203, // 173: nakama.api.ListPartiesRequest.limit:type_name -> google.protobuf.Int32Value
+	202, // 174: nakama.api.ListPartiesRequest.open:type_name -> google.protobuf.BoolValue
+	204, // 175: nakama.api.ListPartiesRequest.query:type_name -> google.protobuf.StringValue
+	204, // 176: nakama.api.ListPartiesRequest.cursor:type_name -> google.protobuf.StringValue
+	130, // 177: nakama.api.PartyList.parties:type_name -> nakama.api.Party
+	202, // 178: nakama.api.AccessPolicy.allow_new_players:type_name -> google.protobuf.BoolValue
+	132, // 179: nakama.api.RealmPolicies.transfer:type_name -> nakama.api.TransferPolicy
+	133, // 180: nakama.api.RealmPolicies.queue:type_name -> nakama.api.QueuePolicy
+	134, // 181: nakama.api.RealmPolicies.naming:type_name -> nakama.api.NamingPolicy
+	135, // 182: nakama.api.RealmPolicies.access:type_name -> nakama.api.AccessPolicy
+	3,   // 183: nakama.api.Realm.status:type_name -> nakama.api.RealmStatus
+	201, // 184: nakama.api.Realm.create_time:type_name -> google.protobuf.Timestamp
+	201, // 185: nakama.api.Realm.update_time:type_name -> google.protobuf.Timestamp
+	136, // 186: nakama.api.Realm.policies:type_name -> nakama.api.RealmPolicies
+	138, // 187: nakama.api.Realm.my_character:type_name -> nakama.api.Character
+	192, // 188: nakama.api.Character.metadata:type_name -> nakama.api.Character.MetadataEntry
+	4,   // 189: nakama.api.Character.status:type_name -> nakama.api.CharacterStatus
+	201, // 190: nakama.api.Character.create_time:type_name -> google.protobuf.Timestamp
+	201, // 191: nakama.api.Character.update_time:type_name -> google.protobuf.Timestamp
+	201, // 192: nakama.api.Character.last_login_at:type_name -> google.protobuf.Timestamp
+	137, // 193: nakama.api.Character.realm:type_name -> nakama.api.Realm
+	203, // 194: nakama.api.ListRealmsRequest.status:type_name -> google.protobuf.Int32Value
+	137, // 195: nakama.api.RealmList.realms:type_name -> nakama.api.Realm
+	138, // 196: nakama.api.CharacterList.characters:type_name -> nakama.api.Character
+	193, // 197: nakama.api.CreateCharacterRequest.metadata:type_name -> nakama.api.CreateCharacterRequest.MetadataEntry
+	204, // 198: nakama.api.UpdateCharacterRequest.name:type_name -> google.protobuf.StringValue
+	194, // 199: nakama.api.UpdateCharacterRequest.metadata:type_name -> nakama.api.UpdateCharacterRequest.MetadataEntry
+	204, // 200: nakama.api.UpdateCharacterRequest.avatar:type_name -> google.protobuf.StringValue
+	138, // 201: nakama.api.SelectCharacterResponse.character:type_name -> nakama.api.Character
+	201, // 202: nakama.api.CharacterWallet.create_time:type_name -> google.protobuf.Timestamp
+	201, // 203: nakama.api.CharacterWallet.update_time:type_name -> google.protobuf.Timestamp
+	195, // 204: nakama.api.UpdateCharacterWalletRequest.changeset:type_name -> nakama.api.UpdateCharacterWalletRequest.ChangesetEntry
+	196, // 205: nakama.api.UpdateCharacterWalletRequest.metadata:type_name -> nakama.api.UpdateCharacterWalletRequest.MetadataEntry
+	148, // 206: nakama.api.UpdateCharacterWalletResponse.wallet:type_name -> nakama.api.CharacterWallet
+	197, // 207: nakama.api.UpdateCharacterWalletResponse.previous:type_name -> nakama.api.UpdateCharacterWalletResponse.PreviousEntry
+	198, // 208: nakama.api.UpdateCharacterWalletResponse.updated:type_name -> nakama.api.UpdateCharacterWalletResponse.UpdatedEntry
+	199, // 209: nakama.api.CharacterWalletLedger.changeset:type_name -> nakama.api.CharacterWalletLedger.ChangesetEntry
+	200, // 210: nakama.api.CharacterWalletLedger.metadata:type_name -> nakama.api.CharacterWalletLedger.MetadataEntry
+	201, // 211: nakama.api.CharacterWalletLedger.create_time:type_name -> google.protobuf.Timestamp
+	201, // 212: nakama.api.CharacterWalletLedger.update_time:type_name -> google.protobuf.Timestamp
+	203, // 213: nakama.api.ListCharacterWalletLedgerRequest.limit:type_name -> google.protobuf.Int32Value
+	152, // 214: nakama.api.CharacterWalletLedgerList.items:type_name -> nakama.api.CharacterWalletLedger
+	203, // 215: nakama.api.ListPurchasesRequest.limit:type_name -> google.protobuf.Int32Value
+	202, // 216: nakama.api.ListPurchasesRequest.include_account_scoped:type_name -> google.protobuf.BoolValue
+	5,   // 217: nakama.api.CharacterTransfer.status:type_name -> nakama.api.CharacterTransferStatus
+	6,   // 218: nakama.api.CharacterTransfer.initiated_by:type_name -> nakama.api.CharacterTransferInitiator
+	201, // 219: nakama.api.CharacterTransfer.create_time:type_name -> google.protobuf.Timestamp
+	201, // 220: nakama.api.CharacterTransfer.started_at:type_name -> google.protobuf.Timestamp
+	201, // 221: nakama.api.CharacterTransfer.completed_at:type_name -> google.protobuf.Timestamp
+	156, // 222: nakama.api.TransferCharacterResponse.transfer:type_name -> nakama.api.CharacterTransfer
+	138, // 223: nakama.api.TransferCharacterResponse.character:type_name -> nakama.api.Character
+	203, // 224: nakama.api.ListCharacterTransfersRequest.limit:type_name -> google.protobuf.Int32Value
+	156, // 225: nakama.api.CharacterTransferList.transfers:type_name -> nakama.api.CharacterTransfer
+	201, // 226: nakama.api.TransferEligibilityResponse.cooldown_expires:type_name -> google.protobuf.Timestamp
+	137, // 227: nakama.api.TransferEligibilityResponse.source_realm:type_name -> nakama.api.Realm
+	137, // 228: nakama.api.TransferEligibilityResponse.target_realm:type_name -> nakama.api.Realm
+	7,   // 229: nakama.api.MaintenanceWindow.scope:type_name -> nakama.api.MaintenanceScope
+	201, // 230: nakama.api.MaintenanceWindow.scheduled_start:type_name -> google.protobuf.Timestamp
+	201, // 231: nakama.api.MaintenanceWindow.scheduled_end:type_name -> google.protobuf.Timestamp
+	201, // 232: nakama.api.MaintenanceWindow.actual_start:type_name -> google.protobuf.Timestamp
+	201, // 233: nakama.api.MaintenanceWindow.actual_end:type_name -> google.protobuf.Timestamp
+	8,   // 234: nakama.api.MaintenanceWindow.status:type_name -> nakama.api.MaintenanceStatus
+	201, // 235: nakama.api.MaintenanceWindow.create_time:type_name -> google.protobuf.Timestamp
+	201, // 236: nakama.api.RealmGroup.create_time:type_name -> google.protobuf.Timestamp
+	201, // 237: nakama.api.RealmGroup.update_time:type_name -> google.protobuf.Timestamp
+	136, // 238: nakama.api.RealmGroup.default_policy:type_name -> nakama.api.RealmPolicies
+	201, // 239: nakama.api.RealmBan.banned_at:type_name -> google.protobuf.Timestamp
+	201, // 240: nakama.api.RealmBan.expires_at:type_name -> google.protobuf.Timestamp
+	201, // 241: nakama.api.RealmBan.unbanned_at:type_name -> google.protobuf.Timestamp
+	201, // 242: nakama.api.RedeemGiftcodeResponse.redeemed_at:type_name -> google.protobuf.Timestamp
+	9,   // 243: nakama.api.GiftcodeCampaign.campaign_type:type_name -> nakama.api.GiftcodeCampaignType
+	10,  // 244: nakama.api.GiftcodeCampaign.uniqueness_scope:type_name -> nakama.api.GiftcodeUniquenessScope
+	201, // 245: nakama.api.GiftcodeCampaign.start_time:type_name -> google.protobuf.Timestamp
+	201, // 246: nakama.api.GiftcodeCampaign.end_time:type_name -> google.protobuf.Timestamp
+	201, // 247: nakama.api.GiftcodeCampaign.create_time:type_name -> google.protobuf.Timestamp
+	201, // 248: nakama.api.GiftcodeCampaign.update_time:type_name -> google.protobuf.Timestamp
+	201, // 249: nakama.api.GiftcodeCode.create_time:type_name -> google.protobuf.Timestamp
+	201, // 250: nakama.api.GiftcodeRedemption.redeemed_at:type_name -> google.protobuf.Timestamp
+	138, // 251: nakama.api.FriendsOfFriendsList.FriendOfFriend.character:type_name -> nakama.api.Character
+	138, // 252: nakama.api.GroupCharacterList.GroupCharacter.character:type_name -> nakama.api.Character
+	203, // 253: nakama.api.GroupCharacterList.GroupCharacter.state:type_name -> google.protobuf.Int32Value
+	60,  // 254: nakama.api.CharacterGroupList.CharacterGroup.group:type_name -> nakama.api.Group
+	203, // 255: nakama.api.CharacterGroupList.CharacterGroup.state:type_name -> google.protobuf.Int32Value
+	2,   // 256: nakama.api.WriteLeaderboardRecordRequest.LeaderboardRecordWrite.operator:type_name -> nakama.api.Operator
+	2,   // 257: nakama.api.WriteTournamentRecordRequest.TournamentRecordWrite.operator:type_name -> nakama.api.Operator
+	258, // [258:258] is the sub-list for method output_type
+	258, // [258:258] is the sub-list for method input_type
+	258, // [258:258] is the sub-list for extension type_name
+	258, // [258:258] is the sub-list for extension extendee
+	0,   // [0:258] is the sub-list for field type_name
 }
 
 func init() { file_api_proto_init() }
@@ -14882,7 +14898,7 @@ func file_api_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_proto_rawDesc), len(file_api_proto_rawDesc)),
 			NumEnums:      14,
-			NumMessages:   186,
+			NumMessages:   187,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
