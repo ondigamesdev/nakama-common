@@ -4,6 +4,10 @@ All notable changes to this project are documented below.
 The format is based on [keep a changelog](http://keepachangelog.com) and this project uses [semantic versioning](http://semver.org).
 
 ## [Unreleased]
+### Breaking
+- proto: removed `GiftcodeCampaign`, `GiftcodeCode`, `GiftcodeRedemption`, `GiftcodeCampaignType`, `GiftcodeUniquenessScope` types from `api.proto`. Admin functionality moved to PamOps; clients should use the PamOps API for giftcode admin operations.
+- proto: removed `reward_payload` field (number 1) from `RedeemGiftcodeResponse`. Field number 1 is now reserved. Clients no longer receive the reward payload in the redeem response — rewards are delivered to the player's mailbox asynchronously.
+- runtime: removed `GiftcodeValidation.RewardPayload` field. Plugins that read this field must fetch the reward via the PamOps admin API instead — players no longer receive the payload in the redeem response.
 
 ## [1.44.0] - 2025-12-02
 ### Changed

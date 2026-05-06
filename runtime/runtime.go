@@ -226,8 +226,6 @@ type GiftcodeValidation struct {
 	CampaignID string
 	// CampaignName is the human-readable campaign name.
 	CampaignName string
-	// RewardPayload is the JSON reward data the user would receive.
-	RewardPayload string
 	// Reason describes why the code is invalid. Empty if Valid is true.
 	Reason string
 }
