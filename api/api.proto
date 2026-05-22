@@ -2082,6 +2082,10 @@ message MaintenanceWindow {
   google.protobuf.Timestamp create_time = 18;
   // Additional metadata as a JSON object.
   string metadata = 19;
+  // Player account UIDs that bypass the maintenance gate during this window.
+  repeated string allow_player_user_ids = 20;
+  // Character IDs that bypass the maintenance gate during this window.
+  repeated string allow_character_ids = 21;
 }
 
 // A group of realms for coordinated operations (e.g., regional maintenance, policy inheritance).
