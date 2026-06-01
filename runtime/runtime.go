@@ -266,16 +266,16 @@ type SubAchievementRow struct {
 }
 
 type AchievementUpdate struct {
-	AchievementID          string
-	CountDelta             int64
-	MaxCount               int64
-	Category               string
-	IsRepeatable           bool
-	ExpireTime             *time.Time
-	ResetTime              *time.Time
-	AutoClaim              bool
-	AdditionalProperties   map[string]string
-	SubAchievementUpdates  []*SubAchievementUpdate
+	AchievementID         string
+	CountDelta            int64
+	MaxCount              int64
+	Category              string
+	IsRepeatable          bool
+	ExpireTime            *time.Time
+	ResetTime             *time.Time
+	AutoClaim             bool
+	AdditionalProperties  map[string]string
+	SubAchievementUpdates []*SubAchievementUpdate
 }
 
 type SubAchievementUpdate struct {
@@ -352,7 +352,7 @@ var (
 	ErrWalletLedgerInvalidCursor = errors.New("wallet ledger cursor invalid")
 
 	ErrCharacterTransferCursorInvalid = errors.New("character transfer cursor invalid")
-	ErrCharacterNameInUse            = errors.New("character name already in use in this realm")
+	ErrCharacterNameInUse             = errors.New("character name already in use in this realm")
 
 	ErrCannotEncodeParams    = errors.New("error creating match: cannot encode params")
 	ErrCannotDecodeParams    = errors.New("error creating match: cannot decode params")
@@ -1805,6 +1805,7 @@ type NakamaModule interface {
 	GetSatori() Satori
 	GetFleetManager() FleetManager
 	GetAchievementStorage() AchievementStorage
+	GetQuestStorage() QuestStorage
 
 	// RedisClient returns a RedisOperations interface for Redis access.
 	// Returns a stub that returns ErrRedisNotConfigured when Redis is not enabled.
@@ -1983,6 +1984,60 @@ type AchievementStorage interface {
 	// RunInTransaction executes fn within a database transaction with retry handling.
 	// The txStorage parameter is a transaction-scoped AchievementStorage instance.
 	RunInTransaction(ctx context.Context, fn func(txStorage AchievementStorage) error) error
+}
+
+// QuestProgressRow is one (user, character, group, quest) progress record.
+type QuestProgressRow struct {
+	UserID       string
+	CharacterID  string
+	GroupID      string
+	QuestID      string
+	Count        int64 // engine-tracked counters only
+	CompletedSec int64
+	ClaimedSec   int64
+	ResetSec     int64
+	ExpireSec    int64
+	Meta         map[string]string
+	UpdateTime   time.Time
+}
+
+// QuestProgressUpdate describes one progress mutation requested by the engine.
+type QuestProgressUpdate struct {
+	GroupID      string
+	QuestID      string
+	CountDelta   int64
+	SetCompleted bool // if true and not already completed, set CompletedSec = now
+	SetClaimed   bool // if true, set ClaimedSec = now
+	ResetSec     int64
+	ExpireSec    int64
+	MetaPatch    map[string]string
+}
+
+// QuestGroupStateRow is the singleton state row per (user, character, group).
+type QuestGroupStateRow struct {
+	UserID      string
+	CharacterID string
+	GroupID     string
+	EnrolledSec int64
+	ExpireSec   int64
+	CurrentDay  int
+	UnlockedDay int
+	Milestones  map[string]int64 // milestone_id -> claimed_sec
+	Bundles     map[string]int   // bundle_id -> purchase_count
+	Points      int64
+	Meta        map[string]string // includes recent_claims FIFO (JSON under key "recent_claims")
+	UpdateTime  time.Time
+}
+
+// QuestStorage provides SQL-backed quest persistence.
+type QuestStorage interface {
+	GetGroupState(ctx context.Context, userID, characterID, groupID string) (*QuestGroupStateRow, error)
+	UpsertGroupState(ctx context.Context, userID, characterID string, row *QuestGroupStateRow) error
+	GetProgress(ctx context.Context, userID, characterID, groupID string, questIDs []string) ([]*QuestProgressRow, error)
+	UpsertProgress(ctx context.Context, userID, characterID string, updates []*QuestProgressUpdate) ([]*QuestProgressRow, error)
+	// RunInTransaction executes fn within a database transaction with retry handling
+	// for CockroachDB serialization failures (40001). txStorage is tx-scoped.
+	RunInTransaction(ctx context.Context, fn func(txStorage QuestStorage) error) error
 }
 
 /*
