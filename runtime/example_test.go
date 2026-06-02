@@ -83,8 +83,8 @@ func ExampleInitializer_registerAfterRt() {
 		statusFollowMessage := out.GetStatusFollow()
 
 		// A user can follow multiple people at once, so lets buffer up a notification list.
-		notifications := make([]*NotificationSend, 0, len(statusFollowMessage.UserIds))
-		for _, followingUser := range statusFollowMessage.UserIds {
+		notifications := make([]*NotificationSend, 0, len(statusFollowMessage.CharacterIds))
+		for _, followingUser := range statusFollowMessage.CharacterIds {
 			notification := &NotificationSend{
 				UserID:  followingUser,
 				Sender:  userID,
