@@ -2170,3 +2170,108 @@ message RedeemGiftcodeResponse {
   // The unique redemption record ID.
   string redemption_id = 5;
 }
+
+// ---- Mailbox ----
+
+// Status of a mailbox entry. Mirrors PamOps repository/mailbox.go states
+// (Unread, Read, Claiming, Claimed, Expired, Deleted), offset by +1 for the
+// UNSPECIFIED=0 convention.
+enum MailboxStatus {
+  MAILBOX_STATUS_UNSPECIFIED = 0;
+  MAILBOX_STATUS_UNREAD = 1;    // PamOps Unread
+  MAILBOX_STATUS_READ = 2;      // PamOps Read
+  MAILBOX_STATUS_CLAIMING = 3;  // PamOps Claiming (async grant in-flight)
+  MAILBOX_STATUS_CLAIMED = 4;   // PamOps Claimed
+  MAILBOX_STATUS_EXPIRED = 5;   // PamOps Expired
+  MAILBOX_STATUS_DELETED = 6;   // PamOps Deleted (soft-delete)
+}
+
+// Category of a mailbox entry.
+// NOTE: this is a deliberate client-contract SIMPLIFICATION. PamOps supports 7
+// message types (reward, announcement, promotion, compensation, event, milestone,
+// custom). The client only needs to distinguish the three below; any other PamOps
+// type maps to MAILBOX_MESSAGE_TYPE_UNSPECIFIED via mapMessageType.
+// If the client later needs the full set, expand this enum and mapMessageType together.
+enum MailboxMessageType {
+  MAILBOX_MESSAGE_TYPE_UNSPECIFIED = 0;
+  MAILBOX_MESSAGE_TYPE_SYSTEM = 1;
+  MAILBOX_MESSAGE_TYPE_REWARD = 2;
+  MAILBOX_MESSAGE_TYPE_ANNOUNCEMENT = 3;
+}
+
+// A single reward attached to a mailbox entry. Mirrors PamOps RewardAttachment.
+message ApiRewardAttachment {
+  string type = 1;          // currency, item, bundle, boost, cosmetic, custom
+  string item_id = 2;
+  int32 quantity = 3;
+  string display_name = 4;
+  string description = 5;
+  string icon_url = 6;
+}
+
+// A single mailbox entry returned to the client.
+message ApiMailboxEntry {
+  string id = 1;
+  string subject = 2;
+  string body = 3;
+  string image_url = 4;
+  MailboxMessageType message_type = 5;
+  MailboxStatus status = 6;
+  repeated ApiRewardAttachment rewards = 7;
+  string character_id = 8;
+  string realm_id = 9;
+  google.protobuf.Timestamp delivered_at = 10;
+  google.protobuf.Timestamp read_at = 11;
+  google.protobuf.Timestamp claimed_at = 12;
+  google.protobuf.Timestamp expires_at = 13;
+}
+
+// List the active character's mailbox.
+message ListMailboxRequest {
+  // Optional status filter (UNSPECIFIED = all).
+  MailboxStatus status = 1;
+  // Max entries to return (server clamps; 0 = server default).
+  int32 limit = 2;
+  // Opaque pagination cursor.
+  string cursor = 3;
+}
+message ListMailboxResponse {
+  repeated ApiMailboxEntry entries = 1;
+  string next_cursor = 2;
+  int32 unread_count = 3;
+}
+
+// Get a single mailbox entry.
+message GetMailboxEntryRequest { string id = 1; }
+message GetMailboxEntryResponse { ApiMailboxEntry entry = 1; }
+
+// Mark a mailbox entry as read.
+message MarkMailboxReadRequest { string id = 1; }
+message MarkMailboxReadResponse { ApiMailboxEntry entry = 1; }
+
+// Claim rewards on a single mailbox entry.
+message ClaimMailboxRequest { string id = 1; }
+message ClaimMailboxResponse {
+  ApiMailboxEntry entry = 1;
+  // "" on success; "retrying" if grant is in-flight (HTTP 202).
+  string status = 2;
+}
+
+// Claim all claimable entries for the active character.
+message ClaimAllMailboxRequest {}
+message ClaimAllMailboxResponse {
+  int32 claimed_count = 1;
+  repeated string claimed_ids = 2;
+  string status = 3;
+}
+
+// Unread/claimable badge counts for the active character.
+message MailboxBadgeRequest {}
+message MailboxBadgeResponse {
+  int32 unread_count = 1;
+  int32 claimable_count = 2;
+}
+
+// Delete a mailbox entry (rejected if it has unclaimed rewards).
+message DeleteMailboxRequest { string id = 1; }
+message DeleteMailboxResponse {}
