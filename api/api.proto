@@ -356,6 +356,14 @@ message ChannelMessage {
   string realm_id = 15;
   // The cohort ID if this message is cohort-scoped.
   string cohort_id = 16;
+  // The sender's character ID in the realm, resolved from sender_id (user ID).
+  string character_id = 17;
+  // The sender character's avatar identifier or URL.
+  string avatar = 18;
+  // The channel kind: 1 = Room, 2 = Direct Message, 3 = Group.
+  uint32 channel_type = 19;
+  // App-defined sender/message metadata as a JSON object, populated by the game runtime.
+  string metadata = 20;
 }
 
 // A list of channel messages, usually a result of a list operation.
