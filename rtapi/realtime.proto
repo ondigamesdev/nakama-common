@@ -210,6 +210,8 @@ message ChannelMessageAck {
   string user_id_one = 10;
   // The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
   string user_id_two = 11;
+  // The channel kind: 1 = Room, 2 = Direct Message, 3 = Group.
+  uint32 channel_type = 12;
 }
 
 // Send a message to a realtime channel.

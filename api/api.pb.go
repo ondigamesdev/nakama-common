@@ -2763,7 +2763,15 @@ type ChannelMessage struct {
 	// The realm ID if this message is realm-scoped.
 	RealmId string `protobuf:"bytes,15,opt,name=realm_id,json=realmId,proto3" json:"realm_id,omitempty"`
 	// The cohort ID if this message is cohort-scoped.
-	CohortId      string `protobuf:"bytes,16,opt,name=cohort_id,json=cohortId,proto3" json:"cohort_id,omitempty"`
+	CohortId string `protobuf:"bytes,16,opt,name=cohort_id,json=cohortId,proto3" json:"cohort_id,omitempty"`
+	// The sender's character ID in the realm, resolved from sender_id (user ID).
+	CharacterId string `protobuf:"bytes,17,opt,name=character_id,json=characterId,proto3" json:"character_id,omitempty"`
+	// The sender character's avatar identifier or URL.
+	Avatar string `protobuf:"bytes,18,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	// The channel kind: 1 = Room, 2 = Direct Message, 3 = Group.
+	ChannelType uint32 `protobuf:"varint,19,opt,name=channel_type,json=channelType,proto3" json:"channel_type,omitempty"`
+	// App-defined sender/message metadata as a JSON object, populated by the game runtime.
+	Metadata      string `protobuf:"bytes,20,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2906,6 +2914,34 @@ func (x *ChannelMessage) GetRealmId() string {
 func (x *ChannelMessage) GetCohortId() string {
 	if x != nil {
 		return x.CohortId
+	}
+	return ""
+}
+
+func (x *ChannelMessage) GetCharacterId() string {
+	if x != nil {
+		return x.CharacterId
+	}
+	return ""
+}
+
+func (x *ChannelMessage) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *ChannelMessage) GetChannelType() uint32 {
+	if x != nil {
+		return x.ChannelType
+	}
+	return 0
+}
+
+func (x *ChannelMessage) GetMetadata() string {
+	if x != nil {
+		return x.Metadata
 	}
 	return ""
 }
@@ -13910,7 +13946,7 @@ const file_api_proto_rawDesc = "" +
 	"\rcharacter_ids\x18\x02 \x03(\tR\fcharacterIds\"=\n" +
 	"\x13BlockFriendsRequest\x12\x10\n" +
 	"\x03ids\x18\x01 \x03(\tR\x03ids\x12\x14\n" +
-	"\x05names\x18\x02 \x03(\tR\x05names\"\xd7\x04\n" +
+	"\x05names\x18\x02 \x03(\tR\x05names\"\xd1\x05\n" +
 	"\x0eChannelMessage\x12\x1d\n" +
 	"\n" +
 	"channel_id\x18\x01 \x01(\tR\tchannelId\x12\x1d\n" +
@@ -13935,7 +13971,11 @@ const file_api_proto_rawDesc = "" +
 	"\n" +
 	"scope_type\x18\x0e \x01(\rR\tscopeType\x12\x19\n" +
 	"\brealm_id\x18\x0f \x01(\tR\arealmId\x12\x1b\n" +
-	"\tcohort_id\x18\x10 \x01(\tR\bcohortId\"\xb9\x01\n" +
+	"\tcohort_id\x18\x10 \x01(\tR\bcohortId\x12!\n" +
+	"\fcharacter_id\x18\x11 \x01(\tR\vcharacterId\x12\x16\n" +
+	"\x06avatar\x18\x12 \x01(\tR\x06avatar\x12!\n" +
+	"\fchannel_type\x18\x13 \x01(\rR\vchannelType\x12\x1a\n" +
+	"\bmetadata\x18\x14 \x01(\tR\bmetadata\"\xb9\x01\n" +
 	"\x12ChannelMessageList\x126\n" +
 	"\bmessages\x18\x01 \x03(\v2\x1a.nakama.api.ChannelMessageR\bmessages\x12\x1f\n" +
 	"\vnext_cursor\x18\x02 \x01(\tR\n" +

@@ -781,6 +781,14 @@ type Initializer interface {
 	// RegisterAfterListChannelMessages can be used to perform additional logic after messages for a channel is listed.
 	RegisterAfterListChannelMessages(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.ChannelMessageList, in *api.ListChannelMessagesRequest) error) error
 
+	// RegisterChannelMessageEnricher registers a function that resolves a sender
+	// character's avatar and app-defined metadata (a JSON object string) for channel
+	// messages. It is invoked once per channel join to populate presence metadata so
+	// realtime sends avoid per-message lookups; the resolved values are attached to
+	// outgoing ChannelMessage payloads. Only one enricher may be registered; the last
+	// registration wins.
+	RegisterChannelMessageEnricher(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, userID, characterID, realmID string, channelType ChannelType) (avatar string, metadata string, err error)) error
+
 	// RegisterBeforeListChannelMessages can be used to perform additional logic before listing friends.
 	RegisterBeforeListFriends(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.ListFriendsRequest) (*api.ListFriendsRequest, error)) error
 
