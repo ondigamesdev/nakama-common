@@ -2094,6 +2094,9 @@ message MaintenanceWindow {
   repeated string allow_player_user_ids = 20;
   // Character IDs that bypass the maintenance gate during this window.
   repeated string allow_character_ids = 21;
+  // Minutes before scheduled_start during which fresh sessions are locked out
+  // (the lockout window is [scheduled_start - lockout_before_minutes, scheduled_start)).
+  int32 lockout_before_minutes = 22;
 }
 
 // A group of realms for coordinated operations (e.g., regional maintenance, policy inheritance).
