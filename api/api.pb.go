@@ -11926,8 +11926,11 @@ type MaintenanceWindow struct {
 	AllowPlayerUserIds []string `protobuf:"bytes,20,rep,name=allow_player_user_ids,json=allowPlayerUserIds,proto3" json:"allow_player_user_ids,omitempty"`
 	// Character IDs that bypass the maintenance gate during this window.
 	AllowCharacterIds []string `protobuf:"bytes,21,rep,name=allow_character_ids,json=allowCharacterIds,proto3" json:"allow_character_ids,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// Minutes before scheduled_start during which fresh sessions are locked out
+	// (the lockout window is [scheduled_start - lockout_before_minutes, scheduled_start)).
+	LockoutBeforeMinutes int32 `protobuf:"varint,22,opt,name=lockout_before_minutes,json=lockoutBeforeMinutes,proto3" json:"lockout_before_minutes,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *MaintenanceWindow) Reset() {
@@ -12105,6 +12108,13 @@ func (x *MaintenanceWindow) GetAllowCharacterIds() []string {
 		return x.AllowCharacterIds
 	}
 	return nil
+}
+
+func (x *MaintenanceWindow) GetLockoutBeforeMinutes() int32 {
+	if x != nil {
+		return x.LockoutBeforeMinutes
+	}
+	return 0
 }
 
 // A group of realms for coordinated operations (e.g., regional maintenance, policy inheritance).
@@ -14786,7 +14796,7 @@ const file_api_proto_rawDesc = "" +
 	"\x10cooldown_expires\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0fcooldownExpires\x128\n" +
 	"\x18cooldown_hours_remaining\x18\x04 \x01(\x05R\x16cooldownHoursRemaining\x124\n" +
 	"\fsource_realm\x18\x05 \x01(\v2\x11.nakama.api.RealmR\vsourceRealm\x124\n" +
-	"\ftarget_realm\x18\x06 \x01(\v2\x11.nakama.api.RealmR\vtargetRealm\"\xd2\a\n" +
+	"\ftarget_realm\x18\x06 \x01(\v2\x11.nakama.api.RealmR\vtargetRealm\"\x88\b\n" +
 	"\x11MaintenanceWindow\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x122\n" +
 	"\x05scope\x18\x02 \x01(\x0e2\x1c.nakama.api.MaintenanceScopeR\x05scope\x12\x1b\n" +
@@ -14814,7 +14824,8 @@ const file_api_proto_rawDesc = "" +
 	"createTime\x12\x1a\n" +
 	"\bmetadata\x18\x13 \x01(\tR\bmetadata\x121\n" +
 	"\x15allow_player_user_ids\x18\x14 \x03(\tR\x12allowPlayerUserIds\x12.\n" +
-	"\x13allow_character_ids\x18\x15 \x03(\tR\x11allowCharacterIds\"\xfa\x02\n" +
+	"\x13allow_character_ids\x18\x15 \x03(\tR\x11allowCharacterIds\x124\n" +
+	"\x16lockout_before_minutes\x18\x16 \x01(\x05R\x14lockoutBeforeMinutes\"\xfa\x02\n" +
 	"\n" +
 	"RealmGroup\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
