@@ -373,6 +373,9 @@ var (
 	// Audit emitter errors
 	ErrAuditEmitterNotConfigured = errors.New("audit emitter not configured")
 
+	// Broadcast subsystem errors
+	ErrBroadcastSubsystemNotConfigured = errors.New("broadcast subsystem not configured")
+
 	// NATS plugin API errors
 	ErrNATSNotConfigured = errors.New("nats not configured")
 )
@@ -1809,6 +1812,14 @@ type NakamaModule interface {
 	// The userID is automatically extracted from the context (RUNTIME_CTX_USER_ID).
 	// Returns ErrAuditEmitterNotConfigured when no emitter is set.
 	AuditEmit(ctx context.Context, category string, eventType string, properties map[string]string) error
+
+	// EmitBroadcastCandidate submits a game event as a candidate for in-game
+	// broadcast rules. The subsystem evaluates it against the project's cached
+	// broadcast ruleset and, on a match, fans out a notification (code 3002) to
+	// players in the rule's realm/realm_group scope. The userID is extracted from
+	// the context (RUNTIME_CTX_USER_ID). realmID is the triggering player's realm.
+	// Returns ErrBroadcastSubsystemNotConfigured when no subsystem is set.
+	EmitBroadcastCandidate(ctx context.Context, projectID string, eventName string, payload map[string]any, realmID string) error
 
 	GetSatori() Satori
 	GetFleetManager() FleetManager
