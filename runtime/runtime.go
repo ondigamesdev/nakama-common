@@ -1727,6 +1727,11 @@ type NakamaModule interface {
 	// Excludes records matching any of the provided excludeOwnerIDs.
 	// Returns up to `limit` records. This is a generic API not tied to any specific game feature.
 	TournamentRecordsByScoreRange(ctx context.Context, id string, minScore, maxScore int64, limit int, excludeOwnerIDs []string) ([]*api.LeaderboardRecord, error)
+	// TournamentRankByOwner returns an owner's exact 1-based rank computed directly from the
+	// database, bypassing the per-node in-memory rank cache (which is not synchronised across a
+	// cluster and can report Rank=0 for an owner whose record exists but is uncached on the
+	// serving node). Returns 0 when the owner has no active record.
+	TournamentRankByOwner(ctx context.Context, id, ownerID string) (int64, error)
 
 	GroupsGetId(ctx context.Context, groupIDs []string) ([]*api.Group, error)
 	GroupCreate(ctx context.Context, characterID, name, creatorID, langTag, description, avatarUrl string, open bool, metadata map[string]interface{}, maxCount int) (*api.Group, error)
