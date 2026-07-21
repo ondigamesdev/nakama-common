@@ -1589,6 +1589,12 @@ type NakamaModule interface {
 	CharactersGetId(ctx context.Context, characterIDs []string) ([]*api.Character, error)
 	CharacterUpdateMetadata(ctx context.Context, characterID string, metadata map[string]string) error
 	CharacterUpdateName(ctx context.Context, characterID string, name string) error
+	// ConversationsList returns the character's DM conversations, newest
+	// first, with capped unread counts derived from read watermarks.
+	ConversationsList(ctx context.Context, characterID string, limit int, cursor string) ([]*Conversation, string, error)
+	// ConversationMarkRead advances the character's read watermark for a DM
+	// channel. Idempotent.
+	ConversationMarkRead(ctx context.Context, characterID string, channelID string) error
 	UsersGetRandom(ctx context.Context, count int) ([]*api.User, error)
 	UsersBanId(ctx context.Context, userIDs []string) error
 	UsersUnbanId(ctx context.Context, userIDs []string) error
@@ -2835,4 +2841,25 @@ func (p *PurchaseV2GoogleResponse) GetObfuscatedExternalAccountId() string {
 
 func (p *PurchaseV2GoogleResponse) GetObfuscatedExternalProfileId() string {
 	return p.ObfuscatedExternalProfileId
+}
+
+// ConversationUnreadCap bounds the unread computation; the badge needs
+// "> 0" and "99+", never an exact large number.
+const ConversationUnreadCap = 100
+
+// ConversationMessage is the latest message of a conversation entry.
+type ConversationMessage struct {
+	SenderUserID      string
+	SenderCharacterID string
+	Content           string
+	CreateTimeUnix    int64
+}
+
+// Conversation is one DM inbox entry for a character.
+type Conversation struct {
+	ChannelID       string
+	PeerUserID      string
+	PeerCharacterID string // peer's active character in the caller's realm; "" if none
+	LastMessage     ConversationMessage
+	UnreadCount     int32 // capped at ConversationUnreadCap
 }
