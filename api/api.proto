@@ -276,6 +276,8 @@ message AuthenticateSteamRequest {
 message RequestEmailCodeRequest {
   // The email address to send the OTP code to.
   string email = 1;
+  // Extra information for the server, such as the web portal marker and captcha token. Not put in any session token.
+  map<string, string> vars = 2;
 }
 
 // Authenticate against the server with an email OTP code.

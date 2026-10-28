@@ -176,6 +176,9 @@ const (
 	RUNTIME_CTX_REALM_ID = "realm_id"
 )
 
+// SESSION_VAR_PORTAL marks a read-only web portal session. Clients send it as "1" in authenticate request vars to ask for one; the server strips it from client vars and sets it itself.
+const SESSION_VAR_PORTAL = "portal"
+
 // RealmContext holds the active realm and character context from a session token.
 // Use GetRealmContext or RequireRealmContext to extract from a handler's context.
 type RealmContext struct {
