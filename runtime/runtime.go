@@ -1719,6 +1719,18 @@ type NakamaModule interface {
 	PurchaseValidateFacebookInstant(ctx context.Context, userID, signedRequest string, persist bool) (*api.ValidatePurchaseResponse, error)
 	PurchasesList(ctx context.Context, userID string, limit int, cursor string) (*api.PurchaseList, error)
 	PurchaseGetByTransactionId(ctx context.Context, transactionID string) (*api.ValidatedPurchase, error)
+	// PurchaseMarkGranted records the character that received a purchase. The first grant wins; an unknown
+	// transaction, or a character of another account than the purchase's, is ignored. A zero grantTime means now.
+	PurchaseMarkGranted(ctx context.Context, transactionID, characterID string, grantTime time.Time) error
+	// PurchaseUpsertWebshop records a web shop order, then updates its raw response and, once granted, its grant.
+	PurchaseUpsertWebshop(ctx context.Context, purchase *WebshopPurchase) error
+	// PurchaseSetRefunded stamps a refund; the refund time only moves forward. An unknown transaction is ignored.
+	PurchaseSetRefunded(ctx context.Context, transactionID string, refundTime time.Time) error
+	// PurchasesListReceived lists a user's purchases newest first; characterID "" means every character, and
+	// store "" every store, otherwise a StoreProvider name. Rows not yet granted appear under every character.
+	PurchasesListReceived(ctx context.Context, userID, characterID, store string, limit int, cursor string) (*api.PurchaseList, error)
+	// PurchaseGetForUser finds one of the user's purchases by transaction ID or Google order ID; nil when none.
+	PurchaseGetForUser(ctx context.Context, userID, id string) (*api.ValidatedPurchase, error)
 
 	SubscriptionValidateApple(ctx context.Context, userID, receipt string, persist bool, passwordOverride ...string) (*api.ValidateSubscriptionResponse, error)
 	SubscriptionValidateGoogle(ctx context.Context, userID, receipt string, persist bool, overrides ...struct {
