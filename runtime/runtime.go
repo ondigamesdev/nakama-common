@@ -1385,6 +1385,17 @@ type NotificationUpdate struct {
 	Sender  *string
 }
 
+// WebshopPurchase is an order paid in a web shop. Nakama records it but cannot validate it.
+type WebshopPurchase struct {
+	UserID        string // the paying account
+	TransactionID string // unique per order, e.g. "aghanim_order:<id>"
+	ProductID     string // the first paid SKU
+	PurchaseTime  time.Time
+	RawResponse   string // JSON object, returned as provider_response
+	CharacterID   string // the character the order was delivered to
+	Granted       bool   // true once anything was delivered; a later false never un-grants
+}
+
 type WalletUpdate struct {
 	UserID    string
 	Changeset map[string]int64

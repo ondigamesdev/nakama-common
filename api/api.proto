@@ -1369,6 +1369,12 @@ message ValidatedPurchase {
   string realm_id = 13;
   // The character ID if this purchase is character-scoped.
   string character_id = 14;
+  // The order ID printed on a Google Play receipt (GPA.…); empty for other stores.
+  string order_id = 15;
+  // The character that received the purchase; empty until it is granted.
+  string granted_character_id = 16;
+  // Timestamp when the purchase was granted; unset until it is granted.
+  google.protobuf.Timestamp granted_time = 17;
 }
 
 // Validate IAP response.
@@ -1392,6 +1398,8 @@ enum StoreProvider {
   HUAWEI_APP_GALLERY = 2;
   // Facebook Instant Store
   FACEBOOK_INSTANT_STORE = 3;
+  // Web shop order, recorded by the game module (not validated by Nakama)
+  WEBSHOP = 4;
 }
 
 // Environment where a purchase/subscription took place,
