@@ -176,7 +176,9 @@ const (
 	RUNTIME_CTX_REALM_ID = "realm_id"
 )
 
-// SESSION_VAR_PORTAL marks a read-only web portal session. Clients send it as "1" in authenticate request vars to ask for one; the server strips it from client vars and sets it itself.
+// SESSION_VAR_PORTAL marks a read-only web portal session. Clients send it as "1" in authenticate request
+// vars to ask for one. Only a server with portal session support strips it from client vars and sets it
+// itself; on a server without that support it is an ordinary client-set var, so do not trust it there.
 const SESSION_VAR_PORTAL = "portal"
 
 // RealmContext holds the active realm and character context from a session token.
@@ -1391,9 +1393,11 @@ type WebshopPurchase struct {
 	TransactionID string // unique per order, e.g. "aghanim_order:<id>"
 	ProductID     string // the first paid SKU
 	PurchaseTime  time.Time
-	RawResponse   string // JSON object, returned as provider_response
+	RawResponse   string // JSON object, returned as provider_response; once granted, a call that is not Granted keeps the stored one
 	CharacterID   string // the character the order was delivered to
 	Granted       bool   // true once anything was delivered; a later false never un-grants
+	// Environment is SANDBOX for a test order and PRODUCTION for a real one. It is stored by the first call.
+	Environment api.StoreEnvironment
 }
 
 type WalletUpdate struct {
@@ -1719,15 +1723,23 @@ type NakamaModule interface {
 	PurchaseValidateFacebookInstant(ctx context.Context, userID, signedRequest string, persist bool) (*api.ValidatePurchaseResponse, error)
 	PurchasesList(ctx context.Context, userID string, limit int, cursor string) (*api.PurchaseList, error)
 	PurchaseGetByTransactionId(ctx context.Context, transactionID string) (*api.ValidatedPurchase, error)
-	// PurchaseMarkGranted records the character that received a purchase. The first grant wins; an unknown
-	// transaction, or a character of another account than the purchase's, is ignored. A zero grantTime means now.
+	// PurchaseMarkGranted records the character that received a purchase. The first grant wins: a purchase
+	// already granted is left as it is, without an error. It returns a NotFound status error when no purchase
+	// has this transaction ID, or when the character does not exist or belongs to another account than the
+	// purchase's. A zero grantTime means now.
 	PurchaseMarkGranted(ctx context.Context, transactionID, characterID string, grantTime time.Time) error
 	// PurchaseUpsertWebshop records a web shop order, then updates its raw response and, once granted, its grant.
+	// It returns a NotFound status error when the character does not exist or is not UserID's, and AlreadyExists
+	// when the transaction ID belongs to another account's order or to another store's purchase.
 	PurchaseUpsertWebshop(ctx context.Context, purchase *WebshopPurchase) error
-	// PurchaseSetRefunded stamps a refund; the refund time only moves forward. An unknown transaction is ignored.
+	// PurchaseSetRefunded stamps a refund. The first refund time is kept: a purchase already refunded is left
+	// as it is, without an error. It returns a NotFound status error when no purchase has this transaction ID.
+	// A zero refundTime means now.
 	PurchaseSetRefunded(ctx context.Context, transactionID string, refundTime time.Time) error
 	// PurchasesListReceived lists a user's purchases newest first; characterID "" means every character, and
-	// store "" every store, otherwise a StoreProvider name. Rows not yet granted appear under every character.
+	// store "" every store, otherwise a StoreProvider name in any case. Under a character, a store purchase not
+	// yet granted appears under every character, and a web shop order not yet granted under the character it
+	// was ordered for. RefundTime is the 1970 epoch when a purchase was not refunded.
 	PurchasesListReceived(ctx context.Context, userID, characterID, store string, limit int, cursor string) (*api.PurchaseList, error)
 	// PurchaseGetForUser finds one of the user's purchases by transaction ID or Google order ID; nil when none.
 	PurchaseGetForUser(ctx context.Context, userID, id string) (*api.ValidatedPurchase, error)
