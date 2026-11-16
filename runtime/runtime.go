@@ -1755,9 +1755,15 @@ type NakamaModule interface {
 	PurchaseGetForUser(ctx context.Context, userID, id string) (*api.ValidatedPurchase, error)
 
 	// PortalLoginCodeGenerate issues a one-time code that signs the user in to the web portal, and returns it with
-	// its expiry as a Unix timestamp in seconds. The code is single use and valid for 60 seconds. It returns an
-	// error for an unknown or banned user, ErrPortalLoginRateLimited when the user asks for codes too often, and
-	// ErrPortalLoginUnavailable when the code service is not configured or cannot be reached.
+	// its expiry as a Unix timestamp in seconds. The code is single use and valid for 60 seconds. At most 5 codes
+	// are issued per user per 60 seconds; the 6th returns ErrPortalLoginRateLimited. It returns an error for an
+	// unknown or banned user, and ErrPortalLoginUnavailable when the code service is not configured or cannot be
+	// reached.
+	//
+	// Call it only for a user proven by a live game session (for example from an RPC, with the user id taken from
+	// the session context). A code is a login credential for that user: never issue one on behalf of an id
+	// supplied by a client, and never from a portal session, which would let a portal session renew itself past
+	// its cap.
 	PortalLoginCodeGenerate(ctx context.Context, userID string) (code string, expiresAt int64, err error)
 
 	SubscriptionValidateApple(ctx context.Context, userID, receipt string, persist bool, passwordOverride ...string) (*api.ValidateSubscriptionResponse, error)
