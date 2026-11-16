@@ -292,6 +292,12 @@ message AuthenticateEmailOTPRequest {
   map<string, string> vars = 4;
 }
 
+// Swap a one-time portal login code for a read-only portal session.
+message AuthenticatePortalCodeRequest {
+  // The code the game server issued.
+  string code = 1;
+}
+
 // Verify email ownership with a code sent to the email address.
 message VerifyEmailCodeRequest {
   // The email address to verify.

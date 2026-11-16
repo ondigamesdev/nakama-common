@@ -383,6 +383,10 @@ var (
 
 	// NATS plugin API errors
 	ErrNATSNotConfigured = errors.New("nats not configured")
+
+	// Portal login code errors
+	ErrPortalLoginRateLimited = errors.New("portal login code rate limited")
+	ErrPortalLoginUnavailable = errors.New("portal login code service unavailable")
 )
 
 // ZMember represents a scored member for sorted set operations.
@@ -776,6 +780,12 @@ type Initializer interface {
 
 	// RegisterAfterAuthenticateEmailOTP can be used to perform logic after successful email OTP authentication.
 	RegisterAfterAuthenticateEmailOTP(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.AuthenticateEmailOTPRequest) error) error
+
+	// RegisterBeforeAuthenticatePortalCode can be used to perform pre-authentication checks for portal login code sign-in.
+	RegisterBeforeAuthenticatePortalCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.AuthenticatePortalCodeRequest) (*api.AuthenticatePortalCodeRequest, error)) error
+
+	// RegisterAfterAuthenticatePortalCode can be used to perform logic after successful portal login code authentication.
+	RegisterAfterAuthenticatePortalCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, out *api.Session, in *api.AuthenticatePortalCodeRequest) error) error
 
 	// RegisterBeforeVerifyEmailCode can be used to intercept email verification code submissions.
 	RegisterBeforeVerifyEmailCode(fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, in *api.VerifyEmailCodeRequest) (*api.VerifyEmailCodeRequest, error)) error
@@ -1743,6 +1753,12 @@ type NakamaModule interface {
 	PurchasesListReceived(ctx context.Context, userID, characterID, store string, limit int, cursor string) (*api.PurchaseList, error)
 	// PurchaseGetForUser finds one of the user's purchases by transaction ID or Google order ID; nil when none.
 	PurchaseGetForUser(ctx context.Context, userID, id string) (*api.ValidatedPurchase, error)
+
+	// PortalLoginCodeGenerate issues a one-time code that signs the user in to the web portal, and returns it with
+	// its expiry as a Unix timestamp in seconds. The code is single use and valid for 60 seconds. It returns an
+	// error for an unknown or banned user, ErrPortalLoginRateLimited when the user asks for codes too often, and
+	// ErrPortalLoginUnavailable when the code service is not configured or cannot be reached.
+	PortalLoginCodeGenerate(ctx context.Context, userID string) (code string, expiresAt int64, err error)
 
 	SubscriptionValidateApple(ctx context.Context, userID, receipt string, persist bool, passwordOverride ...string) (*api.ValidateSubscriptionResponse, error)
 	SubscriptionValidateGoogle(ctx context.Context, userID, receipt string, persist bool, overrides ...struct {
