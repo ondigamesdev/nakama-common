@@ -385,8 +385,9 @@ var (
 	ErrNATSNotConfigured = errors.New("nats not configured")
 
 	// Portal login code errors
-	ErrPortalLoginRateLimited = errors.New("portal login code rate limited")
-	ErrPortalLoginUnavailable = errors.New("portal login code service unavailable")
+	ErrPortalLoginRateLimited     = errors.New("portal login code rate limited")
+	ErrPortalLoginUnavailable     = errors.New("portal login code service unavailable")
+	ErrPortalLoginSessionRequired = errors.New("portal login code requires a game session")
 )
 
 // ZMember represents a scored member for sorted set operations.
@@ -1754,17 +1755,24 @@ type NakamaModule interface {
 	// PurchaseGetForUser finds one of the user's purchases by transaction ID or Google order ID; nil when none.
 	PurchaseGetForUser(ctx context.Context, userID, id string) (*api.ValidatedPurchase, error)
 
-	// PortalLoginCodeGenerate issues a one-time code that signs the user in to the web portal, and returns it with
-	// its expiry as a Unix timestamp in seconds. The code is single use and valid for 60 seconds. At most 5 codes
-	// are issued per user per 60 seconds; the 6th returns ErrPortalLoginRateLimited. It returns an error for an
-	// unknown or banned user, and ErrPortalLoginUnavailable when the code service is not configured or cannot be
-	// reached.
+	// PortalLoginCodeGenerate issues a one-time code that signs the calling user in to the web portal, and returns it
+	// with its expiry as a Unix timestamp in seconds. The code is single use and valid for 60 seconds.
 	//
-	// Call it only for a user proven by a live game session (for example from an RPC, with the user id taken from
-	// the session context). A code is a login credential for that user: never issue one on behalf of an id
-	// supplied by a client, and never from a portal session, which would let a portal session renew itself past
-	// its cap.
-	PortalLoginCodeGenerate(ctx context.Context, userID string) (code string, expiresAt int64, err error)
+	// The user is the session user in ctx (RUNTIME_CTX_USER_ID), never a parameter: a code is a login credential,
+	// so only a live game session can ask for one, and only for itself. Call it from an RPC or hook context that
+	// carries a game session. It returns ErrPortalLoginSessionRequired when ctx has no session user (a
+	// server-to-server call, a match loop, a background or plain context) or is a portal session, which would
+	// otherwise let a portal session renew itself past its cap.
+	//
+	// Each call counts against a per-user limit of 5 calls in a fixed 60-second window that starts at the user's
+	// first counted call; past that the call returns ErrPortalLoginRateLimited until the window ends. The window
+	// is fixed, not sliding, so up to 10 codes can be issued in a short span across a window boundary, and a call
+	// that is counted but then fails to store its code still uses up one of the 5.
+	//
+	// It returns ErrPortalLoginUnavailable when the code service is not configured, and an error wrapping
+	// ErrPortalLoginUnavailable when it cannot be reached; test the sentinels with errors.Is, not ==. It returns
+	// a plain error for an unknown or banned user.
+	PortalLoginCodeGenerate(ctx context.Context) (code string, expiresAt int64, err error)
 
 	SubscriptionValidateApple(ctx context.Context, userID, receipt string, persist bool, passwordOverride ...string) (*api.ValidateSubscriptionResponse, error)
 	SubscriptionValidateGoogle(ctx context.Context, userID, receipt string, persist bool, overrides ...struct {

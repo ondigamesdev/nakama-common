@@ -448,6 +448,10 @@ declare namespace nkruntime {
         username: string
     }
 
+    export interface AuthenticatePortalCodeRequest {
+        code: string
+    }
+
     export interface AuthenticateFacebookRequest {
         account?: AccountFacebook
         create?: boolean
@@ -1228,6 +1232,22 @@ declare namespace nkruntime {
          * @throws {TypeError}
          */
         registerAfterAuthenticateEmail(fn: AfterHookFunction<Session, AuthenticateEmailRequest>): void;
+
+        /**
+         * Register before Hook for RPC AuthenticatePortalCode function.
+         *
+         * @param fn - The function to execute before AuthenticatePortalCode.
+         * @throws {TypeError}
+         */
+        registerBeforeAuthenticatePortalCode(fn: BeforeHookFunction<AuthenticatePortalCodeRequest>): void;
+
+        /**
+         * Register after Hook for RPC AuthenticatePortalCode function.
+         *
+         * @param fn - The function to execute after AuthenticatePortalCode.
+         * @throws {TypeError}
+         */
+        registerAfterAuthenticatePortalCode(fn: AfterHookFunction<Session, AuthenticatePortalCodeRequest>): void;
 
         /**
          * Register before Hook for RPC AuthenticateFacebook function.
